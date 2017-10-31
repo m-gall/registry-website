@@ -26,13 +26,16 @@
                  <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img>
               </a>
         </div>
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" role="search"
+                  action='/add.html' method="'get">
                 <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search for a pipeline">
+                <input type="text" class="form-control" name="myname" placeholder="Search for a pipeline">
                     <button type="submit" class="btn btn-default">Find</button>
 
                 </div>
             </form>
+
+
 
       </div>
   </div>

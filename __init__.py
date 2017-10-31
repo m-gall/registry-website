@@ -47,7 +47,7 @@ class Pipeline(db.Model):
 
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def homepage():
     title = 'Australian Genomics Health Alliance Registry of Pipelines'
     subhead = 'This is the home of the Australian Genomics pipeline registry.'
@@ -60,9 +60,12 @@ def homepage():
                    'Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation, ' \
                    'enabling detailed exploration of the structure and composition of a pipeline.'
     subheadtext2 = ''
+
+    myname=Pipeline.query.all()
+
     return render_template("main.html", title=title, subhead=subhead, subheading1=subheading1, subheading2=subheading2,
                            subheadtext1=subheadtext1,
-                           subheadtext2=subheadtext2, subheading3=subheading3)
+                           subheadtext2=subheadtext2, subheading3=subheading3, myname=myname)
 
 
 @app.route('/about.html')
@@ -107,6 +110,10 @@ def flagship():
     flagshiprows = Flagship.query.all()
     return render_template('flagship.html', title='Overview',flagshiprows=flagshiprows)
 
+@app.route('/add.html', methods=['GET'])
+def add():
+    name = request.form("myname")
+    return render_template('add.html', title='Overview')
 
 
 if __name__ == '__main__':
