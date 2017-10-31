@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Australian Genomics Pipeline Registry </title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
+</head>
+
+
+
+<header>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class ='row'>
+    <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+             <a class="navbar-brand" href="/">
+                 <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img>
+              </a>
+        </div>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search for a pipeline">
+                    <button type="submit" class="btn btn-default">Find</button>
+
+                </div>
+            </form>
+
+      </div>
+  </div>
+
+</header>
+
+<div>
+
+
+
+<div class ="container">
+    <div class="'row">
+        <div class="col-sm-9 col-md-3 sidebar">
+           <nav class="nav-sidebar">
+               <ul class="nav"
+                    <ul class="list-unstyled components">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="/registry.html">Pipeline Registry</a></li>
+                        <li><a href="/flagship.html">AGHA Flagships</a></li>
+                        <li><a href="#">Pipeline standard format </a></li>
+                        <li><a href="/explorer.html">CWL Explorer</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="/about.html">About</a></li>
+                       <li><a href="/table.html">Summary</a></li>
+                       <li><a href="/overview.html">All Tables</a></li>
+                       <li><a href="#"></a></li>
+
+                     </ul>
+                </ul>
+             </nav>
+        </div>
+        <div class="'col s9">
+             <h3 style=margin-left:50px; > {{ title }}</h3>
+             <p style=margin-left:50px;color:black> {{ subhead }}</p>
+
+                <div class="divider"></div>
+
+                      <div class="section">
+                        <h5 style="font-size: 20px">{{ subheading1 }}</h5>
+                        <p>{{ subheadtext1 }}</p>
+                      </div>
+                      <div class="divider"></div>
+                      <div class="section">
+                        <h5 style="font:size:20px;"> {{ subheading2 }}</h5>
+                        <p>{{ subheadtext2 }}</p>
+                      </div>
+
+                      <div class="section">
+                          <h5 style="font-size: 20px"> {{ subheading3 }}</h5>
+                          <ul class="list-unstyled components">
+                                <li ><a href="http://www.commonwl.org/"; style=color:black;>CWL (http://www.commonwl.org) </a></li>
+                                <li><a href="http://edamontology.org/page"; style=color:black;>EDAM Ontology (http://edamontology.org/page) </a></li>
+                                <li><a href="https://bio.tools/"; style=color:black; >Elixir tool registry (https://bio.tools) </a></li>
+                                <li><a href="http://rabix.io/"; style=color:black; >Rabix tools for creating and running CWL workflows (http://rabix.io/) </a></li>
+                                <li><a href="https://view.commonwl.org/"; style=color:black; >CWL Viewer (https://view.commonwl.org/) </a></li>
+
+                      </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   <!--         <li><a href="#">Portfolio</a></li>
+           <li><a href="#">Contact</a></li>  -->
+
+
+</body>
+
+
+</html>

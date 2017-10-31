@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div> Enter a pipeline name
+    <form action="/add.html" method="get">
+
+        <input type="text" name="myname'>
+        <input type="submit>
+
+    </form>
+
+    {%  for name in myname %}
+        <li>{{ name.pipeline_name }}</li>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
