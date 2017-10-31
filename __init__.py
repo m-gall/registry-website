@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect
 
 
-
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -93,8 +92,10 @@ def explorer():
     subhead = ''
     subheading1 = 'Purpose and scope'
     subheadtext1 = 'This tool accepts CWL workflow and tool definitions as inputs and renders tjhe pipelines as an interactive di-acyclic (DAG) graphic visualisation.'
+    subheading2 = 'Demo'
+    urllink = 'https://bjpop.github.io/cwl_explorer/'
     return render_template('explorer.html', title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1)
+                           subheadtext1=subheadtext1, subheading2=subheading2, urllink=urllink)
 
 
 
