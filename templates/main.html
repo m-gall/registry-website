@@ -53,11 +53,10 @@
                         <li><a href="#">Home</a></li>
                         <li><a href="/registry.html">Pipeline Registry</a></li>
                         <li><a href="/flagship.html">AGHA Flagships</a></li>
-                        <li><a href="#">Pipeline Standard description </a></li>
+                        <li><a href="/pipeline_desc.html">Pipeline Standard description </a></li>
                         <li><a href="/explorer.html">CWL Explorer</a></li>
                         <li><a href="#">Resources</a></li>
                         <li><a href="/about.html">About</a></li>
-                       <li><a href="/table.html">Summary</a></li>
                        <li><a href="/overview.html">All Tables</a></li>
                        <li><a href="#"></a></li>
 
@@ -80,7 +79,7 @@
                         <h5 style="font:size:20px;"> {{ subheading2 }}</h5>
                         <p>{{ subheadtext2 }}</p>
                       </div>
-
+                      <div class="divider"></div>
                       <div class="section">
                           <h5 style="font-size: 20px"> {{ subheading3 }}</h5>
                           <ul class="list-unstyled components">
@@ -91,23 +90,58 @@
                                 <li><a href="https://view.commonwl.org/"; style=color:black; >CWL Viewer (https://view.commonwl.org/) </a></li>
 
                       </div>
+
+                        <h3> Pipelines registered </h3>
+
+                        <div id="googleMap" style="width:100%;height:400px"></div>
+                      </div>
+        <h3 style="margin-bottom:20px;"> Contributing Centres </h3>
+            <img style = 'max-width:200px; margin-top: -20px;'src ="{{ url_for('static', filename='images/mb.png') }}" /</img>
+            <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/sap.png') }}" /</img>
+            <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/pm.svg') }}" /</img>
+            <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/garvan2017.svg') }}" /</img>
+            <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/pathwest.jpeg') }}" /</img>
+        <h3 style="margin-bottom:20px;">  </h3>
+            <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/mcri.png') }}" /</img>
+        <h3 style="margin-bottom:50px;">  </h3>
+
         </div>
+
+
         </div>
     </div>
 </div>
 
 
-
-
-
-
-    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    function myMap() {
 
-   <!--         <li><a href="#">Portfolio</a></li>
-           <li><a href="#">Contact</a></li>  -->
+        var location = new google.maps.LatLng(-33.865143, 151.209900);
+
+        var mapProp = {
+            center: new google.maps.LatLng(-24.994167, 134.866944),
+            zoom: 4
+        }
+
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp)
+
+        var markerImage = "/Users/mailie/PycharmProjects/test/templates/marker.png";
+
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        marker.setMap(googleMap);
+    }
+
+
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvRM8RUAyX8O9eODVQmPBoYngM2ya8BOU&callback=myMap"></script>
 
 
 </body>
