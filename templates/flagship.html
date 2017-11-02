@@ -43,6 +43,53 @@
 
 <body>
 
+
+<div class="container">
+
+    <ul class="nav nav-tabs nav-justified">
+
+        {% for row in flagshiprows %}
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.flagship_name }} </a>
+      </li>
+
+        {% endfor %}
+
+    </ul>
+
+
+
+<div class="tab-content">
+
+            {% for row in flagshiprows %}
+
+
+        <div class="tab-pane" id={{ row.id }} role="tabpanel">
+
+        <p>Flagship name: {{ row.flagship_name }}
+      <br> Flagship institute: {{ row.flagship_institute }}
+      <br> Flagship disease: {{ row.flagshipDiseaseType }}
+        </p>
+
+    </div>
+
+        {% endfor %}
+
+
+    </div>
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
 <div class="table-default">
 
   <table class="table">

@@ -45,20 +45,12 @@
 
 <div class="container">
 
-
-
-
-
-
-
-
-
     <ul class="nav nav-tabs nav-justified">
 
         {% for row in pipelinerows %}
 
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#{{ row.pipeline_institute }}", role="tab">{{ row.pipeline_institute }} </a>
+        <a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.pipeline_institute }} </a>
       </li>
 
         {% endfor %}
@@ -72,9 +64,10 @@
             {% for row in pipelinerows %}
 
 
-        <div class="tab-pane" id={{ row.pipeline_institute }} role="tabpanel">
+        <div class="tab-pane" id={{ row.id }} role="tabpanel">
 
-        <p>{{ row.pipeline_institute }} </p>
+        <p> <h5> Pipeline name </h5>{{ row.pipeline_name }}</p>
+        <p> <h5> Pipeline institute </h5>{{ row.pipeline_institute }}</p>
 
     </div>
 
