@@ -88,8 +88,10 @@ def registry():
     subhead = ''
     subheading1 = 'Summary'
     subheadtext1 = ''
+    pipelinerows = Pipeline.query.all()
+
     return render_template('registry.html', title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1)
+                           subheadtext1=subheadtext1, pipelinerows=pipelinerows)
 
 
 @app.route('/explorer.html')

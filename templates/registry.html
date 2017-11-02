@@ -43,29 +43,50 @@
 
 <body>
 
-<div class ="container">
-    <div class="'row">
-
-        <div class="'col s9">
+<div class="container">
 
 
 
+
+
+
+
+
+
+    <ul class="nav nav-tabs nav-justified">
+
+        {% for row in pipelinerows %}
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#{{ row.pipeline_institute }}", role="tab">{{ row.pipeline_institute }} </a>
+      </li>
+
+        {% endfor %}
+
+    </ul>
+
+
+
+<div class="tab-content">
+
+            {% for row in pipelinerows %}
+
+
+        <div class="tab-pane" id={{ row.pipeline_institute }} role="tabpanel">
+
+        <p>{{ row.pipeline_institute }} </p>
+
+    </div>
+
+        {% endfor %}
 
 
     </div>
 
-
-
-
 </div>
 
-</div>
-
-
-
-
-
-
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 </body>
