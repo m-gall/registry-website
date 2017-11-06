@@ -95,9 +95,10 @@ def homepage():
                    'The AGHA registry '
 
     myname=Pipeline.query.all()
+    instituterow = Institute.query.all()
 
     return render_template("main.html", title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1, subheading3=subheading3, myname=myname)
+                           subheadtext1=subheadtext1, subheading3=subheading3, myname=myname, instituterow=instituterow)
 
 
 @app.route('/about.html')
@@ -154,8 +155,16 @@ def pipeline_desc():
 
 @app.route('/resources.html')
 def resources():
-
     return render_template("resources.html")
+
+@app.route('/search.html', methods=['GET'])
+def search():
+    return render_template("search.html")
+
+
+@app.route('/upload_to_db.html', methods=['GET','POST'])
+def upload():
+    return render_template("upload_to_db.html")
 
 if __name__ == '__main__':
     app.run()
