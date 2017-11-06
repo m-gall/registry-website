@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mailie/Documents/code/scratch/sqlalchemy/sqlalchemy-workspace/registry-v1.db'
+    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mailie/Documents/code/flask_projects/registry-v1/database-build/registry-v1.db'
 
 db= SQLAlchemy(app)
 
@@ -25,6 +25,7 @@ class Flagship(db.Model):
     workflow_id = db.relationship('Workflow', backref='flagship', lazy='dynamic')
 
 
+
 class Workflow(db.Model):
     __tablename__='workflow'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -35,18 +36,44 @@ class Workflow(db.Model):
     nata_accreditation = db.Column(db.String(50))
     reference_genome = db.Column(db.String(50))
     workflow_usage = db.Column(db.String(50))
+    workflow_accession = db.Column(db.VARCHAR(50))
 
     pipeline_id= db.Column(db.Integer, db.ForeignKey('pipeline.id'))
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
+    workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_desc.id'))
 
 
 class Pipeline(db.Model):
     __tablename__='pipeline'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pipeline_name = db.Column(db.String(100))
-    pipeline_institute = db.Column(db.String(200))
+    pipeline_provider = db.Column(db.String(200))
+
+    institute_id= db.Column(db.Integer, db.ForeignKey('institute.id'))
 
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
+
+
+
+class Institute(db.Model):
+    __tablename__='institute'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    institute_name = db.Column(db.String(100))
+    institute_logo = db.Column(db.String(200))
+    institute_long = db.Column(db.Integer)
+    institute_lat = db.Column(db.Integer)
+
+    pipeline_id = db.relationship('Pipeline', backref='institute', lazy='dynamic')
+
+
+
+class Workflow_Description(db.Model):
+    __tablename__='workflow_desc'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    description = db.Column(db.String(500))
+    cwl_link= db.Column(db.String(50))
+
+    workflow_id = db.relationship('Workflow', backref='workflow_desc', lazy='dynamic')
 
 @app.route('/', methods=['GET'])
 def homepage():
@@ -123,10 +150,12 @@ def flagship():
 
 @app.route('/pipeline_desc.html')
 def pipeline_desc():
-
-
     return render_template("pipeline_desc.html")
 
+@app.route('/resources.html')
+def resources():
+
+    return render_template("resources.html")
 
 if __name__ == '__main__':
     app.run()

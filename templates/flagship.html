@@ -60,24 +60,24 @@
 
 
 
-<div class="tab-content">
+    <div class="tab-content">
 
-            {% for row in flagshiprows %}
-
-
-        <div class="tab-pane" id={{ row.id }} role="tabpanel">
-
-        <p>Flagship name: {{ row.flagship_name }}
-      <br> Flagship institute: {{ row.flagship_institute }}
-      <br> Flagship disease: {{ row.flagshipDiseaseType }}
-        </p>
-
-    </div>
-
-        {% endfor %}
+                {% for row in flagshiprows %}
 
 
-    </div>
+            <div class="tab-pane" id={{ row.id }} role="tabpanel">
+
+            <p>Flagship name: {{ row.flagship_name }}
+          <br> Flagship institute: {{ row.flagship_institute }}
+          <br> Flagship disease: {{ row.flagshipDiseaseType }}
+            </p>
+
+        </div>
+
+            {% endfor %}
+
+
+        </div>
 
 </div>
 
