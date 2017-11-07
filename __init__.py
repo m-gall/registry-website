@@ -1,18 +1,15 @@
-from flask import Flask, render_template, request, redirect
-import markdown
-from flask import Markup
-
-
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask import request, render_template, url_for, redirect
 
 app = Flask(__name__)
 
 app.config[
     'SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mailie/Documents/code/flask_projects/registry-v1/database-build/registry-v1.db'
 
-db= SQLAlchemy(app)
+app.debug = True
 
+db = SQLAlchemy(app)
 
 class Flagship(db.Model):
     __tablename__='flagship'
@@ -24,6 +21,14 @@ class Flagship(db.Model):
 
     workflow_id = db.relationship('Workflow', backref='flagship', lazy='dynamic')
 
+    def __init__(self, flagship_name, flagship_institute, flagship_lead, flagshipDiseaseType):
+        self.flagship_name = flagship_name
+        self.flagship_institute = flagship_institute
+        self.flagship_lead = flagship_lead
+        self.flagshipDiseaseType = flagshipDiseaseType
+
+    def __repr__(self):
+        return '<Flagship %r>' % self.flagship_name
 
 
 class Workflow(db.Model):
@@ -42,6 +47,18 @@ class Workflow(db.Model):
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
     workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_desc.id'))
 
+    def __init__(self, workflow_name, library_preparation, library_layout, sequencing_strategy, nata_accreditation, reference_genome, workflow_usage, workflow_accession):
+        self.workflow_name = workflow_name
+        self.library_preparation = library_preparation
+        self.library_layout = library_layout
+        self.sequencing_strategy = sequencing_strategy
+        self.nata_accreditation = nata_accreditation
+        self.reference_genome = reference_genome
+        self.workflow_usage = workflow_usage
+        self.workflow_accession = workflow_accession
+
+    def __repr__(self):
+         return '<Workflow %r>' % self.workflow_name
 
 class Pipeline(db.Model):
     __tablename__='pipeline'
@@ -53,7 +70,12 @@ class Pipeline(db.Model):
 
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
 
+    def __init__(self, pipeline_name, pipeline_provider):
+        self.pipeline_name = pipeline_name
+        self.pipeline_provider = pipeline_provider
 
+    def __repr__(self):
+         return '<Pipeline %r>' % self.pipeline_name
 
 class Institute(db.Model):
     __tablename__='institute'
@@ -65,7 +87,11 @@ class Institute(db.Model):
 
     pipeline_id = db.relationship('Pipeline', backref='institute', lazy='dynamic')
 
+    def __init__(self, institute_name):
+        self.institute_name = institute_name
 
+    def __repr__(self):
+        return '<Institute %r>' % self.institute_name
 
 class Workflow_Description(db.Model):
     __tablename__='workflow_desc'
@@ -75,7 +101,14 @@ class Workflow_Description(db.Model):
 
     workflow_id = db.relationship('Workflow', backref='workflow_desc', lazy='dynamic')
 
-@app.route('/', methods=['GET'])
+    def __init__(self, description, cwl_link):
+        self.description = description
+        self.cwl_link = cwl_link
+
+    def __repr__(self):
+        return '<Workflow_Description %r>' % self.description
+
+@app.route('/')
 def homepage():
     title = 'Australian Genomics Registry of Pipelines'
     subhead = 'This is the home of the Australian Genomics Bioinformatics pipeline registry.'
@@ -136,7 +169,6 @@ def explorer():
                            subheadtext1=subheadtext1, subheading2=subheading2, urllink=urllink, pipelinerows=pipelinerows)
 
 
-
 @app.route('/overview.html', methods=['GET'])
 def index():
     pipelinerows = Pipeline.query.all()
@@ -163,8 +195,29 @@ def search():
 
 
 @app.route('/upload_to_db.html', methods=['GET','POST'])
-def upload():
-    return render_template("upload_to_db.html")
+def upload_to_db():
+    if request.method == 'GET':
+        return render_template("upload_to_db.html")
+    elif request.method == 'POST':
+        flagship_name_temp = request.form['flagship_name']
+        flagship_institute_temp = request.form['flagship_institute']
+        flagship_lead_temp = request.form['flagship_lead']
+        flagshipDiseaseType_temp = request.form['flagshipDiseaseType']
+
+        query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_name_temp).first()
+
+        if query == None:
+            print('i dont exist so add me')
+            new_flagship = Flagship(flagship_name_temp, flagship_institute_temp, flagship_lead_temp, flagshipDiseaseType_temp)
+            db.session.add(new_flagship)
+            db.session.commit()
+            return redirect(url_for('search'))
+        else:
+            print('I already exist in the database')
+            return redirect(url_for('upload_to_db'))
+
+    else:
+        return "Form didn't validate"
 
 if __name__ == '__main__':
     app.run()

@@ -126,9 +126,6 @@
             ]
         ;
 
-
-      <!--  var location = new google.maps.LatLng(-33.865143, 151.209900); -->
-
         var mapProp = {
             center: new google.maps.LatLng(-24.994167, 134.866944),
             zoom: 4,
@@ -143,8 +140,7 @@
         for (count = 0; count < locations.length; count++) {
             var marker = new google.maps.Marker({
              position: new google.maps.LatLng(locations[count][1], locations[count][2]),
-          <!--      position: location, -->
-                map: map
+             map: map
             });
         }
 
