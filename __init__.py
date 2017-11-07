@@ -127,11 +127,11 @@ def homepage():
                    'One barrier to pipeline transparency is a lack of standards for describing pipelines.' \
                    'The AGHA registry '
 
-    myname=Pipeline.query.all()
+    searchterm=Pipeline.query.all()
     instituterow = Institute.query.all()
 
     return render_template("main.html", title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1, subheading3=subheading3, myname=myname, instituterow=instituterow)
+                           subheadtext1=subheadtext1, subheading3=subheading3, searchterm=searchterm, instituterow=instituterow)
 
 
 @app.route('/about.html')
@@ -149,7 +149,7 @@ def registry():
     subhead = ''
     subheading1 = 'Summary'
     subheadtext1 = ''
-    pipelinerows = Pipeline.query.all()
+    pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
 
     return render_template('registry.html', title=title, subhead=subhead, subheading1=subheading1,
                            subheadtext1=subheadtext1, pipelinerows=pipelinerows)
@@ -163,7 +163,7 @@ def explorer():
     subheadtext1 = 'This tool accepts CWL workflow and tool definitions as inputs and renders tjhe pipelines as an interactive di-acyclic (DAG) graphic visualisation.'
     subheading2 = 'Demo'
     urllink = 'https://bjpop.github.io/cwl_explorer/'
-    pipelinerows = Pipeline.query.all()
+    pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
 
     return render_template('explorer.html', title=title, subhead=subhead, subheading1=subheading1,
                            subheadtext1=subheadtext1, subheading2=subheading2, urllink=urllink, pipelinerows=pipelinerows)
@@ -171,14 +171,14 @@ def explorer():
 
 @app.route('/overview.html', methods=['GET'])
 def index():
-    pipelinerows = Pipeline.query.all()
-    workflowrows = Workflow.query.all()
+    pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
+    workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
     return render_template('overview.html', title='Overview', pipelinerows=pipelinerows, workflowrows=workflowrows)
 
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
-    flagshiprows = Flagship.query.all()
+    flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
     return render_template('flagship.html', title='Overview',flagshiprows=flagshiprows)
 
 @app.route('/pipeline_desc.html')
@@ -196,9 +196,19 @@ def search():
 
 @app.route('/upload_to_db.html', methods=['GET','POST'])
 def upload_to_db():
+
+    searchterm = Pipeline.query.all()
+
     if request.method == 'GET':
-        return render_template("upload_to_db.html")
+        workflowrows = Workflow.query.all()
+        instituterows = Institute.query.all()
+        pipelinerows = Pipeline.query.all()
+
+        return render_template("upload_to_db.html", workflowrows=workflowrows,
+                               instituterows=instituterows, pipelinerows=pipelinerows, searchterm=searchterm)
+
     elif request.method == 'POST':
+
         flagship_name_temp = request.form['flagship_name']
         flagship_institute_temp = request.form['flagship_institute']
         flagship_lead_temp = request.form['flagship_lead']

@@ -50,7 +50,7 @@
         {% for row in pipelinerows %}
 
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.pipeline_institute }} </a>
+        <a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.pipeline_name }} </a>
       </li>
 
         {% endfor %}
@@ -66,8 +66,9 @@
 
         <div class="tab-pane" id={{ row.id }} role="tabpanel">
 
-        <p> <h5> Pipeline name </h5>{{ row.pipeline_name }}</p>
-        <p> <h5> Pipeline institute </h5>{{ row.pipeline_institute }}</p>
+        <p> <h3> Pipeline name </h3>{{ row.pipeline_name }}</p>
+        <p> <h3> Pipeline provider </h3>{{ row.pipeline_provider }}</p>
+        <h3> About the pipeline </h3>
 
     </div>
 
