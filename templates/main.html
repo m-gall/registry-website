@@ -4,48 +4,45 @@
     <meta charset="UTF-8">
     <title> Australian Genomics Pipeline Registry </title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
+    <link rel="shortcut icon" src="{{ url_for('static', filename='agha.ico') }}">
 </head>
 
 
 
 <header>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-      <div class ='row'>
-    <!-- Brand and toggle get grouped for better mobile display -->
-         <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-             <a class="navbar-brand" href="/">
-                 <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img>
-              </a>
-        </div>
-            <form class="navbar-form navbar-left" role="Enter a pipeline name"
-                  action='/search.html' method="'get">
-                <div class="form-group">
-                <input type="text" class="form-control" name="myname" placeholder="Search for a pipeline">
-                    <button type="submit" class="btn btn-default">Find</button>
-
-                </div>
-            </form>
-
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <div class ='row'>
+        <!-- Brand and toggle get grouped for better mobile display -->
+             <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                 <a class="navbar-brand" href="/">
+                     <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img>
+                  </a>
+                <form class="navbar-form navbar-left" role="Enter a pipeline name"
+                      action='/search.html' method="'get">
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="myname" placeholder="Search for a pipeline">
+                        <button type="submit" class="btn btn-default">Find</button>
+                    </div>
+                </form>
+          </div>
       </div>
-  </div>
+    </nav>
 
 </header>
 
-<div>
 
-
+<body>
 
 <div class ="container">
-    <div class="'row">
+    <div class="row">
         <div class="col-sm-9 col-md-3 sidebar">
            <nav class="nav-sidebar">
                <ul class="nav"
@@ -66,52 +63,45 @@
              </nav>
         </div>
         <div class="'col s9">
-             <h3 style=margin-left:50px; > {{ title }}</h3>
-             <p style=margin-left:50px;color:black> {{ subhead }}</p>
-
-                <div class="divider"></div>
-
-                      <div class="section">
-                        <h5 style="font-size: 20px">{{ subheading1 }}</h5>
-                        <p>{{ subheadtext1 }}</p>
-                      </div>
-                      <div class="divider"></div>
-                      <div class="section">
-                        <h5 style="font:size:20px;"> {{ subheading2 }}</h5>
-                        <p>{{ subheadtext2 }}</p>
-                      </div>
-                      <div class="divider"></div>
-                      <div class="section">
-                          <h5 style="font-size: 20px"> {{ subheading3 }}</h5>
-                          <ul class="list-unstyled components">
-                                <li ><a href="http://www.commonwl.org/"; style=color:black;>The Common Workflow Language (http://www.commonwl.org) </a></li>
-                                <li><a href="http://edamontology.org/page"; style=color:black;>EDAM Ontology (http://edamontology.org/page) </a></li>
-                                <li><a href="https://bio.tools/"; style=color:black; >Elixir tool registry (https://bio.tools) </a></li>
-                                <li><a href="http://rabix.io/"; style=color:black; >Rabix tools for creating and running CWL workflows (http://rabix.io/) </a></li>
-                                <li><a href="https://view.commonwl.org/"; style=color:black; >CWL Viewer (https://view.commonwl.org/) </a></li>
-
-                      </div>
-
-                        <h3> Pipelines registered </h3>
-
-                        <div id="googleMap" style="width:100%;height:400px"></div>
-                      </div>
-        <h3 style="margin-bottom:20px;"> Contributing Centres </h3>
+            <h3 style=margin-left:50px; > {{ title }}</h3>
+            <p style=margin-left:50px;color:black> {{ subhead }}</p>
+            <div class="section">
+                <h5 style="font-size: 20px">{{ subheading1 }}</h5>
+                <p>{{ subheadtext1 }}</p>
+            </div>
+            <div class="section">
+                <h5 style="font:size:20px;"> {{ subheading2 }}</h5>
+                <p>{{ subheadtext2 }}</p>
+            </div>
+            <div class="section">
+                <h5 style="font-size: 20px"> {{ subheading3 }}</h5>
+                <ul class="list-unstyled components">
+                    <li ><a href="http://www.commonwl.org/"; style=color:black;>The Common Workflow Language (http://www.commonwl.org) </a></li>
+                    <li><a href="http://edamontology.org/page"; style=color:black;>EDAM Ontology (http://edamontology.org/page) </a></li>
+                    <li><a href="https://bio.tools/"; style=color:black; >Elixir tool registry (https://bio.tools) </a></li>
+                    <li><a href="http://rabix.io/"; style=color:black; >Rabix tools for creating and running CWL workflows (http://rabix.io/) </a></li>
+                    <li><a href="https://view.commonwl.org/"; style=color:black; >CWL Viewer (https://view.commonwl.org/) </a></li>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s9" style="margin-left: 20px">
+            <h3 style="margin-left: 0px; margin-bottom: 20px"> Pipelines registered </h3>
+            <div id="googleMap" style="width:100%;height:400px"></div>
+            <h3 style="margin-bottom:20px;"> Contributing Centres </h3>
             <img style = 'max-width:200px; margin-top: -20px;'src ="{{ url_for('static', filename='images/mb.png') }}" /</img>
             <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/sap.png') }}" /</img>
             <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/pm.svg') }}" /</img>
             <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/garvan2017.svg') }}" /</img>
             <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/pathwest.jpeg') }}" /</img>
-        <h3 style="margin-bottom:20px;">  </h3>
+            <h3 style="margin-bottom:20px;">  </h3>
             <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/mcri.png') }}" /</img>
-        <h3 style="margin-bottom:50px;">  </h3>
-
-        </div>
-
-
+            <h3 style="margin-bottom:50px;">  </h3>
         </div>
     </div>
 </div>
+
+</body>
 
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -147,9 +137,6 @@
 
         marker.setMap(googleMap);
     }
-
-
-
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvRM8RUAyX8O9eODVQmPBoYngM2ya8BOU&callback=myMap"></script>

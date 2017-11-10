@@ -5,7 +5,7 @@ from flask import request, render_template, url_for, redirect
 app = Flask(__name__)
 
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/mailie/Documents/code/flask_projects/registry-v1/database-build/registry-v1.db'
+    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./registry-v1.db'
 
 app.debug = True
 
