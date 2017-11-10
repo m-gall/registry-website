@@ -209,6 +209,9 @@ def upload_to_db():
 
     elif request.method == 'POST':
 
+
+ #       institute_name_temp = request.form['institute_name']
+
         flagship_name_temp = request.form['flagship_name']
         flagship_institute_temp = request.form['flagship_institute']
         flagship_lead_temp = request.form['flagship_lead']
@@ -216,8 +219,14 @@ def upload_to_db():
 
         query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_name_temp).first()
 
+
+
         if query == None:
             print('i dont exist so add me')
+  #          new_institute = Institute(institute_name_temp)
+   #         db.session.add(new_institute)
+    #        db_session.commit()
+
             new_flagship = Flagship(flagship_name_temp, flagship_institute_temp, flagship_lead_temp, flagshipDiseaseType_temp)
             db.session.add(new_flagship)
             db.session.commit()

@@ -46,7 +46,7 @@
         <div class="col-md-12" style="margin-top:20px">
             <h3> Flagship upload </h3>
 
-            <form action="" method="post">
+            <form name="myForm" action="" method="post" onsubmit=validateForm()>
                 <div class ='form-row'>
                     <div class="col-sm-2">
                         <label> flagship_name </label><input type="text" id="flagship_name" name = "flagship_name"/>
@@ -60,7 +60,7 @@
                     <div class="col-sm-2">
                         <label> flagshipDiseaseType </label><input type="text" id="flagshipDiseaseType" name="flagshipDiseaseType"/>
                     </div>
-                    <br> <button type="submit" class="btn btn-primary">Enter into db</button>
+                    <br> <button type="submit" class="btn btn-primary" >Enter into db</button>
                 </div>
             </form>
 
@@ -130,7 +130,7 @@
                     </div>
                     <div class="col-sm-2">
                         <label for="institute"> Select an institute </label>
-                        <select class="form-control" id="institute">
+                        <select class="form-control" id="institute" name="institute">
                           {% for row in instituterows %}
                                <option>{{ row.institute_name }}</option>
                           {% endfor %}
@@ -154,7 +154,7 @@
 
             <h3> Institute upload </h3>
 
-            <form action="" method="post">
+            <form name="myForm" action="" onsubmit=validateForm() method="post">
                 <div class="form-row">
                     <div class="col-sm-2">
                         <label for="institute_name"> Institute Name</label><input type="text" id="institute_name" name = "institute_name">
@@ -169,7 +169,7 @@
                     </select>
                     </div>
                     <div class="col-sm-2">
-                        <br> <button type="submit" class="btn btn-primary">Enter into db</button>
+                        <br> <button type="submit" class="btn btn-primary" >Enter into db</button>
                     </div>
                 </div>
 
@@ -210,6 +210,16 @@
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script> function validateForm() {
+    var x = document.forms["myForm"]["flagship_name"].value;
+    if (x == "") {
+
+        return false;
+    }
+
+    } </script>
+
 
 
 </body>
