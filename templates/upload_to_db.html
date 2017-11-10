@@ -42,27 +42,6 @@
 <body>
 
 <div class="container" style="margin-bottom: 100px">
-    <div class="'row">
-        <div class="col-md-12" style="margin-top:20px">
-            <h3> Flagship upload </h3>
-
-            <form name="myForm" action="" method="post" onsubmit=validateForm()>
-                <div class ='form-row'>
-                    <div class="col-sm-2">
-                        <label> flagship_name </label><input type="text" id="flagship_name" name = "flagship_name"/>
-                    </div>
-                    <div class="col-sm-2">
-                        <label> flagship_institute </label><input type="text" id="flagship_institute" name="flagship_institute" />
-                    </div>
-                    <div class="col-sm-2">
-                        <label> flagship_lead </label><input type="text" id="flagship_lead" name="flagship_lead"/>
-                    </div>
-                    <div class="col-sm-2">
-                        <label> flagshipDiseaseType </label><input type="text" id="flagshipDiseaseType" name="flagshipDiseaseType"/>
-                    </div>
-                    <br> <button type="submit" class="btn btn-primary" >Enter into db</button>
-                </div>
-            </form>
 
     <div class="row">
         <div class="col-md-12" style="margin-top:20px">
@@ -71,16 +50,67 @@
 
             <form action="" method="post">
                 <div class="form-row">
+
+                    <div class="col-sm-3" >
+                        <label for="Flagship"> Select a Flagship</label>
+
+                        <select class="form-control" id="flagship" onchange="select_flagship()">
+                            <option selected disabled > Select </option>
+                      {% for row in flagshiprows %}
+                           <option>{{ row.flagship_name}}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="Institute"> Select an Institute</label>
+
+                        <select class="form-control" id="institute" onchange="select_institute()">
+                              <option selected disabled> Select </option>
+
+                      {% for row in instituterows %}
+                           <option>{{ row.institute_name}}</option>
+                      {% endfor %}
+                    </select>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="pipeline"> Select a pipeline</label>
+
+                        <select class="form-control" id="pipeline" onchange="select_pipeline()">
+                              <option selected disabled> Select </option>
+                      {% for row in pipelinerows %}
+                           <option>{{ row.pipeline_name}}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+
+       <div class="col-md-12" style="margin-top:20px">
+
                     <div class="col-sm-2">
-                        <label> workflow_name </label><input type="text" id="workflow_name" name = "workflow_name"/>
+                        <label> </label><input type="hidden" id="selected_flagship" name="selected_flagship" placeholder=""><br>
                     </div>
                     <div class="col-sm-2">
-                       <label> workflow_name </label><input type="text" id="workflow_name" name = "workflow_name"/>
+                        <label> </label><input type="hidden" id="selected_institute" name="selected_institute" placeholder=""><br>
+                    </div>
+                    <div class="col-sm-2">
+                        <label> </label><input type="hidden" id="selected_pipeline" name="selected_pipeline" placeholder=""><br>
+                    </div>
+
+       </div>
+
+        <div class="col-md-12" style="margin-top:0px">
+
+                    <div class="col-sm-2" style="margin-left: -15px">
+                        <label> workflow_name </label><input type="text" id="workflow_name" name = "workflow_name"/>
                     </div>
                     <div class="col-sm-2">
                         <label> library_preparation </label><input type="text" id="library_preparation" name="library_preparation" />
                     </div>
-                    <div class="col-sm-2">
+                </div>
+
+        <div class="col-md-12" style="margin-top:20px">
+
+                    <div class="col-sm-2" style="margin-left: -15px">
                         <label> library_layout </label><input type="text" id="library_layout" name="library_layout"/>
                     </div>
                     <div class="col-sm-2">
@@ -98,120 +128,21 @@
                     <div class="col-sm-2">
                         <label> workflow_accession </label><input type="text" id="workflow_accession" name="workflow_accession"/>
                     </div>
-                    <div class="col-sm-2">
-                    <br> <button type="submit" class="btn btn-primary">Enter into db</button>
+                    <div class="col-sm-2" style="margin-left: -15px">
+                    <br> <button type="submit" class="btn btn-primary">Upload to database </button>
                     </div>
             </form>
         </div>
     </div>
 
-   <div class="row">
 
-        <div class="col-md-12" style="margin-top:20px">
-
-            <h3> Pipeline upload </h3>
-
-            <form action="" method="post">
-                <div class="form-row">
-                    <div class="col-sm-2">
-                        <label for="pipeline_name">pipeline_name </label><input type="text" id="pipeline_name" name = "pipeline_name">
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="pipeline_provider"> pipeline_provider </label><input type="text" id="pipeline_provider" name="pipeline_provider" />
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="workflow">Select a workflow </label>
-                        <select class="form-control" id="workflow">
-                          {% for row in workflowrows %}
-                               <option>{{ row.workflow_name }}</option>
-                          {% endfor %}
-
-                        </select>
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="institute"> Select an institute </label>
-                        <select class="form-control" id="institute" name="institute">
-                          {% for row in instituterows %}
-                               <option>{{ row.institute_name }}</option>
-                          {% endfor %}
-
-                        </select>
-                    </div>
-                    <div class="col-sm-2">
-                        <br> <button type="submit" class="btn btn-primary">Enter into db</button>
-                    </div>
-
-                </div>
-
-            </form>
-
-        </div>
-   </div>
-
-   <div class="row">
-
-        <div class="col-md-12" style="margin-top: 20px">
-
-            <h3> Institute upload </h3>
-
-            <form name="myForm" action="" onsubmit=validateForm() method="post">
-                <div class="form-row">
-                    <div class="col-sm-2">
-                        <label for="institute_name"> Institute Name</label><input type="text" id="institute_name" name = "institute_name">
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="pipeline"> Pipeline name</label>
-
-                        <select class="form-control" id="pipeline">
-                      {% for row in pipelinerows %}
-                           <option>{{ row.pipeline_name}}</option>
-                      {% endfor %}
-                    </select>
-                    </div>
-                    <div class="col-sm-2">
-                        <br> <button type="submit" class="btn btn-primary" >Enter into db</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-   </div>
-
-   <div class="row">
-
-        <div class="col-md-12" style="margin-top: 20px">
-
-            <h3> Workflow description upload </h3>
-
-            <form action="" method="post">
-                <div class="form-row">
-                    <div class="col-sm-2">
-                        <label for="workflow_desc"> Workflow description </label><input type="text" id="workflow_desc" name = "workflow_name">
-                    </div>
-                        <div class="col-sm-2">
-                        <label for="workflow"> Workflow name</label>
-                    <select class="form-control" id="workflow">
-                      {% for row in workflowrows %}
-                           <option>{{ row.workflow_name}}</option>
-                      {% endfor %}
-                    </select>
-                    </div>
-                    <div class="col-sm-2">
-                <br> <button type="submit" class="btn btn-primary">Enter into db</button>
-                </div>
-            </form>
-
-        </div>
-    </div>
 </div>
 
 
-
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Bootstrap Js CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script> function validateForm() {
+   <script> function validateForm() {
     var x = document.forms["myForm"]["flagship_name"].value;
     if (x == "") {
 
@@ -220,6 +151,22 @@
 
     } </script>
 
+    <script>
+        function select_flagship() {
+            document.getElementById("selected_flagship").value = document.getElementById("flagship").value;
+        }
+    </script>
+    <script>
+        function select_pipeline() {
+            document.getElementById("selected_pipeline").value = document.getElementById("pipeline").value;
+        }
+    </script>
+
+    <script>
+        function select_institute() {
+            document.getElementById("selected_institute").value = document.getElementById("institute").value;
+        }
+    </script>
 
 
 </body>

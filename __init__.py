@@ -47,7 +47,8 @@ class Workflow(db.Model):
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
     workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_desc.id'))
 
-    def __init__(self, workflow_name, library_preparation, library_layout, sequencing_strategy, nata_accreditation, reference_genome, workflow_usage, workflow_accession):
+    def __init__(self, workflow_name, library_preparation, library_layout, sequencing_strategy,
+                 nata_accreditation, reference_genome, workflow_usage, workflow_accession, pipeline_id, flagship_id):
         self.workflow_name = workflow_name
         self.library_preparation = library_preparation
         self.library_layout = library_layout
@@ -56,6 +57,8 @@ class Workflow(db.Model):
         self.reference_genome = reference_genome
         self.workflow_usage = workflow_usage
         self.workflow_accession = workflow_accession
+        self.pipeline_id = pipeline_id
+        self.flagship_id = flagship_id
 
     def __repr__(self):
          return '<Workflow %r>' % self.workflow_name
@@ -194,23 +197,24 @@ def search():
     return render_template("search.html")
 
 
-@app.route('/upload_to_db.html', methods=['GET','POST'])
-def upload_to_db():
+@app.route('/upload_other.html', methods=['GET','POST'])
+def upload_other():
 
-    searchterm = Pipeline.query.all()
 
     if request.method == 'GET':
         workflowrows = Workflow.query.all()
         instituterows = Institute.query.all()
         pipelinerows = Pipeline.query.all()
+        flagshiprows = Flagship.query.all()
 
-        return render_template("upload_to_db.html", workflowrows=workflowrows,
-                               instituterows=instituterows, pipelinerows=pipelinerows, searchterm=searchterm)
+        return render_template("upload_other.html", workflowrows=workflowrows,
+                               instituterows=instituterows, pipelinerows=pipelinerows, flagshiprows=flagshiprows)
 
     elif request.method == 'POST':
 
 
  #       institute_name_temp = request.form['institute_name']
+
 
         flagship_name_temp = request.form['flagship_name']
         flagship_institute_temp = request.form['flagship_institute']
@@ -218,7 +222,6 @@ def upload_to_db():
         flagshipDiseaseType_temp = request.form['flagshipDiseaseType']
 
         query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_name_temp).first()
-
 
 
         if query == None:
@@ -237,6 +240,61 @@ def upload_to_db():
 
     else:
         return "Form didn't validate"
+
+
+@app.route('/upload_to_db.html', methods=['GET','POST'])
+def upload_to_db():
+
+
+    if request.method == 'GET':
+        workflowrows = Workflow.query.all()
+        instituterows = Institute.query.all()
+        pipelinerows = Pipeline.query.all()
+        flagshiprows = Flagship.query.all()
+
+        return render_template("upload_to_db.html", workflowrows=workflowrows,
+                               instituterows=instituterows, pipelinerows=pipelinerows, flagshiprows=flagshiprows)
+
+    elif request.method == 'POST':
+
+       print('HERE1')
+
+       workflow_name_temp = request.form['workflow_name']
+       workflow_library_temp = request.form['library_preparation']
+       workflow_layout_temp = request.form['library_layout']
+       workflow_strategy_temp = request.form['sequencing_strategy']
+       workflow_nata_temp = request.form['nata_accreditation']
+       workflow_gen_temp = request.form['reference_genome']
+       workflow_usage_temp = request.form['workflow_usage']
+       workflow_acc_temp = request.form['workflow_accession']
+
+       pipeline_select_temp = request.form['selected_pipeline']
+       flagship_select_temp = request.form['selected_flagship']
+
+
+       pipeline_id_query = db.session.query(Pipeline).filter(Pipeline.pipeline_name == pipeline_select_temp).first()
+       flagship_id_query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_select_temp).first()
+
+       query = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_temp).first()
+
+       if query == None:
+           print('i dont exist so add me')
+           new_workflow = Workflow(workflow_name_temp, workflow_library_temp, workflow_layout_temp,
+                                   workflow_strategy_temp, workflow_nata_temp, workflow_gen_temp, workflow_usage_temp, workflow_acc_temp, pipeline_id_query.id, flagship_id_query.id)
+
+           db.session.add(new_workflow)
+           db.session.commit()
+           return redirect(url_for('upload_to_db'))
+
+
+       else:
+           print('I already exist in the database')
+           return redirect(url_for('upload_to_db'))
+
+    else:
+        return "Form didn't validate"
+
+
 
 if __name__ == '__main__':
     app.run()
