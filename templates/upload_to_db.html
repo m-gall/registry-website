@@ -5,6 +5,17 @@
     <title> Australian Genomics Pipeline Registry </title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
     <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
+  <style>
+  /* Tooltip */
+  .test + .tooltip > .tooltip-inner {
+      background-color: white;
+      color: black;
+      border: 1px solid steelblue;
+      padding: 5px;
+      font-size: 10px;
+  }
+    </style>
+
 </head>
 
 
@@ -39,6 +50,9 @@
   </div>
 
 </header>
+
+
+
 <body>
 
 <div class="container" style="margin-bottom: 100px">
@@ -101,33 +115,44 @@
         <div class="col-md-12" style="margin-top:0px">
 
                     <div class="col-sm-2" style="margin-left: -15px">
-                        <label> workflow_name </label><input type="text" id="workflow_name" name = "workflow_name"/>
+
+                        <a class="test" href="#" data-toggle="tooltip" title="Name for the workflow" style="color:black;font-weight: bold;">Workflow name</a>
+                        <input type="text" id="workflow_name" name = "workflow_name"/>
+
                     </div>
                     <div class="col-sm-2">
-                        <label> library_preparation </label><input type="text" id="library_preparation" name="library_preparation" />
+                        <a class="test" href="#" data-toggle="tooltip" title="e.g. Comprehensive cancer, Nextera Exome" style="color:black;font-weight: bold;">Sequencing library or panel</a>
+                        <input type="text" id="library_preparation" name="library_preparation" />
                     </div>
                 </div>
 
         <div class="col-md-12" style="margin-top:20px">
 
                     <div class="col-sm-2" style="margin-left: -15px">
-                        <label> library_layout </label><input type="text" id="library_layout" name="library_layout"/>
+                        <a class="test" href="#" data-toggle="tooltip" title="e.g. paired, single" style="color:black;font-weight: bold;">Library layout</a>
+                        <input type="text" id="library_layout" name="library_layout"/>
                     </div>
                     <div class="col-sm-2">
-                        <label> sequencing_strategy </label><input type="text" id="sequencing_strategy" name="sequencing_strategy"/>
+                        <a class="test" href="#" data-toggle="tooltip" title="e.g. whole exome, panel" style="color:black;font-weight: bold;">Sequencing strategy</a>
+                        <input type="text" id="sequencing_strategy" name="sequencing_strategy"/>
                     </div>
                     <div class="col-sm-2">
-                        <label> nata_accreditation </label><input type="text" id="nata_accreditation" name="nata_accreditation"/>
+                        <a class="test" href="#" data-toggle="tooltip" title="Is the workflow NATA accredited?" style="color:black;font-weight: bold;">NATA accredited?</a>
+                        <input type="text" id="nata_accreditation" name="nata_accreditation"/>
                     </div>
                     <div class="col-sm-2">
-                        <label> reference_genome </label><input type="text" id="reference_genome" name="reference_genome"/>
+                        <a class="test" href="#" data-toggle="tooltip" title="Version of the reference genome e.g. hg19" style="color:black;font-weight: bold;"> Reference genome</a>
+                        <input type="text" id="reference_genome" name="reference_genome"/>
                     </div>
                     <div class="col-sm-2">
-                        <label> workflow_usage </label><input type="text" id="workflow_usage" name="workflow_usage"/>
+                        <a class="test" href="#" data-toggle="tooltip" title="e.g. Research or diagnostic" style="color:black;font-weight: bold;">Workflow usage</a>
+                        <input type="text" id="workflow_usage" name="workflow_usage"/>
                     </div>
-                    <div class="col-sm-2">
-                        <label> workflow_accession </label><input type="text" id="workflow_accession" name="workflow_accession"/>
+   <!--                 <div class="col-sm-2">
+                        <a class="test" href="#" data-toggle="tooltip" title="" style="color:black;font-weight: bold;">Workflow accession</a>
+                        <input type="text" id="workflow_accession" name="workflow_accession"/>
                     </div>
+                    -->
                     <div class="col-sm-2" style="margin-left: -15px">
                     <br> <button type="submit" class="btn btn-primary">Upload to database </button>
                     </div>
@@ -135,12 +160,16 @@
         </div>
     </div>
 
-
 </div>
 
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 
 
    <script> function validateForm() {
