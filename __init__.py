@@ -212,6 +212,10 @@ def pipeline_desc():
 def resources():
     return render_template("resources.html")
 
+@app.route('/test.html')
+def test():
+    return render_template("test.html")
+
 @app.route('/search.html', methods=['GET'])
 def search():
     return render_template("search.html")

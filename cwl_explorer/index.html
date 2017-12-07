@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CWL explorer</title>
+
+
+
+<link rel="stylesheet" href="cwl_explorer.css">
+<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="jquery.qtip.min.css" />
+<script src="cytoscape.min.js"></script>
+<script src="js-yaml.min.js"></script>
+<script src="jquery.min.js"></script>
+<script src="jquery.qtip.min.js"></script>
+<script src="dagre.min.js"></script>
+<script src="cytoscape-dagre.js"></script>
+<!-- <script src="cytoscape-expand-collapse.js"></script> -->
+<script src="cytoscape-qtip.js"></script>
+<script src="cwl_explorer_normalise.js"></script>
+<script src="cwl_explorer_utils.js"></script>
+<script src="cwl_explorer.js"></script>
+<script src="workflow.js"></script>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="page-header">
+        <h1>CWL Explorer</h1>
+    </div>
+
+<!--
+    <div class="row">
+        <div class="col-md-3">
+            <form role="form">
+                <div class="form-group">
+                    <label for="example_choice">Example CWL workflow</label>
+                    <select id="example_choice" class="form-control cwl-explorer-setting">
+                        <option value="example_1">example 1</option>
+                        <option value="example_2">example 2</option>
+                        <option value="example_3">example 3</option>
+                    </select>
+                 </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <form role="form">
+                <label for="workflow_url">CWL workflow URL</label>
+                <div class="input-group">
+                    <input id="workflow_url" type="text" class="form-control" placeholder="CWL workflow URL" aria-describedby="workflow_url">
+                    <span class="input-group-btn"><button id="workflow_url_button" type="button" class="btn btn-default">Draw</button></span>
+                </div>
+            </form>
+        </div>
+    </div>
+-->
+
+    <div id="cy"></div>
+
+
+</div> <!-- container -->
+
+</body>
+</html>
