@@ -11,8 +11,9 @@ app.debug = True
 
 db = SQLAlchemy(app)
 
+
 class Flagship(db.Model):
-    __tablename__='flagship'
+    __tablename__ = 'flagship'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     flagship_name = db.Column(db.String(100))
     flagship_institute = db.Column(db.String(100))
@@ -32,7 +33,7 @@ class Flagship(db.Model):
 
 
 class Workflow(db.Model):
-    __tablename__='workflow'
+    __tablename__ = 'workflow'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     workflow_name = db.Column(db.String(100))
     library_preparation = db.Column(db.String(100))
@@ -43,7 +44,7 @@ class Workflow(db.Model):
     workflow_usage = db.Column(db.String(50))
     workflow_accession = db.Column(db.VARCHAR(50))
 
-    pipeline_id= db.Column(db.Integer, db.ForeignKey('pipeline.id'))
+    pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
     workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_desc.id'))
 
@@ -61,15 +62,16 @@ class Workflow(db.Model):
         self.flagship_id = flagship_id
 
     def __repr__(self):
-         return '<Workflow %r>' % self.workflow_name
+        return '<Workflow %r>' % self.workflow_name
+
 
 class Pipeline(db.Model):
-    __tablename__='pipeline'
+    __tablename__ = 'pipeline'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pipeline_name = db.Column(db.String(100))
     pipeline_provider = db.Column(db.String(200))
 
-    institute_id= db.Column(db.Integer, db.ForeignKey('institute.id'))
+    institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
 
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
 
@@ -78,10 +80,11 @@ class Pipeline(db.Model):
         self.pipeline_provider = pipeline_provider
 
     def __repr__(self):
-         return '<Pipeline %r>' % self.pipeline_name
+        return '<Pipeline %r>' % self.pipeline_name
+
 
 class Institute(db.Model):
-    __tablename__='institute'
+    __tablename__ = 'institute'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     institute_name = db.Column(db.String(100))
     institute_logo = db.Column(db.String(200))
@@ -96,11 +99,12 @@ class Institute(db.Model):
     def __repr__(self):
         return '<Institute %r>' % self.institute_name
 
+
 class Workflow_Description(db.Model):
-    __tablename__='workflow_desc'
+    __tablename__ = 'workflow_desc'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     description = db.Column(db.String(500))
-    cwl_link= db.Column(db.String(50))
+    cwl_link = db.Column(db.String(50))
 
     workflow_id = db.relationship('Workflow', backref='workflow_desc', lazy='dynamic')
 
@@ -111,9 +115,9 @@ class Workflow_Description(db.Model):
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
 
-@app.route('/', methods=['GET','POST'])
-def homepage():
 
+@app.route('/', methods=['GET', 'POST'])
+def homepage():
     if request.method == 'GET':
 
         title = 'Australian Genomics Registry of Pipelines'
@@ -133,10 +137,11 @@ def homepage():
                        'The AGHA registry '
 
         instituterow = Institute.query.all()
-        searchterm=Pipeline.query.all()
+        searchterm = Pipeline.query.all()
 
         return render_template("main.html", title=title, subhead=subhead, subheading1=subheading1,
-                               subheadtext1=subheadtext1, subheading3=subheading3, searchterm=searchterm, instituterow=instituterow)
+                               subheadtext1=subheadtext1, subheading3=subheading3, searchterm=searchterm,
+                               instituterow=instituterow)
 
     elif request.method == 'POST':
 
@@ -189,7 +194,8 @@ def explorer():
     pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
 
     return render_template('explorer.html', title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1, subheading2=subheading2, urllink=urllink, pipelinerows=pipelinerows)
+                           subheadtext1=subheadtext1, subheading2=subheading2, urllink=urllink,
+                           pipelinerows=pipelinerows)
 
 
 @app.route('/overview.html', methods=['GET'])
@@ -202,29 +208,31 @@ def index():
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
     flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-    return render_template('flagship.html', title='Overview',flagshiprows=flagshiprows)
+    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows)
+
 
 @app.route('/pipeline_desc.html')
 def pipeline_desc():
     return render_template("pipeline_desc.html")
 
+
 @app.route('/resources.html')
 def resources():
     return render_template("resources.html")
 
+
 @app.route('/test.html')
 def test():
     return render_template("test.html")
+
 
 @app.route('/search.html', methods=['GET'])
 def search():
     return render_template("search.html")
 
 
-@app.route('/upload_other.html', methods=['GET','POST'])
+@app.route('/upload_other.html', methods=['GET', 'POST'])
 def upload_other():
-
-
     if request.method == 'GET':
         workflowrows = Workflow.query.all()
         instituterows = Institute.query.all()
@@ -236,8 +244,7 @@ def upload_other():
 
     elif request.method == 'POST':
 
-
- #       institute_name_temp = request.form['institute_name']
+        #       institute_name_temp = request.form['institute_name']
 
 
         flagship_name_temp = request.form['flagship_name']
@@ -247,14 +254,14 @@ def upload_other():
 
         query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_name_temp).first()
 
-
         if query == None:
             print('i dont exist so add me')
-  #          new_institute = Institute(institute_name_temp)
-   #         db.session.add(new_institute)
-    #        db_session.commit()
+            #          new_institute = Institute(institute_name_temp)
+            #         db.session.add(new_institute)
+            #        db_session.commit()
 
-            new_flagship = Flagship(flagship_name_temp, flagship_institute_temp, flagship_lead_temp, flagshipDiseaseType_temp)
+            new_flagship = Flagship(flagship_name_temp, flagship_institute_temp, flagship_lead_temp,
+                                    flagshipDiseaseType_temp)
             db.session.add(new_flagship)
             db.session.commit()
             return redirect(url_for('search'))
@@ -266,10 +273,8 @@ def upload_other():
         return "Form didn't validate"
 
 
-@app.route('/upload_to_db.html', methods=['GET','POST'])
+@app.route('/upload_to_db.html', methods=['GET', 'POST'])
 def upload_to_db():
-
-
     if request.method == 'GET':
         workflowrows = Workflow.query.all()
         instituterows = Institute.query.all()
@@ -281,44 +286,80 @@ def upload_to_db():
 
     elif request.method == 'POST':
 
-       print('HERE1')
+        print('HERE1')
 
-       workflow_name_temp = request.form['workflow_name']
-       workflow_library_temp = request.form['library_preparation']
-       workflow_layout_temp = request.form['library_layout']
-       workflow_strategy_temp = request.form['sequencing_strategy']
-       workflow_nata_temp = request.form['nata_accreditation']
-       workflow_gen_temp = request.form['reference_genome']
-       workflow_usage_temp = request.form['workflow_usage']
-       workflow_acc_temp = request.form['workflow_accession']
+        workflow_name_temp = request.form['workflow_name']
+        workflow_library_temp = request.form['library_preparation']
+        workflow_layout_temp = request.form['library_layout']
+        workflow_strategy_temp = request.form['sequencing_strategy']
+        workflow_nata_temp = request.form['nata_accreditation']
+        workflow_gen_temp = request.form['reference_genome']
+        workflow_usage_temp = request.form['workflow_usage']
+        workflow_acc_temp = request.form['workflow_accession']
 
-       pipeline_select_temp = request.form['selected_pipeline']
-       flagship_select_temp = request.form['selected_flagship']
+        pipeline_select_temp = request.form['selected_pipeline']
+        flagship_select_temp = request.form['selected_flagship']
+
+        pipeline_id_query = db.session.query(Pipeline).filter(Pipeline.pipeline_name == pipeline_select_temp).first()
+        flagship_id_query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_select_temp).first()
+
+        query = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_temp).first()
+
+        if query == None:
+            print('i dont exist so add me')
+            new_workflow = Workflow(workflow_name_temp, workflow_library_temp, workflow_layout_temp,
+                                    workflow_strategy_temp, workflow_nata_temp, workflow_gen_temp, workflow_usage_temp,
+                                    workflow_acc_temp, pipeline_id_query.id, flagship_id_query.id)
+
+            db.session.add(new_workflow)
+            db.session.commit()
+            return redirect(url_for('upload_to_db'))
 
 
-       pipeline_id_query = db.session.query(Pipeline).filter(Pipeline.pipeline_name == pipeline_select_temp).first()
-       flagship_id_query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_select_temp).first()
-
-       query = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_temp).first()
-
-       if query == None:
-           print('i dont exist so add me')
-           new_workflow = Workflow(workflow_name_temp, workflow_library_temp, workflow_layout_temp,
-                                   workflow_strategy_temp, workflow_nata_temp, workflow_gen_temp, workflow_usage_temp, workflow_acc_temp, pipeline_id_query.id, flagship_id_query.id)
-
-           db.session.add(new_workflow)
-           db.session.commit()
-           return redirect(url_for('upload_to_db'))
-
-
-       else:
-           print('I already exist in the database')
-           return redirect(url_for('upload_to_db'))
+        else:
+            print('I already exist in the database')
+            return redirect(url_for('upload_to_db'))
 
     else:
         return "Form didn't validate"
 
 
+@app.route("/explorer-html/cpipe-index-v1.html")
+def cpipe():
+    return render_template("explorer-html/cpipe-index-v1.html")
+
+
+@app.route("/explorer-html/garvan-germline-index-v1.html")
+def garvan_germline():
+    return render_template("explorer-html/garvan-germline-index-v1.html")
+
+@app.route("/explorer-html/pathwest-index-v1.html")
+def pathwest():
+    return render_template("explorer-html/pathwest-index-v1.html")
+
+@app.route("/explorer-html/qimr-index-v1.html")
+def qimr_somatic():
+    return render_template("explorer-html/qimr-index-v1.html")
+
+@app.route("/explorer-html/qut-index-v1.html")
+def qut():
+    return render_template("explorer-html/qut-index-v1.html")
+
+@app.route("/explorer-html/sap-exome-index-v1.html")
+def sap_exome():
+    return render_template("explorer-html/sap-exome-index-v1.html")
+
+@app.route("/explorer-html/seqliner-clinical-index-v1.html")
+def seqliner_clinical():
+    return render_template("explorer-html/seqliner-clinical-index-v1.html")
+
+@app.route("/explorer-html/seqliner-t-n-index-v1.html")
+def seqliner_t_n():
+    return render_template("explorer-html/seqliner-t-n-index-v1.html")
+
+@app.route("/explorer-html/nci-index-v1.html")
+def nci():
+    return render_template("explorer-html/nci-index-v1.html")
 
 if __name__ == '__main__':
     app.run()
