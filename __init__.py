@@ -111,30 +111,50 @@ class Workflow_Description(db.Model):
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def homepage():
-    title = 'Australian Genomics Registry of Pipelines'
-    subhead = 'This is the home of the Australian Genomics Bioinformatics pipeline registry.'
-    subheading1 = 'Purpose and scope'
-    subheading2 = 'Rationale'
-    subheading3 = 'Links'
-    subheadtext1 = 'The Australian Genomics registry provides a standardised description of the bioinformatic pipelines.This includes the pipelines in operation across key' \
-                   'Australian Healthcare organisations. including those used by Australian Genomics Flagships. ' \
-                   'The pipelines have been described using a community-developed and engineered standard, the Common Workflow language (CWL). ' \
-                   'Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation, ' \
-                   'enabling detailed exploration of the structure and composition of a pipeline.'
-    subheadtext2 = 'Pipelines are complex series of operations, packages and libraries layered and held together by one or many workflow languages, scripts and code. ' \
-                   'It is not unusual for a pipeline to have been built for a different use-case ' \
-                   'with the structure changing and evolving as the project or institute direction changes and new features are appended to the code. ' \
-                   'Pipeline often contain many legacy features which might still be executed despite their redundancy for the current project.' \
-                   'One barrier to pipeline transparency is a lack of standards for describing pipelines.' \
-                   'The AGHA registry '
 
-    searchterm=Pipeline.query.all()
-    instituterow = Institute.query.all()
+    if request.method == 'GET':
 
-    return render_template("main.html", title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1, subheading3=subheading3, searchterm=searchterm, instituterow=instituterow)
+        title = 'Australian Genomics Registry of Pipelines'
+        subhead = 'This is the home of the Australian Genomics Bioinformatics pipeline registry.'
+        subheading1 = 'Purpose and scope'
+        subheading3 = 'Links'
+        subheadtext1 = 'The Australian Genomics registry provides a standardised description of the bioinformatic pipelines.This includes the pipelines in operation across key' \
+                       'Australian Healthcare organisations. including those used by Australian Genomics Flagships. ' \
+                       'The pipelines have been described using a community-developed and engineered standard, the Common Workflow language (CWL). ' \
+                       'Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation, ' \
+                       'enabling detailed exploration of the structure and composition of a pipeline.'
+        subheadtext2 = 'Pipelines are complex series of operations, packages and libraries layered and held together by one or many workflow languages, scripts and code. ' \
+                       'It is not unusual for a pipeline to have been built for a different use-case ' \
+                       'with the structure changing and evolving as the project or institute direction changes and new features are appended to the code. ' \
+                       'Pipeline often contain many legacy features which might still be executed despite their redundancy for the current project.' \
+                       'One barrier to pipeline transparency is a lack of standards for describing pipelines.' \
+                       'The AGHA registry '
+
+        instituterow = Institute.query.all()
+        searchterm=Pipeline.query.all()
+
+        return render_template("main.html", title=title, subhead=subhead, subheading1=subheading1,
+                               subheadtext1=subheadtext1, subheading3=subheading3, searchterm=searchterm, instituterow=instituterow)
+
+    elif request.method == 'POST':
+
+        pipeline_select_temp = request.form['search-for-pipeline']
+
+        pipeline_id_query = db.session.query(Pipeline).filter(Pipeline.pipeline_name == pipeline_select_temp).first()
+
+        if pipeline_id_query == None:
+
+            print("Don't exist in the database")
+            return redirect(url_for('search'))
+
+        else:
+            print('Found in the database')
+            return redirect(url_for('search'))
+
+    else:
+        return "Form didn't validate"
 
 
 @app.route('/about.html')
