@@ -77,22 +77,22 @@
 
         </div>
 
-        <h5> Pipelines in the database </h5>
+        <h5> Workflows in the database </h5>
          <div class="dropdown">
          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Pipelines <span class="caret"></span> </button>
+        Workflows <span class="caret"></span> </button>
 
              <ul class="dropdown-menu">
 
-                 {% for row in pipelinerows %}
+                 {% for row in workflowrows %}
 
-                <li><a href="#">{{ row.pipeline_name }}</a></li>
+                <li><a href= {{ row.workflow_accession }}>{{ row.workflow_name }}</a></li>
 
                  {% endfor %}
 
             </ul>
         </div>
-     <!--  <img style = 'max-width:1000px; margin-top: 20px;'src ="{{ url_for('static', filename='images/cwl_explorer.png') }}" /</img> -->
+     <!--  <img style = 'max-width:1000px; margin-top: 20px;'src ="{{ url_for('static', filename='images/cwl_explorer.png') }}" /</img>
 
             <div class="col-sm-3" style="margin-left: -15px">
                 <h5> or upload a CWL document </h5>
@@ -100,7 +100,7 @@
 
                     <br> <button type="submit" class="btn btn-primary">Upload to database </button>
                     </div>
-
+-->
     </div>
 </div>
 

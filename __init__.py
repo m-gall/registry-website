@@ -191,11 +191,11 @@ def explorer():
     subheadtext1 = 'This tool accepts CWL workflow and tool definitions as inputs and renders tjhe pipelines as an interactive di-acyclic (DAG) graphic visualisation.'
     subheading2 = 'Demo'
     urllink = 'https://bjpop.github.io/cwl_explorer/'
-    pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
+    workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
 
     return render_template('explorer.html', title=title, subhead=subhead, subheading1=subheading1,
                            subheadtext1=subheadtext1, subheading2=subheading2, urllink=urllink,
-                           pipelinerows=pipelinerows)
+                           workflowrows=workflowrows)
 
 
 @app.route('/overview.html', methods=['GET'])
