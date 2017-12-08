@@ -18,7 +18,7 @@ pip install Flask
 
 # To run the program
 
-python3 __init__.py
+python3 "__init__.py"
 
 
 
