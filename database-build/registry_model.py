@@ -57,7 +57,7 @@ class Workflow(db.Model):
         self.workflow_usage = workflow_usage
         self.workflow_accession = workflow_accession
 
-     def __repr__(self):
+    def __repr__(self):
          return '<Workflow %r>' % self.workflow_name
 
 class Pipeline(db.Model):
@@ -74,7 +74,7 @@ class Pipeline(db.Model):
         self.pipeline_name = pipeline_name
         self.pipeline_provider = pipeline_provider
 
-     def __repr__(self):
+    def __repr__(self):
          return '<Pipeline %r>' % self.pipeline_name
 
 
@@ -88,8 +88,11 @@ class Institute(db.Model):
 
     pipeline_id = db.relationship('Pipeline', backref='institute', lazy='dynamic')
 
-    def __init__(self, institute_name):
+    def __init__(self, institute_name, institute_logo, institute_long, institute_lat):
         self.institute_name = institute_name
+        self.institute_logo = institute_logo
+        self.institute_long = institute_long
+        self.institute_lat = institute_lat
 
     def __repr__(self):
         return '<Institute %r>' % self.institute_name
@@ -110,22 +113,22 @@ class Workflow_Description(db.Model):
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
 
-class Terms(db.Model):
-    __tablename__='terms'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    term_name = db.Column(db.String(50))
-    term_definition = db.Column(db.String(500))
-    term_type = db.Column(db.String(50))
-    term_provenance = db.Column(db.String(50))
-
-    def __init__(self, term_name, term_definition, term_type, term_provenance):
-        self.term_name = term_name
-        self.term_definition = term_definition
-        self.term_type = term_type
-        self.term_provenance = term_provenance
-
-    def __repr__(self):
-        return '<term_name %r>' % self.term_name
+# class Terms(db.Model):
+#     __tablename__='terms'
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     term_name = db.Column(db.String(50))
+#     term_definition = db.Column(db.String(500))
+#     term_type = db.Column(db.String(50))
+#     term_provenance = db.Column(db.String(50))
+#
+#     def __init__(self, term_name, term_definition, term_type, term_provenance):
+#         self.term_name = term_name
+#         self.term_definition = term_definition
+#         self.term_type = term_type
+#         self.term_provenance = term_provenance
+#
+#     def __repr__(self):
+#         return '<term_name %r>' % self.term_name
 
 
 print('db model built successfully - woo hoo!')

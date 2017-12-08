@@ -18,7 +18,7 @@ from registry_model import db
 db.create_all()
 
 ## add tables to the database
-from registry_model import Flagship, Pipeline, Workflow, Institute, Workflow_Description, Terminology
+from registry_model import Flagship, Pipeline, Workflow, Institute, Workflow_Description
 
 ## paste the registry data into the interpreter form registry_data.py
 

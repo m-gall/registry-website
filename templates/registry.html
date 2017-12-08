@@ -47,10 +47,10 @@
 
     <ul class="nav nav-tabs nav-justified">
 
-        {% for row in pipelinerows %}
+        {% for row in workflowrows %}
 
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.pipeline_name }} </a>
+        <a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.workflow_name }} </a>
       </li>
 
         {% endfor %}
@@ -61,15 +61,16 @@
 
 <div class="tab-content">
 
-            {% for row in pipelinerows %}
+            {% for row in workflowrows %}
 
 
         <div class="tab-pane" id={{ row.id }} role="tabpanel">
 
-        <p> <h3> Pipeline name </h3>{{ row.pipeline_name }}</p>
-        <p> <h3> Pipeline provider </h3>{{ row.pipeline_provider }}</p>
+        <p> <h3> Pipeline name </h3>{{ row.workflow_name }}</p>
 
-            <h3> <a href="explorer-html/nci-index-v1.html"> CWL visual </a></h3>
+       <!--     <h3> <a href="explorer-html/nci-index-v1.html"> CWL visual </a></h3> -->
+
+            <h3> <a href= {{ row.workflow_accession }}> CWL visual </a></h3>
 
      <!--       <iframe src="test.html" style="width:100%;height:600px" frameborder=0> </iframe> -->
 

@@ -177,10 +177,10 @@ def registry():
     subhead = ''
     subheading1 = 'Summary'
     subheadtext1 = ''
-    pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
+    workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
 
     return render_template('registry.html', title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1, pipelinerows=pipelinerows)
+                           subheadtext1=subheadtext1, workflowrows=workflowrows)
 
 
 @app.route('/explorer.html')
