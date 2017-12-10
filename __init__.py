@@ -1,6 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, render_template, url_for, redirect
+import csv
+import pandas as pd
+import tablib
+import os
 
 app = Flask(__name__)
 
@@ -10,6 +14,14 @@ app.config[
 app.debug = True
 
 db = SQLAlchemy(app)
+
+dataset = tablib.Dataset()
+with open(os.path.join(os.path.dirname(__file__),'/Users/mailie/PycharmProjects/test/test.csv')) as f:
+    dataset.csv = f.read()
+
+def get_csv():
+    f = open('/Users/mailie/PycharmProjects/test/test.csv', 'r')
+    return list(csv.DictReader(f))
 
 
 class Flagship(db.Model):
@@ -111,6 +123,9 @@ class Workflow_Description(db.Model):
 
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
+
+
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -228,7 +243,10 @@ def test():
 
 @app.route('/search.html', methods=['GET'])
 def search():
-    return render_template("search.html")
+    table = pd.DataFrame.from_csv("/Users/mailie/PycharmProjects/test/test.csv")
+    data = dataset.html
+    deathlist = get_csv()
+    return render_template("search.html", data=data)
 
 
 @app.route('/upload_other.html', methods=['GET', 'POST'])
