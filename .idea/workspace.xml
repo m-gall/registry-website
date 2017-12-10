@@ -2,35 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fb9d462-f14e-459f-b46c-2fd52768cce1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/cwl_explorer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cwl_explorer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cwl_explorer_normalise.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cwl_explorer_utils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cytoscape-dagre.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cytoscape-expand-collapse.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cytoscape-qtip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/cytoscape.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/dagre.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/workflow.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/images/garvan2017.svg" afterPath="$PROJECT_DIR$/static/images/logos/garvan.svg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/images/mb.png" afterPath="$PROJECT_DIR$/static/images/logos/mb.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/images/mcri.png" afterPath="$PROJECT_DIR$/static/images/logos/mcri.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/images/pathwest.jpeg" afterPath="$PROJECT_DIR$/static/images/logos/pathwest.jpeg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/images/pm.svg" afterPath="$PROJECT_DIR$/static/images/logos/pm.svg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/images/sap.png" afterPath="$PROJECT_DIR$/static/images/logos/sap.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/agha.ico" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registry-v1.db" afterPath="$PROJECT_DIR$/registry-v1.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database-build/registry_data.py" afterPath="$PROJECT_DIR$/database-build/registry_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database-build/registry_generate.py" afterPath="$PROJECT_DIR$/database-build/registry_generate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database-build/registry_model.py" afterPath="$PROJECT_DIR$/database-build/registry_model.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/about.html" afterPath="$PROJECT_DIR$/templates/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer.html" afterPath="$PROJECT_DIR$/templates/explorer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/flagship.html" afterPath="$PROJECT_DIR$/templates/flagship.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pipeline_desc.html" afterPath="$PROJECT_DIR$/templates/pipeline_desc.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/registry.html" afterPath="$PROJECT_DIR$/templates/registry.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/upload_to_db.html" afterPath="$PROJECT_DIR$/templates/upload_to_db.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,7 +19,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/registry_v1$Unittests_in_test.coverage" NAME="Unittests in test Coverage Results" MODIFIED="1512708787602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/registry_v1$test.coverage" NAME="test Coverage Results" MODIFIED="1512879392088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/registry_v1$test.coverage" NAME="test Coverage Results" MODIFIED="1512893875136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/test$test.coverage" NAME="test Coverage Results" MODIFIED="1509919347211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
@@ -63,24 +41,47 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="208" column="19" lean-forward="false" selection-start-line="208" selection-start-column="19" selection-end-line="208" selection-end-column="19" />
+            <state relative-caret-position="265">
+              <caret line="210" column="87" lean-forward="false" selection-start-line="210" selection-start-column="87" selection-end-line="210" selection-end-column="87" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#9268#10825#0" expanded="false" />
-                <element signature="e#10946#11309#0" expanded="false" />
+                <element signature="e#4179#6718#0" expanded="false" />
+                <element signature="e#4216#6205#0" expanded="false" />
+                <element signature="e#9208#10765#0" expanded="false" />
+                <element signature="e#10886#11249#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="42" column="48" lean-forward="false" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+            <state relative-caret-position="240">
+              <caret line="23" column="110" lean-forward="false" selection-start-line="23" selection-start-column="110" selection-end-line="23" selection-end-column="110" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/about.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="56" column="14" lean-forward="true" selection-start-line="56" selection-start-column="14" selection-end-line="57" selection-end-column="3" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,7 +90,7 @@
       <file leaf-file-name="registry.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/registry.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
+            <state relative-caret-position="117">
               <caret line="38" column="29" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="n#style#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -104,13 +105,23 @@
       <file leaf-file-name="flagship.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/flagship.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="58" column="18" lean-forward="false" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+            <state relative-caret-position="273">
+              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registry_generate.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database-build/registry_generate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="778">
+              <caret line="55" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,31 +136,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/test.html">
+      <file leaf-file-name="registry_model.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database-build/registry_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-324">
-              <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+            <state relative-caret-position="-13">
+              <caret line="75" column="53" lean-forward="true" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload_other.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/upload_other.html">
+      <file leaf-file-name="registry_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database-build/registry_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="112" column="7" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload_to_db.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/upload_to_db.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+            <state relative-caret-position="374">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -215,18 +216,18 @@
         <option value="$PROJECT_DIR$/templates/explorer-html/sap-exome-index-v1.html" />
         <option value="$PROJECT_DIR$/templates/explorer-html/seqliner-clinical-index-v1.html" />
         <option value="$PROJECT_DIR$/templates/explorer-html/seqliner-t-n-index-v1.html" />
-        <option value="$PROJECT_DIR$/database-build/registry_generate.py" />
-        <option value="$PROJECT_DIR$/database-build/registry_data.py" />
-        <option value="$PROJECT_DIR$/database-build/registry_model.py" />
-        <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/templates/about.html" />
         <option value="$PROJECT_DIR$/templates/explorer.html" />
         <option value="$PROJECT_DIR$/templates/pipeline_desc.html" />
         <option value="$PROJECT_DIR$/templates/upload_to_db.html" />
         <option value="$PROJECT_DIR$/static/css/tabs-left.css" />
         <option value="$PROJECT_DIR$/templates/registry.html" />
-        <option value="$PROJECT_DIR$/templates/flagship.html" />
         <option value="$PROJECT_DIR$/templates/main.html" />
+        <option value="$PROJECT_DIR$/templates/about.html" />
+        <option value="$PROJECT_DIR$/templates/flagship.html" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/database-build/registry_data.py" />
+        <option value="$PROJECT_DIR$/database-build/registry_model.py" />
+        <option value="$PROJECT_DIR$/database-build/registry_generate.py" />
       </list>
     </option>
   </component>
@@ -279,25 +280,6 @@
               <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="cwl_explorer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="cwl_explorer" type="462c0819:PsiDirectoryNode" />
-              <item name="cpipe-v1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -306,12 +288,6 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
               <item name="logos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
@@ -341,6 +317,7 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/mailie/PycharmProjects/test/templates/registry.html" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -351,11 +328,11 @@
       <recent name="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/css" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/templates/explorer-html" />
       <recent name="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/css" />
       <recent name="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js" />
       <recent name="$PROJECT_DIR$/scratch" />
-      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -608,7 +585,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1444" y="23" width="1909" height="1054" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31202045" sideWeight="0.50266314" order="0" side_tool="true" content_ui="tabs" />
@@ -690,7 +666,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="22" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -884,42 +860,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database-build/registry_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="55" lean-forward="false" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-build/registry_generate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="19" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="54" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-build/registry_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="47" column="67" lean-forward="false" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/explorer-html/cpipe-index-v1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
           <caret line="52" column="45" lean-forward="false" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="32" column="9" lean-forward="false" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1014,30 +958,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/flagship.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="58" column="18" lean-forward="false" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="208" column="19" lean-forward="false" selection-start-line="208" selection-start-column="19" selection-end-line="208" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#9268#10825#0" expanded="false" />
-            <element signature="e#10946#11309#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/pipeline_desc.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -1046,9 +966,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/images/logos/imb.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="56" column="14" lean-forward="true" selection-start-line="56" selection-start-column="14" selection-end-line="57" selection-end-column="3" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registry.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
+        <state relative-caret-position="117">
           <caret line="38" column="29" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="n#style#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1059,18 +1001,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/images/logos/imb.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/templates/flagship.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="42" column="48" lean-forward="false" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+        <state relative-caret-position="240">
+          <caret line="23" column="110" lean-forward="false" selection-start-line="23" selection-start-column="110" selection-end-line="23" selection-end-column="110" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="210" column="87" lean-forward="false" selection-start-line="210" selection-start-column="87" selection-end-line="210" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#4179#6718#0" expanded="false" />
+            <element signature="e#4216#6205#0" expanded="false" />
+            <element signature="e#9208#10765#0" expanded="false" />
+            <element signature="e#10886#11249#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-build/registry_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="75" column="53" lean-forward="true" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-build/registry_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-build/registry_generate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="55" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

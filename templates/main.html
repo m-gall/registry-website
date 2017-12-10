@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,9 +19,6 @@
              <div class="navbar-header">
                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                   </button>
                  <a class="navbar-brand" href="/">
                      <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}"</img>
@@ -42,7 +40,7 @@
 
 <div class ="container" style="margin-top: 50px">
     <div class="row">
-        <div class="col-sm-9 col-md-3 sidebar">
+        <div class="col-sm-9 col-md-3 sidebar" style="margin-bottom: 50px">
            <nav class="nav-sidebar">
                <ul class="nav"
                     <ul class="list-unstyled components">
@@ -55,7 +53,7 @@
                         <li><a href="/about.html">About</a></li>
                     <!--   <li><a href="/overview.html">All Tables</a></li> -->
                        <li><a href="/upload_to_db.html" > Upload workflow</a></li>
-                       <li><a href="/upload_other.html">Private - Add other</a></li>
+{#                       <li><a href="/upload_other.html">Private - Add other</a></li>#}
 
                      </ul>
                 </ul>
@@ -130,13 +128,22 @@
 
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp)
 
-        var markerImage = "/Users/mailie/PycharmProjects/registry-v1/templates/marker.png";
+        var image = {
+          url: "/static/images/logos/sap.png",
+{#          size: new google.maps.Size(100, 100), #}
+          scaledSize: new google.maps.Size(25, 8), // scaled size
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0)
+        };
+
+        var markerImage = "/static/agha.ico";
 
         var count;
         for (count = 0; count < locations.length; count++) {
             var marker = new google.maps.Marker({
-             position: new google.maps.LatLng(locations[count][1], locations[count][2]),
-             map: map
+                position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+                map: map,
+{#                icon: image#}
             });
         }
 

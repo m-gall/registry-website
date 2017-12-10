@@ -35,53 +35,29 @@
 
 <body>
 
-<div class ="container">
-    <div class="'row">
+<div class ="container container-fluid">
+    <h3 style=margin-left:0px; > {{ title }}</h3>
+    <p style=margin-left:50px;color:black> {{ subhead }}</p>
+    <h5 style=font-size:20px;> {{ subheading1 }}</h5>
+    <ul class="list-unstyled components">
+        <li ><a href="https://www.australiangenomics.org.au/"; style=color:black;>Australian Genomics (https://www.australiangenomics.org.au/) </a></li>
+        <li><a href="https://agha.qimrberghofer.edu.au/wiki/"; style=color:black;> AGHA wiki site (https://agha.qimrberghofer.edu.au/wiki/) </a></li></ul>
 
-        <div class="col-md-6">
+    <h5 style=font-size:20px;> Conference presentations </h5>
+    <ul class="list-unstyled components">
+        <li ><a style=color:black;>Australian Genomics Conference (2017), Brisbane, Australia </a></li></ul>
 
-        <h3 style=margin-left:0px; > {{ title }}</h3>
-           <p style=margin-left:50px;color:black> {{ subhead }}</p>
-
-
-
-            <div class="divider"></div>
-
-                <div class="section">
-                  <h5 style=font-size:20px;> {{ subheading1 }}</h5>
-                  <ul class="list-unstyled components">
-                        <li ><a href="https://www.australiangenomics.org.au/"; style=color:black;>Australian Genomics (https://www.australiangenomics.org.au/) </a></li>
-                        <li><a href="https://agha.qimrberghofer.edu.au/wiki/"; style=color:black;> AGHA wiki site (https://agha.qimrberghofer.edu.au/wiki/) </a></li>
-
-              </div>
-
-               <div class="section">
-
-                    <h5 style=font-size:20px;> Conference presentations </h5>
-                  <ul class="list-unstyled components">
-                        <li ><a style=color:black;>Australian Genomics Conference (2017), Brisbane, Australia </a></li>
-
-              </div>
-
-              <div class="section">
-
-                  <h3> Data model </h3>
-
-            <img style = 'max-width:500px;margin-top:50' src ="{{ url_for('static', filename='images/UML_registry.jpeg') }}" /> </img>
-
-              </div>
-
-        </div>
+    <h3> Data model </h3>
+    <img style='margin-top:50; max-width: 800px' src ="{{ url_for('static', filename='images/UML_registry.jpeg') }}" /> </img>
+</div>
     <!--    <div class = "col-md-2">
             <img style = 'max-width:500px;margin-top:50' src ="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}" /> </img>
 
 
         </div>
 -->
-    </div>
 
 
-</div>
 
 
 

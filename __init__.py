@@ -205,9 +205,10 @@ def index():
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
     flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-    flagjoin = Flagship.query.join(Workflow, Flagship.id== Workflow.flagship_id).add_columns(Flagship.id, Workflow.flagship_id).filter(Workflow.id==Flagship.workflow_id)
-    print(flagjoin)
-    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows, flagjoin=flagjoin)
+  #  testobject = db.session.query(Workflow).select_from(Workflow).join(Flagship, Workflow.flagship_id == Flagship.id).all()
+  #  print(testobject)
+
+    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows)
 
 
 @app.route('/pipeline_desc.html')
