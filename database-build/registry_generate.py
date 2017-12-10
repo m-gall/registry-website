@@ -25,9 +25,9 @@ from registry_model import Flagship, Pipeline, Workflow, Institute, Workflow_Des
 
 ## generate a list of names:
 flagship = [flagship_kidgen, flagship_neuro, flagship_mito, flagship_som, flagship_brain, flagship_enc, flagship_imm, flagship_mgha, flagship_paed, flagship_null]
-institute = [institute_imb, institute_mb, institute_pm, institute_sap, institute_atcg, institute_kccg, institute_vcgs, institute_qimr, institute_pathwest, institute_schn]
-pipeline = [pipeline_imb, pipeline_kccg, pipeline_vcgs, pipeline_mb_cpipe, pipeline_pm, pipeline_mb_seq, pipeline_atcg, pipeline_sap]
-workflow = [workflow_pm_panel, workflow_pm_exome, workflow_mb_exome, workflow_vcgs_exome, workflow_vcgs_panel1, workflow_vcgs_panel2, workflow_sap_exome, workflow_sap_panel]
+institute = [institute_imb, institute_mb, institute_pm, institute_sap, institute_atcg, institute_kccg, institute_vcgs, institute_qimr, institute_pathwest, institute_schn, institute_nci]
+pipeline = [pipeline_imb, pipeline_kccg, pipeline_vcgs, pipeline_mb_cpipe, pipeline_pm, pipeline_mb_seq, pipeline_atcg, pipeline_sap, pipeline_qimr, pipeline_nci, pipeline_pathwest, pipeline_schn]
+workflow = [workflow_pm_panel, workflow_pm_exome, workflow_mb_exome, workflow_vcgs_exome, workflow_vcgs_panel1, workflow_vcgs_panel2, workflow_sap_exome, workflow_sap_panel, workflow_kccg_som, workflow_kccg_germ, workflow_kccg_germ_2, workflow_qimr_som, workflow_qut_som, workflow_nci_som, workflow_pathwest_panel, workflow_schn_panel, workflow_imb_trio]
 
 
 ## add and commit to the database

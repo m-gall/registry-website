@@ -69,16 +69,13 @@ class Pipeline(db.Model):
     __tablename__ = 'pipeline'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pipeline_name = db.Column(db.String(100))
-    pipeline_provider = db.Column(db.String(200))
 
     institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
 
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
 
-    def __init__(self, pipeline_name, pipeline_provider):
+    def __init__(self, pipeline_name):
         self.pipeline_name = pipeline_name
-        self.pipeline_provider = pipeline_provider
-
     def __repr__(self):
         return '<Pipeline %r>' % self.pipeline_name
 
@@ -208,7 +205,9 @@ def index():
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
     flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows)
+    flagjoin = Flagship.query.join(Workflow, Flagship.id== Workflow.flagship_id).add_columns(Flagship.id, Workflow.flagship_id).filter(Workflow.id==Flagship.workflow_id)
+    print(flagjoin)
+    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows, flagjoin=flagjoin)
 
 
 @app.route('/pipeline_desc.html')
