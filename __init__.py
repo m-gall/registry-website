@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, render_template, url_for, redirect
-import csv
-import pandas as pd
-import tablib
-import os
+#import csv
+#import pandas as pd
+#import tablib
+#import os
 
 app = Flask(__name__)
 
@@ -15,13 +15,13 @@ app.debug = True
 
 db = SQLAlchemy(app)
 
-dataset = tablib.Dataset()
-with open(os.path.join(os.path.dirname(__file__),'/Users/mailie/PycharmProjects/test/test.csv')) as f:
-    dataset.csv = f.read()
+#dataset = tablib.Dataset()
+#with open(os.path.join(os.path.dirname(__file__),'/Users/mailie/PycharmProjects/test/test.csv')) as f:
+#    dataset.csv = f.read()
 
-def get_csv():
-    f = open('/Users/mailie/PycharmProjects/test/test.csv', 'r')
-    return list(csv.DictReader(f))
+#def get_csv():
+#    f = open('/Users/mailie/PycharmProjects/test/test.csv', 'r')
+#    return list(csv.DictReader(f))
 
 
 class Flagship(db.Model):
@@ -136,8 +136,8 @@ def homepage():
         subhead = 'This is the home of the Australian Genomics Bioinformatics pipeline registry.'
         subheading1 = 'Purpose and scope'
         subheading3 = 'Links'
-        subheadtext1 = 'The Australian Genomics registry provides a standardised description of the bioinformatic pipelines.This includes the pipelines in operation across key' \
-                       'Australian Healthcare organisations. including those used by Australian Genomics Flagships. ' \
+        subheadtext1 = 'The Australian Genomics registry provides a standardised description of the bioinformatic pipelines.This includes the pipelines in operation across key ' \
+                       'Australian Healthcare organisations including those used by Australian Genomics Flagships. ' \
                        'The pipelines have been described using a community-developed and engineered standard, the Common Workflow language (CWL). ' \
                        'Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation, ' \
                        'enabling detailed exploration of the structure and composition of a pipeline.'
@@ -241,12 +241,12 @@ def test():
     return render_template("test.html")
 
 
-@app.route('/search.html', methods=['GET'])
-def search():
-    table = pd.DataFrame.from_csv("/Users/mailie/PycharmProjects/test/test.csv")
-    data = dataset.html
-    deathlist = get_csv()
-    return render_template("search.html", data=data)
+#@app.route('/search.html', methods=['GET'])
+#def search():
+#    table = pd.DataFrame.from_csv("/Users/mailie/PycharmProjects/test/test.csv")
+#    data = dataset.html
+#    deathlist = get_csv()
+#     return render_template("search.html", data=data)
 
 
 @app.route('/upload_other.html', methods=['GET', 'POST'])
