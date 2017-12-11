@@ -104,7 +104,18 @@ class Workflow_Description(db.Model):
     __tablename__='workflow_desc'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     description = db.Column(db.String(500))
-    cwl_link= db.Column(db.String(50))
+    workflow_manager = db.Column(db.String(200))
+    cwl_link = db.Column(db.String(200))
+    sample_qc = db.Column(db.String(200))
+    fastq_qc = db.Column(db.String(200))
+    alignment = db.Column(db.String(200))
+    bam_qc = db.Column(db.String(200))
+    variant_calling = db.Column(db.String(200))
+    variant_annotation = db.Column(db.String(200))
+    variant_filtering = db.Column(db.String(200))
+    variant_qc = db.Column(db.String(200))
+    verification = db.Column(db.String(200))
+    reporting = db.Column(db.String(200))
 
     workflow_id = db.relationship('Workflow', backref='workflow_desc', lazy='dynamic')
     #
@@ -115,16 +126,16 @@ class Workflow_Description(db.Model):
     # def __repr__(self):
     #     return '<Workflow_Description %r>' % self.description
 
-# class Terms(db.Model):
-#     __tablename__='terms'
-#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     term_name = db.Column(db.String(50))
-#     term_definition = db.Column(db.String(500))
-#     term_type = db.Column(db.String(50))
-#     term_provenance = db.Column(db.String(50))
-#
-#     def __init__(self, term_name, term_definition, term_type, term_provenance):
-#         self.term_name = term_name
+class Terms(db.Model):
+    __tablename__='terms'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    term_name = db.Column(db.String(50))
+    term_definition = db.Column(db.String(500))
+    term_type = db.Column(db.String(50))
+    term_provenance = db.Column(db.String(50))
+
+#    def __init__(self, term_name, term_definition, term_type, term_provenance):
+#        self.term_name = term_name
 #         self.term_definition = term_definition
 #         self.term_type = term_type
 #         self.term_provenance = term_provenance
