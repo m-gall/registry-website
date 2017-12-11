@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, render_template, url_for, redirect
+from sqlalchemy.orm import joinedload
 #import csv
 #import pandas as pd
 #import tablib
@@ -190,9 +191,10 @@ def registry():
     subheading1 = 'Summary'
     subheadtext1 = ''
     workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
-
+    workflow_join_institute = (db.session.query(Workflow, Pipeline, Institute, Flagship)
+                  .join(Pipeline, Institute, Flagship)).all()
     return render_template('registry.html', title=title, subhead=subhead, subheading1=subheading1,
-                           subheadtext1=subheadtext1, workflowrows=workflowrows)
+                           subheadtext1=subheadtext1, workflowrows=workflowrows, workflow_join_institute=workflow_join_institute)
 
 
 @app.route('/explorer.html')
@@ -220,10 +222,9 @@ def index():
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
     flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-  #  testobject = db.session.query(Workflow).select_from(Workflow).join(Flagship, Workflow.flagship_id == Flagship.id).all()
-  #  print(testobject)
-
-    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows)
+    flagships = db.session.query(Flagship).options(joinedload(Flagship.workflows)).all()
+       #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
+    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows, flagships=flagships)
 
 
 @app.route('/pipeline_desc.html')

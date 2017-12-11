@@ -41,17 +41,17 @@
         {% endfor %}
     </ul>
     <div class="tab-content">
-        {% for row in workflowrows %}
-            <div class="tab-pane" id={{ row.id }}  role="tabpanel">
+        {% for row in workflow_join_institute %}
+            <div class="tab-pane" id={{ row.Workflow.id }}  role="tabpanel">
                 <div class="panel panel-default"  style="margin-left: 200px">
                     <div class="panel-heading" ><p> <h4 class="panel-title" > {{ row.workflow_name }} </h4></p></div>
                     <div class="panel-body" style="height: 400px">
-                        <p> <h5> Library preparation </h5>{{ row.library_preparation }}</p>
-                        <p> <h5> Library layout </h5>{{ row.library_layout }}</p>
-                        <p> <h5> Sequencing strategy </h5>{{ row.sequencing_strategy }}</p>
-                        <p> <h5> Reference genome </h5>{{ row.reference_genome }}</p>
-                        <p> <h5> Usage </h5>{{ row.workflow_usage }}</p>
-                        <p> <h5> CWL explorer</h5> <a href= {{ row.workflow_accession }}>  link </a></p>
+                        <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}</p>
+                        <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}</p>
+                        <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}</p>
+                        <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}</p>
+                        <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}</p>
+                        <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.workflow_accession }}>  link </a></p>
                     </div>
                 </div>
             </div>

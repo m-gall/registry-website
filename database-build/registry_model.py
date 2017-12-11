@@ -19,7 +19,8 @@ class Flagship(db.Model):
     flagship_lead = db.Column(db.String(100))
     flagshipDiseaseType = db.Column(db.String(100))
 
-    workflow_id = db.relationship('Workflow', backref='flagship', lazy='dynamic')
+    workflow_id = Column(Integer, ForeignKey('flagship.id'))
+    workflow = db.relationship('Workflow', backref='flagship', lazy='dynamic')
     #
     # def __init__(self, flagship_name, flagship_institute, flagship_lead, flagshipDiseaseType):
     #     self.flagship_name = flagship_name
@@ -137,4 +138,4 @@ print('db model built successfully - woo hoo!')
 
 ### database creation:
 ## from registry-v1 import db
-## db.create_all()
+##db.create_all()
