@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <title> Australian Genomics Pipeline Registry </title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/css_responsive.css') }}", rel="stylesheet">
+
     <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
+
+
+
 
 
 </head>
 
 <header>
-
 <nav class="navbar navbar-default">
   <div class="container">
       <div class ='row'>
@@ -45,7 +49,7 @@
             <div class="tab-pane" id={{ row.Workflow.id }}  role="tabpanel">
                 <div class="panel panel-default"  style="margin-left: 200px">
                     <div class="panel-heading" ><p> <h4 class="panel-title" > {{ row.Workflow.workflow_name }} </h4></p></div>
-                    <div class="panel-body" style="height: 800px">
+                    <div class="panel-body" style="height: auto">
                         <p> <h5> Description </h5> {{ row.Workflow_Description.description }}</p>
                         <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}</p>
                         <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}</p>
@@ -53,9 +57,12 @@
                         <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}</p>
                         <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}</p>
                         <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.workflow_accession }}>  link </a></p>
-                        <div class = 'table-responsive'>
-                            <table class="table col-sm-12 table-bordered table-striped table-condensed cf" style="height: 1000px; width: 700px">
-                                <thead>
+                        <p><h5>Summary table</h5></p>
+
+
+
+                        <div class = 'table'>
+                            <table class="rtable rtable--flip">
                                 <tr>
                                     <th>workflow_manager</th>
                                     <th>sample_qc</th>
@@ -69,9 +76,8 @@
                                     <th>verification</th>
                                     <th>reporting</th>
                                 </tr>
-                                </thead>
                             <tr>
-                                <tbody style="overflow:scroll; width=100%;">
+                                <tbody>
                                     <td>{{ row.Workflow_Description.workflow_manager }}</td>
                                     <td>{{ row.Workflow_Description.sample_qc }}</td>
                                     <td> {{ row.Workflow_Description.fastq_qc }}</td>
