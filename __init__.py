@@ -241,12 +241,12 @@ def test():
     return render_template("test.html")
 
 
-#@app.route('/search.html', methods=['GET'])
-#def search():
+@app.route('/search.html', methods=['GET'])
+def search():
 #    table = pd.DataFrame.from_csv("/Users/mailie/PycharmProjects/test/test.csv")
 #    data = dataset.html
 #    deathlist = get_csv()
-#     return render_template("search.html", data=data)
+     return render_template("search.html")
 
 
 @app.route('/upload_other.html', methods=['GET', 'POST'])
