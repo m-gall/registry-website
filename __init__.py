@@ -176,12 +176,12 @@ def homepage():
 
         if pipeline_id_query == None:
 
-            print("Don't exist in the database")
-            return redirect(url_for('search'))
+            validate = "Don't exist in the database"
+            return redirect(url_for('search', validate=validate))
 
         else:
-            print('Found in the database')
-            return redirect(url_for('search'))
+            validate ='Found in the database'
+            return redirect(url_for('search', validate=validate))
 
     else:
         return "Form didn't validate"
