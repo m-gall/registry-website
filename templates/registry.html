@@ -53,6 +53,45 @@
                         <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}</p>
                         <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}</p>
                         <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.workflow_accession }}>  link </a></p>
+                        <div class = 'table-responsive'>
+                            <table class="table col-sm-12 table-bordered table-striped table-condensed cf" style="height: 1000px; width: 700px">
+                                <thead>
+                                <tr>
+                                    <th>workflow_manager</th>
+                                    <th>sample_qc</th>
+                                    <th>fastq_qc</th>
+                                    <th>alignment</th>
+                                    <th>bam_qc</th>
+                                    <th>variant_calling</th>
+                                    <th>variant_annotation</th>
+                                    <th>variant_filtering</th>
+                                    <th>variant_qc</th>
+                                    <th>verification</th>
+                                    <th>reporting</th>
+                                </tr>
+                                </thead>
+                            <tr>
+                                <tbody style="overflow:scroll; width=100%;">
+                                    <td>{{ row.Workflow_Description.workflow_manager }}</td>
+                                    <td>{{ row.Workflow_Description.sample_qc }}</td>
+                                    <td> {{ row.Workflow_Description.fastq_qc }}</td>
+                                    <td> {{ row.Workflow_Description.alignment }}</td>
+                                    <td> {{ row.Workflow_Description.bam_qc }}</td>
+                                    <td> {{ row.Workflow_Description.variant_calling }}</td>
+                                    <td> {{ row.Workflow_Description.variant_annotation }}</td>
+                                    <td> {{ row.Workflow_Description.variant_filtering }}</td>
+                                    <td> {{ row.Workflow_Description.variant_qc }}</td>
+                                    <td> {{ row.Workflow_Description.verification }}</td>
+                                    <td> {{ row.Workflow_Description.reporting }}</td>
+                                </tbody>
+
+
+
+                            </tr>
+
+                        </table>
+                        </div>
+
 
                     </div>
                 </div>
