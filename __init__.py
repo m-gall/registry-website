@@ -58,7 +58,7 @@ class Workflow(db.Model):
 
     pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
-    workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_desc.id'))
+    workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_Description.id'))
 
     def __init__(self, workflow_name, library_preparation, library_layout, sequencing_strategy,
                  nata_accreditation, reference_genome, workflow_usage, workflow_accession, pipeline_id, flagship_id):
@@ -109,13 +109,26 @@ class Institute(db.Model):
         return '<Institute %r>' % self.institute_name
 
 
+
+
 class Workflow_Description(db.Model):
-    __tablename__ = 'workflow_desc'
+    __tablename__='workflow_Description'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     description = db.Column(db.String(500))
-    cwl_link = db.Column(db.String(50))
+    workflow_manager = db.Column(db.String(200))
+    cwl_link = db.Column(db.String(200))
+    sample_qc = db.Column(db.String(200))
+    fastq_qc = db.Column(db.String(200))
+    alignment = db.Column(db.String(200))
+    bam_qc = db.Column(db.String(200))
+    variant_calling = db.Column(db.String(200))
+    variant_annotation = db.Column(db.String(200))
+    variant_filtering = db.Column(db.String(200))
+    variant_qc = db.Column(db.String(200))
+    verification = db.Column(db.String(200))
+    reporting = db.Column(db.String(200))
 
-    workflow_id = db.relationship('Workflow', backref='workflow_desc', lazy='dynamic')
+    workflow_id2 = db.relationship('Workflow', backref='workflow_Description', lazy='dynamic')
 
     def __init__(self, description, cwl_link):
         self.description = description
@@ -190,8 +203,8 @@ def registry():
     subheading1 = 'Summary'
     subheadtext1 = ''
     workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
-    workflow_join_institute = (db.session.query(Workflow, Pipeline, Institute, Flagship)
-                  .join(Pipeline, Institute, Flagship)).all()
+    workflow_join_institute = (db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description)
+                  .join(Pipeline, Institute, Flagship, Workflow_Description)).all()
     return render_template('registry.html', title=title, subhead=subhead, subheading1=subheading1,
                            subheadtext1=subheadtext1, workflowrows=workflowrows, workflow_join_institute=workflow_join_institute)
 
