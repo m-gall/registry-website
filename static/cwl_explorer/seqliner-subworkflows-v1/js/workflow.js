@@ -17,21 +17,7 @@
                     }
                 },
                 {
-                    "id": "#addbamstats.cwl/VCF",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#addbamstats.cwl/bam",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#addbamstats.cwl/bam2",
+                    "id": "#addbamstats.cwl/bam1",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -46,6 +32,48 @@
                 }
             ],
             "label": "addbamstats"
+        },
+        {
+            "class": "CommandLineTool",
+            "id": "#bedtools-intersect.cwl",
+            "baseCommand": [
+                "bedtools",
+                "intersect"
+            ],
+            "inputs": [
+                {
+                    "id": "#bedtools-intersect.cwl/vcf_a",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                },
+                {
+                    "id": "#bedtools-intersect.cwl/bed_b",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#bedtools-intersect.cwl/tumour--normal_combined.bedFiltered.vcf",
+                    "type": "File",
+                    "outputBinding": {}
+                }
+            ],
+            "label": "bedtools-intersect",
+            "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "-header"
+                },
+                {
+                    "position": 0,
+                    "prefix": "-wa"
+                }
+            ]
         },
         {
             "class": "CommandLineTool",
@@ -65,7 +93,7 @@
                 },
                 {
                     "format": "http://edamontology.org/data_2340",
-                    "id": "#bwa-mem.cwl/reference_assembly.fasta",
+                    "id": "#bwa-mem.cwl/reference_assembly",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -93,8 +121,8 @@
             ],
             "outputs": [
                 {
-                    "id": "#bwa-mem.cwl/ref_aligned_sam",
-                    "doc": "sam file containing aligned sequences. piped to samtools.",
+                    "id": "#bwa-mem.cwl/ref_aligned_bam",
+                    "doc": "bam file containing aligned sequences.",
                     "type": "File",
                     "outputBinding": {},
                     "format": "http://edamontology.org/format_2572"
@@ -105,7 +133,8 @@
             "arguments": [
                 {
                     "position": 0,
-                    "prefix": "-M"
+                    "prefix": "-k",
+                    "valueFrom": "19"
                 },
                 {
                     "position": 0,
@@ -139,42 +168,35 @@
             "class": "CommandLineTool",
             "id": "#combinevariants.cwl",
             "baseCommand": [
-                "-jar",
+                "java",
                 "GenomeAnalysisTK.jar",
                 "-T",
                 "CombineVariants"
             ],
             "inputs": [
                 {
-                    "id": "#combinevariants.cwl/reference.assembly",
+                    "id": "#combinevariants.cwl/reference_assembly",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#combinevariants.cwl/indelocator.vcf",
+                    "id": "#combinevariants.cwl/tumour--normal_eda_vardict_somatic.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#combinevariants.cwl/mutect.vcf",
+                    "id": "#combinevariants.cwl/tumour--normal_varscan_somatic.recode.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#combinevariants.cwl/varscan.vcf",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#combinevariants.cwl/ugSomatic.vcf",
+                    "id": "#combinevariants.cwl/tumour--normal_mutect2.vcf.org.recode.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -183,12 +205,28 @@
             ],
             "outputs": [
                 {
-                    "id": "#combinevariants.cwl/T-N-combined.vcf",
+                    "id": "#combinevariants.cwl/output",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "combineVariants"
+            "label": "combineVariants",
+            "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "--downsampling_type",
+                    "valueFrom": "NONE"
+                },
+                {
+                    "position": 0,
+                    "prefix": "--genotypemergeoption",
+                    "valueFrom": "PRIORITIZE"
+                },
+                {
+                    "position": 0,
+                    "prefix": "--setKey"
+                }
+            ]
         },
         {
             "class": "CommandLineTool",
@@ -285,21 +323,13 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#filtervcfbybed.cwl",
+            "id": "#filtersomatic.cwl",
             "baseCommand": [
-                "bedtools",
-                "intersect"
+                "vcftools"
             ],
             "inputs": [
                 {
-                    "id": "#filtervcfbybed.cwl/vcf",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#filtervcfbybed.cwl/bed",
+                    "id": "#filtersomatic.cwl/tumour--normal_varscan.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -308,12 +338,27 @@
             ],
             "outputs": [
                 {
-                    "id": "#filtervcfbybed.cwl/bed.filtered.vcf",
+                    "id": "#filtersomatic.cwl/tumour--normal_varscan_somatic",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "filterVcfByBed"
+            "label": "filterSomatic",
+            "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "--recode"
+                },
+                {
+                    "position": 0,
+                    "prefix": "--recode-INFO-all"
+                },
+                {
+                    "position": 0,
+                    "prefix": "--keep-INFO",
+                    "valueFrom": "SOMATIC"
+                }
+            ]
         },
         {
             "class": "CommandLineTool",
@@ -327,10 +372,7 @@
                 {
                     "format": "http://edamontology.org/format_2572",
                     "id": "#gatk_baseRecalibrator.cwl/deduped_realigned_bam",
-                    "type": "File",
-                    "secondaryFiles": [
-                        "bam.ai"
-                    ]
+                    "type": "File"
                 },
                 {
                     "format": "http://edamontology.org/format_XXXX",
@@ -352,7 +394,7 @@
                 },
                 {
                     "format": "http://edamontology.org/format_3003",
-                    "id": "#gatk_baseRecalibrator.cwl/target_sites",
+                    "id": "#gatk_baseRecalibrator.cwl/target_sites.bed",
                     "type": "File",
                     "inputBinding": {
                         "position": 0,
@@ -361,7 +403,7 @@
                     "doc": "bed file containing the coordinates for genes/regions to be targeted."
                 },
                 {
-                    "id": "#gatk_baseRecalibrator.cwl/dbsnp_137.vcf",
+                    "id": "#gatk_baseRecalibrator.cwl/dbsnp_138",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -383,16 +425,7 @@
                     "position": 0,
                     "prefix": "known_sites",
                     "separate": false,
-                    "valueFrom": "=dbsnp_137"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--downsampling_type",
-                    "valueFrom": "none"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--filter_bases_not_stored"
+                    "valueFrom": "=dbsnp_138"
                 }
             ],
             "hints": [
@@ -415,6 +448,45 @@
         },
         {
             "class": "CommandLineTool",
+            "id": "#gatk_catvariants.cwl",
+            "baseCommand": [
+                "java",
+                "GenomeAnalysisTK.jar",
+                "org.broadinstitute.gatk.tools.CatVariants"
+            ],
+            "inputs": [
+                {
+                    "id": "#gatk_catvariants.cwl/reference_assembly",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                },
+                {
+                    "id": "#gatk_catvariants.cwl/chr.vcf",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#gatk_catvariants.cwl/chr-combined.vcf",
+                    "type": "File",
+                    "outputBinding": {}
+                }
+            ],
+            "label": "gatk_catvariants",
+            "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "-assumeSorted"
+                }
+            ]
+        },
+        {
+            "class": "CommandLineTool",
             "id": "#gatk_haplotypecaller.cwl",
             "baseCommand": [
                 "java",
@@ -431,7 +503,7 @@
                     }
                 },
                 {
-                    "id": "#gatk_haplotypecaller.cwl/target_sites",
+                    "id": "#gatk_haplotypecaller.cwl/target_sites.bed",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -445,7 +517,7 @@
                     }
                 },
                 {
-                    "id": "#gatk_haplotypecaller.cwl/bam2",
+                    "id": "#gatk_haplotypecaller.cwl/dbsnp_138",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -457,15 +529,15 @@
                     "id": "#gatk_haplotypecaller.cwl/hap.vcf",
                     "type": "File",
                     "outputBinding": {}
-                },
-                {
-                    "id": "#gatk_haplotypecaller.cwl/output",
-                    "type": "File",
-                    "outputBinding": {}
                 }
             ],
             "label": "gatk_haplotypecaller",
             "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "-nct",
+                    "valueFrom": "8"
+                },
                 {
                     "position": 0,
                     "prefix": "--emitRefConfidence",
@@ -519,7 +591,7 @@
                     ]
                 },
                 {
-                    "id": "#gatk_indelRealigner.cwl/target_sites",
+                    "id": "#gatk_indelRealigner.cwl/target_sites.bed",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -531,6 +603,9 @@
                     "id": "#gatk_indelRealigner.cwl/deduped_realigned_bam",
                     "type": "File",
                     "outputBinding": {},
+                    "secondaryFiles": [
+                        "bam.index"
+                    ],
                     "format": "http://edamontology.org/format_2572"
                 }
             ],
@@ -572,91 +647,6 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#gatk_indellocator.cwl",
-            "baseCommand": [
-                "-jar",
-                "IndelGenotyper.jar",
-                "-T",
-                "IndelGenotyperV2"
-            ],
-            "inputs": [
-                {
-                    "id": "#gatk_indellocator.cwl/bed",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#gatk_indellocator.cwl/reference.assembly",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#gatk_indellocator.cwl/normal.bam",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#gatk_indellocator.cwl/tumour.bam",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#gatk_indellocator.cwl/output",
-                    "type": "File",
-                    "outputBinding": {}
-                }
-            ],
-            "label": "gatk_indellocator",
-            "arguments": [
-                {
-                    "position": 0,
-                    "prefix": "--downsampling_type",
-                    "valueFrom": "none"
-                },
-                {
-                    "position": 0,
-                    "prefix": "-minCnt",
-                    "valueFrom": "1"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--minConsensusFraction",
-                    "valueFrom": "0.7"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--minCoverage",
-                    "valueFrom": "6"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--minFraction",
-                    "valueFrom": "0.1"
-                },
-                {
-                    "position": 0,
-                    "prefix": "-minNormalCoverage",
-                    "valueFrom": "4"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--window_size",
-                    "valueFrom": "300"
-                }
-            ]
-        },
-        {
-            "class": "CommandLineTool",
             "baseCommand": [
                 "GenomeAnalysisTK.jar",
                 "-",
@@ -666,69 +656,15 @@
             "inputs": [
                 {
                     "format": "http://edamontology.org/format_2572",
-                    "id": "#gatk_printReads.cwl/deduped_realigned_bam",
+                    "id": "#gatk_printReads.cwl/merged_bam",
                     "type": "File"
-                },
-                {
-                    "format": "http://edamontology.org/format_3475",
-                    "id": "#gatk_printReads.cwl/recalibrated_table",
-                    "type": "File",
-                    "doc": "Coordinates for regions discovered requiring realignment."
-                },
-                {
-                    "format": "http://edamontology.org/format_1929",
-                    "id": "#gatk_printReads.cwl/reference_assembly",
-                    "type": "File",
-                    "secondaryFiles": [
-                        ".fai",
-                        ".bwt",
-                        ".sa",
-                        ".ann",
-                        ".amb",
-                        ".pac",
-                        ".alt"
-                    ]
-                },
-                {
-                    "format": "edam:format_3003",
-                    "id": "#gatk_printReads.cwl/target_sites",
-                    "type": "File",
-                    "doc": "bed file containing the coordinates for genes/regions to be targeted."
                 }
             ],
             "outputs": [
                 {
                     "id": "#gatk_printReads.cwl/recalibrated_bam",
                     "type": "File",
-                    "outputBinding": {},
-                    "format": "http://edamontology.org/format_2572"
-                }
-            ],
-            "label": "Apply recalibration to bam file. Overwrites values",
-            "arguments": [
-                {
-                    "position": 0,
-                    "prefix": "-bqsr"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--Printreads"
-                }
-            ],
-            "hints": [
-                {
-                    "class": "SoftwareRequirement",
-                    "packages": [
-                        {
-                            "specs": [
-                                "https://identifiers.org/rrid/RRID:SCR_001876"
-                            ],
-                            "version": [
-                                "3.6"
-                            ],
-                            "package": "gatk-toolkit"
-                        }
-                    ]
+                    "outputBinding": {}
                 }
             ],
             "id": "#gatk_printReads.cwl"
@@ -784,7 +720,7 @@
                 },
                 {
                     "format": "http://edamontology.org/format_3003",
-                    "id": "#gatk_realignerTargetCreator.cwl/target_sites",
+                    "id": "#gatk_realignerTargetCreator.cwl/target_sites.bed",
                     "type": "File",
                     "inputBinding": {
                         "position": 0,
@@ -822,7 +758,7 @@
                     "position": 0,
                     "prefix": "known",
                     "separate": false,
-                    "valueFrom": "=MIlls_and_1000G_gold_standard.indels"
+                    "valueFrom": "=Mills_and_1000G_gold_standard.indels"
                 }
             ],
             "hints": [
@@ -845,22 +781,13 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#mergebams.cwl",
+            "id": "#grep_bash.cwl",
             "baseCommand": [
-                "java",
-                "-jar",
-                "MergeSamFiles.jar"
+                "grep"
             ],
             "inputs": [
                 {
-                    "id": "#mergebams.cwl/normal.sorted.bam",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#mergebams.cwl/tumour.sorted.bam",
+                    "id": "#grep_bash.cwl/regions.bed",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -869,21 +796,88 @@
             ],
             "outputs": [
                 {
-                    "id": "#mergebams.cwl/merged.bam",
+                    "id": "#grep_bash.cwl/chr.bed",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "mergeBams",
+            "label": "grep_bash",
             "arguments": [
                 {
                     "position": 0,
-                    "prefix": "USE_THREADING",
+                    "prefix": "-v GL"
+                }
+            ]
+        },
+        {
+            "class": "CommandLineTool",
+            "id": "#index_vcf_by_tabix.cwl",
+            "baseCommand": [
+                "bgzip"
+            ],
+            "inputs": [
+                {
+                    "id": "#index_vcf_by_tabix.cwl/tumour--normal_eda_vardict.vcf",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#index_vcf_by_tabix.cwl/tumour--normal_eda_vardict.vcf.gz",
+                    "type": "File",
+                    "outputBinding": {}
+                }
+            ],
+            "label": "index_vcf_by_Tabix"
+        },
+        {
+            "class": "CommandLineTool",
+            "baseCommand": [
+                "java",
+                "MergeSamFiles.jar"
+            ],
+            "inputs": [
+                {
+                    "format": null,
+                    "id": "#merge_bams.cwl/merged.sorted.bam.1",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    },
+                    "doc": "Merge of bam files if multiple bams due to an individual being sequenced over several lanes."
+                },
+                {
+                    "id": "#merge_bams.cwl/merged.sorted.bam.2",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#merge_bams.cwl/aligned_merged_bam",
+                    "doc": "Merged and sorted bam file.",
+                    "type": "File",
+                    "outputBinding": {},
+                    "format": "http://edamontology.org/format_2572"
+                }
+            ],
+            "label": "merge bam files",
+            "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "CREATE_INDEX",
+                    "separate": false,
                     "valueFrom": "=true"
                 },
                 {
                     "position": 0,
-                    "prefix": "CREATE_INDEX",
+                    "prefix": "USE_THREADING",
+                    "separate": false,
                     "valueFrom": "=true"
                 },
                 {
@@ -891,19 +885,42 @@
                     "prefix": "VALIDATION_STRINGENCY",
                     "valueFrom": "=SILENT"
                 }
-            ]
+            ],
+            "hints": [
+                {
+                    "class": "SoftwareRequirement",
+                    "packages": [
+                        {
+                            "specs": [
+                                "https://identifiers.org/rrid/RRID:SCR_006525"
+                            ],
+                            "version": [
+                                "2.6.0"
+                            ],
+                            "package": "picard--mergeSamFiles"
+                        }
+                    ]
+                }
+            ],
+            "id": "#merge_bams.cwl"
         },
         {
             "class": "CommandLineTool",
-            "id": "#mp_normvcf.cwl",
+            "id": "#merge_vcf_vep.cwl",
             "baseCommand": [
-                "--",
-                "mutalyzer",
-                "NormaliseVcf"
+                "export",
+                "merge_vcf_vep.pl"
             ],
             "inputs": [
                 {
-                    "id": "#mp_normvcf.cwl/ma.vcf",
+                    "id": "#merge_vcf_vep.cwl/bamstats.vcf",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                },
+                {
+                    "id": "#merge_vcf_vep.cwl/bamstats.vep",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -912,106 +929,53 @@
             ],
             "outputs": [
                 {
-                    "id": "#mp_normvcf.cwl/norm.vcf",
+                    "id": "#merge_vcf_vep.cwl/bamstats.tsv",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "mp_normVcf"
+            "label": "merge_vcf_vep"
         },
         {
             "class": "CommandLineTool",
-            "id": "#mp_splitallele.cwl",
+            "id": "#mutect2.cwl",
             "baseCommand": [
-                "VcfSplitMultiAllele.sh"
-            ],
-            "inputs": [
-                {
-                    "id": "#mp_splitallele.cwl/vcf",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#mp_splitallele.cwl/ma.vcf",
-                    "type": "File",
-                    "outputBinding": {}
-                }
-            ],
-            "label": "mp_splitAllele"
-        },
-        {
-            "class": "CommandLineTool",
-            "id": "#mp_vcftotsv_somatic.cwl",
-            "baseCommand": [],
-            "inputs": [
-                {
-                    "id": "#mp_vcftotsv_somatic.cwl/vcf",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#mp_vcftotsv_somatic.cwl/tsv",
-                    "type": "File",
-                    "outputBinding": {}
-                }
-            ],
-            "label": "mp_vcfToTsv_somatic"
-        },
-        {
-            "class": "CommandLineTool",
-            "id": "#mutectv1.cwl",
-            "baseCommand": [
-                "-jar",
-                "mutect-1.1.7.jar",
+                "java",
+                "GenomeAnalysisTK.jar",
                 "-T",
-                "MuTect"
+                "MuTect2"
             ],
             "inputs": [
                 {
-                    "id": "#mutectv1.cwl/bed",
+                    "id": "#mutect2.cwl/chr.bed",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#mutectv1.cwl/reference_assembly",
+                    "id": "#mutect2.cwl/tumour.bam",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#mutectv1.cwl/dbsnp_137.vcf",
+                    "id": "#mutect2.cwl/normal.bam",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#mutectv1.cwl/cosmic_v54_120711",
+                    "id": "#mutect2.cwl/dbsnp_138.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#mutectv1.cwl/normal.bam",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#mutectv1.cwl/tumour.bam",
+                    "id": "#mutect2.cwl/cosmic.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -1020,12 +984,18 @@
             ],
             "outputs": [
                 {
-                    "id": "#mutectv1.cwl/T-N-mutect.vcf",
+                    "id": "#mutect2.cwl/chr.vcf",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "mutectv1"
+            "label": "mutect2",
+            "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "| grep -v GL"
+                }
+            ]
         },
         {
             "class": "CommandLineTool",
@@ -1042,7 +1012,10 @@
                         "position": 0,
                         "valueFrom": "/align/sorted.aligned.bam"
                     },
-                    "doc": "Check secondary file requirement."
+                    "doc": "Check secondary file requirement.",
+                    "secondaryFiles": [
+                        "index.ai"
+                    ]
                 }
             ],
             "outputs": [
@@ -1100,8 +1073,7 @@
             "id": "#picard_sortsam.cwl",
             "baseCommand": [
                 "java",
-                "-jar",
-                "sortSam.jar"
+                "SortSam.jar"
             ],
             "inputs": [
                 {
@@ -1123,44 +1095,20 @@
             "arguments": [
                 {
                     "position": 0,
-                    "prefix": "SORT_ORDER",
-                    "valueFrom": "=coordinate"
+                    "prefix": "SORT_ORDER=",
+                    "valueFrom": "coordinate"
                 },
                 {
                     "position": 0,
-                    "prefix": "VALIDATION_STRINGENCY",
-                    "valueFrom": "=SILENT"
+                    "prefix": "VALIDATION_STRINGENCY=",
+                    "valueFrom": "SILENT"
                 },
                 {
                     "position": 0,
-                    "prefix": "CREATE_INDEX",
-                    "valueFrom": "=true"
+                    "prefix": "CREATE_INDEX=",
+                    "valueFrom": "true"
                 }
             ]
-        },
-        {
-            "class": "CommandLineTool",
-            "id": "#remove_vcf_n_column.cwl",
-            "baseCommand": [
-                "seqliner_super_remove_N_columns.py"
-            ],
-            "inputs": [
-                {
-                    "id": "#remove_vcf_n_column.cwl/vcf",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#remove_vcf_n_column.cwl/rem.vcf",
-                    "type": "File",
-                    "outputBinding": {}
-                }
-            ],
-            "label": "remove_vcf_N_column"
         },
         {
             "class": "CommandLineTool",
@@ -1196,74 +1144,6 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#samtools-view.cwl",
-            "baseCommand": [
-                "samtools",
-                "view",
-                "|"
-            ],
-            "inputs": [
-                {
-                    "id": "#samtools-view.cwl/sam1",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0,
-                        "valueFrom": "/files/align/aligned.bam"
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#samtools-view.cwl/sam",
-                    "label": "tmp.align.sam",
-                    "type": "File",
-                    "outputBinding": {
-                        "outputEval": "tool"
-                    }
-                }
-            ],
-            "label": "samtools-view",
-            "arguments": [
-                {
-                    "position": 0,
-                    "prefix": "-S"
-                },
-                {
-                    "position": 0,
-                    "prefix": "-h"
-                },
-                {
-                    "position": 0,
-                    "prefix": "-b"
-                }
-            ]
-        },
-        {
-            "class": "CommandLineTool",
-            "id": "#somatic_filter_for_combinedVCF.cwl",
-            "baseCommand": [
-                "somaticFilterFromCombinedVCF.py"
-            ],
-            "inputs": [
-                {
-                    "id": "#somatic_filter_for_combinedVCF.cwl/T-N.vcf",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#somatic_filter_for_combinedVCF.cwl/vcf",
-                    "type": "File",
-                    "outputBinding": {}
-                }
-            ],
-            "label": "somatic_filter_for_combinedVCF"
-        },
-        {
-            "class": "CommandLineTool",
             "id": "#somaticvcfaveragedpad.cwl",
             "baseCommand": [
                 "vcfGetAverageDP_AD.py"
@@ -1288,23 +1168,13 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#splitsamfile.cwl",
+            "id": "#trimiupac_vcf.cwl",
             "baseCommand": [
-                "java",
-                "GenomeAnalysisTK.jar",
-                "-T",
-                "SplitSamFile"
+                "vcf-trimIUPAC.py"
             ],
             "inputs": [
                 {
-                    "id": "#splitsamfile.cwl/merged.bam",
-                    "type": "File",
-                    "inputBinding": {
-                        "position": 0
-                    }
-                },
-                {
-                    "id": "#splitsamfile.cwl/reference_assembly",
+                    "id": "#trimiupac_vcf.cwl/tumour--normal_chr_vardict",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -1313,26 +1183,83 @@
             ],
             "outputs": [
                 {
-                    "id": "#splitsamfile.cwl/tumour.bam",
-                    "type": "File",
-                    "outputBinding": {}
-                },
-                {
-                    "id": "#splitsamfile.cwl/normal.bam",
+                    "id": "#trimiupac_vcf.cwl/output",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "splitSamFile",
+            "label": "trimIUPAC_vcf"
+        },
+        {
+            "class": "CommandLineTool",
+            "id": "#vardict.cwl",
+            "baseCommand": [
+                "VarDict",
+                "testsomatic.R",
+                "var2vcf_somatic.pl"
+            ],
+            "inputs": [
+                {
+                    "id": "#vardict.cwl/chr.bed",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                },
+                {
+                    "id": "#vardict.cwl/reference_assembly",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                },
+                {
+                    "id": "#vardict.cwl/tumour.bam",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                },
+                {
+                    "id": "#vardict.cwl/normal.bam",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#vardict.cwl/tumour--normal_vardict.vcf",
+                    "type": "File",
+                    "outputBinding": {}
+                }
+            ],
+            "label": "vardict",
             "arguments": [
                 {
                     "position": 0,
-                    "prefix": "--filter_bases_not_stored"
+                    "prefix": "-f",
+                    "valueFrom": "0.05"
                 },
                 {
                     "position": 0,
-                    "prefix": "--downsampling_type",
-                    "valueFrom": "none"
+                    "prefix": "-c",
+                    "valueFrom": "1"
+                },
+                {
+                    "position": 0,
+                    "prefix": "-S",
+                    "valueFrom": "2"
+                },
+                {
+                    "position": 0,
+                    "prefix": "-E",
+                    "valueFrom": "3"
+                },
+                {
+                    "position": 0,
+                    "prefix": "| grep -v GL"
                 }
             ]
         },
@@ -1376,20 +1303,18 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#vcf-concat.cwl",
-            "baseCommand": [
-                "vcf-concat"
-            ],
+            "id": "#varscan_somatic_concatvcf.cwl",
+            "baseCommand": [],
             "inputs": [
                 {
-                    "id": "#vcf-concat.cwl/varscan.snp",
+                    "id": "#varscan_somatic_concatvcf.cwl/tumour--normal_varscan_indel.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
                     }
                 },
                 {
-                    "id": "#vcf-concat.cwl/varscan.indel",
+                    "id": "#varscan_somatic_concatvcf.cwl/tumour--normal_varscan_snv.vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -1398,12 +1323,12 @@
             ],
             "outputs": [
                 {
-                    "id": "#vcf-concat.cwl/varscan.indel.snv.vcf",
+                    "id": "#varscan_somatic_concatvcf.cwl/tumour--normal_varscan.vcf",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "vcf-concat"
+            "label": "_varscan_somatic_concatVcf"
         },
         {
             "class": "CommandLineTool",
@@ -1431,13 +1356,13 @@
         },
         {
             "class": "CommandLineTool",
-            "id": "#vcftools_filter.cwl",
+            "id": "#vcftools-filter.cwl",
             "baseCommand": [
                 "vcftools"
             ],
             "inputs": [
                 {
-                    "id": "#vcftools_filter.cwl/vcf",
+                    "id": "#vcftools-filter.cwl/vcf",
                     "type": "File",
                     "inputBinding": {
                         "position": 0
@@ -1446,213 +1371,264 @@
             ],
             "outputs": [
                 {
-                    "id": "#vcftools_filter.cwl/somatic.vcf",
+                    "id": "#vcftools-filter.cwl/output",
                     "type": "File",
                     "outputBinding": {}
                 }
             ],
-            "label": "vcftools_filter",
+            "label": "filterPASS",
             "arguments": [
+                {
+                    "position": 0,
+                    "prefix": "--remove-filtered-all"
+                },
                 {
                     "position": 0,
                     "prefix": "--recode"
                 },
                 {
                     "position": 0,
-                    "prefix": "--recod-INFO-all"
-                },
-                {
-                    "position": 0,
-                    "prefix": "--keep-INFO",
-                    "valueFrom": "SOMATIC"
+                    "prefix": "--recode-INFO-all"
                 }
             ]
         },
         {
-            "class": "Workflow",
-            "id": "#post_alignment_processing.cwl",
-            "label": "post_alignment_processing",
+            "class": "CommandLineTool",
+            "id": "#vep_annotation.cwl",
+            "baseCommand": [
+                "mp-vep-0.3.9.sh"
+            ],
             "inputs": [
                 {
-                    "id": "#post_alignment_processing.cwl/target_sites",
+                    "id": "#vep_annotation.cwl/bamstats.vcf",
+                    "type": "File",
+                    "inputBinding": {
+                        "position": 0
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#vep_annotation.cwl/output",
+                    "type": "File",
+                    "outputBinding": {}
+                }
+            ],
+            "label": "vep_annotation"
+        },
+        {
+            "class": "Workflow",
+            "id": "#post-alignment-processing.cwl",
+            "label": "post-alignment-processing",
+            "inputs": [
+                {
+                    "id": "#post-alignment-processing.cwl/target_sites.bed",
                     "type": "File"
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/reference_assembly",
+                    "id": "#post-alignment-processing.cwl/reference_assembly",
                     "type": "File"
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/Mills_and_1000G_gold",
+                    "id": "#post-alignment-processing.cwl/Mills_and_1000G_gold",
                     "type": "File"
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/1000G_phase1.indels",
+                    "id": "#post-alignment-processing.cwl/1000G_phase1.indels",
                     "type": "File"
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/dbsnp_137.vcf",
+                    "id": "#post-alignment-processing.cwl/dbsnp_138",
                     "type": "File"
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/bam",
+                    "id": "#post-alignment-processing.cwl/sorted_aligned_bam",
                     "type": "File"
                 }
             ],
             "outputs": [
                 {
-                    "id": "#post_alignment_processing.cwl/recalibrated_bam",
+                    "id": "#post-alignment-processing.cwl/recalibrated_bam",
                     "outputSource": [
-                        "#post_alignment_processing.cwl/gatk_print_reads/recalibrated_bam"
+                        "#post-alignment-processing.cwl/gatk_print_reads/recalibrated_bam"
+                    ],
+                    "type": "File"
+                },
+                {
+                    "id": "#post-alignment-processing.cwl/dedup_metrics",
+                    "outputSource": [
+                        "#post-alignment-processing.cwl/picard_mark_duplicates/dedup_metrics"
                     ],
                     "type": "File"
                 }
             ],
             "steps": [
                 {
-                    "id": "#post_alignment_processing.cwl/gatk_base_recalibrator",
+                    "id": "#post-alignment-processing.cwl/picard_mark_duplicates",
                     "in": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_base_recalibrator/deduped_realigned_bam",
+                            "id": "#post-alignment-processing.cwl/picard_mark_duplicates/sorted_aligned_bam",
                             "source": [
-                                "#post_alignment_processing.cwl/gatk_indel_realigner/deduped_realigned_bam"
-                            ]
-                        },
-                        {
-                            "id": "#post_alignment_processing.cwl/gatk_base_recalibrator/dbsnp_137.vcf",
-                            "source": [
-                                "#post_alignment_processing.cwl/dbsnp_137.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_alignment_processing.cwl/gatk_base_recalibrator/reference_assembly",
-                            "source": [
-                                "#post_alignment_processing.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#post_alignment_processing.cwl/gatk_base_recalibrator/target_sites",
-                            "source": [
-                                "#post_alignment_processing.cwl/target_sites"
+                                "#post-alignment-processing.cwl/sorted_aligned_bam"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_base_recalibrator/recalibrated_table"
+                            "id": "#post-alignment-processing.cwl/picard_mark_duplicates/dedup_metrics"
+                        },
+                        {
+                            "id": "#post-alignment-processing.cwl/picard_mark_duplicates/deduped_bam"
+                        }
+                    ],
+                    "run": "#picard_mark_duplicates.cwl",
+                    "label": "identify and mark pcr duplicates."
+                },
+                {
+                    "id": "#post-alignment-processing.cwl/gatk_base_recalibrator",
+                    "in": [
+                        {
+                            "id": "#post-alignment-processing.cwl/gatk_base_recalibrator/deduped_realigned_bam",
+                            "source": [
+                                "#post-alignment-processing.cwl/gatk_indel_realigner/deduped_realigned_bam"
+                            ]
+                        },
+                        {
+                            "id": "#post-alignment-processing.cwl/gatk_base_recalibrator/reference_assembly",
+                            "source": [
+                                "#post-alignment-processing.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#post-alignment-processing.cwl/gatk_base_recalibrator/target_sites.bed",
+                            "source": [
+                                "#post-alignment-processing.cwl/target_sites.bed"
+                            ]
+                        },
+                        {
+                            "id": "#post-alignment-processing.cwl/gatk_base_recalibrator/dbsnp_138",
+                            "source": [
+                                "#post-alignment-processing.cwl/dbsnp_138"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#post-alignment-processing.cwl/gatk_base_recalibrator/recalibrated_table"
                         }
                     ],
                     "run": "#gatk_baseRecalibrator.cwl",
                     "label": "Calculate recalibration values for base recalibration."
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/gatk_indel_realigner",
+                    "id": "#post-alignment-processing.cwl/gatk_indel_realigner",
                     "in": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_indel_realigner/bam",
+                            "id": "#post-alignment-processing.cwl/gatk_indel_realigner/bam",
                             "source": [
-                                "#post_alignment_processing.cwl/bam"
+                                "#post-alignment-processing.cwl/picard_mark_duplicates/deduped_bam"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_indel_realigner/target_sites",
+                            "id": "#post-alignment-processing.cwl/gatk_indel_realigner/interval_list",
                             "source": [
-                                "#post_alignment_processing.cwl/target_sites"
+                                "#post-alignment-processing.cwl/gatk_realigner_target_creator/realigned_intervals"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_indel_realigner/interval_list",
+                            "id": "#post-alignment-processing.cwl/gatk_indel_realigner/reference_assembly",
                             "source": [
-                                "#post_alignment_processing.cwl/gatk_realigner_target_creator/realigned_intervals"
+                                "#post-alignment-processing.cwl/reference_assembly"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_indel_realigner/reference_assembly",
+                            "id": "#post-alignment-processing.cwl/gatk_indel_realigner/target_sites.bed",
                             "source": [
-                                "#post_alignment_processing.cwl/reference_assembly"
+                                "#post-alignment-processing.cwl/target_sites.bed"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_indel_realigner/deduped_realigned_bam"
+                            "id": "#post-alignment-processing.cwl/gatk_indel_realigner/deduped_realigned_bam"
                         }
                     ],
                     "run": "#gatk_indelRealigner.cwl",
                     "label": "perform local realignment of indel sites."
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/gatk_print_reads",
+                    "id": "#post-alignment-processing.cwl/gatk_print_reads",
                     "in": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_print_reads/deduped_realigned_bam",
+                            "id": "#post-alignment-processing.cwl/gatk_print_reads/merged_bam",
                             "source": [
-                                "#post_alignment_processing.cwl/gatk_indel_realigner/deduped_realigned_bam"
+                                "#post-alignment-processing.cwl/gatk_indel_realigner/deduped_realigned_bam"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_print_reads/recalibrated_table",
+                            "id": "#post-alignment-processing.cwl/gatk_print_reads/recalibrated_table",
                             "source": [
-                                "#post_alignment_processing.cwl/gatk_base_recalibrator/recalibrated_table"
+                                "#post-alignment-processing.cwl/gatk_base_recalibrator/recalibrated_table"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_print_reads/reference_assembly",
+                            "id": "#post-alignment-processing.cwl/gatk_print_reads/reference_assembly",
                             "source": [
-                                "#post_alignment_processing.cwl/reference_assembly"
+                                "#post-alignment-processing.cwl/reference_assembly"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_print_reads/target_sites",
+                            "id": "#post-alignment-processing.cwl/gatk_print_reads/target_sites.bed",
                             "source": [
-                                "#post_alignment_processing.cwl/target_sites"
+                                "#post-alignment-processing.cwl/target_sites.bed"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_print_reads/recalibrated_bam"
+                            "id": "#post-alignment-processing.cwl/gatk_print_reads/recalibrated_bam"
                         }
                     ],
                     "run": "#gatk_printReads.cwl",
                     "label": "Apply recalibration to bam file. Overwrites values"
                 },
                 {
-                    "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator",
+                    "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator",
                     "in": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator/bam",
+                            "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator/bam",
                             "source": [
-                                "#post_alignment_processing.cwl/bam"
+                                "#post-alignment-processing.cwl/picard_mark_duplicates/deduped_bam"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator/Mills_and_1000G_gold",
+                            "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator/Mills_and_1000G_gold",
                             "source": [
-                                "#post_alignment_processing.cwl/Mills_and_1000G_gold"
+                                "#post-alignment-processing.cwl/Mills_and_1000G_gold"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator/reference_assembly",
+                            "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator/reference_assembly",
                             "source": [
-                                "#post_alignment_processing.cwl/reference_assembly"
+                                "#post-alignment-processing.cwl/reference_assembly"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator/target_sites",
+                            "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator/target_sites.bed",
                             "source": [
-                                "#post_alignment_processing.cwl/target_sites"
+                                "#post-alignment-processing.cwl/target_sites.bed"
                             ]
                         },
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator/1000G_phase1.indels",
+                            "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator/1000G_phase1.indels",
                             "source": [
-                                "#post_alignment_processing.cwl/1000G_phase1.indels"
+                                "#post-alignment-processing.cwl/1000G_phase1.indels"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#post_alignment_processing.cwl/gatk_realigner_target_creator/realigned_intervals"
+                            "id": "#post-alignment-processing.cwl/gatk_realigner_target_creator/realigned_intervals"
                         }
                     ],
                     "run": "#gatk_realignerTargetCreator.cwl",
@@ -1662,870 +1638,152 @@
         },
         {
             "class": "Workflow",
-            "id": "#post_variant_processing.cwl",
-            "label": "post_variant_processing",
+            "id": "#read-quality-alignment.cwl",
+            "label": "tumour-fastq_cwl",
             "inputs": [
                 {
-                    "id": "#post_variant_processing.cwl/normal.bam",
+                    "id": "#read-quality-alignment.cwl/reverse_reads",
                     "type": "File"
                 },
                 {
-                    "id": "#post_variant_processing.cwl/tumour.bam",
+                    "id": "#read-quality-alignment.cwl/forward_reads",
                     "type": "File"
                 },
                 {
-                    "id": "#post_variant_processing.cwl/bam_2",
-                    "type": "File",
-                    "label": "T-N.bam"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/tumour.vcf",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/normal.vcf",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/T-N.vcf",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/varscan.snp",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/varscan.indel",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/indelocator.vcf",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/combined.vcf_1",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/reference_assembly",
-                    "type": "File"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/bed_extended",
+                    "id": "#read-quality-alignment.cwl/reference_assembly",
                     "type": "File"
                 }
             ],
             "outputs": [
                 {
-                    "id": "#post_variant_processing.cwl/tumour_hc.tsv",
+                    "id": "#read-quality-alignment.cwl/fastqc_report_reverse",
                     "outputSource": [
-                        "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl/tsv"
+                        "#read-quality-alignment.cwl/fastq_qc_cwl/fastqc_report_reverse"
                     ],
                     "type": "File"
                 },
                 {
-                    "id": "#post_variant_processing.cwl/normal_hc.tsv",
+                    "id": "#read-quality-alignment.cwl/fastqc_report_forward",
                     "outputSource": [
-                        "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_1/tsv"
+                        "#read-quality-alignment.cwl/fastq_qc_cwl/fastqc_report_forward"
                     ],
                     "type": "File"
                 },
                 {
-                    "id": "#post_variant_processing.cwl/all_callers.tsv",
+                    "id": "#read-quality-alignment.cwl/sorted.bam",
                     "outputSource": [
-                        "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_2/tsv"
+                        "#read-quality-alignment.cwl/picard_sortsam_cwl/sorted.bam"
                     ],
                     "type": "File"
                 }
             ],
             "steps": [
                 {
-                    "id": "#post_variant_processing.cwl/addbamstats_cwl",
+                    "id": "#read-quality-alignment.cwl/fastq_qc_cwl",
                     "in": [
                         {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl/reference_assembly",
+                            "id": "#read-quality-alignment.cwl/fastq_qc_cwl/forward_reads",
                             "source": [
-                                "#post_variant_processing.cwl/reference_assembly"
+                                "#read-quality-alignment.cwl/forward_reads"
                             ]
                         },
                         {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl/VCF",
+                            "id": "#read-quality-alignment.cwl/fastq_qc_cwl/reverse_reads",
                             "source": [
-                                "#post_variant_processing.cwl/normal.vcf"
+                                "#read-quality-alignment.cwl/reverse_reads"
                             ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#read-quality-alignment.cwl/fastq_qc_cwl/fastqc_report_forward"
                         },
                         {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl/bam",
-                            "source": [
-                                "#post_variant_processing.cwl/normal.bam"
-                            ]
+                            "id": "#read-quality-alignment.cwl/fastq_qc_cwl/fastqc_report_reverse"
                         },
                         {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl/bam2",
-                            "source": [
-                                "#post_variant_processing.cwl/normal.bam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl/bamstats.vcf"
-                        }
-                    ],
-                    "run": "#addbamstats.cwl",
-                    "label": "addbamstats"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_splitallele_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_splitallele_cwl/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/addbamstats_cwl_2/bamstats.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_splitallele_cwl/ma.vcf"
-                        }
-                    ],
-                    "run": "#mp_splitallele.cwl",
-                    "label": "mp_splitAllele"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_normvcf_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_normvcf_cwl/ma.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/mp_splitallele_cwl/ma.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_normvcf_cwl/norm.vcf"
-                        }
-                    ],
-                    "run": "#mp_normvcf.cwl",
-                    "label": "mp_normVcf"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/mp_normvcf_cwl/norm.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl/tsv"
-                        }
-                    ],
-                    "run": "#mp_vcftotsv_somatic.cwl",
-                    "label": "mp_vcfToTsv_somatic"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/addbamstats_cwl_1",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_1/reference_assembly",
-                            "source": [
-                                "#post_variant_processing.cwl/reference_assembly"
-                            ]
+                            "id": "#read-quality-alignment.cwl/fastq_qc_cwl/read1.fastqc.gz"
                         },
                         {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_1/VCF",
-                            "source": [
-                                "#post_variant_processing.cwl/T-N.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_1/bam",
-                            "source": [
-                                "#post_variant_processing.cwl/bam_2"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_1/bam2",
-                            "source": [
-                                "#post_variant_processing.cwl/bam_2"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_1/bamstats.vcf"
-                        }
-                    ],
-                    "run": "#addbamstats.cwl",
-                    "label": "addbamstats"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/addbamstats_cwl_2",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_2/reference_assembly",
-                            "source": [
-                                "#post_variant_processing.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_2/VCF",
-                            "source": [
-                                "#post_variant_processing.cwl/tumour.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_2/bam",
-                            "source": [
-                                "#post_variant_processing.cwl/tumour.bam"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_2/bam2",
-                            "source": [
-                                "#post_variant_processing.cwl/tumour.bam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_2/bamstats.vcf"
-                        }
-                    ],
-                    "run": "#addbamstats.cwl",
-                    "label": "addbamstats"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/somatic_filter_for_combined_v_c_f_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/somatic_filter_for_combined_v_c_f_cwl/T-N.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/addbamstats_cwl_1/bamstats.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/somatic_filter_for_combined_v_c_f_cwl/vcf"
-                        }
-                    ],
-                    "run": "#somatic_filter_for_combinedVCF.cwl",
-                    "label": "somatic_filter_for_combinedVCF"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl/combined.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/somatic_filter_for_combined_v_c_f_cwl/vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl/vcf"
-                        }
-                    ],
-                    "run": "#vcfextractdp_ad-py.cwl",
-                    "label": "vcfExtractDP_AD"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_splitallele_cwl_1",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_splitallele_cwl_1/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/addbamstats_cwl/bamstats.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_splitallele_cwl_1/ma.vcf"
-                        }
-                    ],
-                    "run": "#mp_splitallele.cwl",
-                    "label": "mp_splitAllele"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_normvcf_cwl_1",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_normvcf_cwl_1/ma.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/mp_splitallele_cwl_1/ma.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_normvcf_cwl_1/norm.vcf"
-                        }
-                    ],
-                    "run": "#mp_normvcf.cwl",
-                    "label": "mp_normVcf"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_1",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_1/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/mp_normvcf_cwl_1/norm.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_1/tsv"
-                        }
-                    ],
-                    "run": "#mp_vcftotsv_somatic.cwl",
-                    "label": "mp_vcfToTsv_somatic"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcf_concat_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcf_concat_cwl/varscan.snp",
-                            "source": [
-                                "#post_variant_processing.cwl/varscan.snp"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/vcf_concat_cwl/varscan.indel",
-                            "source": [
-                                "#post_variant_processing.cwl/varscan.indel"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcf_concat_cwl/varscan.indel.snv.vcf"
-                        }
-                    ],
-                    "run": "#vcf-concat.cwl",
-                    "label": "vcf-concat"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_1",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_1/combined.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcf_concat_cwl/varscan.indel.snv.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_1/vcf"
-                        }
-                    ],
-                    "run": "#vcfextractdp_ad-py.cwl",
-                    "label": "vcfExtractDP_AD"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcftools_filter_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcftools_filter_cwl/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_1/vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcftools_filter_cwl/somatic.vcf"
-                        }
-                    ],
-                    "run": "#vcftools_filter.cwl",
-                    "label": "vcftools_filter"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/combinevariants_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/combinevariants_cwl/reference.assembly",
-                            "source": [
-                                "#post_variant_processing.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/combinevariants_cwl/indelocator.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcftools_filter_cwl_2/somatic.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/combinevariants_cwl/mutect.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcftools_filter_cwl_1/somatic.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/combinevariants_cwl/varscan.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcftools_filter_cwl/somatic.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/combinevariants_cwl/ugSomatic.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl/vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/combinevariants_cwl/T-N-combined.vcf"
-                        }
-                    ],
-                    "run": "#combinevariants.cwl",
-                    "label": "combineVariants"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_2",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_2/combined.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/indelocator.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_2/vcf"
-                        }
-                    ],
-                    "run": "#vcfextractdp_ad-py.cwl",
-                    "label": "vcfExtractDP_AD"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcftools_filter_cwl_1",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcftools_filter_cwl_1/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_2/vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcftools_filter_cwl_1/somatic.vcf"
-                        }
-                    ],
-                    "run": "#vcftools_filter.cwl",
-                    "label": "vcftools_filter"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcftools_filter_cwl_2",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcftools_filter_cwl_2/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_3/vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcftools_filter_cwl_2/somatic.vcf"
-                        }
-                    ],
-                    "run": "#vcftools_filter.cwl",
-                    "label": "vcftools_filter"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_3",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_3/combined.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/combined.vcf_1"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/vcfextractdp_ad_py_cwl_3/vcf"
-                        }
-                    ],
-                    "run": "#vcfextractdp_ad-py.cwl",
-                    "label": "vcfExtractDP_AD"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/filtervcfbybed_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/filtervcfbybed_cwl/bed",
-                            "source": [
-                                "#post_variant_processing.cwl/bed_extended"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/filtervcfbybed_cwl/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/combinevariants_cwl/T-N-combined.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/filtervcfbybed_cwl/bed.filtered.vcf"
-                        }
-                    ],
-                    "run": "#filtervcfbybed.cwl",
-                    "label": "filterVcfByBed"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/somaticvcfaveragedpad_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/somaticvcfaveragedpad_cwl/tumour--normal_combined.bedFiltered.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/filtervcfbybed_cwl/bed.filtered.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/somaticvcfaveragedpad_cwl/tumour--normal_combined.bedFiltered.avgDpAd.vcf"
-                        }
-                    ],
-                    "run": "#somaticvcfaveragedpad.cwl",
-                    "label": "somaticVcfAverageDpAd"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/addbamstats_cwl_3",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_3/reference_assembly",
-                            "source": [
-                                "#post_variant_processing.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_3/VCF",
-                            "source": [
-                                "#post_variant_processing.cwl/somaticvcfaveragedpad_cwl/tumour--normal_combined.bedFiltered.avgDpAd.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_3/bam",
-                            "source": [
-                                "#post_variant_processing.cwl/tumour.bam"
-                            ]
-                        },
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_3/bam2",
-                            "source": [
-                                "#post_variant_processing.cwl/normal.bam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/addbamstats_cwl_3/bamstats.vcf"
-                        }
-                    ],
-                    "run": "#addbamstats.cwl",
-                    "label": "addbamstats"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/remove_vcf_n_column_cwl",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/remove_vcf_n_column_cwl/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/addbamstats_cwl_3/bamstats.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/remove_vcf_n_column_cwl/rem.vcf"
-                        }
-                    ],
-                    "run": "#remove_vcf_n_column.cwl",
-                    "label": "remove_vcf_N_column"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_splitallele_cwl_2",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_splitallele_cwl_2/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/remove_vcf_n_column_cwl/rem.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_splitallele_cwl_2/ma.vcf"
-                        }
-                    ],
-                    "run": "#mp_splitallele.cwl",
-                    "label": "mp_splitAllele"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_normvcf_cwl_2",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_normvcf_cwl_2/ma.vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/mp_splitallele_cwl_2/ma.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_normvcf_cwl_2/norm.vcf"
-                        }
-                    ],
-                    "run": "#mp_normvcf.cwl",
-                    "label": "mp_normVcf"
-                },
-                {
-                    "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_2",
-                    "in": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_2/vcf",
-                            "source": [
-                                "#post_variant_processing.cwl/mp_normvcf_cwl_2/norm.vcf"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#post_variant_processing.cwl/mp_vcftotsv_somatic_cwl_2/tsv"
-                        }
-                    ],
-                    "run": "#mp_vcftotsv_somatic.cwl",
-                    "label": "mp_vcfToTsv_somatic"
-                }
-            ]
-        },
-        {
-            "class": "Workflow",
-            "id": "#read_alignment.cwl",
-            "label": "read_alignment",
-            "inputs": [
-                {
-                    "id": "#read_alignment.cwl/reverse_reads.gz",
-                    "type": "File"
-                },
-                {
-                    "id": "#read_alignment.cwl/forward_reads.gz",
-                    "type": "File"
-                },
-                {
-                    "id": "#read_alignment.cwl/reference_assembly.fasta",
-                    "type": "File"
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#read_alignment.cwl/sorted.bam",
-                    "outputSource": [
-                        "#read_alignment.cwl/picard_sortsam_cwl/sorted.bam"
-                    ],
-                    "type": "File"
-                }
-            ],
-            "steps": [
-                {
-                    "id": "#read_alignment.cwl/samtools_view_cwl",
-                    "in": [
-                        {
-                            "id": "#read_alignment.cwl/samtools_view_cwl/sam1",
-                            "source": [
-                                "#read_alignment.cwl/bwa_mem/ref_aligned_sam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#read_alignment.cwl/samtools_view_cwl/sam"
-                        }
-                    ],
-                    "run": "#samtools-view.cwl",
-                    "label": "samtools-view"
-                },
-                {
-                    "id": "#read_alignment.cwl/picard_sortsam_cwl",
-                    "in": [
-                        {
-                            "id": "#read_alignment.cwl/picard_sortsam_cwl/bam",
-                            "source": [
-                                "#read_alignment.cwl/samtools_view_cwl/sam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#read_alignment.cwl/picard_sortsam_cwl/sorted.bam"
-                        }
-                    ],
-                    "run": "#picard_sortsam.cwl",
-                    "label": "picard_sortsam"
-                },
-                {
-                    "id": "#read_alignment.cwl/bwa_mem",
-                    "in": [
-                        {
-                            "id": "#read_alignment.cwl/bwa_mem/forward_reads.gz",
-                            "source": [
-                                "#read_alignment.cwl/forward_reads.gz"
-                            ]
-                        },
-                        {
-                            "id": "#read_alignment.cwl/bwa_mem/reference_assembly.fasta",
-                            "source": [
-                                "#read_alignment.cwl/reference_assembly.fasta"
-                            ]
-                        },
-                        {
-                            "id": "#read_alignment.cwl/bwa_mem/reverse_reads.gz",
-                            "source": [
-                                "#read_alignment.cwl/reverse_reads.gz"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#read_alignment.cwl/bwa_mem/ref_aligned_sam"
-                        }
-                    ],
-                    "run": "#bwa-mem.cwl",
-                    "label": "mapping of forward and reverse reads to the reference assembly"
-                }
-            ]
-        },
-        {
-            "class": "Workflow",
-            "id": "#read_quality_assessment.cwl",
-            "label": "read_quality_assessment",
-            "requirements": [
-                {
-                    "class": "SubworkflowFeatureRequirement"
-                },
-                {
-                    "class": "ScatterFeatureRequirement"
-                }
-            ],
-            "inputs": [
-                {
-                    "id": "#read_quality_assessment.cwl/reverse_reads",
-                    "type": "File"
-                },
-                {
-                    "id": "#read_quality_assessment.cwl/forward_reads",
-                    "type": "File"
-                }
-            ],
-            "outputs": [
-                {
-                    "id": "#read_quality_assessment.cwl/fastqc_report_reverse",
-                    "outputSource": [
-                        "#read_quality_assessment.cwl/fastq_qc_cwl/fastqc_report_reverse"
-                    ],
-                    "type": "File",
-                    "label": "fastqc_report_reverse > bioinformatician"
-                },
-                {
-                    "id": "#read_quality_assessment.cwl/fastqc_report_forward",
-                    "outputSource": [
-                        "#read_quality_assessment.cwl/fastq_qc_cwl/fastqc_report_forward"
-                    ],
-                    "type": "File",
-                    "label": "fastqc_report_forward > bioinformatician"
-                },
-                {
-                    "id": "#read_quality_assessment.cwl/read2.clean.fastq.gz",
-                    "outputSource": [
-                        "#read_quality_assessment.cwl/cutadapt_cwl/read2.clean.fastq.gz"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#read_quality_assessment.cwl/read1.clean.fastq.gz",
-                    "outputSource": [
-                        "#read_quality_assessment.cwl/cutadapt_cwl/read1.clean.fastq.gz"
-                    ],
-                    "type": "File"
-                }
-            ],
-            "steps": [
-                {
-                    "id": "#read_quality_assessment.cwl/fastq_qc_cwl",
-                    "in": [
-                        {
-                            "id": "#read_quality_assessment.cwl/fastq_qc_cwl/forward_reads",
-                            "source": [
-                                "#read_quality_assessment.cwl/forward_reads"
-                            ]
-                        },
-                        {
-                            "id": "#read_quality_assessment.cwl/fastq_qc_cwl/reverse_reads",
-                            "source": [
-                                "#read_quality_assessment.cwl/reverse_reads"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#read_quality_assessment.cwl/fastq_qc_cwl/fastqc_report_forward"
-                        },
-                        {
-                            "id": "#read_quality_assessment.cwl/fastq_qc_cwl/fastqc_report_reverse"
-                        },
-                        {
-                            "id": "#read_quality_assessment.cwl/fastq_qc_cwl/read1.fastqc.gz"
-                        },
-                        {
-                            "id": "#read_quality_assessment.cwl/fastq_qc_cwl/read2.fastqc.gz"
+                            "id": "#read-quality-alignment.cwl/fastq_qc_cwl/read2.fastqc.gz"
                         }
                     ],
                     "run": "#fastq-qc.cwl"
                 },
                 {
-                    "id": "#read_quality_assessment.cwl/cutadapt_cwl",
+                    "id": "#read-quality-alignment.cwl/cutadapt_cwl",
                     "in": [
                         {
-                            "id": "#read_quality_assessment.cwl/cutadapt_cwl/read1.fastq.gz",
+                            "id": "#read-quality-alignment.cwl/cutadapt_cwl/read1.fastq.gz",
                             "source": [
-                                "#read_quality_assessment.cwl/fastq_qc_cwl/read1.fastqc.gz"
+                                "#read-quality-alignment.cwl/fastq_qc_cwl/read1.fastqc.gz"
                             ]
                         },
                         {
-                            "id": "#read_quality_assessment.cwl/cutadapt_cwl/read2.fastq.gz",
+                            "id": "#read-quality-alignment.cwl/cutadapt_cwl/read2.fastq.gz",
                             "source": [
-                                "#read_quality_assessment.cwl/fastq_qc_cwl/read2.fastqc.gz"
+                                "#read-quality-alignment.cwl/fastq_qc_cwl/read2.fastqc.gz"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#read_quality_assessment.cwl/cutadapt_cwl/read1.clean.fastq.gz"
+                            "id": "#read-quality-alignment.cwl/cutadapt_cwl/read1.clean.fastq.gz"
                         },
                         {
-                            "id": "#read_quality_assessment.cwl/cutadapt_cwl/read2.clean.fastq.gz"
+                            "id": "#read-quality-alignment.cwl/cutadapt_cwl/read2.clean.fastq.gz"
                         }
                     ],
                     "run": "#cutadapt.cwl",
                     "label": "cutadapt"
+                },
+                {
+                    "id": "#read-quality-alignment.cwl/bwa_mem",
+                    "in": [
+                        {
+                            "id": "#read-quality-alignment.cwl/bwa_mem/forward_reads.gz",
+                            "source": [
+                                "#read-quality-alignment.cwl/cutadapt_cwl/read1.clean.fastq.gz"
+                            ]
+                        },
+                        {
+                            "id": "#read-quality-alignment.cwl/bwa_mem/reference_assembly",
+                            "source": [
+                                "#read-quality-alignment.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#read-quality-alignment.cwl/bwa_mem/reverse_reads.gz",
+                            "source": [
+                                "#read-quality-alignment.cwl/cutadapt_cwl/read2.clean.fastq.gz"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#read-quality-alignment.cwl/bwa_mem/ref_aligned_bam"
+                        }
+                    ],
+                    "run": "#bwa-mem.cwl",
+                    "label": "mapping of forward and reverse reads to the reference assembly"
+                },
+                {
+                    "id": "#read-quality-alignment.cwl/picard_sortsam_cwl",
+                    "in": [
+                        {
+                            "id": "#read-quality-alignment.cwl/picard_sortsam_cwl/bam",
+                            "source": [
+                                "#read-quality-alignment.cwl/bwa_mem/ref_aligned_bam"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#read-quality-alignment.cwl/picard_sortsam_cwl/sorted.bam"
+                        }
+                    ],
+                    "run": "#picard_sortsam.cwl",
+                    "label": "picard_sortsam"
                 }
             ]
         },
@@ -2540,26 +1798,42 @@
                     "class": "ScatterFeatureRequirement"
                 }
             ],
-            "label": "seqliner-subworkflows",
+            "label": "seqliner-lymphoma(1)",
             "inputs": [
                 {
-                    "id": "#main/reference_assembly.fasta",
-                    "type": "File"
-                },
-                {
                     "id": "#main/reverse_reads",
-                    "type": "File"
+                    "type": "File",
+                    "label": "normal-reverse-fastq"
                 },
                 {
                     "id": "#main/forward_reads",
-                    "type": "File"
+                    "type": "File",
+                    "label": "normal-reverse-fastq"
                 },
                 {
                     "id": "#main/reverse_reads_1",
-                    "type": "File"
+                    "type": "File",
+                    "label": "tumour-reverse-fastq"
                 },
                 {
                     "id": "#main/forward_reads_1",
+                    "type": "File",
+                    "label": "tumour-forward-fastq"
+                },
+                {
+                    "id": "#main/target_sites.bed",
+                    "type": "File"
+                },
+                {
+                    "id": "#main/reference_assembly",
+                    "type": "File"
+                },
+                {
+                    "id": "#main/dbsnp_138",
+                    "type": "File"
+                },
+                {
+                    "id": "#main/cosmic.vcf",
                     "type": "File"
                 },
                 {
@@ -2569,170 +1843,177 @@
                 {
                     "id": "#main/1000G_phase1.indels",
                     "type": "File"
-                },
-                {
-                    "id": "#main/dbsnp_137.vcf",
-                    "type": "File"
-                },
-                {
-                    "id": "#main/cosmic_v54_120711",
-                    "type": "File"
-                },
-                {
-                    "id": "#main/target_sites",
-                    "type": "File"
-                },
-                {
-                    "id": "#main/bed_extended",
-                    "type": "File"
-                },
-                {
-                    "id": "#main/reference_assembly",
-                    "type": "File"
                 }
             ],
             "outputs": [
                 {
-                    "id": "#main/fastqc_report_reverse",
+                    "id": "#main/bamstats.tsv_2",
                     "outputSource": [
-                        "#main/read_quality_assessment_cwl/fastqc_report_reverse"
+                        "#main/variant_calling_hc_cwl/bamstats.tsv_2"
                     ],
                     "type": "File"
+                },
+                {
+                    "id": "#main/bamstats.tsv_1",
+                    "outputSource": [
+                        "#main/variant_calling_hc_cwl/bamstats.tsv_1"
+                    ],
+                    "type": "File"
+                },
+                {
+                    "id": "#main/bamstats.tsv",
+                    "outputSource": [
+                        "#main/variant_calling_hc_cwl/bamstats.tsv"
+                    ],
+                    "type": "File"
+                },
+                {
+                    "id": "#main/fastqc_report_reverse",
+                    "outputSource": [
+                        "#main/tumour_fastq_cwl/fastqc_report_reverse"
+                    ],
+                    "type": "File",
+                    "label": "tumour-fastqc_report_reverse"
                 },
                 {
                     "id": "#main/fastqc_report_forward",
                     "outputSource": [
-                        "#main/read_quality_assessment_cwl/fastqc_report_forward"
+                        "#main/tumour_fastq_cwl/fastqc_report_forward"
                     ],
-                    "type": "File"
+                    "type": "File",
+                    "label": "tumour-fastqc_report_forward"
                 },
                 {
                     "id": "#main/fastqc_report_reverse_1",
                     "outputSource": [
-                        "#main/read_quality_assessment_cwl_1/fastqc_report_reverse"
+                        "#main/normal_fastq_cwl/fastqc_report_reverse"
                     ],
-                    "type": "File"
+                    "type": "File",
+                    "label": "normal-fastqc_report_reverse"
                 },
                 {
                     "id": "#main/fastqc_report_forward_1",
                     "outputSource": [
-                        "#main/read_quality_assessment_cwl_1/fastqc_report_forward"
+                        "#main/normal_fastq_cwl/fastqc_report_forward"
+                    ],
+                    "type": "File",
+                    "label": "normal-fastqc_report_forward"
+                },
+                {
+                    "id": "#main/bamstats.tsv_3",
+                    "outputSource": [
+                        "#main/variant_calling_cwl/bamstats.tsv"
                     ],
                     "type": "File"
                 },
                 {
                     "id": "#main/dedup_metrics",
                     "outputSource": [
-                        "#main/picard_mark_duplicates_1/dedup_metrics"
+                        "#main/post_alignment_processing_cwl_2/dedup_metrics"
                     ],
                     "type": "File"
                 },
                 {
                     "id": "#main/dedup_metrics_1",
                     "outputSource": [
-                        "#main/picard_mark_duplicates/dedup_metrics"
+                        "#main/post_alignment_processing_cwl/dedup_metrics"
                     ],
                     "type": "File"
                 },
                 {
-                    "id": "#main/tumour_hc.tsv",
+                    "id": "#main/dedup_metrics_2",
                     "outputSource": [
-                        "#main/post_variant_processing_cwl/tumour_hc.tsv"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#main/normal_hc.tsv",
-                    "outputSource": [
-                        "#main/post_variant_processing_cwl/normal_hc.tsv"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#main/all_callers.tsv",
-                    "outputSource": [
-                        "#main/post_variant_processing_cwl/all_callers.tsv"
+                        "#main/post_alignment_processing_cwl_1/dedup_metrics"
                     ],
                     "type": "File"
                 }
             ],
             "steps": [
                 {
-                    "id": "#main/read_alignment_cwl",
+                    "id": "#main/normal_fastq_cwl",
                     "in": [
                         {
-                            "id": "#main/read_alignment_cwl/reverse_reads.gz",
+                            "id": "#main/normal_fastq_cwl/reverse_reads",
                             "source": [
-                                "#main/read_quality_assessment_cwl/read2.clean.fastq.gz"
+                                "#main/reverse_reads"
                             ]
                         },
                         {
-                            "id": "#main/read_alignment_cwl/forward_reads.gz",
+                            "id": "#main/normal_fastq_cwl/forward_reads",
                             "source": [
-                                "#main/read_quality_assessment_cwl/read1.clean.fastq.gz"
+                                "#main/forward_reads"
                             ]
                         },
                         {
-                            "id": "#main/read_alignment_cwl/reference_assembly.fasta",
+                            "id": "#main/normal_fastq_cwl/reference_assembly",
                             "source": [
-                                "#main/reference_assembly.fasta"
+                                "#main/reference_assembly"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#main/read_alignment_cwl/sorted.bam"
+                            "id": "#main/normal_fastq_cwl/fastqc_report_reverse"
+                        },
+                        {
+                            "id": "#main/normal_fastq_cwl/fastqc_report_forward"
+                        },
+                        {
+                            "id": "#main/normal_fastq_cwl/sorted.bam"
                         }
                     ],
-                    "run": "#read_alignment.cwl",
-                    "label": "read_alignment_tumour"
+                    "run": "#read-quality-alignment.cwl",
+                    "label": "normal-fastq-alignment_cwl"
                 },
                 {
-                    "id": "#main/read_quality_assessment_cwl",
+                    "id": "#main/tumour_fastq_cwl",
                     "in": [
                         {
-                            "id": "#main/read_quality_assessment_cwl/reverse_reads",
+                            "id": "#main/tumour_fastq_cwl/reverse_reads",
                             "source": [
                                 "#main/reverse_reads_1"
                             ]
                         },
                         {
-                            "id": "#main/read_quality_assessment_cwl/forward_reads",
+                            "id": "#main/tumour_fastq_cwl/forward_reads",
                             "source": [
                                 "#main/forward_reads_1"
+                            ]
+                        },
+                        {
+                            "id": "#main/tumour_fastq_cwl/reference_assembly",
+                            "source": [
+                                "#main/reference_assembly"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#main/read_quality_assessment_cwl/fastqc_report_reverse"
+                            "id": "#main/tumour_fastq_cwl/fastqc_report_reverse"
                         },
                         {
-                            "id": "#main/read_quality_assessment_cwl/fastqc_report_forward"
+                            "id": "#main/tumour_fastq_cwl/fastqc_report_forward"
                         },
                         {
-                            "id": "#main/read_quality_assessment_cwl/read2.clean.fastq.gz"
-                        },
-                        {
-                            "id": "#main/read_quality_assessment_cwl/read1.clean.fastq.gz"
+                            "id": "#main/tumour_fastq_cwl/sorted.bam"
                         }
                     ],
-                    "run": "#read_quality_assessment.cwl",
-                    "label": "read_quality_assessment"
+                    "run": "#read-quality-alignment.cwl",
+                    "label": "tumour-fastq-alignment_cwl"
                 },
                 {
                     "id": "#main/post_alignment_processing_cwl",
                     "in": [
                         {
-                            "id": "#main/post_alignment_processing_cwl/target_sites",
+                            "id": "#main/post_alignment_processing_cwl/target_sites.bed",
                             "source": [
-                                "#main/target_sites"
+                                "#main/target_sites.bed"
                             ]
                         },
                         {
                             "id": "#main/post_alignment_processing_cwl/reference_assembly",
                             "source": [
-                                "#main/reference_assembly.fasta"
+                                "#main/reference_assembly"
                             ]
                         },
                         {
@@ -2742,349 +2023,678 @@
                             ]
                         },
                         {
-                            "id": "#main/post_alignment_processing_cwl/dbsnp_137.vcf",
-                            "source": [
-                                "#main/dbsnp_137.vcf"
-                            ]
-                        },
-                        {
                             "id": "#main/post_alignment_processing_cwl/1000G_phase1.indels",
                             "source": [
                                 "#main/1000G_phase1.indels"
                             ]
                         },
                         {
-                            "id": "#main/post_alignment_processing_cwl/bam",
+                            "id": "#main/post_alignment_processing_cwl/dbsnp_138",
                             "source": [
-                                "#main/mergebams_cwl/merged.bam"
+                                "#main/dbsnp_138"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl/sorted_aligned_bam",
+                            "source": [
+                                "#main/merge_bams/aligned_merged_bam"
                             ]
                         }
                     ],
                     "out": [
                         {
                             "id": "#main/post_alignment_processing_cwl/recalibrated_bam"
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl/dedup_metrics"
                         }
                     ],
-                    "run": "#post_alignment_processing.cwl",
-                    "label": "post_alignment_processing"
+                    "run": "#post-alignment-processing.cwl",
+                    "label": "normal--post-alignment-processing"
                 },
                 {
-                    "id": "#main/variant_calling_cwl",
+                    "id": "#main/merge_bams",
                     "in": [
                         {
-                            "id": "#main/variant_calling_cwl/tumour.bam",
+                            "id": "#main/merge_bams/merged.sorted.bam.1",
                             "source": [
-                                "#main/splitsamfile_cwl/tumour.bam"
+                                "#main/normal_fastq_cwl/sorted.bam"
                             ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/normal.bam",
+                            "id": "#main/merge_bams/merged.sorted.bam.2",
                             "source": [
-                                "#main/splitsamfile_cwl/normal.bam"
-                            ]
-                        },
-                        {
-                            "id": "#main/variant_calling_cwl/reference_assembly",
-                            "source": [
-                                "#main/reference_assembly.fasta"
-                            ]
-                        },
-                        {
-                            "id": "#main/variant_calling_cwl/target_sites",
-                            "source": [
-                                "#main/target_sites"
-                            ]
-                        },
-                        {
-                            "id": "#main/variant_calling_cwl/cosmic_v54_120711",
-                            "source": [
-                                "#main/cosmic_v54_120711"
-                            ]
-                        },
-                        {
-                            "id": "#main/variant_calling_cwl/dbsnp_137.vcf",
-                            "source": [
-                                "#main/dbsnp_137.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/variant_calling_cwl/T-N_recal.bam",
-                            "source": [
-                                "#main/post_alignment_processing_cwl/recalibrated_bam"
+                                "#main/normal_fastq_cwl/sorted.bam"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#main/variant_calling_cwl/tumour.vcf"
+                            "id": "#main/merge_bams/aligned_merged_bam"
+                        }
+                    ],
+                    "run": "#merge_bams.cwl",
+                    "label": "merge bam files"
+                },
+                {
+                    "id": "#main/merge_bams_1",
+                    "in": [
+                        {
+                            "id": "#main/merge_bams_1/merged.sorted.bam.1",
+                            "source": [
+                                "#main/tumour_fastq_cwl/sorted.bam"
+                            ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/normal.vcf"
+                            "id": "#main/merge_bams_1/merged.sorted.bam.2",
+                            "source": [
+                                "#main/tumour_fastq_cwl/sorted.bam"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#main/merge_bams_1/aligned_merged_bam"
+                        }
+                    ],
+                    "run": "#merge_bams.cwl",
+                    "label": "merge bam files"
+                },
+                {
+                    "id": "#main/merge_bams_2",
+                    "in": [
+                        {
+                            "id": "#main/merge_bams_2/merged.sorted.bam.1",
+                            "source": [
+                                "#main/merge_bams_1/aligned_merged_bam"
+                            ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/T-N-mutect.vcf"
+                            "id": "#main/merge_bams_2/merged.sorted.bam.2",
+                            "source": [
+                                "#main/merge_bams/aligned_merged_bam"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#main/merge_bams_2/aligned_merged_bam"
+                        }
+                    ],
+                    "run": "#merge_bams.cwl",
+                    "label": "merge bam files"
+                },
+                {
+                    "id": "#main/post_alignment_processing_cwl_2",
+                    "in": [
+                        {
+                            "id": "#main/post_alignment_processing_cwl_2/target_sites.bed",
+                            "source": [
+                                "#main/target_sites.bed"
+                            ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/tumour--normal_varscan_snv.vcf"
+                            "id": "#main/post_alignment_processing_cwl_2/reference_assembly",
+                            "source": [
+                                "#main/reference_assembly"
+                            ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/tumour--normal_varscan_indel.vcf"
+                            "id": "#main/post_alignment_processing_cwl_2/Mills_and_1000G_gold",
+                            "source": [
+                                "#main/Mills_and_1000G_gold"
+                            ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/indelocator.vcf"
+                            "id": "#main/post_alignment_processing_cwl_2/1000G_phase1.indels",
+                            "source": [
+                                "#main/1000G_phase1.indels"
+                            ]
                         },
                         {
-                            "id": "#main/variant_calling_cwl/T-N_hc.vcf"
+                            "id": "#main/post_alignment_processing_cwl_2/dbsnp_138",
+                            "source": [
+                                "#main/dbsnp_138"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_2/sorted_aligned_bam",
+                            "source": [
+                                "#main/merge_bams_1/aligned_merged_bam"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#main/post_alignment_processing_cwl_2/recalibrated_bam"
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_2/dedup_metrics"
+                        }
+                    ],
+                    "run": "#post-alignment-processing.cwl",
+                    "label": "tumour--post-alignment-processing"
+                },
+                {
+                    "id": "#main/post_alignment_processing_cwl_1",
+                    "in": [
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/sorted_aligned_bam",
+                            "source": [
+                                "#main/merge_bams_2/aligned_merged_bam"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/target_sites.bed",
+                            "source": [
+                                "#main/target_sites.bed"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/reference_assembly",
+                            "source": [
+                                "#main/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/Mills_and_1000G_gold",
+                            "source": [
+                                "#main/Mills_and_1000G_gold"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/1000G_phase1.indels",
+                            "source": [
+                                "#main/1000G_phase1.indels"
+                            ]
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/dbsnp_138",
+                            "source": [
+                                "#main/dbsnp_138"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/recalibrated_bam"
+                        },
+                        {
+                            "id": "#main/post_alignment_processing_cwl_1/dedup_metrics"
+                        }
+                    ],
+                    "run": "#post-alignment-processing.cwl",
+                    "label": "t-n--post-alignment-processing"
+                },
+                {
+                    "id": "#main/variant_calling_cwl",
+                    "in": [
+                        {
+                            "id": "#main/variant_calling_cwl/target_sites.bed",
+                            "source": [
+                                "#main/target_sites.bed"
+                            ]
+                        },
+                        {
+                            "id": "#main/variant_calling_cwl/reference_assembly",
+                            "source": [
+                                "#main/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#main/variant_calling_cwl/bam",
+                            "source": [
+                                "#main/post_alignment_processing_cwl_2/recalibrated_bam"
+                            ]
+                        },
+                        {
+                            "id": "#main/variant_calling_cwl/normal.bam",
+                            "source": [
+                                "#main/post_alignment_processing_cwl/recalibrated_bam"
+                            ]
+                        },
+                        {
+                            "id": "#main/variant_calling_cwl/dbsnp_138",
+                            "source": [
+                                "#main/dbsnp_138"
+                            ]
+                        },
+                        {
+                            "id": "#main/variant_calling_cwl/cosmic.vcf",
+                            "source": [
+                                "#main/cosmic.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#main/variant_calling_cwl/bamstats.tsv"
                         }
                     ],
                     "run": "#variant_calling.cwl",
                     "label": "variant_calling"
                 },
                 {
-                    "id": "#main/read_alignment_cwl_1",
+                    "id": "#main/variant_calling_hc_cwl",
                     "in": [
                         {
-                            "id": "#main/read_alignment_cwl_1/reverse_reads.gz",
+                            "id": "#main/variant_calling_hc_cwl/bam",
                             "source": [
-                                "#main/read_quality_assessment_cwl_1/read2.clean.fastq.gz"
+                                "#main/post_alignment_processing_cwl_1/recalibrated_bam"
                             ]
                         },
                         {
-                            "id": "#main/read_alignment_cwl_1/forward_reads.gz",
+                            "id": "#main/variant_calling_hc_cwl/bam_1",
                             "source": [
-                                "#main/read_quality_assessment_cwl_1/read1.clean.fastq.gz"
+                                "#main/post_alignment_processing_cwl_2/recalibrated_bam"
                             ]
                         },
                         {
-                            "id": "#main/read_alignment_cwl_1/reference_assembly.fasta",
-                            "source": [
-                                "#main/reference_assembly.fasta"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#main/read_alignment_cwl_1/sorted.bam"
-                        }
-                    ],
-                    "run": "#read_alignment.cwl",
-                    "label": "read_alignment_normal"
-                },
-                {
-                    "id": "#main/read_quality_assessment_cwl_1",
-                    "in": [
-                        {
-                            "id": "#main/read_quality_assessment_cwl_1/reverse_reads",
-                            "source": [
-                                "#main/reverse_reads"
-                            ]
-                        },
-                        {
-                            "id": "#main/read_quality_assessment_cwl_1/forward_reads",
-                            "source": [
-                                "#main/forward_reads"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#main/read_quality_assessment_cwl_1/fastqc_report_reverse"
-                        },
-                        {
-                            "id": "#main/read_quality_assessment_cwl_1/fastqc_report_forward"
-                        },
-                        {
-                            "id": "#main/read_quality_assessment_cwl_1/read2.clean.fastq.gz"
-                        },
-                        {
-                            "id": "#main/read_quality_assessment_cwl_1/read1.clean.fastq.gz"
-                        }
-                    ],
-                    "run": "#read_quality_assessment.cwl",
-                    "label": "read_quality_assessment"
-                },
-                {
-                    "id": "#main/post_variant_processing_cwl",
-                    "in": [
-                        {
-                            "id": "#main/post_variant_processing_cwl/normal.bam",
-                            "source": [
-                                "#main/splitsamfile_cwl/normal.bam"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/tumour.bam",
-                            "source": [
-                                "#main/splitsamfile_cwl/tumour.bam"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/bam_2",
+                            "id": "#main/variant_calling_hc_cwl/bam_2",
                             "source": [
                                 "#main/post_alignment_processing_cwl/recalibrated_bam"
                             ]
                         },
                         {
-                            "id": "#main/post_variant_processing_cwl/tumour.vcf",
+                            "id": "#main/variant_calling_hc_cwl/dbsnp_138",
                             "source": [
-                                "#main/variant_calling_cwl/tumour.vcf"
+                                "#main/dbsnp_138"
                             ]
                         },
                         {
-                            "id": "#main/post_variant_processing_cwl/normal.vcf",
-                            "source": [
-                                "#main/variant_calling_cwl/normal.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/T-N.vcf",
-                            "source": [
-                                "#main/variant_calling_cwl/T-N_hc.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/varscan.snp",
-                            "source": [
-                                "#main/variant_calling_cwl/tumour--normal_varscan_snv.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/varscan.indel",
-                            "source": [
-                                "#main/variant_calling_cwl/tumour--normal_varscan_indel.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/indelocator.vcf",
-                            "source": [
-                                "#main/variant_calling_cwl/indelocator.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/combined.vcf_1",
-                            "source": [
-                                "#main/variant_calling_cwl/T-N-mutect.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#main/post_variant_processing_cwl/reference_assembly",
+                            "id": "#main/variant_calling_hc_cwl/reference_assembly",
                             "source": [
                                 "#main/reference_assembly"
                             ]
                         },
                         {
-                            "id": "#main/post_variant_processing_cwl/bed_extended",
+                            "id": "#main/variant_calling_hc_cwl/target_sites.bed",
                             "source": [
-                                "#main/bed_extended"
+                                "#main/target_sites.bed"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#main/post_variant_processing_cwl/tumour_hc.tsv"
+                            "id": "#main/variant_calling_hc_cwl/bamstats.tsv"
                         },
                         {
-                            "id": "#main/post_variant_processing_cwl/normal_hc.tsv"
+                            "id": "#main/variant_calling_hc_cwl/bamstats.tsv_1"
                         },
                         {
-                            "id": "#main/post_variant_processing_cwl/all_callers.tsv"
+                            "id": "#main/variant_calling_hc_cwl/bamstats.tsv_2"
                         }
                     ],
-                    "run": "#post_variant_processing.cwl",
-                    "label": "post_variant_processing"
+                    "run": "#variant-calling-hc.cwl",
+                    "label": "variant-calling-hc"
+                }
+            ]
+        },
+        {
+            "class": "Workflow",
+            "id": "#variant-calling-hc.cwl",
+            "label": "variant-calling-hc",
+            "inputs": [
+                {
+                    "id": "#variant-calling-hc.cwl/bam",
+                    "type": "File",
+                    "label": "tumour-normal.bam"
                 },
                 {
-                    "id": "#main/mergebams_cwl",
-                    "in": [
-                        {
-                            "id": "#main/mergebams_cwl/normal.sorted.bam",
-                            "source": [
-                                "#main/picard_mark_duplicates_1/deduped_bam"
-                            ]
-                        },
-                        {
-                            "id": "#main/mergebams_cwl/tumour.sorted.bam",
-                            "source": [
-                                "#main/picard_mark_duplicates/deduped_bam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#main/mergebams_cwl/merged.bam"
-                        }
-                    ],
-                    "run": "#mergebams.cwl",
-                    "label": "mergeBams"
+                    "id": "#variant-calling-hc.cwl/bam_1",
+                    "type": "File",
+                    "label": "tumour.bam"
                 },
                 {
-                    "id": "#main/picard_mark_duplicates",
-                    "in": [
-                        {
-                            "id": "#main/picard_mark_duplicates/sorted_aligned_bam",
-                            "source": [
-                                "#main/read_alignment_cwl/sorted.bam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#main/picard_mark_duplicates/dedup_metrics"
-                        },
-                        {
-                            "id": "#main/picard_mark_duplicates/deduped_bam"
-                        }
-                    ],
-                    "run": "#picard_mark_duplicates.cwl",
-                    "label": "identify and mark pcr duplicates."
+                    "id": "#variant-calling-hc.cwl/bam_2",
+                    "type": "File",
+                    "label": "normal.bam"
                 },
                 {
-                    "id": "#main/picard_mark_duplicates_1",
-                    "in": [
-                        {
-                            "id": "#main/picard_mark_duplicates_1/sorted_aligned_bam",
-                            "source": [
-                                "#main/read_alignment_cwl_1/sorted.bam"
-                            ]
-                        }
-                    ],
-                    "out": [
-                        {
-                            "id": "#main/picard_mark_duplicates_1/dedup_metrics"
-                        },
-                        {
-                            "id": "#main/picard_mark_duplicates_1/deduped_bam"
-                        }
-                    ],
-                    "run": "#picard_mark_duplicates.cwl",
-                    "label": "identify and mark pcr duplicates."
+                    "id": "#variant-calling-hc.cwl/dbsnp_138",
+                    "type": "File"
                 },
                 {
-                    "id": "#main/splitsamfile_cwl",
+                    "id": "#variant-calling-hc.cwl/reference_assembly",
+                    "type": "File"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/target_sites.bed",
+                    "type": "File"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "#variant-calling-hc.cwl/bamstats.tsv",
+                    "outputSource": [
+                        "#variant-calling-hc.cwl/merge_vcf_vep_cwl/bamstats.tsv"
+                    ],
+                    "type": "File",
+                    "label": "normal-tsv"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/bamstats.tsv_1",
+                    "outputSource": [
+                        "#variant-calling-hc.cwl/merge_vcf_vep_cwl_1/bamstats.tsv"
+                    ],
+                    "type": "File",
+                    "label": "tumour-tsv"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/bamstats.tsv_2",
+                    "outputSource": [
+                        "#variant-calling-hc.cwl/merge_vcf_vep_cwl_2/bamstats.tsv"
+                    ],
+                    "type": "File",
+                    "label": "tumour-normal-tsv"
+                }
+            ],
+            "steps": [
+                {
+                    "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl",
                     "in": [
                         {
-                            "id": "#main/splitsamfile_cwl/merged.bam",
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl/bam",
                             "source": [
-                                "#main/post_alignment_processing_cwl/recalibrated_bam"
+                                "#variant-calling-hc.cwl/bam_2"
                             ]
                         },
                         {
-                            "id": "#main/splitsamfile_cwl/reference_assembly",
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl/target_sites.bed",
                             "source": [
-                                "#main/reference_assembly.fasta"
+                                "#variant-calling-hc.cwl/target_sites.bed"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl/reference_assembly",
+                            "source": [
+                                "#variant-calling-hc.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl/dbsnp_138",
+                            "source": [
+                                "#variant-calling-hc.cwl/dbsnp_138"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#main/splitsamfile_cwl/tumour.bam"
-                        },
-                        {
-                            "id": "#main/splitsamfile_cwl/normal.bam"
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl/hap.vcf"
                         }
                     ],
-                    "run": "#splitsamfile.cwl",
-                    "label": "splitSamFile"
+                    "run": "#gatk_haplotypecaller.cwl",
+                    "label": "normal-gatk_haplotypecaller"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1/bam",
+                            "source": [
+                                "#variant-calling-hc.cwl/bam_1"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1/target_sites.bed",
+                            "source": [
+                                "#variant-calling-hc.cwl/target_sites.bed"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1/reference_assembly",
+                            "source": [
+                                "#variant-calling-hc.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1/dbsnp_138",
+                            "source": [
+                                "#variant-calling-hc.cwl/dbsnp_138"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1/hap.vcf"
+                        }
+                    ],
+                    "run": "#gatk_haplotypecaller.cwl",
+                    "label": "tumour-gatk_haplotypecaller"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2/bam",
+                            "source": [
+                                "#variant-calling-hc.cwl/bam"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2/target_sites.bed",
+                            "source": [
+                                "#variant-calling-hc.cwl/target_sites.bed"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2/reference_assembly",
+                            "source": [
+                                "#variant-calling-hc.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2/dbsnp_138",
+                            "source": [
+                                "#variant-calling-hc.cwl/dbsnp_138"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2/hap.vcf"
+                        }
+                    ],
+                    "run": "#gatk_haplotypecaller.cwl",
+                    "label": "t-n--gatk_haplotypecaller"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/addbamstats_cwl",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl/reference_assembly",
+                            "source": [
+                                "#variant-calling-hc.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl/bam1",
+                            "source": [
+                                "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl/hap.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl/bamstats.vcf"
+                        }
+                    ],
+                    "run": "#addbamstats.cwl",
+                    "label": "addbamstats"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/addbamstats_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl_1/reference_assembly",
+                            "source": [
+                                "#variant-calling-hc.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl_1/bam1",
+                            "source": [
+                                "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_1/hap.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl_1/bamstats.vcf"
+                        }
+                    ],
+                    "run": "#addbamstats.cwl",
+                    "label": "addbamstats"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/addbamstats_cwl_2",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl_2/reference_assembly",
+                            "source": [
+                                "#variant-calling-hc.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl_2/bam1",
+                            "source": [
+                                "#variant-calling-hc.cwl/gatk_haplotypecaller_cwl_2/hap.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/addbamstats_cwl_2/bamstats.vcf"
+                        }
+                    ],
+                    "run": "#addbamstats.cwl",
+                    "label": "addbamstats"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/vep_annotation_cwl",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/vep_annotation_cwl/bamstats.vcf",
+                            "source": [
+                                "#variant-calling-hc.cwl/addbamstats_cwl/bamstats.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/vep_annotation_cwl/output"
+                        }
+                    ],
+                    "run": "#vep_annotation.cwl",
+                    "label": "vep_annotation"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/vep_annotation_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/vep_annotation_cwl_1/bamstats.vcf",
+                            "source": [
+                                "#variant-calling-hc.cwl/addbamstats_cwl_1/bamstats.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/vep_annotation_cwl_1/output"
+                        }
+                    ],
+                    "run": "#vep_annotation.cwl",
+                    "label": "vep_annotation"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/vep_annotation_cwl_2",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/vep_annotation_cwl_2/bamstats.vcf",
+                            "source": [
+                                "#variant-calling-hc.cwl/addbamstats_cwl_2/bamstats.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/vep_annotation_cwl_2/output"
+                        }
+                    ],
+                    "run": "#vep_annotation.cwl",
+                    "label": "vep_annotation"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl/bamstats.vcf",
+                            "source": [
+                                "#variant-calling-hc.cwl/addbamstats_cwl/bamstats.vcf"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl/bamstats.vep",
+                            "source": [
+                                "#variant-calling-hc.cwl/vep_annotation_cwl/output"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl/bamstats.tsv"
+                        }
+                    ],
+                    "run": "#merge_vcf_vep.cwl",
+                    "label": "merge_vcf_vep"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_1/bamstats.vcf",
+                            "source": [
+                                "#variant-calling-hc.cwl/addbamstats_cwl_1/bamstats.vcf"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_1/bamstats.vep",
+                            "source": [
+                                "#variant-calling-hc.cwl/vep_annotation_cwl_1/output"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_1/bamstats.tsv"
+                        }
+                    ],
+                    "run": "#merge_vcf_vep.cwl",
+                    "label": "merge_vcf_vep"
+                },
+                {
+                    "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_2",
+                    "in": [
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_2/bamstats.vcf",
+                            "source": [
+                                "#variant-calling-hc.cwl/addbamstats_cwl_2/bamstats.vcf"
+                            ]
+                        },
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_2/bamstats.vep",
+                            "source": [
+                                "#variant-calling-hc.cwl/vep_annotation_cwl_2/output"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant-calling-hc.cwl/merge_vcf_vep_cwl_2/bamstats.tsv"
+                        }
+                    ],
+                    "run": "#merge_vcf_vep.cwl",
+                    "label": "merge_vcf_vep"
                 }
             ]
         },
@@ -3094,11 +2704,7 @@
             "label": "variant_calling",
             "inputs": [
                 {
-                    "id": "#variant_calling.cwl/tumour.bam",
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/normal.bam",
+                    "id": "#variant_calling.cwl/target_sites.bed",
                     "type": "File"
                 },
                 {
@@ -3106,81 +2712,77 @@
                     "type": "File"
                 },
                 {
-                    "id": "#variant_calling.cwl/target_sites",
+                    "id": "#variant_calling.cwl/bam",
+                    "type": "File",
+                    "label": "tumour.bam"
+                },
+                {
+                    "id": "#variant_calling.cwl/normal.bam",
+                    "type": "File",
+                    "label": "normal.bam"
+                },
+                {
+                    "id": "#variant_calling.cwl/dbsnp_138",
                     "type": "File"
                 },
                 {
-                    "id": "#variant_calling.cwl/cosmic_v54_120711",
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/dbsnp_137.vcf",
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/T-N_recal.bam",
+                    "id": "#variant_calling.cwl/cosmic.vcf",
                     "type": "File"
                 }
             ],
             "outputs": [
                 {
-                    "id": "#variant_calling.cwl/tumour.vcf",
+                    "id": "#variant_calling.cwl/bamstats.tsv",
                     "outputSource": [
-                        "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/hap.vcf"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/normal.vcf",
-                    "outputSource": [
-                        "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/hap.vcf"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/T-N-mutect.vcf",
-                    "outputSource": [
-                        "#variant_calling.cwl/mutectv1_cwl/T-N-mutect.vcf"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/tumour--normal_varscan_snv.vcf",
-                    "outputSource": [
-                        "#variant_calling.cwl/varscan_cwl/tumour--normal_varscan_snv.vcf"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/tumour--normal_varscan_indel.vcf",
-                    "outputSource": [
-                        "#variant_calling.cwl/varscan_cwl/tumour--normal_varscan_indel.vcf"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/indelocator.vcf",
-                    "outputSource": [
-                        "#variant_calling.cwl/gatk_indellocator_cwl/output"
-                    ],
-                    "type": "File"
-                },
-                {
-                    "id": "#variant_calling.cwl/T-N_hc.vcf",
-                    "outputSource": [
-                        "#variant_calling.cwl/gatk_haplotypecaller_cwl/hap.vcf"
+                        "#variant_calling.cwl/merge_vcf_vep_cwl/bamstats.tsv"
                     ],
                     "type": "File"
                 }
             ],
             "steps": [
                 {
+                    "id": "#variant_calling.cwl/vardict_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/vardict_cwl/chr.bed",
+                            "source": [
+                                "#variant_calling.cwl/grep_bash_cwl/chr.bed"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/vardict_cwl/reference_assembly",
+                            "source": [
+                                "#variant_calling.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/vardict_cwl/tumour.bam",
+                            "source": [
+                                "#variant_calling.cwl/bam"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/vardict_cwl/normal.bam",
+                            "source": [
+                                "#variant_calling.cwl/normal.bam"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/vardict_cwl/tumour--normal_vardict.vcf"
+                        }
+                    ],
+                    "run": "#vardict.cwl",
+                    "label": "vardict"
+                },
+                {
                     "id": "#variant_calling.cwl/samtools_mpileup_cwl",
                     "in": [
                         {
                             "id": "#variant_calling.cwl/samtools_mpileup_cwl/bam",
                             "source": [
-                                "#variant_calling.cwl/normal.bam"
+                                "#variant_calling.cwl/bam"
                             ]
                         },
                         {
@@ -3226,88 +2828,82 @@
                     "label": "varscan"
                 },
                 {
-                    "id": "#variant_calling.cwl/mutectv1_cwl",
+                    "id": "#variant_calling.cwl/grep_bash_cwl",
                     "in": [
                         {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/bed",
+                            "id": "#variant_calling.cwl/grep_bash_cwl/regions.bed",
                             "source": [
-                                "#variant_calling.cwl/target_sites"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/reference_assembly",
-                            "source": [
-                                "#variant_calling.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/dbsnp_137.vcf",
-                            "source": [
-                                "#variant_calling.cwl/dbsnp_137.vcf"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/cosmic_v54_120711",
-                            "source": [
-                                "#variant_calling.cwl/cosmic_v54_120711"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/normal.bam",
-                            "source": [
-                                "#variant_calling.cwl/normal.bam"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/tumour.bam",
-                            "source": [
-                                "#variant_calling.cwl/tumour.bam"
+                                "#variant_calling.cwl/target_sites.bed"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#variant_calling.cwl/mutectv1_cwl/T-N-mutect.vcf"
+                            "id": "#variant_calling.cwl/grep_bash_cwl/chr.bed"
                         }
                     ],
-                    "run": "#mutectv1.cwl",
-                    "label": "mutectv1"
+                    "run": "#grep_bash.cwl",
+                    "label": "grep_bash"
                 },
                 {
-                    "id": "#variant_calling.cwl/gatk_indellocator_cwl",
+                    "id": "#variant_calling.cwl/mutect2_cwl",
                     "in": [
                         {
-                            "id": "#variant_calling.cwl/gatk_indellocator_cwl/bed",
+                            "id": "#variant_calling.cwl/mutect2_cwl/chr.bed",
                             "source": [
-                                "#variant_calling.cwl/target_sites"
+                                "#variant_calling.cwl/grep_bash_cwl_1/chr.bed"
                             ]
                         },
                         {
-                            "id": "#variant_calling.cwl/gatk_indellocator_cwl/reference.assembly",
+                            "id": "#variant_calling.cwl/mutect2_cwl/tumour.bam",
                             "source": [
-                                "#variant_calling.cwl/reference_assembly"
+                                "#variant_calling.cwl/bam"
                             ]
                         },
                         {
-                            "id": "#variant_calling.cwl/gatk_indellocator_cwl/normal.bam",
+                            "id": "#variant_calling.cwl/mutect2_cwl/normal.bam",
                             "source": [
                                 "#variant_calling.cwl/normal.bam"
                             ]
                         },
                         {
-                            "id": "#variant_calling.cwl/gatk_indellocator_cwl/tumour.bam",
+                            "id": "#variant_calling.cwl/mutect2_cwl/dbsnp_138.vcf",
                             "source": [
-                                "#variant_calling.cwl/tumour.bam"
+                                "#variant_calling.cwl/dbsnp_138"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/mutect2_cwl/cosmic.vcf",
+                            "source": [
+                                "#variant_calling.cwl/cosmic.vcf"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#variant_calling.cwl/gatk_indellocator_cwl/output"
+                            "id": "#variant_calling.cwl/mutect2_cwl/chr.vcf"
                         }
                     ],
-                    "run": "#gatk_indellocator.cwl",
-                    "label": "gatk_indellocator"
+                    "run": "#mutect2.cwl",
+                    "label": "mutect2"
+                },
+                {
+                    "id": "#variant_calling.cwl/grep_bash_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/grep_bash_cwl_1/regions.bed",
+                            "source": [
+                                "#variant_calling.cwl/target_sites.bed"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/grep_bash_cwl_1/chr.bed"
+                        }
+                    ],
+                    "run": "#grep_bash.cwl",
+                    "label": "grep_bash"
                 },
                 {
                     "id": "#variant_calling.cwl/samtools_mpileup_cwl_1",
@@ -3315,7 +2911,7 @@
                         {
                             "id": "#variant_calling.cwl/samtools_mpileup_cwl_1/bam",
                             "source": [
-                                "#variant_calling.cwl/tumour.bam"
+                                "#variant_calling.cwl/normal.bam"
                             ]
                         },
                         {
@@ -3334,121 +2930,346 @@
                     "label": "samtools-mpileup"
                 },
                 {
-                    "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1",
+                    "id": "#variant_calling.cwl/varscan_somatic_concatvcf_cwl",
                     "in": [
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/target_sites",
+                            "id": "#variant_calling.cwl/varscan_somatic_concatvcf_cwl/tumour--normal_varscan_indel.vcf",
                             "source": [
-                                "#variant_calling.cwl/target_sites"
+                                "#variant_calling.cwl/varscan_cwl/tumour--normal_varscan_indel.vcf"
                             ]
                         },
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/reference_assembly",
+                            "id": "#variant_calling.cwl/varscan_somatic_concatvcf_cwl/tumour--normal_varscan_snv.vcf",
                             "source": [
-                                "#variant_calling.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/bam",
-                            "source": [
-                                "#variant_calling.cwl/normal.bam"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/bam2",
-                            "source": [
-                                "#variant_calling.cwl/normal.bam"
+                                "#variant_calling.cwl/varscan_cwl/tumour--normal_varscan_snv.vcf"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/hap.vcf"
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_1/output"
+                            "id": "#variant_calling.cwl/varscan_somatic_concatvcf_cwl/tumour--normal_varscan.vcf"
                         }
                     ],
-                    "run": "#gatk_haplotypecaller.cwl",
-                    "label": "gatk_haplotypecaller"
+                    "run": "#varscan_somatic_concatvcf.cwl",
+                    "label": "_varscan_somatic_concatVcf"
                 },
                 {
-                    "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl",
+                    "id": "#variant_calling.cwl/vcfextractdp_ad_py_cwl",
                     "in": [
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl/target_sites",
+                            "id": "#variant_calling.cwl/vcfextractdp_ad_py_cwl/combined.vcf",
                             "source": [
-                                "#variant_calling.cwl/target_sites"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl/reference_assembly",
-                            "source": [
-                                "#variant_calling.cwl/reference_assembly"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl/bam2",
-                            "source": [
-                                "#variant_calling.cwl/T-N_recal.bam"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl/bam",
-                            "source": [
-                                "#variant_calling.cwl/T-N_recal.bam"
+                                "#variant_calling.cwl/varscan_somatic_concatvcf_cwl/tumour--normal_varscan.vcf"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl/hap.vcf"
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl/output"
+                            "id": "#variant_calling.cwl/vcfextractdp_ad_py_cwl/vcf"
                         }
                     ],
-                    "run": "#gatk_haplotypecaller.cwl",
-                    "label": "gatk_haplotypecaller"
+                    "run": "#vcfextractdp_ad-py.cwl",
+                    "label": "vcfExtractDP_AD"
                 },
                 {
-                    "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2",
+                    "id": "#variant_calling.cwl/filtersomatic_cwl",
                     "in": [
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/bam",
+                            "id": "#variant_calling.cwl/filtersomatic_cwl/tumour--normal_varscan.vcf",
                             "source": [
-                                "#variant_calling.cwl/tumour.bam"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/bam2",
-                            "source": [
-                                "#variant_calling.cwl/tumour.bam"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/target_sites",
-                            "source": [
-                                "#variant_calling.cwl/target_sites"
-                            ]
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/reference_assembly",
-                            "source": [
-                                "#variant_calling.cwl/reference_assembly"
+                                "#variant_calling.cwl/vcfextractdp_ad_py_cwl/vcf"
                             ]
                         }
                     ],
                     "out": [
                         {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/hap.vcf"
-                        },
-                        {
-                            "id": "#variant_calling.cwl/gatk_haplotypecaller_cwl_2/output"
+                            "id": "#variant_calling.cwl/filtersomatic_cwl/tumour--normal_varscan_somatic"
                         }
                     ],
-                    "run": "#gatk_haplotypecaller.cwl",
-                    "label": "gatk_haplotypecaller"
+                    "run": "#filtersomatic.cwl",
+                    "label": "filterSomatic"
+                },
+                {
+                    "id": "#variant_calling.cwl/combinevariants_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/combinevariants_cwl/reference_assembly",
+                            "source": [
+                                "#variant_calling.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/combinevariants_cwl/tumour--normal_eda_vardict_somatic.vcf",
+                            "source": [
+                                "#variant_calling.cwl/filtersomatic_cwl_1/tumour--normal_varscan_somatic"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/combinevariants_cwl/tumour--normal_varscan_somatic.recode.vcf",
+                            "source": [
+                                "#variant_calling.cwl/filtersomatic_cwl/tumour--normal_varscan_somatic"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/combinevariants_cwl/tumour--normal_mutect2.vcf.org.recode.vcf",
+                            "source": [
+                                "#variant_calling.cwl/vcftools_filter_cwl/output"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/combinevariants_cwl/output"
+                        }
+                    ],
+                    "run": "#combinevariants.cwl",
+                    "label": "combineVariants"
+                },
+                {
+                    "id": "#variant_calling.cwl/bedtools_intersect_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/bedtools_intersect_cwl/vcf_a",
+                            "source": [
+                                "#variant_calling.cwl/combinevariants_cwl/output"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/bedtools_intersect_cwl/bed_b",
+                            "source": [
+                                "#variant_calling.cwl/target_sites.bed"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/bedtools_intersect_cwl/tumour--normal_combined.bedFiltered.vcf"
+                        }
+                    ],
+                    "run": "#bedtools-intersect.cwl",
+                    "label": "bedtools-intersect"
+                },
+                {
+                    "id": "#variant_calling.cwl/somaticvcfaveragedpad_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/somaticvcfaveragedpad_cwl/tumour--normal_combined.bedFiltered.vcf",
+                            "source": [
+                                "#variant_calling.cwl/bedtools_intersect_cwl/tumour--normal_combined.bedFiltered.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/somaticvcfaveragedpad_cwl/tumour--normal_combined.bedFiltered.avgDpAd.vcf"
+                        }
+                    ],
+                    "run": "#somaticvcfaveragedpad.cwl",
+                    "label": "somaticVcfAverageDpAd"
+                },
+                {
+                    "id": "#variant_calling.cwl/trimiupac_vcf_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/trimiupac_vcf_cwl/tumour--normal_chr_vardict",
+                            "source": [
+                                "#variant_calling.cwl/vardict_cwl/tumour--normal_vardict.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/trimiupac_vcf_cwl/output"
+                        }
+                    ],
+                    "run": "#trimiupac_vcf.cwl",
+                    "label": "trimIUPAC_vcf"
+                },
+                {
+                    "id": "#variant_calling.cwl/gatk_catvariants_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/gatk_catvariants_cwl/reference_assembly",
+                            "source": [
+                                "#variant_calling.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/gatk_catvariants_cwl/chr.vcf",
+                            "source": [
+                                "#variant_calling.cwl/trimiupac_vcf_cwl/output"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/gatk_catvariants_cwl/chr-combined.vcf"
+                        }
+                    ],
+                    "run": "#gatk_catvariants.cwl",
+                    "label": "gatk_catvariants"
+                },
+                {
+                    "id": "#variant_calling.cwl/vcfextractdp_ad_py_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/vcfextractdp_ad_py_cwl_1/combined.vcf",
+                            "source": [
+                                "#variant_calling.cwl/gatk_catvariants_cwl/chr-combined.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/vcfextractdp_ad_py_cwl_1/vcf"
+                        }
+                    ],
+                    "run": "#vcfextractdp_ad-py.cwl",
+                    "label": "vcfExtractDP_AD"
+                },
+                {
+                    "id": "#variant_calling.cwl/_index_vcf_by_tabix_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/_index_vcf_by_tabix_cwl/tumour--normal_eda_vardict.vcf",
+                            "source": [
+                                "#variant_calling.cwl/vcfextractdp_ad_py_cwl_1/vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/_index_vcf_by_tabix_cwl/tumour--normal_eda_vardict.vcf.gz"
+                        }
+                    ],
+                    "run": "#index_vcf_by_tabix.cwl",
+                    "label": "index_vcf_by_Tabix"
+                },
+                {
+                    "id": "#variant_calling.cwl/filtersomatic_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/filtersomatic_cwl_1/tumour--normal_varscan.vcf",
+                            "source": [
+                                "#variant_calling.cwl/_index_vcf_by_tabix_cwl/tumour--normal_eda_vardict.vcf.gz"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/filtersomatic_cwl_1/tumour--normal_varscan_somatic"
+                        }
+                    ],
+                    "run": "#filtersomatic.cwl",
+                    "label": "filterSomatic"
+                },
+                {
+                    "id": "#variant_calling.cwl/vcftools_filter_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/vcftools_filter_cwl/vcf",
+                            "source": [
+                                "#variant_calling.cwl/gatk_catvariants_cwl_1/chr-combined.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/vcftools_filter_cwl/output"
+                        }
+                    ],
+                    "run": "#vcftools-filter.cwl",
+                    "label": "filterPASS"
+                },
+                {
+                    "id": "#variant_calling.cwl/addbamstats_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/addbamstats_cwl/reference_assembly",
+                            "source": [
+                                "#variant_calling.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/addbamstats_cwl/bam1",
+                            "source": [
+                                "#variant_calling.cwl/somaticvcfaveragedpad_cwl/tumour--normal_combined.bedFiltered.avgDpAd.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/addbamstats_cwl/bamstats.vcf"
+                        }
+                    ],
+                    "run": "#addbamstats.cwl",
+                    "label": "addbamstats"
+                },
+                {
+                    "id": "#variant_calling.cwl/vep_annotation_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/vep_annotation_cwl/bamstats.vcf",
+                            "source": [
+                                "#variant_calling.cwl/addbamstats_cwl/bamstats.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/vep_annotation_cwl/output"
+                        }
+                    ],
+                    "run": "#vep_annotation.cwl",
+                    "label": "vep_annotation"
+                },
+                {
+                    "id": "#variant_calling.cwl/merge_vcf_vep_cwl",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/merge_vcf_vep_cwl/bamstats.vcf",
+                            "source": [
+                                "#variant_calling.cwl/addbamstats_cwl/bamstats.vcf"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/merge_vcf_vep_cwl/bamstats.vep",
+                            "source": [
+                                "#variant_calling.cwl/vep_annotation_cwl/output"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/merge_vcf_vep_cwl/bamstats.tsv"
+                        }
+                    ],
+                    "run": "#merge_vcf_vep.cwl",
+                    "label": "merge_vcf_vep"
+                },
+                {
+                    "id": "#variant_calling.cwl/gatk_catvariants_cwl_1",
+                    "in": [
+                        {
+                            "id": "#variant_calling.cwl/gatk_catvariants_cwl_1/reference_assembly",
+                            "source": [
+                                "#variant_calling.cwl/reference_assembly"
+                            ]
+                        },
+                        {
+                            "id": "#variant_calling.cwl/gatk_catvariants_cwl_1/chr.vcf",
+                            "source": [
+                                "#variant_calling.cwl/mutect2_cwl/chr.vcf"
+                            ]
+                        }
+                    ],
+                    "out": [
+                        {
+                            "id": "#variant_calling.cwl/gatk_catvariants_cwl_1/chr-combined.vcf"
+                        }
+                    ],
+                    "run": "#gatk_catvariants.cwl",
+                    "label": "gatk_catvariants"
                 }
             ]
         }

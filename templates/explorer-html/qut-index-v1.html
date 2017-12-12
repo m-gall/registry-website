@@ -10,19 +10,41 @@
 <body>
   <div class="container-fluid">
 
-  <div class="page-header"><h1 class="display-4">Workflow Explorer</h1></div>
+  <div class="page-header my-5"><h1 class="display-4">Workflow Explorer</h1></div>
 
     <div class="row">
 
       <div class="col-4">
         <div class="card">
           <div class="card-header">Details</div>
-
           <div class="card-body">
-            <table class="table table-responsive" id="element-metadata">
-              <tbody> 
-              </tbody>
-            </table>
+
+            <h3 class="my-3">workflow</h3>
+            <div class="table-responsive">
+              <table class="table table-striped" id="workflow-metadata">
+                <tbody> 
+                </tbody>
+              </table>
+	    </div>
+
+            <h3 class="my-3" id="element-metadata-type"></h3>
+            <div class="table-responsive">
+              <table class="table table-striped" id="element-metadata">
+                <tbody> 
+                </tbody>
+              </table>
+	    </div>
+
+	    <div id="commandline-metadata" style="display:none">
+              <h3 class="my-3">command line</h3>
+              <div class="table-responsive">
+                <table class="table table-striped" id="commandline-metadata-table">
+                  <tbody> 
+                  </tbody>
+                </table>
+              </div>
+	    </div>
+
           </div>
 
         </div>
@@ -50,11 +72,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.5.4/cytoscape.min.js"></script>
 <script src="https://cdn.rawgit.com/cpettitt/dagre/v0.7.4/dist/dagre.min.js"></script>
 <script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-dagre/1.1.2/cytoscape-dagre.js"></script>
-<script src="../../static/cwl_explorer/qut-sub-v1/js/js-yaml.min.js"></script>
-<script src="../../static/cwl_explorer/qut-sub-v1/js/cwl_explorer_normalise.js"></script>
-<script src="../../static/cwl_explorer/qut-sub-v1/js/cwl_explorer_utils.js"></script>
-<script src="../../static/cwl_explorer/qut-sub-v1/js/cwl_explorer.js"></script>
-<script src="../../static/cwl_explorer/qut-sub-v1/js/workflow.js"></script>
+<script src="/static/cwl_explorer/qut-sub-v1/js/js-yaml.min.js"></script>
+<script src="/static/cwl_explorer/qut-sub-v1/js/cwl_explorer_normalise.js"></script>
+<script src="/static/cwl_explorer/qut-sub-v1/js/cwl_explorer_utils.js"></script>
+<script src="/static/cwl_explorer/qut-sub-v1/js/cwl_explorer.js"></script>
+<script src="/static/cwl_explorer/qut-sub-v1/js/workflow.js"></script>
 
 </body>
 </html>

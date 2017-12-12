@@ -1256,7 +1256,7 @@
                     "class": "ScatterFeatureRequirement"
                 }
             ],
-            "label": "qimr-somatic-sub-v1",
+            "label": "qimr-somatic-sub",
             "inputs": [
                 {
                     "id": "#main/reference_assembly",

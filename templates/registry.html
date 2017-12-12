@@ -58,12 +58,12 @@
                         <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}</p>
                         <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.workflow_accession }}>  link </a></p>
                         <p><h5>Summary table</h5></p>
+{#
 
 
-
-                        <div class = 'table'>
-                            <table class="rtable rtable--flip">
-                                <tr>
+                        <div class = 'table' style="overflow: scroll">
+                            <table class="rtable rtable--flip" style="align-items: stretch">
+                                <tr style="align-items: stretch">
                                     <th>workflow_manager</th>
                                     <th>sample_qc</th>
                                     <th>fastq_qc</th>
@@ -76,28 +76,23 @@
                                     <th>verification</th>
                                     <th>reporting</th>
                                 </tr>
-                            <tr>
-                                <tbody>
-                                    <td>{{ row.Workflow_Description.workflow_manager }}</td>
-                                    <td>{{ row.Workflow_Description.sample_qc }}</td>
-                                    <td> {{ row.Workflow_Description.fastq_qc }}</td>
-                                    <td> {{ row.Workflow_Description.alignment }}</td>
-                                    <td> {{ row.Workflow_Description.bam_qc }}</td>
-                                    <td> {{ row.Workflow_Description.variant_calling }}</td>
-                                    <td> {{ row.Workflow_Description.variant_annotation }}</td>
-                                    <td> {{ row.Workflow_Description.variant_filtering }}</td>
-                                    <td> {{ row.Workflow_Description.variant_qc }}</td>
-                                    <td> {{ row.Workflow_Description.verification }}</td>
-                                    <td> {{ row.Workflow_Description.reporting }}</td>
-                                </tbody>
-
-
-
-                            </tr>
-
-                        </table>
-                        </div>
-
+                                <tr>
+                                    <tbody style="align-items: flex-start; overflow: scroll">
+                                        <td >{{ row.Workflow_Description.workflow_manager }}</td>
+                                        <td>{{ row.Workflow_Description.sample_qc }}</td>
+                                        <td> {{ row.Workflow_Description.fastq_qc }}</td>
+                                        <td> {{ row.Workflow_Description.alignment }}</td>
+                                        <td> {{ row.Workflow_Description.bam_qc }}</td>
+                                        <td> {{ row.Workflow_Description.variant_calling }}</td>
+                                        <td> {{ row.Workflow_Description.variant_annotation }}</td>
+                                        <td> {{ row.Workflow_Description.variant_filtering }}</td>
+                                        <td> {{ row.Workflow_Description.variant_qc }}</td>
+                                        <td> {{ row.Workflow_Description.verification }}</td>
+                                        <td> {{ row.Workflow_Description.reporting }}</td>
+                                    </tbody>
+                                </tr>
+                            </table>
+                        </div>#}
 
                     </div>
                 </div>

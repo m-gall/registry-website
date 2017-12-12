@@ -203,8 +203,7 @@ def registry():
     subheading1 = 'Summary'
     subheadtext1 = ''
     workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
-    workflow_join_institute = (db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description)
-                  .join(Pipeline, Institute, Flagship, Workflow_Description)).all()
+    workflow_join_institute = (db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description).join(Pipeline, Institute, Flagship, Workflow_Description)).order_by(Workflow.workflow_name).order_by(Workflow.workflow_name).all()
     return render_template('registry.html', title=title, subhead=subhead, subheading1=subheading1,
                            subheadtext1=subheadtext1, workflowrows=workflowrows, workflow_join_institute=workflow_join_institute)
 
@@ -234,7 +233,7 @@ def index():
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
     flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-    flagships = db.session.query(Flagship, Workflow).join(Workflow).all()
+    flagships = db.session.query(Flagship, Workflow).join(Workflow).order_by(Flagship.flagship_name).all()
        #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
     return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows, flagships=flagships)
 

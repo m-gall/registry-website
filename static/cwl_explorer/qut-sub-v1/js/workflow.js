@@ -2046,7 +2046,7 @@
                     "class": "ScatterFeatureRequirement"
                 }
             ],
-            "label": "qut-sub-v1",
+            "label": "qut-sub-workflow",
             "inputs": [
                 {
                     "id": "#main/bcl2",

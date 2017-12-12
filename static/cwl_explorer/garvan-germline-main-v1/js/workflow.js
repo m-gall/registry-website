@@ -1181,7 +1181,7 @@
         {
             "class": "Workflow",
             "id": "#main",
-            "label": "garvan-germline-main-v1",
+            "label": "garvan-germline-main",
             "requirements": [
                 {
                     "class": "SubworkflowFeatureRequirement"

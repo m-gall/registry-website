@@ -780,7 +780,7 @@
                     "class": "ScatterFeatureRequirement"
                 }
             ],
-            "label": "pathwest-main-workflow-v1",
+            "label": "pathwest-main-workflow",
             "inputs": [
                 {
                     "id": "#main/read2.fastqz.gz",

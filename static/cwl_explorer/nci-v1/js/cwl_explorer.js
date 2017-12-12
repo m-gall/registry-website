@@ -3,19 +3,6 @@
 document.addEventListener("DOMContentLoaded", function() { main(); })
 
 
-function input_metadata(node) {
-    const properties = ["label", "secondaryFiles", "streamable",
-	                "doc", "format", "inputBinding", "default", "type"];
-    const result = {};
-    for (var i = 0; i < properties.length; i++) {
-        const property = properties[i];
-        if (node.hasOwnProperty(property)) {
-            result[property] = node[property];
-        }
-    }
-    return result;
-}
-
 /*
     InputParameter
 
@@ -56,13 +43,14 @@ function process_inputs(parent_id, inputs) {
                 parent: parent_id,
                 id: input_object.id,
                 render_id: render_id(input_object.id),
-                cy_class: 'input',
                 //Metadata for visualisation
-                metadata: input_metadata(input_object),
+                metadata: {
+                    element_type: 'input',
+                    cwl_element: input_object
+                }
             },
             classes: 'input',
             group: 'nodes',
-           
         };
     });
 }
@@ -70,18 +58,6 @@ function process_inputs(parent_id, inputs) {
 function get_input_ids(inputs) {
     const ids = inputs.map(function (input_object) { return input_object.id; });
     return new Set(ids);
-}
-
-function output_metadata(node) {
-    const properties = ["label", "secondaryFiles", "streamable", "doc", "format", "outputBinding", "linkMerge", "type"];
-    const result = {};
-    for (var i = 0; i < properties.length; i++) {
-        const property = properties[i];
-        if (node.hasOwnProperty(property)) {
-            result[property] = node[property];
-        }
-    }
-    return result;
 }
 
 /*
@@ -129,9 +105,10 @@ function process_outputs(parent_id, input_ids, outputs) {
                     parent: parent_id,
                     id: output_object.id,
                     render_id: render_id(output_object.id),
-                    cy_class: 'output',
-                    // Metadata for visualisation
-                    metadata: output_metadata(output_object),
+                    metadata: {
+                        element_type: 'output',
+                        cwl_element: output_object
+                    }
                 },
                 classes: 'output',
                 group: 'nodes',
@@ -142,14 +119,12 @@ function process_outputs(parent_id, input_ids, outputs) {
             const outputSourceName = output_object.outputSource[j];	
             const new_edge = {
                     data: {
-                        parent: parent_id, // Not sure if this is needed for edges
                         source: get_source(input_ids, outputSourceName),
                         target: output_object.id,
-                        cy_class: 'edge',
-                        // Metadata for visualisation
                         metadata: {
-                            source: output_object.outputSource,
-    			target: output_object.id
+                            element_type: 'edge',
+                            cwl_source_id: output_object.outputSource,
+    			    cwl_target_id: output_object.id
                         },
                     },
                     group: "edges"
@@ -196,11 +171,10 @@ function process_step_inputs(input_ids, step_inputs, target_node) {
                     data: {
                         source: get_source(input_ids, sources[j]),
                         target: target_node,
-                        // Metadata for visualisation
-                        cy_class: 'edge',
                         metadata: {
-                            source: sources[j],
-			    target: target_node + '/' + step_input_object.id,
+                            element_type: 'edge',
+                            cwl_source_id: sources[j],
+			    cwl_target_id: step_input_object.id,
                         },
                     },
                     group: "edges"
@@ -209,31 +183,6 @@ function process_step_inputs(input_ids, step_inputs, target_node) {
         }
     }
     return elements;
-}
-
-function workflow_metadata(node) {
-    const metadata = step_metadata(node);
-    var run_id = node.run;
-    if (run_id.length > 0 && run_id[0] == '#') {
-        // Drop the # from the start of the run id
-        // the # is added by cwltool --pack, but the # causes trouble
-        // with the URL query string, so we remove it
-        run_id = run_id.substring(1);
-        metadata.url = run_id;
-    }
-    return metadata;
-}
-
-function step_metadata(node) {
-    const properties = ["run", "requirements", "hints", "label", "doc"];
-    const result = {};
-    for (var i = 0; i < properties.length; i++) {
-        const property = properties[i];
-        if (node.hasOwnProperty(property)) {
-            result[property] = node[property];
-        }
-    }
-    return result;
 }
 
 function is_workflow_step(components, step_object) {
@@ -300,6 +249,8 @@ function process_step_run(components, step_object) {
     TODO:
         - Do something with the outputs
         - Add metadata to the node, where available
+        - XXX find the run command and display information about that, if the
+          run command is a command line tool.
 */
 
 function process_steps(components, parent_id, input_ids, steps) {
@@ -313,9 +264,10 @@ function process_steps(components, parent_id, input_ids, steps) {
                         parent: parent_id,
                         id: step_object.id,
                         render_id: render_id(step_object.id),
-                        // Metadata for visualisation
-                        cy_class: 'workflow',
-                        metadata: workflow_metadata(step_object),
+                        metadata: {
+                            element_type: 'subworkflow',
+                            cwl_element: step_object
+                        }
                     },
                     classes: "workflow",
                     group: "nodes",
@@ -328,9 +280,11 @@ function process_steps(components, parent_id, input_ids, steps) {
                         parent: parent_id,
                         id: step_object.id,
                         render_id: render_id(step_object.id),
-                        // Metadata for visualisation
-                        cy_class: 'step',
-                        metadata: step_metadata(step_object),
+                        metadata: {
+                            element_type: 'step',
+                            cwl_element: step_object,
+                            commandline_cwl_element: components[step_object.run]
+                        }
                     },
                     classes: "step",
                     group: "nodes",
@@ -500,54 +454,103 @@ function cytoscape_settings (container, graph_elements) {
     };
 }
 
-function node_metadata(node) {
+// Return a list of properties that we want to display for a given element type
+function element_properties(element_type) {
+    switch (element_type) {
+        case "workflow":
+            return ["id", "label", "doc"];
+            break;
+        case "input":
+           return ["id", "label", "type", "format", "doc"];
+           break;
+        case "output":
+           return ["id", "label", "type", "format", "doc"];
+            break;
+        case "subworkflow":
+            return ["id", "run"];
+            break;
+        case "step":
+            return ["id", "label", "run", "doc"] 
+            break;
+        case "commandline":
+            return ["id", "label", "baseCommand", "doc"] 
+            break;
+        default:
+            return [] 
+            break;
+    }
+}
+
+function drop_hash_from_id(identifier) {
+    // Drop the # from the start of the run id
+    // the # is added by cwltool --pack, but the '#' causes trouble
+    // with the URL query string, so we remove it
+    if (identifier.length > 0 && identifier[0] == '#') {
+        return identifier.substring(1);
+    }
+}
+
+// Custom display for a property of a given element type
+function custom_value(element_type, property, value) {
+    if (element_type === "subworkflow" && property === "run") {
+        value = drop_hash_from_id(value);
+        return '<a href="?workflow=' + value + '">' + value + '</a>';
+    }
+    else if (property === "id") {
+        return drop_hash_from_id(value);
+    }
+    else if (property === "format" && value.startsWith("edam:")) {
+        const edam_format_id = value.substring("edam:".length);
+        return '<a href="http://edamontology.org/' + edam_format_id + '">' + value + '</a>';
+    }
+    else {
+        return value;
+    }
+}
+
+function metadata_table(cwl_element, element_type) {
     const rows = [];
-    const identity = "<tr><td>identity</td><td>" + node.data('id') + "</td></tr>";
-    const metadata = node.data('metadata');
-    rows.push(identity);
-    for (var property in metadata) {
-        if (metadata.hasOwnProperty(property)) {
-            // XXX hack to support URLs for sub workflows
-            // this should be replaced with a more robust solution
-            if (property === 'url') {
-                var new_row = "<tr><td>" + property + "</td><td>" + '<a href="?workflow=' + metadata[property] + '">' + metadata[property] + '</a>' + "</td></tr>";
-            }
-            else {
-                var new_row = "<tr><td>" + property + "</td><td>" + metadata[property] + "</td></tr>";
-            }
-            rows.push(new_row);
+    const properties = element_properties(element_type);
+    for (var i = 0; i < properties.length; i++) {
+        const property = properties[i];
+        var value = '';
+        if (property in cwl_element && cwl_element[property] != null) {
+            value = cwl_element[property];
         }
+        const display_value = custom_value(element_type, property, value);
+        var new_row = "<tr><td>" + property + "</td><td>" + display_value + "</td></tr>";
+        rows.push(new_row);
     }
     return rows.join('');
 }
 
-
-function edge_metadata(node) {
-    const rows = [];
-    const metadata = node.data('metadata');
-    for (var property in metadata) {
-        if (metadata.hasOwnProperty(property)) {
-            const new_row = "<tr><td>" + property + "</td><td>" + metadata[property] + "</td></tr>";
-            rows.push(new_row);
-        }
-    }
-    return rows.join('');
-}
-
-// Add an event handler to edges in the graph specifying what to do when the edge is tapped
-// by the user
-function edge_on_tap_handler(cy) {
-   cy.on('tap', 'edge', function (evt) {
-      $('#element-metadata tbody').html(edge_metadata(evt.cyTarget));
-    });
+function display_step_metadata(cwl_element, commandline_cwl_element) {
+    $('#element-metadata tbody').html(metadata_table(cwl_element, "step"));
+    $('#commandline-metadata-table tbody').html(metadata_table(commandline_cwl_element, "commandline"));
+    $('#commandline-metadata').show();
 }
 
 // Add an event handler to nodes in the graph specifying what to do when the node is tapped
 // by the user
 function node_on_tap_handler(cy) {
    cy.on('tap', 'node', function (evt) {
-      $('#element-metadata tbody').html(node_metadata(evt.cyTarget));
+      var this_component = evt.cyTarget;
+      var metadata = this_component.data('metadata');
+      // Show the element type of node 
+      $('#element-metadata-type').text(metadata.element_type);
+      // Show the metadata for this node 
+      if (metadata.element_type === "step") {
+          display_step_metadata(metadata.cwl_element, metadata.commandline_cwl_element);
+      }
+      else {
+          $('#element-metadata tbody').html(metadata_table(metadata.cwl_element, metadata.element_type));
+          $('#commandline-metadata').hide();
+      }
     });
+}
+
+function display_workflow_metadata(workflow) {
+   $('#workflow-metadata tbody').html(metadata_table(workflow, "workflow"));
 }
 
 function render_workflow() {
@@ -566,16 +569,14 @@ function render_workflow() {
     if (workflow_id in components) {
         // Lookup this workflow in list of CWL components 
         const this_workflow = components[workflow_id];
+        display_workflow_metadata(this_workflow);
         // Make sure we are working with a Workflow object and not something else
         if ("class" in this_workflow && this_workflow["class"] === "Workflow") {
             const graph_elements = workflow_to_graph(components, null, this_workflow);
             const container = document.getElementById('cy');
             const cy = cytoscape(cytoscape_settings(container, graph_elements));
             node_on_tap_handler(cy);
-            edge_on_tap_handler(cy);
             cy.resize();
-  
-
         }
     }
 }
