@@ -46,7 +46,7 @@ class Workflow(db.Model):
 
     pipeline_id= db.Column(db.Integer, db.ForeignKey('pipeline.id'))
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
-    workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_desc.id'))
+    workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_Description.id'))
 
     # def __init__(self, workflow_name, library_preparation, library_layout, sequencing_strategy, nata_accreditation, reference_genome, workflow_usage, workflow_accession):
     #     self.workflow_name = workflow_name
@@ -101,7 +101,7 @@ class Institute(db.Model):
 
 
 class Workflow_Description(db.Model):
-    __tablename__='workflow_desc'
+    __tablename__='workflow_Description'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     description = db.Column(db.String(500))
     workflow_manager = db.Column(db.String(200))
@@ -117,7 +117,7 @@ class Workflow_Description(db.Model):
     verification = db.Column(db.String(200))
     reporting = db.Column(db.String(200))
 
-    workflow_id = db.relationship('Workflow', backref='workflow_desc', lazy='dynamic')
+    workflow_id2 = db.relationship('Workflow', backref='workflow_Description', lazy='dynamic')
     #
     # def __init__(self, description, cwl_link):
     #     self.description = description
@@ -126,13 +126,13 @@ class Workflow_Description(db.Model):
     # def __repr__(self):
     #     return '<Workflow_Description %r>' % self.description
 
-class Terms(db.Model):
-    __tablename__='terms'
+class Term(db.Model):
+    __tablename__='term'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     term_name = db.Column(db.String(50))
     term_definition = db.Column(db.String(500))
     term_type = db.Column(db.String(50))
-    term_provenance = db.Column(db.String(50))
+    provenance = db.Column(db.String(50))
 
 #    def __init__(self, term_name, term_definition, term_type, term_provenance):
 #        self.term_name = term_name

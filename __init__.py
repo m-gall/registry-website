@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, render_template, url_for, redirect
-from sqlalchemy.orm import joinedload
 #import csv
 #import pandas as pd
 #import tablib
@@ -222,7 +221,7 @@ def index():
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
     flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-    flagships = db.session.query(Flagship).options(joinedload(Flagship.workflows)).all()
+    flagships = db.session.query(Flagship, Workflow).join(Workflow).all()
        #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
     return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows, flagships=flagships)
 
