@@ -175,12 +175,6 @@ def homepage():
                        'The pipelines have been described using a community-developed and engineered standard, the Common Workflow language (CWL). ' \
                        'Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation, ' \
                        'enabling detailed exploration of the structure and composition of a pipeline.'
-        subheadtext2 = 'Pipelines are complex series of operations, packages and libraries layered and held together by one or many workflow languages, scripts and code. ' \
-                       'It is not unusual for a pipeline to have been built for a different use-case ' \
-                       'with the structure changing and evolving as the project or institute direction changes and new features are appended to the code. ' \
-                       'Pipeline often contain many legacy features which might still be executed despite their redundancy for the current project.' \
-                       'One barrier to pipeline transparency is a lack of standards for describing pipelines.' \
-                       'The AGHA registry '
 
         instituterow = Institute.query.all()
         searchterm = Pipeline.query.all()
@@ -197,7 +191,7 @@ def homepage():
             return render_template("search.html", workflow_query=workflow_query)
         else:
             pipeline_select_temp = '%' + pipeline_select_temp + '%'
-            workflow_query = db.session.query(Workflow, Flagship).join(Pipeline, Flagship).filter(Workflow.workflow_name.like(pipeline_select_temp)).all()
+            workflow_query = db.session.query(Workflow, Flagship).join(Pipeline, Flagship).order_by(collate(Workflow.workflow_name, 'NOCASE')).filter(Workflow.workflow_name.like(pipeline_select_temp)).all()
             return render_template("search.html", workflow_query=workflow_query)
     else:
         return render_template("search.html")
@@ -241,14 +235,13 @@ def explorer():
 
 @app.route('/overview.html', methods=['GET'])
 def index():
-    pipelinerows = Pipeline.query.order_by(Pipeline.pipeline_name).all()
-    workflowrows = Workflow.query.order_by(Workflow.workflow_name).all()
+    pipelinerows = Pipeline.query.order_by(collate(Pipeline.pipeline_name, 'NOCASE')).all()
+    workflowrows = Workflow.query.order_by(collate(Workflow.workflow_name, 'NOCASE')).all()
     return render_template('overview.html', title='Overview', pipelinerows=pipelinerows, workflowrows=workflowrows)
 
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
-   # flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
     flagships = db.session.query(Workflow, Flagship).join(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
        #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
     return render_template('flagship.html', title='Overview', flagships=flagships)
@@ -261,12 +254,13 @@ def pipeline_desc():
 
 @app.route('/resources.html')
 def resources():
-    termrows = Term.query.order_by(Term.term_name).all()
-    term_references = Term.query.order_by(Term.term_name).filter(Term.term_type == 'references').all()
+    termrows = Term.query.order_by(collate(Term.term_name, 'NOCASE')).all()
+    term_references = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(Term.term_type == 'references').all()
+    tern_select_software = '%' + 'software' + '%'
+    termsoftware = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(Term.term_type.like(tern_select_software)).all()
+    termconcept = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(Term.term_type == 'concept').all()
 
-    termconcept = Term.query.order_by(Term.term_name).filter(Term.term_type == 'concept').all()
-
-    return render_template("resources.html", termrows=termrows, termconcept = termconcept, term_references=term_references)
+    return render_template("resources.html", termrows=termrows, termconcept = termconcept, term_references=term_references, termsoftware=termsoftware)
 
 
 @app.route('/registry-v1.html')

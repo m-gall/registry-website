@@ -58,10 +58,10 @@
             <a class="nav-link" data-toggle="tab" href="#2", role="tab"> Definitions - concepts  </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#3", role="tab"> References </a>
+            <a class="nav-link" data-toggle="tab" href="#3", role="tab"> Useful references </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#4", role="tab"> Descriptions data resources  </a>
+            <a class="nav-link" data-toggle="tab" href="#4", role="tab"> Definitions - packages  </a>
           </li>
 
         </ul>
@@ -69,7 +69,7 @@
 </div>
 <div class="row">
 
-    <div class="tab-content">
+    <div class="tab-content" style="margin-top: 50px">
 
             <div class="tab-pane" id=1 role="tabpanel">
                 {% for row in termrows%}
@@ -89,9 +89,8 @@
 
                 {%  endfor %}
             </div>
-            </div>
             <div class="tab-pane" id=4 role="tabpanel">
-                {% for row in software %}
+                {% for row in termsoftware %}
                     <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
 
                 {%  endfor %}
