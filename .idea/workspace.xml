@@ -2,65 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fb9d462-f14e-459f-b46c-2fd52768cce1" name="Default" comment="from sqlalchemy.orm import joinedloa">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/css/bootstrap.min.css" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database-build/registry_data.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database-build/registry_generate.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database-build/registry_model.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registry-v1.db" afterPath="$PROJECT_DIR$/registry-v1.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/registry-v1.iml" afterPath="$PROJECT_DIR$/.idea/registry-v1.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/css_responsive.css" afterPath="$PROJECT_DIR$/static/css/css_responsive.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/cpipe-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/workflow.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/garvan-germline-main-v1/js/workflow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/nci-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/workflow.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/pathwest-main-workflow-v1/js/workflow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/workflow.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qimr-somatic-sub-v1/js/workflow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/workflow.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/qut-sub-v1/js/workflow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/sap-exome-sub-workflows-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/css/cwl_explorer.css" afterPath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/css/cwl_explorer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/cwl_explorer.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/cwl_explorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/cwl_explorer_normalise.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/cwl_explorer_normalise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/cwl_explorer_utils.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/cwl_explorer_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/js-yaml.min.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/js-yaml.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/workflow.js" afterPath="$PROJECT_DIR$/static/cwl_explorer/seqliner-subworkflows-v1/js/workflow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/cpipe-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/cpipe-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/garvan-germline-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/garvan-germline-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/nci-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/nci-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/pathwest-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/pathwest-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/qimr-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/qimr-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/qut-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/qut-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/sap-exome-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/sap-exome-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/seqliner-clinical-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/seqliner-clinical-index-v1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/explorer-html/seqliner-t-n-index-v1.html" afterPath="$PROJECT_DIR$/templates/explorer-html/seqliner-t-n-index-v1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/about.html" afterPath="$PROJECT_DIR$/templates/about.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/flagship.html" afterPath="$PROJECT_DIR$/templates/flagship.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/registry.html" afterPath="$PROJECT_DIR$/templates/registry.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/resources.html" afterPath="$PROJECT_DIR$/templates/resources.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/search.html" afterPath="$PROJECT_DIR$/templates/search.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,13 +27,13 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/registry_v1$Unittests_in_test.coverage" NAME="Unittests in test Coverage Results" MODIFIED="1512708787602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/registry_v1$test.coverage" NAME="test Coverage Results" MODIFIED="1513121492837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/registry_v1$test.coverage" NAME="test Coverage Results" MODIFIED="1513230720863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/test$test.coverage" NAME="test Coverage Results" MODIFIED="1509919347211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
+    <option name="GROUP_CONTENTS" value="true" />
     <option name="SORT_POSITIONED" value="false" />
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
@@ -93,22 +49,20 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1524">
-              <caret line="205" column="201" lean-forward="false" selection-start-line="205" selection-start-column="201" selection-end-line="205" selection-end-column="201" />
+            <state relative-caret-position="3990">
+              <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#10593#12150#0" expanded="false" />
-                <element signature="e#12271#12634#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="explorer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/explorer.html">
+      <file leaf-file-name="resources.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/resources.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-511">
-              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+            <state relative-caret-position="765">
+              <caret line="51" column="31" lean-forward="false" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -124,46 +78,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registry.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="registry.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/registry.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="100" column="10" lean-forward="true" selection-start-line="100" selection-start-column="10" selection-end-line="100" selection-end-column="10" />
-              <folding>
-                <marker date="1513121492000" expanded="false" signature="2967:2983" ph="..." />
-                <marker date="1513121492000" expanded="false" signature="3056:3076" ph="..." />
-                <marker date="1513121492000" expanded="false" signature="3122:3142" ph="..." />
-                <marker date="1513121492000" expanded="false" signature="3905:3946" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flagship.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/flagship.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+            <state relative-caret-position="480">
+              <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registry_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database-build/registry_data.py">
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
-              <caret line="127" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+            <state relative-caret-position="570">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registry_model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database-build/registry_model.py">
+      <file leaf-file-name="css_responsive.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/css_responsive.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="109" column="12" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="12" />
+            <state relative-caret-position="1020">
+              <caret line="68" column="11" lean-forward="false" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="691">
+              <caret line="134" column="6" lean-forward="false" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -203,7 +152,6 @@
         <option value="$PROJECT_DIR$/templates/table.html" />
         <option value="$PROJECT_DIR$/templates/overview.html" />
         <option value="$PROJECT_DIR$/resources.py" />
-        <option value="$PROJECT_DIR$/templates/resources.html" />
         <option value="$PROJECT_DIR$/templates/add.html" />
         <option value="$PROJECT_DIR$/templates/upload_db.html" />
         <option value="$PROJECT_DIR$/scratch/form.html" />
@@ -215,18 +163,11 @@
         <option value="$PROJECT_DIR$/static/css/tooltip.css" />
         <option value="$PROJECT_DIR$/templates/nci-index.html" />
         <option value="$PROJECT_DIR$/templates/explorer.html" />
-        <option value="$PROJECT_DIR$/templates/pipeline_desc.html" />
         <option value="$PROJECT_DIR$/templates/upload_to_db.html" />
         <option value="$PROJECT_DIR$/static/css/tabs-left.css" />
-        <option value="$PROJECT_DIR$/templates/main.html" />
-        <option value="$PROJECT_DIR$/templates/about.html" />
         <option value="$PROJECT_DIR$/database-build/registry_model.py" />
-        <option value="$PROJECT_DIR$/database-build/registry_data.py" />
-        <option value="$PROJECT_DIR$/database-build/registry_generate.py" />
         <option value="$PROJECT_DIR$/templates/flagship.html" />
         <option value="$PROJECT_DIR$/templates/search.html" />
-        <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/static/css/css_responsive.css" />
         <option value="$PROJECT_DIR$/templates/explorer-html/cpipe-index-v1.html" />
         <option value="$PROJECT_DIR$/templates/explorer-html/garvan-germline-index-v1.html" />
         <option value="$PROJECT_DIR$/templates/explorer-html/nci-index-v1.html" />
@@ -236,7 +177,15 @@
         <option value="$PROJECT_DIR$/templates/explorer-html/sap-exome-index-v1.html" />
         <option value="$PROJECT_DIR$/templates/explorer-html/seqliner-clinical-index-v1.html" />
         <option value="$PROJECT_DIR$/templates/explorer-html/seqliner-t-n-index-v1.html" />
+        <option value="$PROJECT_DIR$/templates/pipeline_desc.html" />
+        <option value="$PROJECT_DIR$/templates/about.html" />
+        <option value="$PROJECT_DIR$/database-build/registry_data.py" />
+        <option value="$PROJECT_DIR$/database-build/registry_generate.py" />
+        <option value="$PROJECT_DIR$/templates/resources.html" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/static/css/css_responsive.css" />
         <option value="$PROJECT_DIR$/templates/registry.html" />
+        <option value="$PROJECT_DIR$/templates/main.html" />
       </list>
     </option>
   </component>
@@ -247,8 +196,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1530" />
-    <option name="y" value="148" />
+    <option name="x" value="1677" />
+    <option name="y" value="96" />
     <option name="width" value="1398" />
     <option name="height" value="877" />
   </component>
@@ -268,48 +217,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="database-build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="cwl_explorer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="explorer-html" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="registry-v1" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
@@ -323,13 +233,15 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="DDL Data Source&#10;Sqlite (Xerial)" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)&#10;DDL Data Source" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/mailie/PycharmProjects/test/templates/registry.html" />
   </component>
@@ -598,20 +510,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1530" y="148" width="1398" height="877" extended-state="0" />
+    <frame x="1677" y="96" width="1398" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24631268" sideWeight="0.48976982" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26474926" sideWeight="0.48976982" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31202045" sideWeight="0.50266314" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281711" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47570333" sideWeight="0.4973369" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286445" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37723786" sideWeight="0.4973369" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24866879" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286445" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31890813" sideWeight="0.5102302" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30983117" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3094629" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -623,29 +535,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286445" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31202045" sideWeight="0.50266314" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31202045" sideWeight="0.4973369" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3229028" sideWeight="0.48976982" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288948" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32736573" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24900132" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31890813" sideWeight="0.5102302" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39897698" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956058" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -707,23 +596,9 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scratch/upload_to_db-extended.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/cytoscape-qtip.js" />
     <entry file="file://$PROJECT_DIR$/static/js/cytoscape.min.js" />
     <entry file="file://$PROJECT_DIR$/static/js/cytoscape-expand-collapse.js" />
-    <entry file="file:///usr/local/lib/python3.6/site-packages/werkzeug/serving.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="719" column="0" lean-forward="false" selection-start-line="719" selection-start-column="0" selection-end-line="719" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/jquery.qtip.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -800,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/resources.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-39">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-324">
@@ -822,13 +690,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/tabs-left.css" />
-    <entry file="file://$PROJECT_DIR$/templates/pipeline_desc.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/images/logos/imb.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -862,42 +723,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database-build/registry_generate.py">
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/garvan-germline-index-v1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="19" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="1170">
+          <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/nci-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="78" column="44" lean-forward="false" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/cpipe-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="61" column="14" lean-forward="true" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/pathwest-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/qimr-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-239">
+          <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/sap-exome-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="78" column="64" lean-forward="false" selection-start-line="78" selection-start-column="64" selection-end-line="78" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/seqliner-clinical-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="87" lean-forward="false" selection-start-line="6" selection-start-column="87" selection-end-line="6" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/seqliner-t-n-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/explorer-html/qut-index-v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="78" column="48" lean-forward="false" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c0850216-568e-489b-9dda-11ee41112b0f/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="719" column="0" lean-forward="false" selection-start-line="719" selection-start-column="0" selection-end-line="719" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/flagship.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="46" column="15" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pipeline_desc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="23" lean-forward="false" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-build/registry_model.py" />
+    <entry file="file://$PROJECT_DIR$/database-build/registry_data.py" />
+    <entry file="file://$PROJECT_DIR$/database-build/registry_generate.py" />
+    <entry file="file://$PROJECT_DIR$/templates/explorer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="55" column="75" lean-forward="false" selection-start-line="55" selection-start-column="75" selection-end-line="55" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-build/registry_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-build/registry_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="109" column="12" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="12" />
+        <state relative-caret-position="570">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -910,126 +841,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/flagship.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/css_responsive.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding>
-            <marker date="1513061644000" expanded="true" signature="3240:3260" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1524">
-          <caret line="205" column="201" lean-forward="false" selection-start-line="205" selection-start-column="201" selection-end-line="205" selection-end-column="201" />
+        <state relative-caret-position="3990">
+          <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#10593#12150#0" expanded="false" />
-            <element signature="e#12271#12634#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/garvan-germline-index-v1.html">
+    <entry file="file://$PROJECT_DIR$/templates/resources.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/nci-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="78" column="44" lean-forward="false" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/cpipe-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="61" column="14" lean-forward="true" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/pathwest-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/qimr-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-239">
-          <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/sap-exome-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="78" column="64" lean-forward="false" selection-start-line="78" selection-start-column="64" selection-end-line="78" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/seqliner-clinical-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="87" lean-forward="false" selection-start-line="6" selection-start-column="87" selection-end-line="6" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/seqliner-t-n-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer-html/qut-index-v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="78" column="48" lean-forward="false" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/explorer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-511">
-          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        <state relative-caret-position="765">
+          <caret line="51" column="31" lean-forward="false" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/registry.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="100" column="10" lean-forward="true" selection-start-line="100" selection-start-column="10" selection-end-line="100" selection-end-column="10" />
-          <folding>
-            <marker date="1513121492000" expanded="false" signature="2967:2983" ph="..." />
-            <marker date="1513121492000" expanded="false" signature="3056:3076" ph="..." />
-            <marker date="1513121492000" expanded="false" signature="3122:3142" ph="..." />
-            <marker date="1513121492000" expanded="false" signature="3905:3946" ph="..." />
-          </folding>
+        <state relative-caret-position="480">
+          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/css_responsive.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="68" column="11" lean-forward="false" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="134" column="6" lean-forward="false" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

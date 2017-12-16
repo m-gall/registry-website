@@ -7,39 +7,10 @@
     <title> Australian Genomics Pipeline Registry </title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
     <link rel="shortcut icon" src="{{ url_for('static', filename='images/agha.ico') }}">
+        <link href="{{ url_for('static', filename='css/css_responsive.css') }}", rel="stylesheet">
+
 </head>
-    <style>
-            table {
-                border: 2px black solid;
-                font: 10px sans-serif;
-                width: 7000px;
-                height: 500px;
-                margin: 10px 0 0 10px;
-                border-collapse:separate;
-                border-spacing:10px 10px;
-            }
 
-            th {
-                border: 1px black solid;
-                font-size: 9px;
-                text-align: justify;
-                padding-left: 5px;
-                border-collapse:separate;
-                border-spacing:10px 10px;
-
-
-            }
-
-            td {
-                border: 1px black solid;
-                font-size: 9px;
-                text-align: justify;
-                padding-left: 10px;
-                border-collapse:separate;
-                border-spacing:10px 10px;
-
-            }
-    </style>
 
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
 
@@ -77,25 +48,32 @@
 
 <body>
 
-<div class ="container" style="margin-top: 30px">
+<div class ="container container-fluid" style="margin-top: 30px">
+<h3>
+    Search results
+</h3>
+    <table class="table" style="block; overflow: scroll">
+        <thead>
+        <tr>
+            <th>Workflow Name</th>
+            <th>Flagship</th>
+            <th>CWL explorer</th>
+        </tr>
+        </thead>
+    <tbody>
+    {% for row in workflow_query %}
+        <td>{{ row.Workflow.workflow_name }}</td>
+        <td> {{ row.Flagship.flagship_name }}</td>
+        <td> <a href= {{ row.Workflow.workflow_accession }}>  link </a></td>
 
-<h3 style="margin-left: -50px"> {{ validate }}</h3>
+    </tbody>
+        {% endfor %}
 
- <!-- <form action="/search.html" method="get">
+    </table>
 
-        <input type="text" name="myname'>
-        <input type="submit>
-
-    </form>
--->
+</div>
 
 
-
-  <div class="table-responsive" style="margin-left: -50px" >
-    {% block body %}
-    {{ data | safe }}
-    {% endblock %}
-  </div>
 
 </div>
 </body>

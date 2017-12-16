@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import collate
 from flask import request, render_template, url_for, redirect
+
 #import csv
 #import pandas as pd
 #import tablib
@@ -16,12 +18,13 @@ app.debug = True
 db = SQLAlchemy(app)
 
 #dataset = tablib.Dataset()
-#with open(os.path.join(os.path.dirname(__file__),'/Users/mailie/PycharmProjects/test/test.csv')) as f:
+#with open(os.path.join(os.path.dirname(__file__),'/Users/mailie/PycharmProjects/registry-v1/registry-v1.csv')) as f:
 #    dataset.csv = f.read()
 
 #def get_csv():
-#    f = open('/Users/mailie/PycharmProjects/test/test.csv', 'r')
+#    f = open('/Users/mailie/PycharmProjects/registry-v1/registry-v1.csv', 'r')
 #    return list(csv.DictReader(f))
+
 
 
 class Flagship(db.Model):
@@ -138,11 +141,29 @@ class Workflow_Description(db.Model):
         return '<Workflow_Description %r>' % self.description
 
 
+class Term(db.Model):
+    __tablename__='term'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    term_name = db.Column(db.String(50))
+    term_definition = db.Column(db.String(500))
+    term_type = db.Column(db.String(50))
+    provenance = db.Column(db.String(50))
+
+    def __init__(self, term_name, term_definition, term_type, provenance):
+       self.term_name = term_name
+       self.term_definition = term_definition
+       self.term_type = term_type
+       self.provenance = provenance
+
+    def __repr__(self):
+        return '<term_name %r>' % self.term_name
+
 
 
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
+    global workflow_query
     if request.method == 'GET':
 
         title = 'Australian Genomics Registry of Pipelines'
@@ -169,22 +190,17 @@ def homepage():
                                instituterow=instituterow)
 
     elif request.method == 'POST':
-
         pipeline_select_temp = request.form['search-for-pipeline']
-
-        pipeline_id_query = db.session.query(Pipeline).filter(Pipeline.pipeline_name == pipeline_select_temp).first()
+        pipeline_id_query = db.session.query(Pipeline).filter(collate(Pipeline.pipeline_name == pipeline_select_temp, 'NOCASE')).all()
 
         if pipeline_id_query == None:
-
-            validate = "Don't exist in the database"
-            return redirect(url_for('search', validate=validate))
-
+            return render_template("search.html", workflow_query=workflow_query)
         else:
-            validate ='Found in the database'
-            return redirect(url_for('search', validate=validate))
-
+            pipeline_select_temp = '%' + pipeline_select_temp + '%'
+            workflow_query = db.session.query(Workflow, Flagship).join(Pipeline, Flagship).filter(Workflow.workflow_name.like(pipeline_select_temp)).all()
+            return render_template("search.html", workflow_query=workflow_query)
     else:
-        return "Form didn't validate"
+        return render_template("search.html")
 
 
 @app.route('/about.html')
@@ -232,10 +248,10 @@ def index():
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
-    flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
-    flagships = db.session.query(Flagship, Workflow).join(Workflow).order_by(Flagship.flagship_name).all()
+   # flagshiprows = Flagship.query.order_by(Flagship.flagship_name).all()
+    flagships = db.session.query(Workflow, Flagship).join(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
        #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
-    return render_template('flagship.html', title='Overview', flagshiprows=flagshiprows, flagships=flagships)
+    return render_template('flagship.html', title='Overview', flagships=flagships)
 
 
 @app.route('/pipeline_desc.html')
@@ -245,20 +261,22 @@ def pipeline_desc():
 
 @app.route('/resources.html')
 def resources():
-    return render_template("resources.html")
+    termrows = Term.query.order_by(Term.term_name).all()
+    term_references = Term.query.order_by(Term.term_name).filter(Term.term_type == 'references').all()
+
+    termconcept = Term.query.order_by(Term.term_name).filter(Term.term_type == 'concept').all()
+
+    return render_template("resources.html", termrows=termrows, termconcept = termconcept, term_references=term_references)
 
 
-@app.route('/test.html')
+@app.route('/registry-v1.html')
 def test():
     return render_template("test.html")
 
 
 @app.route('/search.html', methods=['GET'])
 def search():
-#    table = pd.DataFrame.from_csv("/Users/mailie/PycharmProjects/test/test.csv")
-#    data = dataset.html
-#    deathlist = get_csv()
-     return render_template("search.html")
+    return render_template("search.html")
 
 
 @app.route('/upload_other.html', methods=['GET', 'POST'])

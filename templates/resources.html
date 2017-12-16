@@ -44,38 +44,62 @@
 <body>
 
 
-<div class="container">
+<div class="container" style="margin-top: 50px">
 
-        <ul class="nav nav-tabs nav-justified">
+<div class="row">
+
+
+        <ul class="nav nav-tabs">
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#1", role="tab"> Terminology </a>
-            <a class="nav-link" data-toggle="tab" href="#2", role="tab"> Definitions - processing procedures </a>
-            <a class="nav-link" data-toggle="tab" href="#3", role="tab"> Definitions - file formats </a>
+            <a class="nav-link active" data-toggle="tab" href="#1", role="tab"> Glossary </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#2", role="tab"> Definitions - concepts  </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#3", role="tab"> References </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#4", role="tab"> Descriptions data resources  </a>
-
           </li>
 
         </ul>
 
+</div>
+<div class="row">
 
     <div class="tab-content">
 
             <div class="tab-pane" id=1 role="tabpanel">
-            <p> Terminology </p>
+                {% for row in termrows%}
+                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
+
+                {%  endfor %}
             </div>
             <div class="tab-pane" id=2 role="tabpanel">
-            <p> Definitions - processing procedures </p>
+                {% for row in termconcept %}
+                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
+
+                {%  endfor %}
             </div>
             <div class="tab-pane" id=3 role="tabpanel">
-            <p> Definitions - file formats </p>
+                {% for row in term_references %}
+                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
+
+                {%  endfor %}
+            </div>
             </div>
             <div class="tab-pane" id=4 role="tabpanel">
-            <p>Descriptions data resources  </p>
+                {% for row in software %}
+                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
+
+                {%  endfor %}
             </div>
+    </div>
 
+</div>
 
-        </div>
 
 </div>
 

@@ -16,30 +16,34 @@
 </head>
 
 <header>
-<nav class="navbar navbar-default">
-  <div class="container">
-      <div class ='row'>
-         <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-              </button>
-             <a class="navbar-brand" href="/"><img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img></a>
-        </div>
-          <form class="navbar-form navbar-left" role="search">
-              <div class="form-group"><input type="text" class="form-control" placeholder="Search for a pipeline">
-                  <button type="submit" class="btn btn-default">Find</button>
-              </div>
-          </form>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <div class ='row'>
+        <!-- Brand and toggle get grouped for better mobile display -->
+             <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                  </button>
+                 <a class="navbar-brand" href="/">
+                     <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}"</img>
+                  </a>
+                <form class="navbar-form navbar-left" role="Enter a pipeline name" action='' method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search-for-pipeline" name="search-for-pipeline" placeholder="Search for a pipeline"/>
+                        <button type="submit" class="btn btn-default">Find</button>
+                    </div>
+                </form>
+          </div>
       </div>
-  </div>
-</nav>
+    </nav>
 
 </header>
 
 <body>
 
-<div class="container" style="margin-top: 50px" style="margin-top: 50px">
-    <ul class="nav nav-tabs nav-stacked col-md-2" >
+<div class="container" style="margin-top: 50px;">
+    <ul class="nav nav-tabs nav-stacked col-sm-2" >
         {% for row in workflow_join_institute %}
             <li class="nav-item" style="table-layout: fixed; width: auto; height: auto; "><a class="nav-link active" data-toggle="tab" href="#{{ row.Workflow.id }}", role="tab">{{ row.Workflow.workflow_name }} </a></li>
         {% endfor %}
@@ -58,26 +62,30 @@
                         <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}</p>
                         <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.workflow_accession }}>  link </a></p>
                         <p><h5>Summary table</h5></p>
-{#
+                        <br>
 
+{#                        <div class = 'table' style="display: block; max-width: 1000px">#}
+                            <table class="rtable rtable--flip" style="width: 900px">
+                                <thead>
 
-                        <div class = 'table' style="overflow: scroll">
-                            <table class="rtable rtable--flip" style="align-items: stretch">
-                                <tr style="align-items: stretch">
-                                    <th>workflow_manager</th>
-                                    <th>sample_qc</th>
-                                    <th>fastq_qc</th>
-                                    <th>alignment</th>
-                                    <th>bam_qc</th>
-                                    <th>variant_calling</th>
-                                    <th>variant_annotation</th>
-                                    <th>variant_filtering</th>
-                                    <th>variant_qc</th>
-                                    <th>verification</th>
-                                    <th>reporting</th>
+                                <tr style="width: 150px">
+                                    <th>Workflow manager</th>
+                                    <th>Sample QC</th>
+                                    <th>FastQ QC</th>
+                                    <th>Alignment</th>
+                                    <th>Bam QC</th>
+                                    <th>Variant calling</th>
+                                    <th>Variant annotation</th>
+                                    <th>Variant filtering</th>
+                                    <th>Variant QC</th>
+                                    <th>Verification</th>
+                                    <th>Reporting</th>
                                 </tr>
-                                <tr>
-                                    <tbody style="align-items: flex-start; overflow: scroll">
+
+                                </thead>
+                                    <tbody style="overflow: scroll">
+                                    <tr style="width: 750px">
+
                                         <td >{{ row.Workflow_Description.workflow_manager }}</td>
                                         <td>{{ row.Workflow_Description.sample_qc }}</td>
                                         <td> {{ row.Workflow_Description.fastq_qc }}</td>
@@ -89,10 +97,11 @@
                                         <td> {{ row.Workflow_Description.variant_qc }}</td>
                                         <td> {{ row.Workflow_Description.verification }}</td>
                                         <td> {{ row.Workflow_Description.reporting }}</td>
+
+                                    </tr>
                                     </tbody>
-                                </tr>
                             </table>
-                        </div>#}
+{#                        </div>#}
 
                     </div>
                 </div>

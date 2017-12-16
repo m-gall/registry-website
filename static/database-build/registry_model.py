@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 app= Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:////Users/mailie/PycharmProjects/test/registry-v1.db'
+app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:////Users/mailie/PycharmProjects/registry-v1/registry-v1.db'
 
 db = SQLAlchemy(app)
 

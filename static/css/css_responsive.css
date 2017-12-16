@@ -13,6 +13,7 @@
   display: inline-block;
   vertical-align: top;
   max-width: 100%;
+
   overflow-x: auto;
 
   // optional - looks better for small cell values
@@ -22,119 +23,93 @@
   border-spacing: 0;
 }
 
-.rtable--no-spacing {
-  border-spacing:0; /* Removes the cell spacing via CSS */
-  border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
-}
 .rtable,
 .rtable--flip tbody {
   // optional - enable iOS momentum scrolling
   -webkit-overflow-scrolling: touch;
 
   // scrolling shadows
-  background: radial-gradient(
-        left,
-        ellipse,
-        rgba(0, 0, 0, 0.2) 0%,
-        rgba(0, 0, 0, 0) 75%
-      )
-      0 center,
-    radial-gradient(right, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%)
-      100% center;
+  background: radial-gradient(left, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 0 center,
+              radial-gradient(right, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 100% center;
   background-size: 10px 100%, 10px 100%;
   background-attachment: scroll, scroll;
   background-repeat: no-repeat;
+
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+
 }
 
-/*// change these gradients from white to your background colour if it differs*/
-/*// gradient on the first cells to hide the left shadow*/
-/*.rtable td:first-child,*/
-/*.rtable--flip tbody tr:first-child {*/
-  /*background-image: linear-gradient(*/
-    /*to right,*/
-    /*rgba(255, 255, 255, 1) 50%,*/
-    /*rgba(255, 255, 255, 0) 100%*/
-  /*);*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: 20px 100%;*/
-/*}*/
+// change these gradients from white to your background colour if it differs
+// gradient on the first cells to hide the left shadow
+.rtable td:first-child,
+.rtable--flip tbody tr:first-child {
+  background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+  background-repeat: no-repeat;
+  background-size: 20px 100%;
+}
 
 // gradient on the last cells to hide the right shadow
-/*.rtable td:last-child,*/
-/*.rtable--flip tbody tr:last-child {*/
-  /*background-image: linear-gradient(*/
-    /*to left,*/
-    /*rgba(255, 255, 255, 1) 50%,*/
-    /*rgba(255, 255, 255, 0) 100%*/
-  /*);*/
-  /*background-repeat: no-repeat;*/
-  /*background-position: 100% 0;*/
-  /*background-size: 20px 100%;*/
-/*}*/
+.rtable td:last-child,
+.rtable--flip tbody tr:last-child {
+  background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 20px 100%;
+}
 
 .rtable th {
   font-size: 11px;
   text-align: left;
-  text-transform: uppercase;
   background: #f2f0e6;
-  min-width: 200px;
-  min-height: 30px;
-  border-collapse: collapse;
-
+    height: 40px;
 }
 
 .rtable th,
 .rtable td {
-  /*padding: 6px 12px;*/
+  padding: 12px 12px;
   border: 1px solid #d9d7ce;
-  min-width: 200px;
-  min-height: 30px;
-  border-collapse: collapse;
+        height: 40px;
+    font-size: 11px;
+
 
 }
 
 .rtable--flip {
   display: flex;
-  flex-wrap: wrap;
-  /*overflow: scroll;*/
+  overflow: scroll;
   background: none;
-  min-width: 600px;
-  min-height: 30px;
-
-
 }
 
 .rtable--flip thead {
   display: flex;
   flex-shrink: 0;
-  min-width: 600px;
-  min-height: 30px;
-
+  min-width: min-content;
+    height: 40px;
 }
 
 .rtable--flip tbody {
   display: flex;
-  flex-wrap: wrap;
-
   position: relative;
-  /*overflow-x: auto;*/
-  /*overflow-y: auto;*/
-
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .rtable--flip tr {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
+  min-width: min-content;
   flex-shrink: 0;
-  border-collapse: collapse;
-
 }
 
 .rtable--flip td,
 .rtable--flip th {
-  min-width: auto;
+    font-size: 11px;
+
   display: block;
+        height: 40px;
+
 }
 
 .rtable--flip td {
@@ -156,16 +131,14 @@
 /*body {*/
   /*margin: 0;*/
   /*padding: 25px;*/
-  /*!*color: #494b4d;*!*/
+  /*color: #494b4d;*/
   /*font-size: 14px;*/
   /*line-height: 20px;*/
 /*}*/
 
-/*h1,*/
-/*h2,*/
-/*h3 {*/
+/*h1, h2, h3 {*/
   /*margin: 0 0 10px 0;*/
-  /*color: #333;*/
+  /*color: #1d97bf;*/
 /*}*/
 
 /*h1 {*/
@@ -183,12 +156,11 @@
   /*line-height: 20px;*/
 /*}*/
 
-/*table {*/
-  /*margin-bottom: 30px;*/
-/*}*/
+table {
+  margin-bottom: 30px;
+}
 
 /*a {*/
-  /*color: #333;*/
 /*}*/
 
 /*code {*/
