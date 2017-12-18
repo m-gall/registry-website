@@ -1,6 +1,6 @@
-### Installation
+## Installation
 
-#### Dependencies
+### Dependencies
 
 - python3
 - Flask
