@@ -1,4 +1,5 @@
 ## add data to session
+from model import *
 
 flagship_kidgen = Flagship(flagship_name='KidGen Renal genetics', flagship_institute=' Queensland Health', flagship_lead='Andrew Mallett', flagshipDiseaseType='Kidney')
 flagship_neuro = Flagship(flagship_name='Neuromuscular disorders', flagship_institute='University of Western Australia', flagship_lead='Nigel Laing', flagshipDiseaseType='Neuromuscular')
