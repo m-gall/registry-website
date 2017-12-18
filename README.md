@@ -1,4 +1,4 @@
-## Installation
+# Installation
 
 ### Dependencies
 
@@ -9,7 +9,7 @@
 ### Create a virtual environment
 
 ```bash
-git clone http://
+git clone https://github.com/m-gall/registry-website.git
 
 mkdir my_project
 
