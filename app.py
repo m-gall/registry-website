@@ -9,12 +9,10 @@ from model import *
 #import os
 
 app = Flask(__name__)
-
-app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./registry-v1.db'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./registry-v1.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.debug = True
-
+db.init_app(app)
 
 #dataset = tablib.Dataset()
 #with open(os.path.join(os.path.dirname(__file__),'/Users/mailie/PycharmProjects/registry-v1/registry-v1.csv')) as f:
@@ -111,11 +109,8 @@ def index():
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
-    flagshiprow = db.session.query(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
-    flagships = db.session.query(Workflow, Flagship).join(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
-       #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
-    print(flagships)
-    return render_template('flagship.html', title='Overview', flagshiprow=flagshiprow, flagships=flagships)
+    flagships = db.session.query(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
+    return render_template('flagship.html', title='Overview', flagships=flagships)
 
 
 @app.route('/pipeline_desc.html')

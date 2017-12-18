@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-import app
 
-db = SQLAlchemy(app.app)
+db = SQLAlchemy()
 
 
 class Flagship(db.Model):
@@ -12,7 +11,7 @@ class Flagship(db.Model):
     flagship_lead = db.Column(db.String(100))
     flagshipDiseaseType = db.Column(db.String(100))
 
-    workflow_id = db.relationship('Workflow', backref='flagship', lazy='dynamic')
+    workflows = db.relationship('Workflow', back_populates='flagship')
 
     def __init__(self, flagship_name, flagship_institute, flagship_lead, flagshipDiseaseType):
         self.flagship_name = flagship_name
@@ -40,18 +39,7 @@ class Workflow(db.Model):
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
     workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_Description.id'))
 
-    def __init__(self, workflow_name, library_preparation, library_layout, sequencing_strategy,
-                 nata_accreditation, reference_genome, workflow_usage, workflow_accession, pipeline_id, flagship_id):
-        self.workflow_name = workflow_name
-        self.library_preparation = library_preparation
-        self.library_layout = library_layout
-        self.sequencing_strategy = sequencing_strategy
-        self.nata_accreditation = nata_accreditation
-        self.reference_genome = reference_genome
-        self.workflow_usage = workflow_usage
-        self.workflow_accession = workflow_accession
-        self.pipeline_id = pipeline_id
-        self.flagship_id = flagship_id
+    flagship = db.relationship('Flagship', back_populates='workflows')
 
     def __repr__(self):
         return '<Workflow %r>' % self.workflow_name
@@ -61,13 +49,8 @@ class Pipeline(db.Model):
     __tablename__ = 'pipeline'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pipeline_name = db.Column(db.String(100))
-
     institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
-
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
-
-    def __init__(self, pipeline_name):
-        self.pipeline_name = pipeline_name
 
     def __repr__(self):
         return '<Pipeline %r>' % self.pipeline_name
@@ -82,9 +65,6 @@ class Institute(db.Model):
     institute_lat = db.Column(db.Integer)
 
     pipeline_id = db.relationship('Pipeline', backref='institute', lazy='dynamic')
-
-    def __init__(self, institute_name):
-        self.institute_name = institute_name
 
     def __repr__(self):
         return '<Institute %r>' % self.institute_name
@@ -109,10 +89,6 @@ class Workflow_Description(db.Model):
 
     workflow_id2 = db.relationship('Workflow', backref='workflow_Description', lazy='dynamic')
 
-    def __init__(self, description, cwl_link):
-        self.description = description
-        self.cwl_link = cwl_link
-
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
 
@@ -124,12 +100,6 @@ class Term(db.Model):
     term_definition = db.Column(db.String(500))
     term_type = db.Column(db.String(50))
     provenance = db.Column(db.String(50))
-
-    def __init__(self, term_name, term_definition, term_type, provenance):
-        self.term_name = term_name
-        self.term_definition = term_definition
-        self.term_type = term_type
-        self.provenance = provenance
 
     def __repr__(self):
         return '<term_name %r>' % self.term_name
