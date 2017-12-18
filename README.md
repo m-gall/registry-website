@@ -27,7 +27,7 @@ pip install SQLAlchemy
 ```
 ### To run the program
 
-```bash
+```python3
 python3 __init__.py
 ```
 ### To deactivate the virtual environment
