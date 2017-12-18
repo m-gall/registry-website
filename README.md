@@ -1,4 +1,4 @@
-### Installataion
+### Installation
 
 #### Dependencies
 
@@ -19,18 +19,18 @@ virtualenv my_project
 
 source venv/bin/activate
 ```
-# Install Flask & SQLAlchemy
+### Install Flask & SQLAlchemy
 
 ```bash
 pip install Flask
 pip install SQLAlchemy
 ```
-# To run the program
+### To run the program
 
 ```bash
 python3 __init__.py
 ```
-# to deactivate the virtual environment
+### To deactivate the virtual environment
 
 ```bash
 source deactivate
