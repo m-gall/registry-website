@@ -242,9 +242,11 @@ def index():
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
+    flagshiprow = db.session.query(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
     flagships = db.session.query(Workflow, Flagship).join(Flagship).order_by(Flagship.flagship_name).filter(Flagship.flagship_name != "Not affiliated with a Flagship").all()
        #           .filter(Workflow.workflow_name == 'Garvan germline')).all()
-    return render_template('flagship.html', title='Overview', flagships=flagships)
+    print(flagships)
+    return render_template('flagship.html', title='Overview', flagshiprow=flagshiprow, flagships=flagships)
 
 
 @app.route('/pipeline_desc.html')

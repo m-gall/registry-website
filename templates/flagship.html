@@ -43,8 +43,8 @@
 
 <div class="container" style="margin-top: 50px">
     <ul class="nav nav-tabs nav-stacked col-md-2" >
-        {% for row in flagships %}
-            <li class="nav-item" style="background-color:white"><a class="nav-link" data-toggle="tab" href="#{{ row.Flagship.id }}", role="tab">{{ row.Flagship.flagship_name }}</a></li>
+        {% for row in flagshiprow %}
+            <li class="nav-item" style="background-color:white"><a class="nav-link" data-toggle="tab" href="#{{ row.id }}", role="tab">{{ row.flagship_name }}</a></li>
         {% endfor %}
     </ul>
 
@@ -58,7 +58,6 @@
                 <p> {{ row.Flagship.flagship_institute }} </p>
                 <br>
                 <h5> Flagship disease </h5>
-                <p> {{ row.Flagship.flagshipDiseaseType }}  </p>
                 <br>
                 <h5> Flagship lead </h5>
                 <p> {{ row.Flagship.flagship_lead }}  </p>
