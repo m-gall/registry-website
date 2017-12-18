@@ -1,24 +1,37 @@
-# Instructions
+### Installataion
 
-runs using Python3
+#### Dependencies
 
-# create virtual env
+- python3
+- Flask
+- SQLAlchemy
 
-mkdir Flask
+### Create a virtual environment
 
-cd Flask
-virtualenv venv
-. venv/bin/activate
+```bash
+git clone http://
 
-# to deactivate
-source deactivate
+mkdir my_project
 
-# install Flask
+cd my_project
+
+virtualenv my_project
+
+source venv/bin/activate
+```
+# Install Flask & SQLAlchemy
+
+```bash
 pip install Flask
-
+pip install SQLAlchemy
+```
 # To run the program
 
-python3 "__init__.py"
+```bash
+python3 __init__.py
+```
+# to deactivate the virtual environment
 
-
-
+```bash
+source deactivate
+```
