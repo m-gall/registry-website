@@ -1,110 +1,70 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Australian Genomics Pipeline Registry </title>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
-</head>
 
 
+{% extends "base.html" %}
 
-<header>
 
-<header>
+{% block body %}
 
-<nav class="navbar navbar-default">
-  <div class="container">
-      <div class ='row'>
-         <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-              </button>
-             <a class="navbar-brand" href="/"><img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img></a>
+    <body>
+
+
+    <div class="container">
+        <div class="'row">
+
+            <div class="'col s9">
+
+
+                <h3 style=margin-left:0px;> {{ title }}</h3>
+                <p style=margin-left:50px;color:black> {{ subhead }}</p>
+
+
+                <div class="divider"></div>
+
+                <div class="section">
+                    <h5>{{ subheading1 }}</h5>
+                    <p>{{ subheadtext1 }}</p>
+                </div>
+                <div class="section">
+                    <h5> {{ subheading2 }}</h5>
+                    <p>{{ subheadtext2 }}</p>
+
+
+                </div>
+                <div class="section">
+                    <h5> {{ subheading3 }}</h5>
+                    <p>{{ urllink|urlize(100, true, nofollow) }}</p>
+                </div>
+
+                <div class="section">
+                    <h5> {{ subheading3 }}</h5>
+
+                </div>
+
+                <h5> Workflows in the database </h5>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Workflows <span class="caret"></span></button>
+
+                    <ul class="dropdown-menu">
+
+                        {% for row in workflowrows %}
+
+                            <li><a href= {{ row.workflow_accession }}>{{ row.workflow_name }}</a></li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+
+            </div>
         </div>
-          <form class="navbar-form navbar-left" role="search">
-              <div class="form-group"><input type="text" class="form-control" placeholder="Search for a pipeline">
-                  <button type="submit" class="btn btn-default">Find</button>
-              </div>
-          </form>
-      </div>
-  </div>
-</nav>
-
-</header>
-
-
-<body>
-
-
-<div class ="container">
-    <div class="'row">
-
-        <div class="'col s9">
-
-
-     <h3 style=margin-left:0px; > {{ title }}</h3>
-    <p style=margin-left:50px;color:black> {{ subhead }}</p>
-
-
-
-        <div class="divider"></div>
-
-              <div class="section">
-                <h5>{{ subheading1 }}</h5>
-                <p>{{ subheadtext1 }}</p>
-              </div>
-              <div class="section">
-                <h5> {{ subheading2 }}</h5>
-                <p>{{ subheadtext2 }}</p>
-
-
-              </div>
-              <div class="section">
-                <h5> {{ subheading3 }}</h5>
-                <p>{{ urllink|urlize(100, true, nofollow) }}</p>
-              </div>
-
-              <div class="section">
-                <h5> {{ subheading3 }}</h5>
-
-        </div>
-
-        <h5> Workflows in the database </h5>
-         <div class="dropdown">
-         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Workflows <span class="caret"></span> </button>
-
-             <ul class="dropdown-menu">
-
-                 {% for row in workflowrows %}
-
-                <li><a href= {{ row.workflow_accession }}>{{ row.workflow_name }}</a></li>
-
-                 {% endfor %}
-
-            </ul>
-        </div>
-     <!--  <img style = 'max-width:1000px; margin-top: 20px;'src ="{{ url_for('static', filename='images/cwl_explorer.png') }}" /</img>
-
-            <div class="col-sm-3" style="margin-left: -15px">
-                <h5> or upload a CWL document </h5>
-                    <br> <button type="submit" class="btn btn-primary">Upload a CWL document </button>
-
-                    <br> <button type="submit" class="btn btn-primary">Upload to database </button>
-                    </div>
--->
     </div>
-</div>
 
+    </body>
 
-
-
-   <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Bootstrap Js CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-</body>
+{% endblock %}

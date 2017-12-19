@@ -1,44 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Australian Genomics Pipeline Registry </title>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/css_responsive.css') }}", rel="stylesheet">
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
+{%  extends "base.html" %}
 
 
-
-
-
-</head>
-
-<header>
-
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-          <div class ='row'>
-        <!-- Brand and toggle get grouped for better mobile display -->
-             <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                  </button>
-                 <a class="navbar-brand" href="/">
-                     <img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}"</img>
-                  </a>
-                <form class="navbar-form navbar-left" role="Enter a pipeline name" action='' method="post">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="search-for-pipeline" name="search-for-pipeline" placeholder="Search for a pipeline"/>
-                        <button type="submit" class="btn btn-default">Find</button>
-                    </div>
-                </form>
-          </div>
-      </div>
-    </nav>
-
-</header>
+{%  block body %}
 
 <body>
 
@@ -114,5 +80,8 @@
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href="{{ url_for('static', filename='css/css_responsive.css') }}", rel="stylesheet">
 
 </body>
+
+{% endblock %}

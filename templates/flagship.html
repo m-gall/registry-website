@@ -1,122 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "base.html" %}
 
 <style>
 
 
 </style>
-<head>
-    <meta charset="UTF-8">
-    <title> Australian Genomics Pipeline Registry </title>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" , rel="stylesheet">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
-</head>
+
+{% block body %}
+
+    <body>
 
 
-<header>
+    <div class="container" style="margin-top: 50px">
+        <ul class="nav nav-tabs nav-stacked col-md-2">
+            {% for flagship in flagships %}
+                <li class="nav-item" style="background-color:white">
+                    <a class="nav-link" data-toggle="tab"
+                       href="#{{ flagship.id }}"
+                       role="tab">{{ flagship.flagship_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class='row'>
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                    </button>
-                    <a class="navbar-brand" href="/">
-                        <img style='max-width:200px; margin-top: -20px;'
-                             src="{{ url_for('static', filename='images/agha.ico') }}"</img>
-                    </a>
-                    <form class="navbar-form navbar-left" role="Enter a pipeline name" action='' method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="search-for-pipeline" name="search-for-pipeline"
-                                   placeholder="Search for a pipeline"/>
-                            <button type="submit" class="btn btn-default">Find</button>
+        <div class="tab-content">
+            {% for flagship in flagships %}
+                <div class="tab-pane" id={{ flagship.id }} role="tabpanel">
+                    <div class="panel panel-default" style="margin-left: 200px">
+                        <div class="panel-heading"><h5 class="panel-title"> {{ flagship.flagship_name }} </h5></div>
+                        <div class="panel-body">
+                            <h5> Flagship institute </h5>
+                            <p> {{ flagship.flagship_institute }} </p>
+                            <br>
+                            <h5> Flagship disease </h5>
+                            <br>
+                            <h5> Flagship lead </h5>
+                            <p> {{ flagship.flagship_lead }}  </p>
+                            <br>
+                            <h5> Pipelines in use </h5>
+                            <ul>
+                                {% for workflow in flagship.workflows %}
+                                    <li> {{ workflow.workflow_name }}</li>
+                                {% endfor %}
+                            </ul>
+
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-</header>
-
-<body>
-
-
-<div class="container" style="margin-top: 50px">
-    <ul class="nav nav-tabs nav-stacked col-md-2">
-        {% for flagship in flagships %}
-            <li class="nav-item" style="background-color:white">
-                <a class="nav-link" data-toggle="tab"
-                   href="#{{ flagship.id }}"
-                   role="tab">{{ flagship.flagship_name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <div class="tab-content">
-        {% for flagship in flagships %}
-            <div class="tab-pane" id={{ flagship.id }} role="tabpanel">
-                <div class="panel panel-default" style="margin-left: 200px">
-                    <div class="panel-heading"><h5 class="panel-title"> {{ flagship.flagship_name }} </h5></div>
-                    <div class="panel-body">
-                        <h5> Flagship institute </h5>
-                        <p> {{ flagship.flagship_institute }} </p>
-                        <br>
-                        <h5> Flagship disease </h5>
-                        <br>
-                        <h5> Flagship lead </h5>
-                        <p> {{ flagship.flagship_lead }}  </p>
-                        <br>
-                        <h5> Pipelines in use </h5>
-                        <ul>
-                        {% for workflow in flagship.workflows %}
-                            <li> {{ workflow.workflow_name }}</li>
-                        {% endfor %}
-                        </ul>
-
                     </div>
                 </div>
-            </div>
 
-        {% endfor %}
+            {% endfor %}
+
+        </div>
 
     </div>
 
-</div>
 
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
 
 
-<!--
-<div class="table-default">
 
-  <table class="table">
-  <thead>
-    <tr>
-      <th>Flagship Name</th>
-      <th>Flagship institute</th>
-      <th>Flagship lead</th>
-      <th>Disease </th>
-    </tr>
-  </thead>
+{% endblock %}
 
-      {% for flagship in flagships %}
 
-  <tbody>
-    <tr>
-      <td>{{ flagship.flagship_name }}</td>
-      <td>{{ flagship.flagship_institute}}</td>
-      <td>{{ flagship.flagship_lead}}</td>
-      <td>{{ flagship.flagshipDiseaseType}}</td>
-    </tr>
-        {% endfor %}
-
-</div>
-
--->
-</body>
 </html>

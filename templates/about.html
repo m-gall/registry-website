@@ -1,78 +1,44 @@
 <!DOCTYPE html>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Australian Genomics Pipeline Registry </title>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
-</head>
+{% extends "base.html" %}
 
 
+{% block body %}
+    <body>
 
-<header>
+    <div class="container container-fluid">
 
-<nav class="navbar navbar-default">
-  <div class="container">
-      <div class ='row'>
-         <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-              </button>
-             <a class="navbar-brand" href="/"><img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img></a>
+        <div class="row">
+
+            <h3 style=margin-left:0px;> {{ title }}</h3>
+            <p style=margin-left:50px;color:black> {{ subhead }}</p>
+            <h5 style=font-size:20px;> {{ subheading1 }}</h5>
+            <ul class="list-unstyled components">
+                <li><a href="https://www.australiangenomics.org.au/" ; style=color:black;>Australian Genomics
+                    (https://www.australiangenomics.org.au/) </a></li>
+                <li><a href="https://agha.qimrberghofer.edu.au/wiki/" ; style=color:black;> AGHA wiki site
+                    (https://agha.qimrberghofer.edu.au/wiki/) </a></li>
+            </ul>
+
+            <h5 style=font-size:20px;> Conference presentations </h5>
+            <ul class="list-unstyled components">
+                <li><a style=color:black;>Australian Genomics Conference (2017), Brisbane, Australia </a></li>
+            </ul>
+
         </div>
-          <form class="navbar-form navbar-left" role="search">
-              <div class="form-group"><input type="text" class="form-control" placeholder="Search for a pipeline">
-                  <button type="submit" class="btn btn-default">Find</button>
-              </div>
-          </form>
-      </div>
-  </div>
-</nav>
+        <div class="row">
+            <img style='max-width:500px;margin-top:50px'
+                 src="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}"/> </img>
 
-</header>
+        </div>
 
 
-<body>
-
-<div class ="container container-fluid">
-
-    <div class="row">
-
-    <h3 style=margin-left:0px; > {{ title }}</h3>
-    <p style=margin-left:50px;color:black> {{ subhead }}</p>
-    <h5 style=font-size:20px;> {{ subheading1 }}</h5>
-    <ul class="list-unstyled components">
-        <li ><a href="https://www.australiangenomics.org.au/"; style=color:black;>Australian Genomics (https://www.australiangenomics.org.au/) </a></li>
-        <li><a href="https://agha.qimrberghofer.edu.au/wiki/"; style=color:black;> AGHA wiki site (https://agha.qimrberghofer.edu.au/wiki/) </a></li></ul>
-
-    <h5 style=font-size:20px;> Conference presentations </h5>
-    <ul class="list-unstyled components">
-        <li ><a style=color:black;>Australian Genomics Conference (2017), Brisbane, Australia </a></li></ul>
-
-    </div>
-    <div class="row">
-                <img style = 'max-width:500px;margin-top:50' src ="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}" /> </img>
-
+        <h3> Data model </h3>
+        <img style='margin-top:50px; max-width: 400px'
+             src="{{ url_for('static', filename='images/UML_registry.jpeg') }}"/> </img>
     </div>
 
 
-    <h3> Data model </h3>
-    <img style='margin-top:50; max-width: 400px' src ="{{ url_for('static', filename='images/UML_registry.jpeg') }}" /> </img>
-</div>
-    <!--    <div class = "col-md-2">
-            <img style = 'max-width:500px;margin-top:50' src ="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}" /> </img>
+    </body>
 
-
-        </div>
--->
-
-
-
-
-
-
-
-
-
-</body>
+{% endblock %}

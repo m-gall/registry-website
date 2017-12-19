@@ -1,186 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Australian Genomics Pipeline Registry </title>
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}", rel="stylesheet">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='agha.ico') }}">
-  <style>
-  /* Tooltip */
-  .test + .tooltip > .tooltip-inner {
-      background-color: white;
-      color: black;
-      border: 1px solid steelblue;
-      padding: 5px;
-      font-size: 10px;
-  }
-    </style>
-
-</head>
+{% extends "base.html" %}
 
 
+{% block body %}
+    <body>
 
-<header>
+    <div class="container" style="margin-bottom: 100px">
 
-<header>
+        <div class="row">
+            <div class="col-md-12" style="margin-top:20px">
 
-<nav class="navbar navbar-default">
-  <div class="container">
-      <div class ='row'>
-         <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-              </button>
-             <a class="navbar-brand" href="/"><img style = 'max-width:200px; margin-top: -20px;' src ="{{ url_for('static', filename='images/agha.ico') }}" /</img></a>
-        </div>
-          <form class="navbar-form navbar-left" role="search">
-              <div class="form-group"><input type="text" class="form-control" placeholder="Search for a pipeline">
-                  <button type="submit" class="btn btn-default">Find</button>
-              </div>
-          </form>
-      </div>
-  </div>
-</nav>
+                <h3> Workflow upload </h3>
 
-</header>
+                <form action="" method="post">
+                    <div class="form-row">
 
-</header>
+                        <div class="col-sm-3">
+                            <label for="Flagship"> Select a Flagship</label>
 
+                            <select class="form-control" id="flagship" onchange="select_flagship()">
+                                <option selected disabled> Select</option>
+                                {% for row in flagshiprows %}
+                                    <option>{{ row.flagship_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="Institute"> Select an Institute</label>
 
+                            <select class="form-control" id="institute" onchange="select_institute()">
+                                <option selected disabled> Select</option>
 
-<body>
+                                {% for row in instituterows %}
+                                    <option>{{ row.institute_name }}</option>
+                                {% endfor %}
+                            </select>
 
-<div class="container" style="margin-bottom: 100px">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="pipeline"> Select a pipeline</label>
 
-    <div class="row">
-        <div class="col-md-12" style="margin-top:20px">
-
-            <h3> Workflow upload </h3>
-
-            <form action="" method="post">
-                <div class="form-row">
-
-                    <div class="col-sm-3" >
-                        <label for="Flagship"> Select a Flagship</label>
-
-                        <select class="form-control" id="flagship" onchange="select_flagship()">
-                            <option selected disabled > Select </option>
-                      {% for row in flagshiprows %}
-                           <option>{{ row.flagship_name}}</option>
-                      {% endfor %}
-                    </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <label for="Institute"> Select an Institute</label>
-
-                        <select class="form-control" id="institute" onchange="select_institute()">
-                              <option selected disabled> Select </option>
-
-                      {% for row in instituterows %}
-                           <option>{{ row.institute_name}}</option>
-                      {% endfor %}
-                    </select>
-
-                    </div>
-                    <div class="col-sm-3">
-                        <label for="pipeline"> Select a pipeline</label>
-
-                        <select class="form-control" id="pipeline" onchange="select_pipeline()">
-                              <option selected disabled> Select </option>
-                      {% for row in pipelinerows %}
-                           <option>{{ row.pipeline_name}}</option>
-                      {% endfor %}
-                    </select>
-                    </div>
-
-       <div class="col-md-12" style="margin-top:20px">
-
-                    <div class="col-sm-2">
-                        <label> </label><input type="hidden" id="selected_flagship" name="selected_flagship" placeholder=""><br>
-                    </div>
-                    <div class="col-sm-2">
-                        <label> </label><input type="hidden" id="selected_institute" name="selected_institute" placeholder=""><br>
-                    </div>
-                    <div class="col-sm-2">
-                        <label> </label><input type="hidden" id="selected_pipeline" name="selected_pipeline" placeholder=""><br>
-                    </div>
-
-       </div>
-
-        <div class="col-md-12" style="margin-top:0px">
-
-                    <div class="col-sm-3" style="margin-left: -15px">
-
-                        <a class="test" href="#" data-toggle="tooltip" title="Name for the workflow" style="color:black;font-weight: bold;">Workflow name</a>
-                        <input type="text" id="workflow_name" name = "workflow_name"/>
-
-                    </div>
-                    <div class="col-sm-3" style="margin-top: 20px">
-                        <a class="test" href="#" data-toggle="tooltip" title="e.g. Comprehensive cancer, Nextera Exome" style="color:black;font-weight: bold;">Sequencing library or panel</a>
-                        <input type="text" id="library_preparation" name="library_preparation" />
-                    </div>
-
-
-                    <div class="col-sm-3">
-                        <a class="test" href="#" data-toggle="tooltip" title="e.g. paired, single" style="color:black;font-weight: bold;">Library layout</a>
-                        <input type="text" id="library_layout" name="library_layout"/>
-                    </div>
-                    <div class="col-md-12" style="margin-top:20px">
-
-                    <div class="col-sm-3">
-                        <a class="test" href="#" data-toggle="tooltip" title="e.g. whole exome, panel" style="color:black;font-weight: bold;">Sequencing strategy</a>
-                        <input type="text" id="sequencing_strategy" name="sequencing_strategy"/>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a class="test" href="#" data-toggle="tooltip" title="Is the workflow NATA accredited?" style="color:black;font-weight: bold;">NATA accredited?</a>
-                        <input type="text" id="nata_accreditation" name="nata_accreditation"/>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a class="test" href="#" data-toggle="tooltip" title="Version of the reference genome e.g. hg19" style="color:black;font-weight: bold;"> Reference genome</a>
-                        <input type="text" id="reference_genome" name="reference_genome"/>
-                    </div>
-                    <div class="col-sm-3">
-                        <a class="test" href="#" data-toggle="tooltip" title="e.g. Research or diagnostic" style="color:black;font-weight: bold;">Workflow usage</a>
-                        <input type="text" id="workflow_usage" name="workflow_usage"/>
-                    </div>
-                        <div class="col-sm-3" style="margin-top: 20px">
-
-                            <input type="file" />
+                            <select class="form-control" id="pipeline" onchange="select_pipeline()">
+                                <option selected disabled> Select</option>
+                                {% for row in pipelinerows %}
+                                    <option>{{ row.pipeline_name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
 
-        </div>
-   <!--                 <div class="col-sm-2">
-                        <a class="test" href="#" data-toggle="tooltip" title="" style="color:black;font-weight: bold;">Workflow accession</a>
-                        <input type="text" id="workflow_accession" name="workflow_accession"/>
-                    </div>
-                    -->
-                    <div class="col-sm-3" style="margin-left: -15px">
-                    <br> <button type="submit" class="btn btn-primary">Upload to database </button>
-                    </div>
-            </form>
+                        <div class="col-md-12" style="margin-top:20px">
+
+                            <div class="col-sm-2">
+                                <label> </label><input type="hidden" id="selected_flagship" name="selected_flagship"
+                                                       placeholder=""><br>
+                            </div>
+                            <div class="col-sm-2">
+                                <label> </label><input type="hidden" id="selected_institute" name="selected_institute"
+                                                       placeholder=""><br>
+                            </div>
+                            <div class="col-sm-2">
+                                <label> </label><input type="hidden" id="selected_pipeline" name="selected_pipeline"
+                                                       placeholder=""><br>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12" style="margin-top:0px">
+
+                            <div class="col-sm-3" style="margin-left: -15px">
+
+                                <a class="test" href="#" data-toggle="tooltip" title="Name for the workflow"
+                                   style="color:black;font-weight: bold;">Workflow name</a>
+                                <input type="text" id="workflow_name" name="workflow_name"/>
+
+                            </div>
+                            <div class="col-sm-3" style="margin-top: 20px">
+                                <a class="test" href="#" data-toggle="tooltip"
+                                   title="e.g. Comprehensive cancer, Nextera Exome"
+                                   style="color:black;font-weight: bold;">Sequencing library or panel</a>
+                                <input type="text" id="library_preparation" name="library_preparation"/>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <a class="test" href="#" data-toggle="tooltip" title="e.g. paired, single"
+                                   style="color:black;font-weight: bold;">Library layout</a>
+                                <input type="text" id="library_layout" name="library_layout"/>
+                            </div>
+                            <div class="col-md-12" style="margin-top:20px">
+
+                                <div class="col-sm-3">
+                                    <a class="test" href="#" data-toggle="tooltip" title="e.g. whole exome, panel"
+                                       style="color:black;font-weight: bold;">Sequencing strategy</a>
+                                    <input type="text" id="sequencing_strategy" name="sequencing_strategy"/>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <a class="test" href="#" data-toggle="tooltip"
+                                       title="Is the workflow NATA accredited?" style="color:black;font-weight: bold;">NATA
+                                        accredited?</a>
+                                    <input type="text" id="nata_accreditation" name="nata_accreditation"/>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <a class="test" href="#" data-toggle="tooltip"
+                                       title="Version of the reference genome e.g. hg19"
+                                       style="color:black;font-weight: bold;"> Reference genome</a>
+                                    <input type="text" id="reference_genome" name="reference_genome"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="test" href="#" data-toggle="tooltip" title="e.g. Research or diagnostic"
+                                       style="color:black;font-weight: bold;">Workflow usage</a>
+                                    <input type="text" id="workflow_usage" name="workflow_usage"/>
+                                </div>
+                                <div class="col-sm-3" style="margin-top: 20px">
+
+                                    <input type="file"/>
+                                </div>
+
+                            </div>
+                            <!--                 <div class="col-sm-2">
+                                                 <a class="test" href="#" data-toggle="tooltip" title="" style="color:black;font-weight: bold;">Workflow accession</a>
+                                                 <input type="text" id="workflow_accession" name="workflow_accession"/>
+                                             </div>
+                                             -->
+                            <div class="col-sm-3" style="margin-left: -15px">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Upload to database</button>
+                            </div>
+                </form>
+            </div>
         </div>
     </div>
 
-</div>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
 
-   <script> function validateForm() {
-    var x = document.forms["myForm"]["flagship_name"].value;
-    if (x == "") {
+    <script> function validateForm() {
+        var x = document.forms["myForm"]["flagship_name"].value;
+        if (x == "") {
 
-        return false;
-    }
+            return false;
+        }
 
     } </script>
 
@@ -202,5 +173,7 @@
     </script>
 
 
-</body>
+    </body>
+
+{% endblock %}
 </html>
