@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{%  extends "base.html" %}
+
+{% block body %}
+<body >
+
+<p style="margin-top: 100px">
+
+<ul style="circle;">
+    {%  for row in temp2 %}
+
+        <li> {{ row.specs[0] }} {{ row.version[0] }}</li>
+        <br>
+{% endfor %}
+</ul>
+
+
+
+</p>
+
+</body>
+
+{% endblock %}
+</html>

@@ -1,6 +1,19 @@
-from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Table, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.sqlite import \
+            BLOB, BOOLEAN, CHAR, DATE, DATETIME, DECIMAL, FLOAT, \
+            INTEGER, NUMERIC, SMALLINT, TEXT, TIME, TIMESTAMP, \
+            VARCHAR
+
+app= Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:////Users/mailie/PycharmProjects/registry-v1/registry-v1.db'
+
+db = SQLAlchemy(app)
+
 
 
 class Flagship(db.Model):
@@ -34,9 +47,8 @@ class Workflow(db.Model):
     reference_genome = db.Column(db.String(50))
     workflow_usage = db.Column(db.String(50))
     cwlexplorer_accession = db.Column(db.VARCHAR(50))
-    workflow_accession = db.Column(db.VARCHAR(50))
-    workflow_parent = db.Column(db.VARCHAR(50))
     workflow_json = db.Column(db.String(1000))
+    workflow_accession = db.Column(db.VARCHAR(50))
 
     pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
@@ -56,7 +68,6 @@ class Pipeline(db.Model):
     pipeline_name = db.Column(db.String(100))
     institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
-
     def __repr__(self):
         return '<Pipeline %r>' % self.pipeline_name
 
@@ -109,67 +120,66 @@ class Term(db.Model):
     def __repr__(self):
         return '<term_name %r>' % self.term_name
 
-
-class PipelineSummary(db.Model):
+class Pipeline_Summary(db.Model):
     __tablename__ = 'pipeline_summary'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    pipeline_authors = db.Column(db.String(500))
-    pipeline_name = db.Column(db.String(500))
-    nata_accredited = db.Column(db.String(500))
-    version_controlled_pipeline = db.Column(db.String(500))
-    research_or_diagnostic = db.Column(db.String(500))
-    pipeline_performance_checks = db.Column(db.String(500))
-    sample_type = db.Column(db.String(500))
-    sequencing_provider = db.Column(db.String(500))
-    somatic_or_germline = db.Column(db.String(500))
-    library_prep = db.Column(db.String(500))
-    target_site_definition = db.Column(db.String(500))
-    scale_of_samples_processed = db.Column(db.String(500))
-    workflow_pipeline_manager = db.Column(db.String(500))
-    workflow_Language = db.Column(db.String(500))
-    script_language = db.Column(db.String(500))
-    provenance_platform = db.Column(db.String(500))
-    patient_metadata_tracking = db.Column(db.String(500))
-    transparent_log_files = db.Column(db.String(500))
-    version = db.Column(db.String(500))
-    decoy = db.Column(db.String(500))
-    fastq_checks = db.Column(db.String(500))
-    automatic_pipeline_exit = db.Column(db.String(500))
-    pipeline_report_for_fastq_quality = db.Column(db.String(500))
-    alignment = db.Column(db.String(500))
-    align_parallelised = db.Column(db.String(500))
-    deduplication = db.Column(db.String(500))
-    indel_realignment = db.Column(db.String(500))
-    indel_know_sites = db.Column(db.String(500))
-    base_recal = db.Column(db.String(500))
-    dbsnp_version = db.Column(db.String(500))
-    base_recal_sites_ref = db.Column(db.String(500))
-    padding_hard_coded_or_config_param = db.Column(db.String(500))
-    annotate_parallelised = db.Column(db.String(500))
-    vcf_version = db.Column(db.String(500))
-    mutations_called_jointly = db.Column(db.String(500))
-    limited_discovery_across_genome = db.Column(db.String(500))
-    joint_genotyping_or_singleton = db.Column(db.String(500))
-    joint_genotyping_min_sample_size = db.Column(db.String(500))
-    joint_calling_for_somatics = db.Column(db.String(500))
-    hard_or_VQSR = db.Column(db.String(500))
-    vqsr_minimum_sample_size = db.Column(db.String(500))
-    VQSR_training_sets = db.Column(db.String(500))
-    filters_different_for_mutation_type = db.Column(db.String(500))
-    location_of_databases = db.Column(db.String(500))
-    cache_version = db.Column(db.String(500))
-    flexibility_of_database_update_and_additions = db.Column(db.String(500))
-    annotations_parallelised = db.Column(db.String(500))
-    filters_on_impact_frequency = db.Column(db.String(500))
-    normalisation = db.Column(db.String(500))
-    multiple_transcripts = db.Column(db.String(500))
-    curation_guidelines = db.Column(db.String(500))
-    sex_checks = db.Column(db.String(500))
-    sample_mix_up_checks = db.Column(db.String(500))
-    sanger_or_orthogonal_testing = db.Column(db.String(500))
-    verification = db.Column(db.String(500))
-    manual_review_of_variants = db.Column(db.String(500))
-    format = db.Column(db.String(500))
+    pipeline_authors = db.Column(db.TEXT(500))
+    pipeline_name = db.Column(db.TEXT(500))
+    nata_accredited = db.Column(db.TEXT(500))
+    version_controlled_pipeline = db.Column(db.TEXT(500))
+    research_or_diagnostic = db.Column(db.TEXT(500))
+    pipeline_performance_checks = db.Column(db.TEXT(500))
+    sample_type = db.Column(db.TEXT(500))
+    sequencing_provider = db.Column(db.TEXT(500))
+    somatic_or_germline = db.Column(db.TEXT(500))
+    library_prep = db.Column(db.TEXT(500))
+    target_site_definition = db.Column(db.TEXT(500))
+    scale_of_samples_processed = db.Column(db.TEXT(500))
+    workflow_pipeline_manager = db.Column(db.TEXT(500))
+    workflow_Language = db.Column(db.TEXT(500))
+    script_language = db.Column(db.TEXT(500))
+    provenance_platform = db.Column(db.TEXT(500))
+    patient_metadata_tracking = db.Column(db.TEXT(500))
+    transparent_log_files = db.Column(db.TEXT(500))
+    version = db.Column(db.TEXT(500))
+    decoy = db.Column(db.TEXT(500))
+    fastq_checks = db.Column(db.TEXT(500))
+    automatic_pipeline_exit = db.Column(db.TEXT(500))
+    pipeline_report_for_fastq_quality = db.Column(db.TEXT(500))
+    alignment = db.Column(db.TEXT(500))
+    align_parallelised = db.Column(db.TEXT(500))
+    deduplication = db.Column(db.TEXT(500))
+    indel_realignment = db.Column(db.TEXT(500))
+    indel_know_sites = db.Column(db.TEXT(500))
+    base_recal = db.Column(db.TEXT(500))
+    dbsnp_version = db.Column(db.TEXT(500))
+    base_recal_sites_ref = db.Column(db.TEXT(500))
+    padding_hard_coded_or_config_param = db.Column(db.TEXT(500))
+    annotate_parallelised = db.Column(db.TEXT(500))
+    vcf_version = db.Column(db.TEXT(500))
+    mutations_called_jointly = db.Column(db.TEXT(500))
+    limited_discovery_across_genome = db.Column(db.TEXT(500))
+    joint_genotyping_or_singleton = db.Column(db.TEXT(500))
+    joint_genotyping_min_sample_size = db.Column(db.TEXT(500))
+    joint_calling_for_somatics = db.Column(db.TEXT(500))
+    hard_or_VQSR = db.Column(db.TEXT(500))
+    vqsr_minimum_sample_size = db.Column(db.TEXT(500))
+    VQSR_training_sets = db.Column(db.TEXT(500))
+    filters_different_for_mutation_type = db.Column(db.TEXT(500))
+    location_of_databases = db.Column(db.TEXT(500))
+    cache_version = db.Column(db.TEXT(500))
+    flexibility_of_database_update_and_additions = db.Column(db.TEXT(500))
+    annotations_parallelised = db.Column(db.TEXT(500))
+    filters_on_impact_frequency = db.Column(db.TEXT(500))
+    normalisation = db.Column(db.TEXT(500))
+    multiple_transcripts = db.Column(db.TEXT(500))
+    curation_guidelines = db.Column(db.TEXT(500))
+    sex_checks = db.Column(db.TEXT(500))
+    sample_mix_up_checks = db.Column(db.TEXT(500))
+    sanger_or_orthogonal_testing = db.Column(db.TEXT(500))
+    verification = db.Column(db.TEXT(500))
+    manual_review_of_variants = db.Column(db.TEXT(500))
+    format = db.Column(db.TEXT(500))
 
     workflows2 = db.relationship('Workflow', back_populates='pipeline_summary')
 

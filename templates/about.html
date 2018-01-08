@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html lang="en">
+
 
 {% extends "base.html" %}
 
@@ -10,35 +12,76 @@
 
         <div class="row">
 
-            <h3 style=margin-left:0px;> {{ title }}</h3>
+            <h2 style=margin-left:0px;> {{ title }}</h2>
             <p style=margin-left:50px;color:black> {{ subhead }}</p>
             <h5 style=font-size:20px;> {{ subheading1 }}</h5>
-            <ul class="list-unstyled components">
-                <li><a href="https://www.australiangenomics.org.au/" ; style=color:black;>Australian Genomics
+            <ul class="list-unstyled components" style="list-style-type:disc; margin-left:50px;">
+                <li><a href="https://www.australiangenomics.org.au/" style=color:black;>Australian Genomics
                     (https://www.australiangenomics.org.au/) </a></li>
-                <li><a href="https://agha.qimrberghofer.edu.au/wiki/" ; style=color:black;> AGHA wiki site
+                <li><a href="https://agha.qimrberghofer.edu.au/wiki/" style=color:black;> AGHA wiki site
                     (https://agha.qimrberghofer.edu.au/wiki/) </a></li>
             </ul>
 
-            <h5 style=font-size:20px;> Conference presentations </h5>
-            <ul class="list-unstyled components">
-                <li><a style=color:black;>Australian Genomics Conference (2017), Brisbane, Australia </a></li>
-            </ul>
 
+            <h3 style=margin-bottom:10px;> Pipeline standard </h3>
+
+            <div class="section">
+
+
+                <ul class="list-unstyled components"
+                    style="list-style-type:disc; margin-left:50px; margin-bottom:50px; ">
+                    <h4 style=margin-bottom:10px;> Components of the pipeline descriptions: </h4>
+                    <li><a style=color:black;> A structured document with a pipeline description which borrows CWL
+                        terminology, fields and descriptors </a></li>
+                    <li><a style=color:black;> A complementary markdown document containing additional unstructured text
+                        descriptions </a></li>
+                    <li><a style=color:black;> A graphical representation of the pipeline rendered using CWL explorer
+                        from the CWL document </a></li>
+
+                    <h4> Structured document elements: </h4>
+
+                    <ul class="list-unstyled components" style="list-style-type:disc">
+                        <li><a style=color:black;> Objects: Packages, versions, data & file inputs/outputs, databases,
+                            genome versions, parameters </a></li>
+                        <li><a style=color:black;> Descriptions: Definitions and purpose with links to other standards
+                            (e.g. EDAM format) where applicable </a></li>
+                        <li><a style=color:black;> Usage: Use cases for documents, evaluation checkpoints, pipeline
+                            exits, report provenance </a></li>
+
+                        <h4> Visual representation elements: </h4>
+                        <ul class="list-unstyled components" style="list-style-type:disc">
+                            <li><a style=color:black;> Packages and connections between inputs/outputs </a></li>
+                            <li><a style=color:black;> Workflow and expandable subworkflows </a></li>
+
+                            <h4> Document storage: </h4>
+                            <ul class="list-unstyled components" style="list-style-type:disc">
+                                <li><a style=color:black;> Each centre has a Github repository containing markdown and
+                                    CWL documents </a></li>
+
+
+                                <h5 style=font-size:20px;> Conference presentations </h5>
+                                <ul class="list-unstyled components">
+                                    <li><a style=color:black;>Australian Genomics Conference (2017), Brisbane,
+                                        Australia </a></li>
+                                </ul>
+                            </ul>
+
+            </div>
+            <div class="row">
+                <img style='max-width:500px;margin-top:50px'
+                     src="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}"/> </img>
+
+            </div>
+
+
+            <h3> Data model </h3>
+            <img style='margin-top:50px; max-width: 400px'
+                 src="{{ url_for('static', filename='images/UML_registry.jpeg') }}"/> </img>
         </div>
-        <div class="row">
-            <img style='max-width:500px;margin-top:50px'
-                 src="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}"/> </img>
 
-        </div>
-
-
-        <h3> Data model </h3>
-        <img style='margin-top:50px; max-width: 400px'
-             src="{{ url_for('static', filename='images/UML_registry.jpeg') }}"/> </img>
     </div>
-
-
     </body>
 
 {% endblock %}
+
+</html>

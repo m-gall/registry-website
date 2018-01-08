@@ -17,31 +17,24 @@
             <div class="'col s9">
 
 
-                <h3 style=margin-left:0px;> {{ title }}</h3>
-                <p style=margin-left:50px;color:black> {{ subhead }}</p>
+                <h3 style=margin-left:0px;> CWL explorer </h3>
 
 
                 <div class="divider"></div>
 
                 <div class="section">
-                    <h5>{{ subheading1 }}</h5>
-                    <p>{{ subheadtext1 }}</p>
+                    <h5> Purpose and scope </h5>
+                    <p>  This tool accepts CWL workflow and tool definitions as inputs and renders tjhe pipelines as an interactive di-acyclic (DAG) graphic visualisation.</p>
                 </div>
-                <div class="section">
-                    <h5> {{ subheading2 }}</h5>
-                    <p>{{ subheadtext2 }}</p>
 
 
                 </div>
                 <div class="section">
-                    <h5> {{ subheading3 }}</h5>
-                    <p>{{ urllink|urlize(100, true, nofollow) }}</p>
+                    <h5>  Demo </h5>
+                    <p> https://bjpop.github.io/cwl_explorer/ </p>
                 </div>
 
-                <div class="section">
-                    <h5> {{ subheading3 }}</h5>
 
-                </div>
 
                 <h5> Workflows in the database </h5>
                 <div class="dropdown">
@@ -53,7 +46,7 @@
 
                         {% for row in workflowrows %}
 
-                            <li><a href= {{ row.workflow_accession }}>{{ row.workflow_name }}</a></li>
+                            <li><a href= explorer.html/{{ row.cwlexplorer_accession }}>{{ row.workflow_name }}</a></li>
 
                         {% endfor %}
 
@@ -68,3 +61,5 @@
     </body>
 
 {% endblock %}
+
+</html>

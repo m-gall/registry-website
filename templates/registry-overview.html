@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "base.html" %}
+
+{% block body %}
+
+    <div class="container-fluid">
+    <h2 style="margin-left: 200px">
+        Overview
+    </h2>
+        {% for row in workflow_join_institute %}
+
+            <div class="panel-group" id="accordion" role="tablist"
+                 style="margin-left: 200px; margin-right: 200px; margin-top: 20px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#{{ row.Workflow.id }}">
+                                {{ row.Workflow.workflow_name }}
+                            </a>
+                        </h3>
+                    </div>
+
+                    <div id="{{ row.Workflow.id }}" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <p> <h5> Description </h5> {{ row.Workflow_Description.description }}
+                            <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}
+                            <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}
+                            <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}
+                            <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}
+                            <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}
+                            <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.cwlexplorer_accession }}> link </a>
+                            <p> <h5> Full description </h5> <a href = {{ row.Workflow.workflow_accession }} > link </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+</html>
