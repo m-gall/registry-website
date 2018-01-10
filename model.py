@@ -11,6 +11,8 @@ class Flagship(db.Model):
     flagship_lead = db.Column(db.String(100))
     flagshipDiseaseType = db.Column(db.String(100))
 
+    institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
+
     workflows = db.relationship('Workflow', back_populates='flagship')
 
     def __init__(self, flagship_name, flagship_institute, flagship_lead, flagshipDiseaseType):
@@ -44,7 +46,7 @@ class Workflow(db.Model):
     pipeline_summary_id = db.Column(db.Integer, db.ForeignKey('pipeline_summary.id'))
 
     flagship = db.relationship('Flagship', back_populates='workflows')
-    pipeline_summary = db.relationship('PipelineSummary', back_populates='workflows2')
+  #  pipeline_summary = db.relationship('PipelineSummary', back_populates='workflows2')
 
     def __repr__(self):
         return '<Workflow %r>' % self.workflow_name
@@ -54,7 +56,9 @@ class Pipeline(db.Model):
     __tablename__ = 'pipeline'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pipeline_name = db.Column(db.String(100))
+
     institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
+
     workflow_id = db.relationship('Workflow', backref='pipeline', lazy='dynamic')
 
     def __repr__(self):
@@ -68,6 +72,8 @@ class Institute(db.Model):
     institute_logo = db.Column(db.String(200))
     institute_long = db.Column(db.Integer)
     institute_lat = db.Column(db.Integer)
+
+    flagship_id = db.relationship('Flagship', backref='institute', lazy='dynamic')
 
     pipeline_id = db.relationship('Pipeline', backref='institute', lazy='dynamic')
 
@@ -110,7 +116,7 @@ class Term(db.Model):
         return '<term_name %r>' % self.term_name
 
 
-class PipelineSummary(db.Model):
+class Pipeline_summary(db.Model):
     __tablename__ = 'pipeline_summary'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pipeline_authors = db.Column(db.String(500))
@@ -140,7 +146,7 @@ class PipelineSummary(db.Model):
     align_parallelised = db.Column(db.String(500))
     deduplication = db.Column(db.String(500))
     indel_realignment = db.Column(db.String(500))
-    indel_know_sites = db.Column(db.String(500))
+    indel_known_sites = db.Column(db.String(500))
     base_recal = db.Column(db.String(500))
     dbsnp_version = db.Column(db.String(500))
     base_recal_sites_ref = db.Column(db.String(500))
@@ -171,7 +177,6 @@ class PipelineSummary(db.Model):
     manual_review_of_variants = db.Column(db.String(500))
     format = db.Column(db.String(500))
 
-    workflows2 = db.relationship('Workflow', back_populates='pipeline_summary')
 
     def __repr__(self):
         return '<PipelineSummary %r>' % self.pipeline_name

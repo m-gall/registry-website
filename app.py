@@ -1,5 +1,6 @@
 from flask import Flask
 from sqlalchemy.sql import collate, desc
+from sqlalchemy import (Column)
 from flask import request, render_template, url_for, redirect, Markup
 from flask.ext.markdown import Markdown
 from markdown import markdown
@@ -15,13 +16,14 @@ app.jinja_env.globals['include_md'] = lambda filename: Markup(
     markdown(app.jinja_loader.get_source(app.jinja_env, filename)[0]))
 db.init_app(app)
 Markdown(app)
+Pipeline_summary.__table__.columns.keys()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     if request.method == 'GET':
 
-        institute_query = Institute.query.all()
+        institute_query = db.session.query(Institute).filter(Institute.institute_lat != None).all()
 
         return render_template("main.html", instituterow=institute_query)
 
@@ -66,9 +68,10 @@ def search_instance(pipelinename):
 
 @app.route('/registry-overview.html')
 def registryoverview():
-    workflow_join_institute = db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description).join(
-        Pipeline, Institute, Flagship, Workflow_Description).order_by(Workflow.workflow_version.desc()).all()
-    return render_template('registry-overview.html', workflow_join_institute=workflow_join_institute)
+    workflow_join = db.session.query(Pipeline, Workflow, Institute, Flagship, Workflow_Description).join(
+        Workflow, Institute, Flagship, Workflow_Description).filter(Workflow.workflow_version == 1).order_by(
+        Pipeline.pipeline_name).all()
+    return render_template('registry-overview.html', workflow_join_institute=workflow_join)
 
 
 @app.route('/explorer.html')
@@ -80,10 +83,14 @@ def explorer():
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
-    flagships = db.session.query(Flagship).order_by(Flagship.flagship_name).filter(
+    flagships = db.session.query(Flagship, Institute).join(Institute).order_by(Flagship.flagship_name).filter(
         Flagship.flagship_name != "Not affiliated with a Flagship").all()
 
-    return render_template('flagship.html', flagships=flagships)
+    print(flagships)
+
+    institutes = db.session.query(Institute).all()
+
+    return render_template('flagship.html', flagships=flagships, institutes=institutes)
 
 
 @app.route('/resources.html')
@@ -215,12 +222,19 @@ def upload_to_db():
         return "Form didn't validate"
 
 
-@app.route("/<pipelinename>")
+@app.route("/pipeline/<pipelinename>")
 def pipeline_view(pipelinename):
+    queryid = (Workflow.query.filter_by(workflow_accession=pipelinename).first())
+
+    pipeline_summary_header = (
+        db.session.query(Pipeline_summary).filter(Pipeline_summary.id == queryid.pipeline_summary_id).all())
+
     workflow_join = (
-        db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description).join(Pipeline, Institute,
-                                                                                             Flagship,
-                                                                                             Workflow_Description)).order_by(
+        db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description, Pipeline_summary).join(Pipeline,
+                                                                                                               Institute,
+                                                                                                               Flagship,
+                                                                                                               Workflow_Description,
+                                                                                                               Pipeline_summary)).order_by(
         Workflow.workflow_name).order_by(Workflow.workflow_version).filter(
         collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).all()
 
@@ -230,33 +244,34 @@ def pipeline_view(pipelinename):
         return redirect(url_for('search'))
     elif occurrences == 1:
         workflow_join = (
-            db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description).join(Pipeline, Institute,
-                                                                                                 Flagship,
-                                                                                                 Workflow_Description)).order_by(
+            db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description, Pipeline_summary).join(
+                Pipeline, Institute,
+                Flagship,
+                Workflow_Description, Pipeline_summary)).order_by(
             Workflow.workflow_name).order_by(Workflow.workflow_version).filter(
             collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).first()
 
-        return render_template("registry-instance.html", row=workflow_join)  # , text=content)
+        return render_template("registry-instance.html", row=workflow_join,
+                               header=pipeline_summary_header)  # , text=content)
     elif occurrences > 1:
-        workflow_top = db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description).join(Pipeline,
-                                                                                                            Institute,
-                                                                                                            Flagship,
-                                                                                                            Workflow_Description).order_by(
+        workflow_top = db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description,
+                                        Pipeline_summary).join(Pipeline,
+                                                               Institute,
+                                                               Flagship,
+                                                               Workflow_Description, Pipeline_summary).order_by(
             Workflow.workflow_version.asc()).filter(
             collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).first()
-        print(workflow_top)
-        return render_template("registry-instance.html", row=workflow_top)
+        return render_template("registry-instance.html", row=workflow_top, header=pipeline_summary_header)
     else:
         return redirect(url_for('search-instance', pipelinename=pipelinename))
 
-    return render_template("registry-instance.html", row=row)
+    return render_template("registry-instance.html", row=row, header=pipeline_summary_header)
 
 
 @app.route("/<pipelinename>/<version>")
 def pipeline_version_view(pipelinename, version):
     workflow_id_query = Workflow.query.filter(collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).all()
     occurrences = len(workflow_id_query)
-    print(occurrences)
 
     if occurrences == 0:
         return redirect(url_for('search'))
