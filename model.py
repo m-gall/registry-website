@@ -35,7 +35,7 @@ class Workflow(db.Model):
     workflow_usage = db.Column(db.String(50))
     cwlexplorer_accession = db.Column(db.VARCHAR(50))
     workflow_accession = db.Column(db.VARCHAR(50))
-    workflow_parent = db.Column(db.VARCHAR(50))
+    workflow_version = db.Column(db.VARCHAR(50))
     workflow_json = db.Column(db.String(1000))
 
     pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))
