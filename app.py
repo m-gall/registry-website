@@ -226,7 +226,6 @@ def pipeline_view(pipelinename):
 
     occurrences = len(workflow_join)
 
-
     if occurrences == 0:
         return redirect(url_for('search'))
     elif occurrences == 1:
@@ -243,8 +242,9 @@ def pipeline_view(pipelinename):
                                                                                                             Institute,
                                                                                                             Flagship,
                                                                                                             Workflow_Description).order_by(
-            Workflow.workflow_version.desc()).filter(
+            Workflow.workflow_version.asc()).filter(
             collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).first()
+        print(workflow_top)
         return render_template("registry-instance.html", row=workflow_top)
     else:
         return redirect(url_for('search-instance', pipelinename=pipelinename))
@@ -265,13 +265,15 @@ def pipeline_version_view(pipelinename, version):
         return redirect(url_for('pipeline_view', pipelinename=pipelinename))
 
     else:
-        workflow_id_version_query = Workflow.query.filter(
+        workflow_id_version_query = db.session.query(Workflow, Pipeline, Institute, Flagship,
+                                                     Workflow_Description).join(Pipeline, Institute,
+                                                                                Flagship,
+                                                                                Workflow_Description).filter(
             collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).filter(
             Workflow.workflow_version == version).first()
+        return render_template('registry-instance.html', row=workflow_id_version_query)
 
-        return render_template("registry-instance.html", row=workflow_id_version_query)
-
-    return redirect(url_for('search'))
+        return redirect(url_for('search'))
 
 
 @app.route("/explorer.html/<name>")
