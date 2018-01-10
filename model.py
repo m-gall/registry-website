@@ -40,6 +40,7 @@ class Workflow(db.Model):
     workflow_version = db.Column(db.VARCHAR(50))
     workflow_json = db.Column(db.String(1000))
 
+    institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
     pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))
     flagship_id = db.Column(db.Integer, db.ForeignKey('flagship.id'))
     workflow_desc_id = db.Column(db.Integer, db.ForeignKey('workflow_Description.id'))
@@ -73,6 +74,7 @@ class Institute(db.Model):
     institute_long = db.Column(db.Integer)
     institute_lat = db.Column(db.Integer)
 
+    workflow_id = db.relationship('Workflow', backref='institute', lazy='dynamic')
     flagship_id = db.relationship('Flagship', backref='institute', lazy='dynamic')
 
     pipeline_id = db.relationship('Pipeline', backref='institute', lazy='dynamic')

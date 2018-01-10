@@ -24,8 +24,10 @@ def homepage():
     if request.method == 'GET':
 
         institute_query = db.session.query(Institute).filter(Institute.institute_lat != None).all()
+        institute_query_all = db.session.query(Institute.institute_name.distinct(), Institute.institute_logo).all()
 
-        return render_template("main.html", instituterow=institute_query)
+
+        return render_template("main.html", instituterow=institute_query, institute_query_all=institute_query_all)
 
     else:
         return render_template("search.html")
@@ -68,9 +70,10 @@ def search_instance(pipelinename):
 
 @app.route('/registry-overview.html')
 def registryoverview():
-    workflow_join = db.session.query(Pipeline, Workflow, Institute, Flagship, Workflow_Description).join(
-        Workflow, Institute, Flagship, Workflow_Description).filter(Workflow.workflow_version == 1).order_by(
-        Pipeline.pipeline_name).all()
+    workflow_join = db.session.query(Workflow, Institute, Workflow_Description).join(Institute,
+                                                                                     Workflow_Description).filter(
+        Workflow.workflow_version == 1).order_by(
+        Workflow.workflow_name).all()
     return render_template('registry-overview.html', workflow_join_institute=workflow_join)
 
 
@@ -85,8 +88,6 @@ def explorer():
 def flagship():
     flagships = db.session.query(Flagship, Institute).join(Institute).order_by(Flagship.flagship_name).filter(
         Flagship.flagship_name != "Not affiliated with a Flagship").all()
-
-    print(flagships)
 
     institutes = db.session.query(Institute).all()
 

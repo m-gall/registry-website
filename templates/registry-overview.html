@@ -17,13 +17,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#{{ row.Workflow.id }}">
-                                {{ row.Pipeline.pipeline_name }}
+                                {{ row.Workflow.workflow_name}}
                             </a>
                         </h3>
                     </div>
 
                     <div id="{{ row.Workflow.id }}" class="panel-collapse collapse">
                         <div class="panel-body">
+                            <img src="{{ url_for('static', filename='images/logos/' + row.Institute.institute_logo) }}" height="80" style="margin-top: 20px; margin-bottom: 20px">
 
                             <p> <h5> Description </h5> {{ row.Workflow_Description.description }}
                             <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}

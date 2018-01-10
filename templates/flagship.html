@@ -13,9 +13,9 @@
 
 
     <div class="container" style="margin-top: 20px">
-    <h2>
-        Flagships
-    </h2>
+        <h2>
+            Flagships
+        </h2>
 
 
         <div class="panel-group" id="accordion" role="tablist"
@@ -28,15 +28,14 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#{{ flagship.Flagship.id }}">
                                 {{ flagship.Flagship.flagship_name }}
                             </a>
-{#                            {%  for institute in institutes %}#}
-{##}
-{#                            <img src="{{ url_for('static', filename='images/logos/' + institute.institute_logo) }}">#}
-{#                                {% endfor %}#}
+
                         </h3>
                     </div>
 
                     <div id="{{ flagship.Flagship.id }}" class="panel-collapse collapse">
                         <div class="panel-body">
+                            <img src="{{ url_for('static', filename='images/logos/' + flagship.Institute.institute_logo) }}" height="128" style="margin-top: 20px; margin-bottom: 20px">
+
                             <h5> Flagship institute </h5>
                             <p> {{ flagship.Flagship.flagship_institute }} </p>
                             <br>
