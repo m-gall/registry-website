@@ -33,7 +33,7 @@
                             <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}
                             <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}
                             <p> <h5> CWL explorer</h5> <a href= {{ 'explorer.html/' + row.Workflow.workflow_accession + '.html' }}> link </a>
-                            <p> <h5> Full description </h5> <a href = {{ row.Workflow.workflow_accession }} > link </a>
+                            <p> <h5> Full description </h5> <a href = {{ 'pipeline/' + row.Workflow.workflow_accession }} > link </a>
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,8 @@ db.init_app(app)
 Markdown(app)
 Pipeline_summary.__table__.columns.keys()
 
+app.jinja_env.filters['zip'] = zip
+
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
@@ -25,7 +27,6 @@ def homepage():
 
         institute_query = db.session.query(Institute).filter(Institute.institute_lat != None).all()
         institute_query_all = db.session.query(Institute.institute_name.distinct(), Institute.institute_logo).all()
-
 
         return render_template("main.html", instituterow=institute_query, institute_query_all=institute_query_all)
 
@@ -99,9 +100,9 @@ def resources():
     termrows = Term.query.order_by(collate(Term.term_name, 'NOCASE')).all()
     term_references = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(
         Term.term_type == 'references').all()
-    tern_select_software = '%' + 'software' + '%'
+    term_select_software = '%' + 'software' + '%'
     termsoftware = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(
-        Term.term_type.like(tern_select_software)).all()
+        Term.term_type.like(term_select_software)).all()
     termconcept = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(Term.term_type == 'concept').all()
 
     return render_template("resources.html", termrows=termrows, termconcept=termconcept,
@@ -115,25 +116,28 @@ def searchpage():
 
 @app.route('/query.html', methods=['GET'])
 def query():
-    t = Workflow.query.filter(Workflow.workflow_name == "Melbourne Bioinformatics Germline WES").all()
+    t = db.session.query(Workflow).filter(Workflow.workflow_name == "NCI Germline WES").first()
     # with open('/Users/mailie/PycharmProjects/registry-v1/database-build/test.json') as json_file:
     #     data = json.load(json_file)
 
-    for row in t:
-        a = row.workflow_json
-    z = json.loads(a)
+    z = json.loads(t.workflow_json)
+    #
+    # for row in t:
+    #     a = row.workflow_json
+    # z = json.loads(a)
 
     temp2 = jq(
         '.["$graph"] | .[] | select(.hints!=null) | .hints | .[] | select(.packages!=null) | .packages | .[]').transform(
         z, multiple_output=True)
-    print(temp2)
 
-    #    temp2 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")| .baseCommand').transform(z, multiple_output=True)
+    temp3 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")| .baseCommand').transform(z, multiple_output=True)
     #  temp2 = jq('.["$graph"] | .[] | select(.class=="SoftwareRequirement")| .packages').transform(z, multiple_output=True)
 
-    # temp3 = jq('.["$graph"] | .[]').transform(a, text_output=True)
+    temp4 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")').transform(z, text_output=True)
     # temp4 = jq('.').transform(a)
-    return render_template("query.html", temp2=temp2)
+
+    print(temp4)
+    return render_template("query.html", temp2=temp2, temp3=temp3, temp4=temp4)
 
 
 @app.route('/upload_other.html', methods=['GET', 'POST'])
