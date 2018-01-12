@@ -302,5 +302,21 @@ def explorerpath(name):
     return redirect(path)
 
 
+@app.route("/rabix-view.html")
+def rabix_view():
+    ## This may end up being an overview page.
+
+    workflow_instance = Workflow.query.filter(Workflow.id == 1).first()
+    return render_template('rabix-view.html', workflow_instance=workflow_instance)
+
+
+@app.route("/rabix-view.html/<name>")
+def rabix_view_instance(name):
+    ## Route to instance of a workflow rabix visual
+
+    workflow_instance = Workflow.query.filter(Workflow.workflow_accession == name).first()
+    return render_template('rabix-view.html', workflow_instance=workflow_instance)
+
+
 if __name__ == '__main__':
     app.run()

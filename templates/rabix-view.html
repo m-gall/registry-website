@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+{% extends "base.html" %}
+{% block body %}
+    <div class="container container-fluid">
+    <h1> CWL visualisation </h1>
+    <p> Visualisation using rabix open-source library </p>
+    <h3> Workflow: {{ workflow_instance.workflow_name }}</h3>
+    <h5> Here is the location of the Json { workflow_instance.workflow_json } </h5>
+    <p>
+
+    </p>
+
+    <h4> Pipeline visual here ?</h4>
+    <img src="{{ url_for('static', filename='images/shiba.jpg') }}">
+
+        </div>
+{% endblock %}
+
+
+</html>
