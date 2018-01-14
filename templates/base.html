@@ -13,9 +13,9 @@
     </head>
 
 
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/css_responsive.css') }}" , rel="stylesheet">
     <style>
         /* Tooltip */
         .test + .tooltip > .tooltip-inner {
@@ -45,7 +45,7 @@
                             <img style='max-width:200px; margin-top: -20px;'
                                  src="{{ url_for('static', filename='images/agha.ico') }}">
                         </a>
-                        <form class="navbar-form navbar-left" role="Enter a pipeline name" action='' method="post">
+                        <form class="navbar-form navbar-left" role="Enter a pipeline name" action='search.html' method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="search-for-pipeline"
                                        name="search-for-pipeline"
@@ -68,3 +68,5 @@
     </body>
 
 {% endblock %}
+
+</html>

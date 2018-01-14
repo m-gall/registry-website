@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{%  extends "base.html" %}
+{% extends "base.html" %}
 
 
-{%  block body %}
+{% block body %}
 
-<body>
+    <body>
 
-<div class="container" style="margin-top: 50px;">
-    <ul class="nav nav-tabs nav-stacked col-sm-2" >
-        {% for row in workflow_join_institute %}
-            <li class="nav-item" style="table-layout: fixed; width: auto; height: auto; "><a class="nav-link active" data-toggle="tab" href="#{{ row.Workflow.id }}", role="tab">{{ row.Workflow.workflow_name }} </a></li>
-        {% endfor %}
-    </ul>
-    <div class="tab-content">
-        {% for row in workflow_join_institute %}
-            <div class="tab-pane" id={{ row.Workflow.id }}  role="tabpanel">
-                <div class="panel panel-default"  style="margin-left: 200px">
-                    <div class="panel-heading" ><p> <h4 class="panel-title" > {{ row.Workflow.workflow_name }} </h4></p></div>
-                    <div class="panel-body" style="height: auto">
-                        <p> <h5> Description </h5> {{ row.Workflow_Description.description }}</p>
-                        <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}</p>
-                        <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}</p>
-                        <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}</p>
-                        <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}</p>
-                        <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}</p>
-                        <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.workflow_accession }}>  link </a></p>
-                        <p><h5>Summary table</h5></p>
-                        <br>
+    <div class="container" style="margin-top: 50px;">
+        <ul class="nav nav-tabs nav-stacked col-sm-2">
+            {% for row in workflow_join_institute %}
+                <li class="nav-item" style="table-layout: fixed; width: auto; height: auto; ">
+                    <a class="nav-link active" data-toggle="tab" href="#{{ row.Workflow.id }}"
+                       role="tab">{{ row.Workflow.workflow_name }} </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="tab-content">
+            {% for row in workflow_join_institute %}
+                <div class="tab-pane" id={{ row.Workflow.id }}>
+                    <div class="panel panel-default" style="margin-left: 200px; height: 500px">
+                        <div class="panel-heading"><p> <h4 class="panel-title"> {{ row.Workflow.workflow_name }} </h4>
+                        </div>
+                        <div class="panel-body">
+                            <p> <h5> Description </h5> {{ row.Workflow_Description.description }}
+                            <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}
+                            <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}
+                            <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}
+                            <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}
+                            <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}
+                            <p> <h5> CWL explorer</h5> <a href= {{ row.Workflow.cwlexplorer_accession }}> link </a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="margin-left: 200px">
+                        <div class="panel-heading"><p> <h4 class="panel-title"> Summary </h4>
+                        </div>
+                        <div class="panel-body" style="height: auto">
 
-{#                        <div class = 'table' style="display: block; max-width: 1000px">#}
+
                             <table class="rtable rtable--flip" style="width: 900px">
                                 <thead>
 
@@ -49,39 +57,33 @@
                                 </tr>
 
                                 </thead>
-                                    <tbody style="overflow: scroll">
-                                    <tr style="width: 750px">
+                                <tbody style="overflow: scroll">
+                                <tr style="width: 750px">
 
-                                        <td >{{ row.Workflow_Description.workflow_manager }}</td>
-                                        <td>{{ row.Workflow_Description.sample_qc }}</td>
-                                        <td> {{ row.Workflow_Description.fastq_qc }}</td>
-                                        <td> {{ row.Workflow_Description.alignment }}</td>
-                                        <td> {{ row.Workflow_Description.bam_qc }}</td>
-                                        <td> {{ row.Workflow_Description.variant_calling }}</td>
-                                        <td> {{ row.Workflow_Description.variant_annotation }}</td>
-                                        <td> {{ row.Workflow_Description.variant_filtering }}</td>
-                                        <td> {{ row.Workflow_Description.variant_qc }}</td>
-                                        <td> {{ row.Workflow_Description.verification }}</td>
-                                        <td> {{ row.Workflow_Description.reporting }}</td>
+                                    <td>{{ row.Workflow_Description.workflow_manager }}</td>
+                                    <td>{{ row.Workflow_Description.sample_qc }}</td>
+                                    <td> {{ row.Workflow_Description.fastq_qc }}</td>
+                                    <td> {{ row.Workflow_Description.alignment }}</td>
+                                    <td> {{ row.Workflow_Description.bam_qc }}</td>
+                                    <td> {{ row.Workflow_Description.variant_calling }}</td>
+                                    <td> {{ row.Workflow_Description.variant_annotation }}</td>
+                                    <td> {{ row.Workflow_Description.variant_filtering }}</td>
+                                    <td> {{ row.Workflow_Description.variant_qc }}</td>
+                                    <td> {{ row.Workflow_Description.verification }}</td>
+                                    <td> {{ row.Workflow_Description.reporting }}</td>
 
-                                    </tr>
-                                    </tbody>
+                                </tr>
+                                </tbody>
                             </table>
-{#                        </div>#}
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>
 
-
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <link href="{{ url_for('static', filename='css/css_responsive.css') }}", rel="stylesheet">
-
-</body>
+    </body>
 
 {% endblock %}
+
+</html>

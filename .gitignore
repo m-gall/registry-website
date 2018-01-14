@@ -1,2 +1,7 @@
 *.pyc
+
+# Ignore node libraries
 js/node_modules
+
+# Ignore compiled JS bundles
+static/js/*.bundle*

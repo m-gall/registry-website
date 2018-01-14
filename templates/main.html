@@ -11,37 +11,37 @@
         <div class="row">
             <div class="col-sm-9 col-md-3 sidebar" style="margin-bottom: 50px">
                 <nav class="nav-sidebar">
-                    <ul class="nav"
-                    <ul class="list-unstyled components">
+                    <ul class="nav">
                         <li><a href="#">Home</a></li>
-                        <li><a href="/registry.html">Pipeline Registry</a></li>
+                        <li><a href="/registry-overview.html">Pipeline Registry</a></li>
                         <li><a href="/flagship.html">AGHA Flagships</a></li>
-                        <li><a href="/pipeline_desc.html">Pipeline Standard description </a></li>
                         <li><a href="/explorer.html">CWL Explorer</a></li>
                         <li><a href="/resources.html">Resources</a></li>
                         <li><a href="/about.html">About</a></li>
-                        <!--    <li><a href="/search.html">Summary</a></li> -->
-                        <!--   <li><a href="/overview.html">All Tables</a></li> -->
                         <li><a href="/upload_to_db.html"> Upload workflow</a></li>
-                        {#                       <li><a href="/upload_other.html">Private - Add other</a></li>#}
+                        <li><a href="/rabix-view.html"> Rabix viewer workflow</a> </li>
+                        <li><a href="/query.html"> query workflow</a></li>
 
-                    </ul>
                     </ul>
                 </nav>
             </div>
             <div class="'col s9">
-                <h3 style=margin-left:50px;> {{ title }}</h3>
-                <p style=margin-left:50px;color:black> {{ subhead }}</p>
+                <h3 style=margin-left:50px;> Australian Genomics Registry of Pipelines </h3>
+                <p style=margin-left:50px;color:black> This is the home of the Australian Genomics Bioinformatics
+                    pipeline registry. </p>
                 <div class="section">
-                    <h5 style="font-size: 20px">{{ subheading1 }}</h5>
-                    <p>{{ subheadtext1 }}</p>
+                    <h5 style="font-size: 20px"> Purpose and scope </h5>
+                    <p> The Australian Genomics registry provides a standardised description of the bioinformatic
+                        pipelines.This includes the pipelines in operation across key
+                        Australian Healthcare organisations including those used by Australian Genomics Flagships.
+                        The pipelines have been described using a community-developed and engineered standard, the
+                        Common Workflow language (CWL).
+                        Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation,
+                        enabling detailed exploration of the structure and composition of a pipeline.</p>
                 </div>
+
                 <div class="section">
-                    <h5 style="font:size:20px;"> {{ subheading2 }}</h5>
-                    <p>{{ subheadtext2 }}</p>
-                </div>
-                <div class="section">
-                    <h5 style="font-size: 20px"> {{ subheading3 }}</h5>
+                    <h5 style="font-size: 20px"> Links </h5>
                     <ul class="list-unstyled components">
                         <li><a href="http://www.commonwl.org/" ; style=color:black;>The Common Workflow Language
                             (http://www.commonwl.org) </a></li>
@@ -49,10 +49,13 @@
                             (http://edamontology.org/page) </a></li>
                         <li><a href="https://bio.tools/" ; style=color:black;>Elixir tool registry
                             (https://bio.tools) </a></li>
+                        <li><a href="https://scicrunch.org/" ; style=color:black;>SciCrunch data portal
+                            (https://scicrunch.org) </a></li>
                         <li><a href="http://rabix.io/" ; style=color:black;>Rabix tools for creating and running CWL
                             workflows (http://rabix.io/) </a></li>
                         <li><a href="https://view.commonwl.org/" ; style=color:black;>CWL Viewer
                             (https://view.commonwl.org/) </a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -60,39 +63,22 @@
             <div class="col s9" style="margin-left: 20px">
                 <h3 style="margin-left: 0px; margin-bottom: 20px"> Pipelines registered </h3>
                 <div id="googleMap" style="width:100%;height:400px"></div>
-                <h3 style="margin-bottom:20px;"> Contributing Centres </h3>
+                <h3 style="margin-bottom:50px;margin-top: 20px"> Contributing Centres </h3>
 
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/atcg.png') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/garvan.svg') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/imb.png') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/mb.png') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/mcri.png') }}" /</img>
-                <h3 style="margin-bottom:20px;"></h3>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/pathwest.jpeg') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/pm.svg') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/sap.png') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/schn.png') }}" /</img>
-                <img style='max-width:200px; margin-top: -20px;'
-                     src="{{ url_for('static', filename='images/logos/vcgs.svg') }}" /</img>
+                {% for row in institute_query_all %}
+                    <img style='max-width:200px; max-height: 150px; margin-top: -20px;'
+                         src="{{ url_for('static', filename='images/logos/' + row.institute_logo) }}">
+                {% endfor %}
 
                 <h3 style="margin-bottom:50px;"></h3>
             </div>
         </div>
     </div>
 
-
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+
         function myMap() {
 
             var locations =
@@ -123,15 +109,29 @@
 
             var count;
             for (count = 0; count < locations.length; count++) {
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: locations[count][0],
+                    maxWidth: 400
+                });
+
+
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations[count][1], locations[count][2]),
                     map: map,
                     {#                icon: image#}
                 });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
             }
 
-            marker.setMap(googleMap);
+
+            {#            marker.setMap(googleMap);#}
         }
+
+
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvRM8RUAyX8O9eODVQmPBoYngM2ya8BOU&callback=myMap"></script>
