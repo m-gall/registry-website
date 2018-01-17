@@ -25,7 +25,7 @@ function getCwlJson(name: string, version: string): Promise<WorkflowModel> {
             return response.json()
         }).then(json => {
             for (let element of json.$graph){
-                if (element.class == 'workflow')
+                if (element.class == 'Workflow')
                     return WorkflowFactory.from(element);
             }
         });
@@ -59,7 +59,7 @@ function drawElement(element: SVGSVGElement): void {
                     new ZoomPlugin(),
                 ]
             });
-            workflow.fitToViewport();
+			workflow.getPlugin(SVGArrangePlugin).arrange();
         });
 }
 
