@@ -39,6 +39,7 @@ class Workflow(db.Model):
     workflow_accession = db.Column(db.VARCHAR(50))
     workflow_version = db.Column(db.VARCHAR(50))
     workflow_json = db.Column(db.String(1000))
+    workflow_sb_json = db.Column(db.String(1000))
 
     institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
     pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))

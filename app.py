@@ -318,13 +318,7 @@ def pipeline_version_view(pipelinename, version):
         elif occurrences == 1:
             return redirect(url_for('pipeline_view', pipelinename=pipelinename))
 
-<<<<<<< HEAD
-        return redirect(url_for('search'))
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/rabix
-=======
         else:
             workflow_id_version_query = db.session.query(Workflow, Pipeline, Institute, Flagship,
                                                          Workflow_Description).join(Pipeline,
@@ -345,7 +339,6 @@ def pipeline_visualize(pipelinename, version):
         Workflow.workflow_version == version
     )).first()
     return render_template('rabix-view.html', workflow_instance=workflow)
->>>>>>> origin/rabix
 
 
 @app.route("/explorer.html/<name>")
