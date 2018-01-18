@@ -294,7 +294,15 @@ def pipeline_version_view(pipelinename, version):
         return render_template('registry-instance.html', row=workflow_id_version_query)
 
         return redirect(url_for('search'))
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/rabix
+
+@app.route("/<pipelinename>/<version>/json")
+def pipeline_version_view(pipelinename, version):
+    workflow = Workflow.filter(Workflow.workflow_name == pipelinename)
+    # TODO: Return the CWL as json
 
 @app.route("/explorer.html/<name>")
 def explorerpath(name):

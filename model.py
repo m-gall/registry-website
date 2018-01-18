@@ -100,7 +100,7 @@ class Workflow_Description(db.Model):
     verification = db.Column(db.String(200))
     reporting = db.Column(db.String(200))
 
-    workflow_id2 = db.relationship('Workflow', backref='workflow_Description', lazy='dynamic')
+    workflow_id2 = db.relationship('Workflow', backref='workflow_Description')
 
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
