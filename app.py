@@ -301,7 +301,7 @@ def pipeline_version_view(pipelinename, version):
         )).first()
 
         return app.response_class(
-            response=workflow.workflow_json,
+            response=workflow.workflow_sb_json,
             status=200,
             mimetype='application/json'
         )

@@ -24,10 +24,7 @@ function getCwlJson(name: string, version: string): Promise<WorkflowModel> {
         .then(response => {
             return response.json()
         }).then(json => {
-            for (let element of json.$graph){
-                if (element.class == 'Workflow')
-                    return WorkflowFactory.from(element);
-            }
+            return WorkflowFactory.from(json);
         });
 }
 
