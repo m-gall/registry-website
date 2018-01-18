@@ -1,6 +1,12 @@
 import "cwl-svg/src/assets/styles/themes/rabix-dark/theme.scss";
+import "cwl-svg/src/plugins/port-drag/theme.dark.scss";
+import "cwl-svg/src/plugins/selection/theme.dark.scss";
+
 import {WorkflowFactory, WorkflowModel} from "cwlts/models";
-import {Workflow} from "cwl-svg/src/graph/workflow";
+import {
+    SVGArrangePlugin, Workflow, SVGNodeMovePlugin, SVGEdgeHoverPlugin,
+    SVGPortDragPlugin, SelectionPlugin, ZoomPlugin
+} from "cwl-svg";
 import "promise/polyfill"
 import "whatwg-fetch"
 
@@ -10,11 +16,18 @@ import "whatwg-fetch"
  * @param version
  */
 function getCwlJson(name: string, version: string): Promise<WorkflowModel> {
-    return fetch(`${name}/${version}/json`)
+    return fetch(`/${name}/${version}`, {
+        headers: new Headers({
+            'Accept': 'application/json'
+        })
+    })
         .then(response => {
             return response.json()
         }).then(json => {
-            return WorkflowFactory.from(json);
+            for (let element of json.$graph){
+                if (element.class == 'Workflow')
+                    return WorkflowFactory.from(element);
+            }
         });
 }
 
@@ -25,8 +38,8 @@ function getCwlJson(name: string, version: string): Promise<WorkflowModel> {
  */
 function drawElement(element: SVGSVGElement): void {
     // Get the properties from the element
-    const name = element.getAttribute('workflow-name');
-    const version = element.getAttribute('workflow-version');
+    const name = element.dataset.workflowName;
+    const version = element.dataset.workflowVersion;
 
     // Get the CWL from the database, and render it
     getCwlJson(name, version)
@@ -35,9 +48,18 @@ function drawElement(element: SVGSVGElement): void {
                 editingEnabled: false,
                 model,
                 svgRoot: element,
+                plugins: [
+                    new SVGArrangePlugin(),
+                    new SVGEdgeHoverPlugin(),
+                    new SVGNodeMovePlugin({
+                        movementSpeed: 10
+                    }),
+                    new SVGPortDragPlugin(),
+                    new SelectionPlugin(),
+                    new ZoomPlugin(),
+                ]
             });
-            workflow.fitToViewport();
-            workflow.draw();
+			workflow.getPlugin(SVGArrangePlugin).arrange();
         });
 }
 

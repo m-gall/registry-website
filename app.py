@@ -1,8 +1,8 @@
 from flask import Flask
 from sqlalchemy.sql import collate, desc
+from sqlalchemy.sql.expression import and_
 from sqlalchemy import (Column)
-from flask import request, render_template, url_for, redirect, Markup
-from flask.ext.markdown import Markdown
+from flask import request, render_template, url_for, redirect, Markup, jsonify
 from markdown import markdown
 from model import *
 import json
@@ -15,7 +15,6 @@ app.debug = True
 app.jinja_env.globals['include_md'] = lambda filename: Markup(
     markdown(app.jinja_loader.get_source(app.jinja_env, filename)[0]))
 db.init_app(app)
-Markdown(app)
 Pipeline_summary.__table__.columns.keys()
 
 app.jinja_env.filters['zip'] = zip
@@ -26,9 +25,11 @@ def homepage():
     if request.method == 'GET':
 
         institute_query = db.session.query(Institute).filter(Institute.institute_lat != None).all()
-        institute_query_all = db.session.query(Institute.institute_name.distinct(), Institute.institute_logo).all()
+        institute_query_all = db.session.query(Institute.institute_name.distinct(),
+                                               Institute.institute_logo).all()
 
-        return render_template("main.html", instituterow=institute_query, institute_query_all=institute_query_all)
+        return render_template("main.html", instituterow=institute_query,
+                               institute_query_all=institute_query_all)
 
     else:
         return render_template("search.html")
@@ -87,7 +88,8 @@ def explorer():
 
 @app.route('/flagship.html', methods=['GET'])
 def flagship():
-    flagships = db.session.query(Flagship, Institute).join(Institute).order_by(Flagship.flagship_name).filter(
+    flagships = db.session.query(Flagship, Institute).join(Institute).order_by(
+        Flagship.flagship_name).filter(
         Flagship.flagship_name != "Not affiliated with a Flagship").all()
 
     institutes = db.session.query(Institute).all()
@@ -103,7 +105,8 @@ def resources():
     term_select_software = '%' + 'software' + '%'
     termsoftware = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(
         Term.term_type.like(term_select_software)).all()
-    termconcept = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(Term.term_type == 'concept').all()
+    termconcept = Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(
+        Term.term_type == 'concept').all()
 
     return render_template("resources.html", termrows=termrows, termconcept=termconcept,
                            term_references=term_references, termsoftware=termsoftware)
@@ -130,10 +133,12 @@ def query():
         '.["$graph"] | .[] | select(.hints!=null) | .hints | .[] | select(.packages!=null) | .packages | .[]').transform(
         z, multiple_output=True)
 
-    temp3 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")| .baseCommand').transform(z, multiple_output=True)
+    temp3 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")| .baseCommand').transform(z,
+                                                                                                multiple_output=True)
     #  temp2 = jq('.["$graph"] | .[] | select(.class=="SoftwareRequirement")| .packages').transform(z, multiple_output=True)
 
-    temp4 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")').transform(z, text_output=True)
+    temp4 = jq('.["$graph"] | .[] | select(.class=="CommandLineTool")').transform(z,
+                                                                                  text_output=True)
     # temp4 = jq('.').transform(a)
 
     print(temp4)
@@ -149,7 +154,8 @@ def upload_other():
         flagshiprows = Flagship.query.all()
 
         return render_template("upload_other.html", workflowrows=workflowrows,
-                               instituterows=instituterows, pipelinerows=pipelinerows, flagshiprows=flagshiprows)
+                               instituterows=instituterows, pipelinerows=pipelinerows,
+                               flagshiprows=flagshiprows)
 
     elif request.method == 'POST':
 
@@ -158,7 +164,8 @@ def upload_other():
         flagship_lead_temp = request.form['flagship_lead']
         flagshipDiseaseType_temp = request.form['flagshipDiseaseType']
 
-        query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_name_temp).first()
+        query = db.session.query(Flagship).filter(
+            Flagship.flagship_name == flagship_name_temp).first()
 
         if query == None:
             print('i dont exist so add me')
@@ -188,7 +195,8 @@ def upload_to_db():
         flagshiprows = Flagship.query.all()
 
         return render_template("upload_to_db.html", workflowrows=workflowrows,
-                               instituterows=instituterows, pipelinerows=pipelinerows, flagshiprows=flagshiprows)
+                               instituterows=instituterows, pipelinerows=pipelinerows,
+                               flagshiprows=flagshiprows)
 
     elif request.method == 'POST':
         workflow_name_temp = request.form['workflow_name']
@@ -203,15 +211,19 @@ def upload_to_db():
         pipeline_select_temp = request.form['selected_pipeline']
         flagship_select_temp = request.form['selected_flagship']
 
-        pipeline_id_query = db.session.query(Pipeline).filter(Pipeline.pipeline_name == pipeline_select_temp).first()
-        flagship_id_query = db.session.query(Flagship).filter(Flagship.flagship_name == flagship_select_temp).first()
+        pipeline_id_query = db.session.query(Pipeline).filter(
+            Pipeline.pipeline_name == pipeline_select_temp).first()
+        flagship_id_query = db.session.query(Flagship).filter(
+            Flagship.flagship_name == flagship_select_temp).first()
 
-        query = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_temp).first()
+        query = db.session.query(Workflow).filter(
+            Workflow.workflow_name == workflow_name_temp).first()
 
         if query == None:
             print('i dont exist so add me')
             new_workflow = Workflow(workflow_name_temp, workflow_library_temp, workflow_layout_temp,
-                                    workflow_strategy_temp, workflow_nata_temp, workflow_gen_temp, workflow_usage_temp,
+                                    workflow_strategy_temp, workflow_nata_temp, workflow_gen_temp,
+                                    workflow_usage_temp,
                                     workflow_acc_temp, pipeline_id_query.id, flagship_id_query.id)
 
             db.session.add(new_workflow)
@@ -232,14 +244,16 @@ def pipeline_view(pipelinename):
     queryid = (Workflow.query.filter_by(workflow_accession=pipelinename).first())
 
     pipeline_summary_header = (
-        db.session.query(Pipeline_summary).filter(Pipeline_summary.id == queryid.pipeline_summary_id).all())
+        db.session.query(Pipeline_summary).filter(
+            Pipeline_summary.id == queryid.pipeline_summary_id).all())
 
     workflow_join = (
-        db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description, Pipeline_summary).join(Pipeline,
-                                                                                                               Institute,
-                                                                                                               Flagship,
-                                                                                                               Workflow_Description,
-                                                                                                               Pipeline_summary)).order_by(
+        db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description,
+                         Pipeline_summary).join(Pipeline,
+                                                Institute,
+                                                Flagship,
+                                                Workflow_Description,
+                                                Pipeline_summary)).order_by(
         Workflow.workflow_name).order_by(Workflow.workflow_version).filter(
         collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).all()
 
@@ -249,7 +263,8 @@ def pipeline_view(pipelinename):
         return redirect(url_for('search'))
     elif occurrences == 1:
         workflow_join = (
-            db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description, Pipeline_summary).join(
+            db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description,
+                             Pipeline_summary).join(
                 Pipeline, Institute,
                 Flagship,
                 Workflow_Description, Pipeline_summary)).order_by(
@@ -259,14 +274,17 @@ def pipeline_view(pipelinename):
         return render_template("registry-instance.html", row=workflow_join,
                                header=pipeline_summary_header)  # , text=content)
     elif occurrences > 1:
-        workflow_top = db.session.query(Workflow, Pipeline, Institute, Flagship, Workflow_Description,
+        workflow_top = db.session.query(Workflow, Pipeline, Institute, Flagship,
+                                        Workflow_Description,
                                         Pipeline_summary).join(Pipeline,
                                                                Institute,
                                                                Flagship,
-                                                               Workflow_Description, Pipeline_summary).order_by(
+                                                               Workflow_Description,
+                                                               Pipeline_summary).order_by(
             Workflow.workflow_version.asc()).filter(
             collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).first()
-        return render_template("registry-instance.html", row=workflow_top, header=pipeline_summary_header)
+        return render_template("registry-instance.html", row=workflow_top,
+                               header=pipeline_summary_header)
     else:
         return redirect(url_for('search-instance', pipelinename=pipelinename))
 
@@ -275,55 +293,65 @@ def pipeline_view(pipelinename):
 
 @app.route("/<pipelinename>/<version>")
 def pipeline_version_view(pipelinename, version):
-    workflow_id_query = Workflow.query.filter(collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).all()
-    occurrences = len(workflow_id_query)
+    if request.accept_mimetypes.best == 'application/json':
+        # If the user requested JSON, we just return the CWL as JSON
+        workflow = db.session.query(Workflow).filter(and_(
+            Workflow.workflow_accession == pipelinename,
+            Workflow.workflow_version == version
+        )).first()
 
-    if occurrences == 0:
-        return redirect(url_for('search'))
-
-    elif occurrences == 1:
-        return redirect(url_for('pipeline_view', pipelinename=pipelinename))
+        return app.response_class(
+            response=workflow.workflow_json,
+            status=200,
+            mimetype='application/json'
+        )
 
     else:
-        workflow_id_version_query = db.session.query(Workflow, Pipeline, Institute, Flagship,
-                                                     Workflow_Description).join(Pipeline, Institute,
-                                                                                Flagship,
-                                                                                Workflow_Description).filter(
-            collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).filter(
-            Workflow.workflow_version == version).first()
-        return render_template('registry-instance.html', row=workflow_id_version_query)
+        # Otherwise, return an HTML page
+        workflow_id_query = Workflow.query.filter(
+            collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).all()
+        occurrences = len(workflow_id_query)
 
+        if occurrences == 0:
+            return redirect(url_for('search'))
+
+        elif occurrences == 1:
+            return redirect(url_for('pipeline_view', pipelinename=pipelinename))
+
+<<<<<<< HEAD
         return redirect(url_for('search'))
 <<<<<<< HEAD
 =======
 
 >>>>>>> origin/rabix
+=======
+        else:
+            workflow_id_version_query = db.session.query(Workflow, Pipeline, Institute, Flagship,
+                                                         Workflow_Description).join(Pipeline,
+                                                                                    Institute,
+                                                                                    Flagship,
+                                                                                    Workflow_Description).filter(
+                collate(Workflow.workflow_accession == pipelinename, 'NOCASE')).filter(
+                Workflow.workflow_version == version).first()
+            return render_template('registry-instance.html', row=workflow_id_version_query)
 
-@app.route("/<pipelinename>/<version>/json")
-def pipeline_version_view(pipelinename, version):
-    workflow = Workflow.filter(Workflow.workflow_name == pipelinename)
-    # TODO: Return the CWL as json
+            return redirect(url_for('search'))
+
+
+@app.route("/<pipelinename>/<version>/visualize")
+def pipeline_visualize(pipelinename, version):
+    workflow = db.session.query(Workflow).filter(and_(
+        Workflow.workflow_accession == pipelinename,
+        Workflow.workflow_version == version
+    )).first()
+    return render_template('rabix-view.html', workflow_instance=workflow)
+>>>>>>> origin/rabix
+
 
 @app.route("/explorer.html/<name>")
 def explorerpath(name):
     path = 'static/explorer-html/' + name
     return redirect(path)
-
-
-@app.route("/rabix-view.html")
-def rabix_view():
-    ## This may end up being an overview page.
-
-    workflow_instance = Workflow.query.filter(Workflow.id == 1).first()
-    return render_template('rabix-view.html', workflow_instance=workflow_instance)
-
-
-@app.route("/rabix-view.html/<name>")
-def rabix_view_instance(name):
-    ## Route to instance of a workflow rabix visual
-
-    workflow_instance = Workflow.query.filter(Workflow.workflow_accession == name).first()
-    return render_template('rabix-view.html', workflow_instance=workflow_instance)
 
 
 if __name__ == '__main__':

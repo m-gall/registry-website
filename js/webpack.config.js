@@ -55,11 +55,6 @@ var config = {
                 NODE_ENV: JSON.stringify(nodeEnv)
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
-            minChunks: Infinity,
-            filename: "vendor.bundle.js"
-        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {warnings: false},
             output: {comments: false},
