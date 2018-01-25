@@ -40,6 +40,8 @@ class Workflow(db.Model):
     workflow_version = db.Column(db.VARCHAR(50))
     workflow_json = db.Column(db.String(1000))
     workflow_sb_json = db.Column(db.String(1000))
+    workflow_type = db.Column(db.String(100))
+    workflow_version_counter = db.Column(db.Integer)
 
     institute_id = db.Column(db.Integer, db.ForeignKey('institute.id'))
     pipeline_id = db.Column(db.Integer, db.ForeignKey('pipeline.id'))
@@ -48,7 +50,8 @@ class Workflow(db.Model):
     pipeline_summary_id = db.Column(db.Integer, db.ForeignKey('pipeline_summary.id'))
 
     flagship = db.relationship('Flagship', back_populates='workflows')
-  #  pipeline_summary = db.relationship('PipelineSummary', back_populates='workflows2')
+
+    #  pipeline_summary = db.relationship('PipelineSummary', back_populates='workflows2')
 
     def __repr__(self):
         return '<Workflow %r>' % self.workflow_name
@@ -101,7 +104,7 @@ class Workflow_Description(db.Model):
     verification = db.Column(db.String(200))
     reporting = db.Column(db.String(200))
 
-    workflow_id2 = db.relationship('Workflow', backref='workflow_Description')
+    workflow_id = db.relationship('Workflow', backref='workflow_Description', lazy='dynamic')
 
     def __repr__(self):
         return '<Workflow_Description %r>' % self.description
@@ -180,6 +183,7 @@ class Pipeline_summary(db.Model):
     manual_review_of_variants = db.Column(db.String(500))
     format = db.Column(db.String(500))
 
+    pipeline_id2 = db.relationship('Workflow', backref='pipeline_summary')
 
     def __repr__(self):
         return '<PipelineSummary %r>' % self.pipeline_name

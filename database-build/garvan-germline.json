@@ -1,0 +1,3222 @@
+{
+    "class": "Workflow",
+    "cwlVersion": "v1.0",
+    "id": "mailie_gall/garvan-germline/garvan-germline-main/0",
+    "label": "garvan-germline-main",
+    "inputs": [
+        {
+            "id": "reference_assembly",
+            "type": "File",
+            "sbg:y": 295.5,
+            "sbg:x": 0
+        },
+        {
+            "id": "Mills&1000G",
+            "type": "File",
+            "sbg:y": 242,
+            "sbg:x": 210.859375
+        },
+        {
+            "id": "dbsnp_138",
+            "type": "File",
+            "sbg:y": 349,
+            "sbg:x": 210.859375
+        },
+        {
+            "id": "1000G_phase1",
+            "type": "File",
+            "sbg:y": 456,
+            "sbg:x": 210.859375
+        },
+        {
+            "id": "resource-hapmap",
+            "type": "File",
+            "sbg:y": 214,
+            "sbg:x": 564.2771606445312
+        },
+        {
+            "id": "resource-omni",
+            "type": "File",
+            "sbg:y": 107,
+            "sbg:x": 564.2771606445312
+        },
+        {
+            "id": "reverse_bcl",
+            "type": "File",
+            "sbg:y": 188.5,
+            "sbg:x": 0
+        },
+        {
+            "id": "forward_bcl",
+            "type": "File",
+            "sbg:y": 402.5,
+            "sbg:x": 0
+        }
+    ],
+    "outputs": [
+        {
+            "id": "samplesheet_csv",
+            "outputSource": [
+                "read_alignment/samplesheet_csv"
+            ],
+            "type": "File",
+            "sbg:y": 0,
+            "sbg:x": 564.2771606445312
+        },
+        {
+            "id": "fastqc_report_reverse",
+            "outputSource": [
+                "read_alignment/fastqc_report_reverse"
+            ],
+            "type": "File",
+            "sbg:y": 484,
+            "sbg:x": 564.2771606445312
+        },
+        {
+            "id": "fastqc_report_forward",
+            "outputSource": [
+                "read_alignment/fastqc_report_forward"
+            ],
+            "type": "File",
+            "sbg:y": 591,
+            "sbg:x": 564.2771606445312
+        },
+        {
+            "id": "annotation_report_html",
+            "outputSource": [
+                "post_variant_processing/annotation_report_html"
+            ],
+            "type": "File",
+            "sbg:y": 349,
+            "sbg:x": 1548.367919921875
+        },
+        {
+            "id": "SQLite_db",
+            "outputSource": [
+                "post_variant_processing/SQLite_db"
+            ],
+            "type": "File",
+            "sbg:y": 242,
+            "sbg:x": 1548.367919921875
+        }
+    ],
+    "steps": [
+        {
+            "id": "post_alignment_processing",
+            "in": [
+                {
+                    "id": "bam",
+                    "source": [
+                        "read_alignment/aligned_bam"
+                    ]
+                },
+                {
+                    "id": "Mills&1000G",
+                    "source": [
+                        "Mills&1000G"
+                    ]
+                },
+                {
+                    "id": "reference_assembly",
+                    "source": [
+                        "reference_assembly"
+                    ]
+                },
+                {
+                    "id": "dbsnp_138",
+                    "source": [
+                        "dbsnp_138"
+                    ]
+                },
+                {
+                    "id": "1000G_phase1",
+                    "source": [
+                        "1000G_phase1"
+                    ]
+                }
+            ],
+            "out": [
+                {
+                    "id": "recalibrated_bam"
+                }
+            ],
+            "run": {
+                "class": "Workflow",
+                "cwlVersion": "v1.0",
+                "id": "post_alignment_processing",
+                "label": "post-alignment-processing",
+                "inputs": [
+                    {
+                        "id": "bam",
+                        "type": "File"
+                    },
+                    {
+                        "id": "Mills&1000G",
+                        "type": "File"
+                    },
+                    {
+                        "id": "reference_assembly",
+                        "type": "File"
+                    },
+                    {
+                        "id": "dbsnp_138",
+                        "type": "File"
+                    },
+                    {
+                        "id": "1000G_phase1",
+                        "type": "File"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "id": "recalibrated_bam",
+                        "outputSource": [
+                            "gatk_print_reads/recalibrated_bam"
+                        ],
+                        "type": "File"
+                    }
+                ],
+                "steps": [
+                    {
+                        "id": "novosort_merge_cwl",
+                        "in": [
+                            {
+                                "id": "bam",
+                                "source": [
+                                    "bam"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "merged_bam"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "novosort_merge_cwl",
+                            "baseCommand": [],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "bam",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "merged_bam",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2572"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "novosort": {
+                                            "version": [
+                                                "1.x"
+                                            ],
+                                            "specs": [
+                                                "http://www.novocraft.com/products/novosort/"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "bam": {
+                                        "size": 0,
+                                        "nameroot": "bam",
+                                        "path": "/path/to/bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "novosort-merge"
+                    },
+                    {
+                        "id": "gatk_realigner_target_creator",
+                        "in": [
+                            {
+                                "id": "bam",
+                                "source": [
+                                    "novosort_sort/sorted_bam"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "realigned_intervals"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "RealignerTargetCreator"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "bam",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "secondaryFiles": [
+                                        "bam.ai"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "realigned_intervals",
+                                    "doc": "Coordinates for regions discovered requiring realignment.",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2330"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "bam": {
+                                        "size": 0,
+                                        "nameroot": "bam",
+                                        "path": "/path/to/bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "gatk_indel_realigner",
+                        "in": [
+                            {
+                                "id": "bam",
+                                "source": [
+                                    "novosort_sort/sorted_bam"
+                                ]
+                            },
+                            {
+                                "id": "interval_list",
+                                "source": [
+                                    "gatk_realigner_target_creator/realigned_intervals"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "Mills&1000G",
+                                "source": [
+                                    "Mills&1000G"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "deduped_realigned_bam"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "GenomeAnalysisTK.jar",
+                                "IndelRealigner"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "bam",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_2330",
+                                    "id": "interval_list",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "Coordinates for regions discovered requiring realignment."
+                                },
+                                {
+                                    "format": "http://edamontology.org/data_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "human_g1k_v37_decoy human reference genome",
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/data_3016",
+                                    "id": "Mills&1000G",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "deduped_realigned_bam",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "secondaryFiles": [
+                                        "bam.index"
+                                    ],
+                                    "format": "http://edamontology.org/format_2572"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "bam": {
+                                        "size": 0,
+                                        "nameroot": "bam",
+                                        "path": "/path/to/bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "interval_list": {
+                                        "size": 0,
+                                        "nameroot": "interval_list",
+                                        "path": "/path/to/interval_list.ext",
+                                        "contents": "file contents",
+                                        "basename": "interval_list.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "Mills&1000G": {
+                                        "size": 0,
+                                        "nameroot": "Mills&1000G",
+                                        "path": "/path/to/Mills&1000G.ext",
+                                        "contents": "file contents",
+                                        "basename": "Mills&1000G.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "gatk_print_reads",
+                        "in": [
+                            {
+                                "id": "realigned_bam",
+                                "source": [
+                                    "gatk_indel_realigner/deduped_realigned_bam"
+                                ]
+                            },
+                            {
+                                "id": "recalibrated_table",
+                                "source": [
+                                    "gatk_base_recalibrator/recalibrated_table"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "recalibrated_bam"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "GenomeAnalysisTK.jar",
+                                "-",
+                                "T",
+                                "PrintReads"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "realigned_bam",
+                                    "type": "File"
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_2330",
+                                    "id": "recalibrated_table",
+                                    "type": "File",
+                                    "doc": "Coordinates for regions discovered requiring realignment."
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "recalibrated_bam",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2572"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "-bqsr"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "--Printreads"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "realigned_bam": {
+                                        "size": 0,
+                                        "nameroot": "realigned_bam",
+                                        "path": "/path/to/realigned_bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "realigned_bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "recalibrated_table": {
+                                        "size": 0,
+                                        "nameroot": "recalibrated_table",
+                                        "path": "/path/to/recalibrated_table.ext",
+                                        "contents": "file contents",
+                                        "basename": "recalibrated_table.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "gatk_base_recalibrator",
+                        "in": [
+                            {
+                                "id": "deduped_realigned_bam",
+                                "source": [
+                                    "gatk_indel_realigner/deduped_realigned_bam"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "dbsnp_138",
+                                "source": [
+                                    "dbsnp_138"
+                                ]
+                            },
+                            {
+                                "id": "Mills&1000G",
+                                "source": [
+                                    "Mills&1000G"
+                                ]
+                            },
+                            {
+                                "id": "1000G_phase1",
+                                "source": [
+                                    "1000G_phase1"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "recalibrated_table"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "java",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "BaseRecalibrator"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "deduped_realigned_bam",
+                                    "type": "File",
+                                    "secondaryFiles": [
+                                        "bam.ai"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "dbsnp_138",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "Mills&1000G",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "1000G_phase1",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "recalibrated_table",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2330"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "known_sites",
+                                    "separate": false,
+                                    "valueFrom": "=dbsnp_138"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "deduped_realigned_bam": {
+                                        "size": 0,
+                                        "nameroot": "deduped_realigned_bam",
+                                        "path": "/path/to/deduped_realigned_bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "deduped_realigned_bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "dbsnp_138": {
+                                        "size": 0,
+                                        "nameroot": "dbsnp_138",
+                                        "path": "/path/to/dbsnp_138.ext",
+                                        "contents": "file contents",
+                                        "basename": "dbsnp_138.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "Mills&1000G": {
+                                        "size": 0,
+                                        "nameroot": "Mills&1000G",
+                                        "path": "/path/to/Mills&1000G.ext",
+                                        "contents": "file contents",
+                                        "basename": "Mills&1000G.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "1000G_phase1": {
+                                        "size": 0,
+                                        "nameroot": "1000G_phase1",
+                                        "path": "/path/to/1000G_phase1.ext",
+                                        "contents": "file contents",
+                                        "basename": "1000G_phase1.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "novosort_cwl",
+                        "in": [
+                            {
+                                "id": "input",
+                                "source": [
+                                    "novosort_sort/sorted_bam"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "dedup_bam"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "novosort_cwl",
+                            "baseCommand": [],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "input",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "dedup_bam",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2572"
+                                }
+                            ],
+                            "label": "Novosort-dedup",
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "Duplicates"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "novosort": {
+                                            "version": [
+                                                "1.x"
+                                            ],
+                                            "specs": [
+                                                "http://www.novocraft.com/products/novosort/"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "input": {
+                                        "size": 0,
+                                        "nameroot": "input",
+                                        "path": "/path/to/input.ext",
+                                        "contents": "file contents",
+                                        "basename": "input.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "Novosort-dedup"
+                    },
+                    {
+                        "id": "novosort_sort",
+                        "in": [
+                            {
+                                "id": "bam",
+                                "source": [
+                                    "novosort_merge_cwl/merged_bam"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "sorted_bam"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "novosort_sort",
+                            "baseCommand": [],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "bam",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "sorted_bam",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2572"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "novosort": {
+                                            "version": [
+                                                "1.x"
+                                            ],
+                                            "specs": [
+                                                "http://www.novocraft.com/products/novosort/"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "bam": {
+                                        "size": 0,
+                                        "nameroot": "bam",
+                                        "path": "/path/to/bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "label": "post-alignment-processing",
+            "sbg:x": 564.2771606445312,
+            "sbg:y": 349
+        },
+        {
+            "id": "read_alignment",
+            "in": [
+                {
+                    "id": "reference_assembly",
+                    "source": [
+                        "reference_assembly"
+                    ]
+                },
+                {
+                    "id": "reverse_bcl",
+                    "source": [
+                        "reverse_bcl"
+                    ]
+                },
+                {
+                    "id": "forward_bcl",
+                    "source": [
+                        "forward_bcl"
+                    ]
+                }
+            ],
+            "out": [
+                {
+                    "id": "samplesheet_csv"
+                },
+                {
+                    "id": "fastqc_report_reverse"
+                },
+                {
+                    "id": "fastqc_report_forward"
+                },
+                {
+                    "id": "aligned_bam"
+                }
+            ],
+            "run": {
+                "class": "Workflow",
+                "cwlVersion": "v1.0",
+                "id": "read_alignment",
+                "label": "read-alignment",
+                "inputs": [
+                    {
+                        "id": "reference_assembly",
+                        "type": "File"
+                    },
+                    {
+                        "id": "reverse_bcl",
+                        "type": "File"
+                    },
+                    {
+                        "id": "forward_bcl",
+                        "type": "File"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "id": "samplesheet_csv",
+                        "outputSource": [
+                            "bcl2fastq_cwl/samplesheet_csv"
+                        ],
+                        "type": "File"
+                    },
+                    {
+                        "id": "fastqc_report_reverse",
+                        "outputSource": [
+                            "fastq_qc_cwl/fastqc_report_reverse"
+                        ],
+                        "type": "File"
+                    },
+                    {
+                        "id": "fastqc_report_forward",
+                        "outputSource": [
+                            "fastq_qc_cwl/fastqc_report_forward"
+                        ],
+                        "type": "File"
+                    },
+                    {
+                        "id": "aligned_bam",
+                        "outputSource": [
+                            "bwa_mem/aligned_bam"
+                        ],
+                        "type": "File"
+                    }
+                ],
+                "steps": [
+                    {
+                        "id": "bcl2fastq_cwl",
+                        "in": [
+                            {
+                                "id": "forward_bcl",
+                                "source": [
+                                    "forward_bcl"
+                                ]
+                            },
+                            {
+                                "id": "reverse_bcl",
+                                "source": [
+                                    "reverse_bcl"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "bcl_forward_reads"
+                            },
+                            {
+                                "id": "samplesheet_csv"
+                            },
+                            {
+                                "id": "bcl_reverse_reads"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "bcl2fastq_cwl",
+                            "baseCommand": [],
+                            "inputs": [
+                                {
+                                    "id": "forward_bcl",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "id": "reverse_bcl",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "bcl_forward_reads",
+                                    "type": "File",
+                                    "outputBinding": {}
+                                },
+                                {
+                                    "id": "samplesheet_csv",
+                                    "doc": "Sample sheet with recording sample metadata (e.g. lane, sampleID, recipe. operator) from sequencer.",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3572"
+                                },
+                                {
+                                    "id": "bcl_reverse_reads",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3572"
+                                }
+                            ],
+                            "doc": "Demultiplex and convert bcl files from Illumina platforms to fastq formats.",
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "bcl2fastq": {
+                                            "version": [
+                                                "2.x"
+                                            ],
+                                            "specs": [
+                                                "http://sapac.support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "forward_bcl": {
+                                        "size": 0,
+                                        "nameroot": "forward_bcl",
+                                        "path": "/path/to/forward_bcl.ext",
+                                        "contents": "file contents",
+                                        "basename": "forward_bcl.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reverse_bcl": {
+                                        "size": 0,
+                                        "nameroot": "reverse_bcl",
+                                        "path": "/path/to/reverse_bcl.ext",
+                                        "contents": "file contents",
+                                        "basename": "reverse_bcl.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "bcl2fastq"
+                    },
+                    {
+                        "id": "fastq_qc_cwl",
+                        "in": [
+                            {
+                                "id": "forward_reads",
+                                "source": [
+                                    "bcl2fastq_cwl/bcl_forward_reads"
+                                ]
+                            },
+                            {
+                                "id": "reverse_reads",
+                                "source": [
+                                    "bcl2fastq_cwl/bcl_reverse_reads"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "fastqc_report_forward"
+                            },
+                            {
+                                "id": "fastqc_report_reverse"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "fastq_qc_cwl",
+                            "baseCommand": [
+                                "fastqc"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_1930",
+                                    "id": "forward_reads",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1930",
+                                    "id": "reverse_reads",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "fastqc_report_forward",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2331"
+                                },
+                                {
+                                    "id": "fastqc_report_reverse",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2331"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "FastQC": {
+                                            "version": [
+                                                "0.XX"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_011106"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "forward_reads": {
+                                        "size": 0,
+                                        "nameroot": "forward_reads",
+                                        "path": "/path/to/forward_reads.ext",
+                                        "contents": "file contents",
+                                        "basename": "forward_reads.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reverse_reads": {
+                                        "size": 0,
+                                        "nameroot": "reverse_reads",
+                                        "path": "/path/to/reverse_reads.ext",
+                                        "contents": "file contents",
+                                        "basename": "reverse_reads.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "bwa_mem",
+                        "in": [
+                            {
+                                "id": "forward_reads_fastq",
+                                "source": [
+                                    "bcl2fastq_cwl/bcl_forward_reads"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "reverse_reads_fastq",
+                                "source": [
+                                    "bcl2fastq_cwl/bcl_reverse_reads"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "aligned_bam"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "bwa",
+                                "mem"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_1930",
+                                    "id": "forward_reads_fastq",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "Forward reads produced as a part of a paired-end sequencing experiment. Multiple file inputs when libraries are pooled across >1 lanes"
+                                },
+                                {
+                                    "format": "http://edamontology.org/data_2340",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "hg19 human reference genome",
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1930",
+                                    "id": "reverse_reads_fastq",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "Reverse reads produced as a part of a paired-end sequencing experiment. Multiple file inputs when libraries are pooled across >1 lanes"
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "aligned_bam",
+                                    "doc": "bam file containing aligned sequences.",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2572"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "-M",
+                                    "valueFrom": "true"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "-R",
+                                    "valueFrom": "true"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "bwa-mem": {
+                                            "version": [
+                                                "0.7.10-r789"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_010910"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "forward_reads_fastq": {
+                                        "size": 0,
+                                        "nameroot": "forward_reads_fastq",
+                                        "path": "/path/to/forward_reads_fastq.ext",
+                                        "contents": "file contents",
+                                        "basename": "forward_reads_fastq.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reverse_reads_fastq": {
+                                        "size": 0,
+                                        "nameroot": "reverse_reads_fastq",
+                                        "path": "/path/to/reverse_reads_fastq.ext",
+                                        "contents": "file contents",
+                                        "basename": "reverse_reads_fastq.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "bwa-mem"
+                    }
+                ]
+            },
+            "label": "read-alignment",
+            "sbg:x": 210.859375,
+            "sbg:y": 114
+        },
+        {
+            "id": "variant_calling",
+            "in": [
+                {
+                    "id": "reference_assembly",
+                    "source": [
+                        "reference_assembly"
+                    ]
+                },
+                {
+                    "id": "bam",
+                    "source": [
+                        "post_alignment_processing/recalibrated_bam"
+                    ]
+                },
+                {
+                    "id": "resource-omni",
+                    "source": [
+                        "resource-omni"
+                    ]
+                },
+                {
+                    "id": "resource-hapmap",
+                    "source": [
+                        "resource-hapmap"
+                    ]
+                },
+                {
+                    "id": "resource-dbsnp",
+                    "source": [
+                        "dbsnp_138"
+                    ]
+                },
+                {
+                    "id": "resource-1000G",
+                    "source": [
+                        "1000G_phase1"
+                    ]
+                }
+            ],
+            "out": [
+                {
+                    "id": "combined_vcf"
+                }
+            ],
+            "run": {
+                "class": "Workflow",
+                "cwlVersion": "v1.0",
+                "id": "variant_calling",
+                "label": "variant_calling",
+                "inputs": [
+                    {
+                        "id": "reference_assembly",
+                        "type": "File"
+                    },
+                    {
+                        "id": "bam",
+                        "type": "File"
+                    },
+                    {
+                        "id": "resource-omni",
+                        "type": "File"
+                    },
+                    {
+                        "id": "resource-hapmap",
+                        "type": "File"
+                    },
+                    {
+                        "id": "resource-dbsnp",
+                        "type": "File"
+                    },
+                    {
+                        "id": "resource-1000G",
+                        "type": "File"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "id": "combined_vcf",
+                        "outputSource": [
+                            "gatk_combinevariants_cwl/combined_vcf"
+                        ],
+                        "type": "File"
+                    }
+                ],
+                "steps": [
+                    {
+                        "id": "gatk_haplotypecaller_cwl",
+                        "in": [
+                            {
+                                "id": "bam",
+                                "source": [
+                                    "bam"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "vcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gatk_haplotypecaller_cwl",
+                            "baseCommand": [
+                                "java",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "HaplotypeCaller"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_2572",
+                                    "id": "bam",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "vcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "bam": {
+                                        "size": 0,
+                                        "nameroot": "bam",
+                                        "path": "/path/to/bam.ext",
+                                        "contents": "file contents",
+                                        "basename": "bam.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "gatk_haplotypecaller"
+                    },
+                    {
+                        "id": "gatk_genotype_g_v_c_fs",
+                        "in": [
+                            {
+                                "id": "raw_variants",
+                                "source": [
+                                    "gatk_haplotypecaller_cwl/vcf"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "raw_variants_gvcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "GenotypeGVCFs"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "raw_variants",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "secondaryFiles": [
+                                        "vcf.index"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "raw_variants_gvcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "stand_call_conf",
+                                    "valueFrom": "=5.0"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "stand_emit_conf",
+                                    "valueFrom": "=5.0"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "raw_variants": {
+                                        "size": 0,
+                                        "nameroot": "raw_variants",
+                                        "path": "/path/to/raw_variants.ext",
+                                        "contents": "file contents",
+                                        "basename": "raw_variants.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "genotype GVCF"
+                    },
+                    {
+                        "id": "gatk_select_indels",
+                        "in": [
+                            {
+                                "id": "variants_gvcf",
+                                "source": [
+                                    "gatk_genotype_g_v_c_fs/raw_variants_gvcf"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "indel_gvcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "SelectVariants"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "variants_gvcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "indel_gvcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": null
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "interval_padding"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "select_type_to_include"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "variants_gvcf": {
+                                        "size": 0,
+                                        "nameroot": "variants_gvcf",
+                                        "path": "/path/to/variants_gvcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "variants_gvcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "select variants - indel"
+                    },
+                    {
+                        "id": "gatk_select_snvs",
+                        "in": [
+                            {
+                                "id": "variants_gvcf",
+                                "source": [
+                                    "gatk_genotype_g_v_c_fs/raw_variants_gvcf"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "snv_gvcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "baseCommand": [
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "SelectVariants"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "variants_gvcf",
+                                    "type": "File",
+                                    "secondaryFiles": [
+                                        "vcf.index"
+                                    ]
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "secondaryFiles": [
+                                        ".fai",
+                                        ".bwt",
+                                        ".sa",
+                                        ".ann",
+                                        ".amb",
+                                        ".pac",
+                                        ".alt"
+                                    ]
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "snv_gvcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "interval_padding"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "select_type_to_include"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "variants_gvcf": {
+                                        "size": 0,
+                                        "nameroot": "variants_gvcf",
+                                        "path": "/path/to/variants_gvcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "variants_gvcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "select variants - snvs"
+                    },
+                    {
+                        "id": "gatk_applyrecalibration_cwl_indel",
+                        "in": [
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "vcf",
+                                "source": [
+                                    "gatk_variantrecalibrator_cwl_indel/vcf_gz"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "recal_vcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gatk_applyrecalibration_cwl",
+                            "baseCommand": [
+                                "java",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "ApplyRecalibration"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "recal_vcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "--ts_filter_level",
+                                    "valueFrom": "99.0"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "mode",
+                                    "valueFrom": "SNP"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "vcf": {
+                                        "size": 0,
+                                        "nameroot": "vcf",
+                                        "path": "/path/to/vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "gatk_applyrecalibration_cwl_snv",
+                        "in": [
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "vcf",
+                                "source": [
+                                    "gatk_variantrecalibrator_cwl_snp/vcf_gz"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "recal_vcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gatk_applyrecalibration_cwl",
+                            "baseCommand": [
+                                "java",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "ApplyRecalibration"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "recal_vcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "--ts_filter_level",
+                                    "valueFrom": "99.0"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "mode",
+                                    "valueFrom": "SNP"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "vcf": {
+                                        "size": 0,
+                                        "nameroot": "vcf",
+                                        "path": "/path/to/vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "gatk_combinevariants_cwl",
+                        "in": [
+                            {
+                                "id": "indel_vcf",
+                                "source": [
+                                    "gatk_applyrecalibration_cwl_indel/recal_vcf"
+                                ]
+                            },
+                            {
+                                "id": "snv_vcf",
+                                "source": [
+                                    "gatk_applyrecalibration_cwl_snv/recal_vcf"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "combined_vcf"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gatk_combinevariants_cwl",
+                            "baseCommand": [
+                                "java",
+                                "-jar",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "CombineVariants"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "indel_vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "snv_vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "combined_vcf",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "indel_vcf": {
+                                        "size": 0,
+                                        "nameroot": "indel_vcf",
+                                        "path": "/path/to/indel_vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "indel_vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "snv_vcf": {
+                                        "size": 0,
+                                        "nameroot": "snv_vcf",
+                                        "path": "/path/to/snv_vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "snv_vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "gatk_combineVariants"
+                    },
+                    {
+                        "id": "gatk_variantrecalibrator_cwl_indel",
+                        "in": [
+                            {
+                                "id": "vcf",
+                                "source": [
+                                    "gatk_select_indels/indel_gvcf"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "resource-hapmap",
+                                "source": [
+                                    "resource-hapmap"
+                                ]
+                            },
+                            {
+                                "id": "resource-omni",
+                                "source": [
+                                    "resource-omni"
+                                ]
+                            },
+                            {
+                                "id": "resource-1000G",
+                                "source": [
+                                    "resource-1000G"
+                                ]
+                            },
+                            {
+                                "id": "resource-dbsnp",
+                                "source": [
+                                    "resource-dbsnp"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "vcf_gz"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gatk_variantrecalibrator_cwl_indel",
+                            "baseCommand": [
+                                "java",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "VariantRecalibrator"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "hs37d5"
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-hapmap",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-omni",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-1000G",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-dbsnp",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "vcf_gz",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "mode",
+                                    "valueFrom": "INDEL"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "ts_filter_level",
+                                    "valueFrom": "99.0"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "gatk-toolkit": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_001876"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "vcf": {
+                                        "size": 0,
+                                        "nameroot": "vcf",
+                                        "path": "/path/to/vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-hapmap": {
+                                        "size": 0,
+                                        "nameroot": "resource-hapmap",
+                                        "path": "/path/to/resource-hapmap.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-hapmap.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-omni": {
+                                        "size": 0,
+                                        "nameroot": "resource-omni",
+                                        "path": "/path/to/resource-omni.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-omni.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-1000G": {
+                                        "size": 0,
+                                        "nameroot": "resource-1000G",
+                                        "path": "/path/to/resource-1000G.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-1000G.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-dbsnp": {
+                                        "size": 0,
+                                        "nameroot": "resource-dbsnp",
+                                        "path": "/path/to/resource-dbsnp.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-dbsnp.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "gatk_variantRecalibrator-indel"
+                    },
+                    {
+                        "id": "gatk_variantrecalibrator_cwl_snp",
+                        "in": [
+                            {
+                                "id": "vcf",
+                                "source": [
+                                    "gatk_select_snvs/snv_gvcf"
+                                ]
+                            },
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "resource-hapmap",
+                                "source": [
+                                    "resource-hapmap"
+                                ]
+                            },
+                            {
+                                "id": "resource-omni",
+                                "source": [
+                                    "resource-omni"
+                                ]
+                            },
+                            {
+                                "id": "resource-1000G",
+                                "source": [
+                                    "resource-1000G"
+                                ]
+                            },
+                            {
+                                "id": "resource-dbsnp",
+                                "source": [
+                                    "resource-dbsnp"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "vcf_gz"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gatk_variantrecalibrator_cwl_snp",
+                            "baseCommand": [
+                                "java",
+                                "GenomeAnalysisTK.jar",
+                                "-T",
+                                "VariantRecalibrator"
+                            ],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "hs37d5"
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-hapmap",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-omni",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-1000G",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "resource-dbsnp",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "vcf_gz",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                }
+                            ],
+                            "arguments": [
+                                {
+                                    "position": 0,
+                                    "prefix": "mode",
+                                    "valueFrom": "SNP"
+                                },
+                                {
+                                    "position": 0,
+                                    "prefix": "ts_filter_level",
+                                    "valueFrom": "99.0"
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "vcf": {
+                                        "size": 0,
+                                        "nameroot": "vcf",
+                                        "path": "/path/to/vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-hapmap": {
+                                        "size": 0,
+                                        "nameroot": "resource-hapmap",
+                                        "path": "/path/to/resource-hapmap.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-hapmap.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-omni": {
+                                        "size": 0,
+                                        "nameroot": "resource-omni",
+                                        "path": "/path/to/resource-omni.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-omni.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-1000G": {
+                                        "size": 0,
+                                        "nameroot": "resource-1000G",
+                                        "path": "/path/to/resource-1000G.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-1000G.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "resource-dbsnp": {
+                                        "size": 0,
+                                        "nameroot": "resource-dbsnp",
+                                        "path": "/path/to/resource-dbsnp.ext",
+                                        "contents": "file contents",
+                                        "basename": "resource-dbsnp.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "gatk_variantRecalibrator-snp"
+                    }
+                ]
+            },
+            "label": "variant_calling",
+            "sbg:x": 889.6172485351562,
+            "sbg:y": 260.5
+        },
+        {
+            "id": "post_variant_processing",
+            "in": [
+                {
+                    "id": "reference_assembly",
+                    "source": [
+                        "reference_assembly"
+                    ]
+                },
+                {
+                    "id": "vcf",
+                    "source": [
+                        "variant_calling/combined_vcf"
+                    ]
+                }
+            ],
+            "out": [
+                {
+                    "id": "annotation_report_html"
+                },
+                {
+                    "id": "SQLite_db"
+                }
+            ],
+            "run": {
+                "class": "Workflow",
+                "cwlVersion": "v1.0",
+                "id": "post_variant_processing",
+                "label": "post_variant_processing",
+                "inputs": [
+                    {
+                        "id": "reference_assembly",
+                        "type": "File"
+                    },
+                    {
+                        "id": "vcf",
+                        "type": "File"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "id": "annotation_report_html",
+                        "outputSource": [
+                            "vep_cwl/annotation_report_html"
+                        ],
+                        "type": "File"
+                    },
+                    {
+                        "id": "SQLite_db",
+                        "outputSource": [
+                            "gemini_cwl/SQLite_db"
+                        ],
+                        "type": "File"
+                    }
+                ],
+                "steps": [
+                    {
+                        "id": "gemini_cwl",
+                        "in": [
+                            {
+                                "id": "annotated_vcfgz",
+                                "source": [
+                                    "vep_cwl/annotated_vcfgz"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "SQLite_db"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "gemini_cwl",
+                            "baseCommand": [],
+                            "inputs": [
+                                {
+                                    "format": "NA",
+                                    "id": "annotated_vcfgz",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "SQLite_db",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "NA"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "GEMINI": {
+                                            "version": [
+                                                "3.x"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_014819"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "annotated_vcfgz": {
+                                        "size": 0,
+                                        "nameroot": "annotated_vcfgz",
+                                        "path": "/path/to/annotated_vcfgz.ext",
+                                        "contents": "file contents",
+                                        "basename": "annotated_vcfgz.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "gemini"
+                    },
+                    {
+                        "id": "vep_cwl",
+                        "in": [
+                            {
+                                "id": "reference_assembly",
+                                "source": [
+                                    "reference_assembly"
+                                ]
+                            },
+                            {
+                                "id": "vcf",
+                                "source": [
+                                    "vcf"
+                                ]
+                            },
+                            {
+                                "id": "dbNSFP_plugin",
+                                "source": [
+                                    "dbnsfp/dbNSFP_db"
+                                ]
+                            },
+                            {
+                                "id": "LOFTEE-plugin",
+                                "source": [
+                                    "loftee/LOFTEE-db"
+                                ]
+                            }
+                        ],
+                        "out": [
+                            {
+                                "id": "annotated_vcfgz"
+                            },
+                            {
+                                "id": "annotation_report_html"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "vep_cwl",
+                            "baseCommand": [],
+                            "inputs": [
+                                {
+                                    "format": "http://edamontology.org/format_1929",
+                                    "id": "reference_assembly",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    },
+                                    "doc": "hs37d5"
+                                },
+                                {
+                                    "format": "http://edamontology.org/format_3016",
+                                    "id": "vcf",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "dbNSFP_plugin",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                },
+                                {
+                                    "format": "NA",
+                                    "id": "LOFTEE-plugin",
+                                    "type": "File",
+                                    "inputBinding": {
+                                        "position": 0
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "id": "annotated_vcfgz",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_3016"
+                                },
+                                {
+                                    "id": "annotation_report_html",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "http://edamontology.org/format_2331"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "Variant Effect Predictor": {
+                                            "version": [
+                                                "74"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_007931"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {
+                                    "reference_assembly": {
+                                        "size": 0,
+                                        "nameroot": "reference_assembly",
+                                        "path": "/path/to/reference_assembly.ext",
+                                        "contents": "file contents",
+                                        "basename": "reference_assembly.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "vcf": {
+                                        "size": 0,
+                                        "nameroot": "vcf",
+                                        "path": "/path/to/vcf.ext",
+                                        "contents": "file contents",
+                                        "basename": "vcf.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "dbNSFP_plugin": {
+                                        "size": 0,
+                                        "nameroot": "dbNSFP_plugin",
+                                        "path": "/path/to/dbNSFP_plugin.ext",
+                                        "contents": "file contents",
+                                        "basename": "dbNSFP_plugin.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    },
+                                    "LOFTEE-plugin": {
+                                        "size": 0,
+                                        "nameroot": "LOFTEE-plugin",
+                                        "path": "/path/to/LOFTEE-plugin.ext",
+                                        "contents": "file contents",
+                                        "basename": "LOFTEE-plugin.ext",
+                                        "nameext": ".ext",
+                                        "secondaryFiles": [],
+                                        "class": "File"
+                                    }
+                                },
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "vep"
+                    },
+                    {
+                        "id": "dbnsfp",
+                        "in": [],
+                        "out": [
+                            {
+                                "id": "dbNSFP_db"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "dbnsfp",
+                            "baseCommand": [],
+                            "inputs": [],
+                            "outputs": [
+                                {
+                                    "id": "dbNSFP_db",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "NA"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "dbNSFP": {
+                                            "version": [
+                                                "0.XX"
+                                            ],
+                                            "specs": [
+                                                "https://identifiers.org/rrid/RRID:SCR_005178"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {},
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "dbNSFP"
+                    },
+                    {
+                        "id": "loftee",
+                        "in": [],
+                        "out": [
+                            {
+                                "id": "LOFTEE-db"
+                            }
+                        ],
+                        "run": {
+                            "class": "CommandLineTool",
+                            "cwlVersion": "v1.0",
+                            "id": "loftee",
+                            "baseCommand": [],
+                            "inputs": [],
+                            "outputs": [
+                                {
+                                    "id": "LOFTEE-db",
+                                    "type": "File",
+                                    "outputBinding": {},
+                                    "format": "NA"
+                                }
+                            ],
+                            "hints": [
+                                {
+                                    "class": "SoftwareRequirement",
+                                    "packages": {
+                                        "LOFTEE-plugin": {
+                                            "version": [
+                                                "0.x"
+                                            ],
+                                            "specs": [
+                                                "https://github.com/konradjk/loftee"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "sbg:job": {
+                                "inputs": {},
+                                "runtime": {
+                                    "cores": 1,
+                                    "ram": 1000
+                                }
+                            }
+                        },
+                        "label": "LOFTEE"
+                    }
+                ]
+            },
+            "label": "post_variant_processing",
+            "sbg:x": 1221.8929443359375,
+            "sbg:y": 288.5
+        }
+    ],
+    "sbg:revision": 0,
+    "sbg:appVersion": [
+        "v1.0"
+    ],
+    "sbg:modifiedOn": 1516665721,
+    "sbg:modifiedBy": "mailie_gall",
+    "sbg:validationErrors": [],
+    "sbg:project": "mailie_gall/garvan-germline",
+    "sbg:sbgMaintained": false,
+    "sbg:revisionsInfo": [
+        {
+            "sbg:revision": 0,
+            "sbg:modifiedOn": 1516665721,
+            "sbg:revisionNotes": null,
+            "sbg:modifiedBy": "mailie_gall"
+        }
+    ],
+    "sbg:image_url": null,
+    "sbg:latestRevision": 0,
+    "sbg:contributors": [
+        "mailie_gall"
+    ],
+    "requirements": [
+        {
+            "class": "SubworkflowFeatureRequirement"
+        },
+        {
+            "class": "ScatterFeatureRequirement"
+        }
+    ],
+    "sbg:createdBy": "mailie_gall",
+    "sbg:publisher": "sbg",
+    "sbg:projectName": "Garvan-germline",
+    "sbg:id": "mailie_gall/garvan-germline/garvan-germline-main/0",
+    "sbg:createdOn": 1516665721
+}

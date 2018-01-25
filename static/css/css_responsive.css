@@ -24,7 +24,7 @@
 }
 
 .rtable,
-.rtable--flip tbody {
+/*.rtable--flip tbody {
   // optional - enable iOS momentum scrolling
   -webkit-overflow-scrolling: touch;
 
@@ -39,7 +39,7 @@
 	-moz-box-shadow: none;
 	box-shadow: none;
 
-}
+}*/
 
 // change these gradients from white to your background colour if it differs
 // gradient on the first cells to hide the left shadow
@@ -78,13 +78,13 @@
 
 .rtable--flip {
   display: flex;
-  overflow: scroll;
+  /*overflow: scroll;*/
   background: none;
 }
 
 .rtable--flip thead {
   display: flex;
-  flex-shrink: 0;
+  /*flex-shrink: 0;*/
   min-width: min-content;
     height: 40px;
 }
@@ -100,7 +100,7 @@
   display: flex;
   flex-direction: column;
   min-width: min-content;
-  flex-shrink: 0;
+  /*flex-shrink: 0;*/
 }
 
 .rtable--flip td,
@@ -155,10 +155,12 @@
   /*font-size: 16px;*/
   /*line-height: 20px;*/
 /*}*/
+/*
 
 table {
   margin-bottom: 30px;
 }
+*/
 
 /*a {*/
 /*}*/

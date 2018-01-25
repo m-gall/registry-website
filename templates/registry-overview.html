@@ -33,10 +33,10 @@
                             <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}
                             <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}
                             <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}
-                            <p> <h5> CWL explorer</h5> <a
-                                href= {{ 'explorer.html/' + row.Workflow.workflow_accession + '.html' }}> link </a>
-                            <p> <h5> Rabix visual </h5> <a
-                                href= {{ 'rabix-view.html/' + row.Workflow.workflow_accession + '.html' }}> link </a>
+{#                            <p> <h5> CWL explorer</h5> <a#}
+{#                                href= {{ 'explorer.html/' + row.Workflow.workflow_accession + '.html' }}> link </a>#}
+                            <p> <h5> Workflow visual </h5> <a
+                                href= {{ row.Workflow.workflow_accession + '/' + row.Workflow.workflow_version|string + '/visualize' }}> link </a>
 
                             <p> <h5> Full description </h5> <a href={{ 'pipeline/' + row.Workflow.workflow_accession }}>
                             link </a>

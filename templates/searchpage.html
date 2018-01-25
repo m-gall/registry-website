@@ -16,14 +16,14 @@
             <tr>
                 <th>Workflow Name</th>
                 <th>Flagship</th>
-                <th>CWL explorer</th>
+                <th> Description </th>
             </tr>
             </thead>
             <tbody>
             {% for row in workflow_query %}
                 <td>{{ row.Workflow.workflow_name }}</td>
                 <td> {{ row.Flagship.flagship_name }}</td>
-                <td><a href= {{ row.Workflow.workflow_accession }}> link </a></td>
+                <td><a href= {{ 'pipeline/' + row.Workflow.workflow_accession }}> link </a></td>
 
                 </tbody>
             {% endfor %}

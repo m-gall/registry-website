@@ -122,9 +122,14 @@
 
 #### Packages - summary
 
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control || bam quality metrics generated using in-house scripts ||  ||
-||Duplicate marking || Novosort ||
+'''Stage''' |'''Tools & version''' |'''Data inputs'''
+
+Quality control | bam quality metrics generated using in-house scripts
+
+
+||Duplicate marking || Novosort |
+
+
 ||Mapping || bwa-mem || hg19.fasta ||
 ||Local realignment || GATK Indelrealigner || hg19.fasta, Mills & 1000G gold standard indels ||
 ||Base recalibration || GATK Base recalibrator || germline control cohort, standard GATK resources ||

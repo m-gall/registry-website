@@ -1,0 +1,3526 @@
+{
+    "sbg:revision": 1,
+    "sbg:appVersion": [
+        "v1.0"
+    ],
+    "sbg:modifiedOn": 1516674705,
+    "sbg:revisionNotes": "",
+    "class": "Workflow",
+    "label": "sap-panel",
+    "sbg:validationErrors": [
+        "Missing one or more mandatory run inputs in step inputs: ['#pydef_bamsex_cwl.recal.bam', '#pydef_bamsex_cwl.x.reads', '#pydef_bamsex_cwl.y.reads']"
+    ],
+    "sbg:project": "mailie_gall/sap-panel",
+    "sbg:sbgMaintained": false,
+    "steps": [
+        {
+            "out": [
+                {
+                    "id": "forward_reads_gz"
+                },
+                {
+                    "id": "reverse_reads_gz"
+                },
+                {
+                    "id": "samplesheet_csv"
+                },
+                {
+                    "id": "runINFO_xml"
+                }
+            ],
+            "sbg:x": 235.7764892578125,
+            "sbg:y": 269.4609375,
+            "in": [
+                {
+                    "source": [
+                        "bcl1"
+                    ],
+                    "id": "bcl1"
+                },
+                {
+                    "source": [
+                        "bcl2"
+                    ],
+                    "id": "bcl2"
+                }
+            ],
+            "id": "bcl2fastq_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "FastQC": {
+                                "version": [
+                                    "2.17.1.14"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/RRID:SCR_015058"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "forward_reads_gz",
+                        "outputBinding": {}
+                    },
+                    {
+                        "type": "File",
+                        "id": "reverse_reads_gz",
+                        "outputBinding": {}
+                    },
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_3572",
+                        "id": "samplesheet_csv",
+                        "doc": "Sample sheet with recording sample metadata (e.g. lane, sampleID, recipe. operator) from sequencer.",
+                        "outputBinding": {}
+                    },
+                    {
+                        "type": "File",
+                        "id": "runINFO_xml",
+                        "outputBinding": {}
+                    }
+                ],
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "bcl1",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "bcl2",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "id": "bcl2fastq_cwl",
+                "class": "CommandLineTool",
+                "label": "bcl2fastq",
+                "description": "",
+                "arguments": [
+                    {
+                        "position": 0,
+                        "prefix": "--no-lane-splitting"
+                    }
+                ],
+                "sbg:job": {
+                    "inputs": {
+                        "bcl2": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "bcl1": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                },
+                "baseCommand": [],
+                "sbg:modified": true,
+                "doc": "Demultiplex and convert bcl files from Illumina platforms to fastq formats.",
+                "cwlVersion": "v1.0"
+            },
+            "label": "bcl2fastq"
+        },
+        {
+            "out": [
+                {
+                    "id": "forward_clean_fastq"
+                },
+                {
+                    "id": "reverse_clean_fastq"
+                }
+            ],
+            "sbg:x": 564.9281005859375,
+            "sbg:y": 429.5390625,
+            "in": [
+                {
+                    "source": [
+                        "bcl2fastq_cwl/forward_reads_gz"
+                    ],
+                    "id": "forward_reads_gz"
+                },
+                {
+                    "source": [
+                        "bcl2fastq_cwl/reverse_reads_gz"
+                    ],
+                    "id": "reverse_reads_gz"
+                },
+                {
+                    "source": [
+                        "adaptors_5_fasta"
+                    ],
+                    "id": "adaptors_5_fasta"
+                },
+                {
+                    "source": [
+                        "adaptors_3_fasta"
+                    ],
+                    "id": "adaptors_3_fasta"
+                }
+            ],
+            "id": "cutadapt_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "FastQC": {
+                                "version": [
+                                    "1.8.1"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/RRID:SCR_011840"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_1930",
+                        "id": "forward_clean_fastq"
+                    },
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_1930",
+                        "id": "reverse_clean_fastq"
+                    }
+                ],
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "forward_reads_gz",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "reverse_reads_gz",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "adaptors_5_fasta",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "adaptors_3_fasta",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "id": "cutadapt_cwl",
+                "class": "CommandLineTool",
+                "label": "cutadapt",
+                "description": "",
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "15",
+                        "prefix": "-q"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "50",
+                        "prefix": "-m"
+                    }
+                ],
+                "sbg:job": {
+                    "inputs": {
+                        "adaptors_3_fasta": null,
+                        "3_adaptors.fasta": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "forward_reads_gz": null,
+                        "reverse_reads_gz": null,
+                        "adaptors_5_fasta": null,
+                        "5_adaptors.fasta": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "read2.fastq.gz": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "read1.fastq.gz": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                },
+                "baseCommand": [
+                    "cutadapt"
+                ],
+                "sbg:modified": true,
+                "cwlVersion": "v1.0"
+            },
+            "label": "cutadapt"
+        },
+        {
+            "out": [
+                {
+                    "id": "fastqc_report_forward"
+                },
+                {
+                    "id": "fastqc_report_reverse"
+                }
+            ],
+            "sbg:x": 893.4617919921875,
+            "sbg:y": 315.8203125,
+            "in": [
+                {
+                    "source": [
+                        "cutadapt_cwl/forward_clean_fastq"
+                    ],
+                    "id": "forward_reads"
+                },
+                {
+                    "source": [
+                        "cutadapt_cwl/reverse_clean_fastq"
+                    ],
+                    "id": "reverse_reads"
+                }
+            ],
+            "id": "fastq_qc_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "FastQC": {
+                                "version": [
+                                    "0.11.5"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/RRID:SCR_011106"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2331",
+                        "id": "fastqc_report_forward"
+                    },
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2331",
+                        "id": "fastqc_report_reverse"
+                    }
+                ],
+                "baseCommand": [
+                    "fastqqc"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_1930",
+                        "id": "forward_reads",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_1930",
+                        "id": "reverse_reads",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "description": "",
+                "id": "fastq_qc_cwl",
+                "class": "CommandLineTool",
+                "sbg:job": {
+                    "inputs": {
+                        "forward_reads": null,
+                        "read2_reads": null,
+                        "read1_reads": null,
+                        "reverse_reads": null,
+                        "read2.fastq": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "read1.fastq": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            }
+        },
+        {
+            "out": [
+                {
+                    "id": "bam"
+                }
+            ],
+            "sbg:x": 893.4617919921875,
+            "sbg:y": 436.5390625,
+            "in": [
+                {
+                    "source": [
+                        "cutadapt_cwl/forward_clean_fastq"
+                    ],
+                    "id": "forward_reads"
+                },
+                {
+                    "source": [
+                        "cutadapt_cwl/reverse_clean_fastq"
+                    ],
+                    "id": "reverse_reads"
+                }
+            ],
+            "id": "bwa_kit",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "bwa-kit": {
+                                "version": [
+                                    ""
+                                ],
+                                "specs": [
+                                    "'Discordant reads via samblaster v0.1.2. https://github.com/lh3/bwa/tree/master/bwakit. bwa mem used for mapping.'"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "arguments": [
+                    {
+                        "position": 0,
+                        "prefix": "-d"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "apply HLA typing",
+                        "prefix": "-H"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "bam",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "run",
+                    "bwamem"
+                ],
+                "cwlVersion": "v1.0",
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "forward_reads",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "reverse_reads",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "id": "bwa_kit",
+                "class": "CommandLineTool",
+                "label": "bwa-kit",
+                "sbg:job": {
+                    "inputs": {
+                        "forward_reads": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "reverse_reads": null,
+                        "reaverse_reads": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "bwa-kit"
+        },
+        {
+            "out": [
+                {
+                    "id": "realigned_intervals"
+                }
+            ],
+            "sbg:x": 1182.8428955078125,
+            "sbg:y": 88.3671875,
+            "in": [
+                {
+                    "source": [
+                        "bwa_kit/bam"
+                    ],
+                    "id": "bam"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                }
+            ],
+            "id": "gatk_realigner_target_creator",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "realigned_intervals",
+                        "doc": "Coordinates for regions discovered requiring realignment.",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "RealignerTargetCreator"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "bam",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ],
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "doc": "human_g1k_v37_decoy.fasta",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "class": "CommandLineTool",
+                "label": "indel discovery for realignment.",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "bam": {
+                            "size": 0,
+                            "nameroot": "deduped_bam",
+                            "contents": "file contents",
+                            "path": "/path/to/deduped_bam.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "deduped_bam.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "indel discovery for realignment."
+        },
+        {
+            "out": [
+                {
+                    "id": "deduped_realigned_bam"
+                }
+            ],
+            "sbg:x": 1182.8428955078125,
+            "sbg:y": 216.1015625,
+            "in": [
+                {
+                    "source": [
+                        "bwa_kit/bam"
+                    ],
+                    "id": "bam"
+                },
+                {
+                    "source": [
+                        "gatk_realigner_target_creator/realigned_intervals"
+                    ],
+                    "id": "interval_list"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                }
+            ],
+            "id": "gatk_indel_realigner",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "deduped_realigned_bam",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2572",
+                        "secondaryFiles": [
+                            "bam.index"
+                        ]
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "IndelRealigner"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "bam",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "interval_list",
+                        "doc": "Coordinates for regions discovered requiring realignment.",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ],
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "doc": "human_g1k_v37_decoy human reference genome",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "doc": "https://bio.tools/tool/gatk2_indel_realigner-IP/version/none\n",
+                "class": "CommandLineTool",
+                "label": "perform local realignment of indel sites.",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "interval_list": {
+                            "size": 0,
+                            "nameroot": "interval_list",
+                            "contents": "file contents",
+                            "path": "/path/to/interval_list.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "interval_list.ext",
+                            "class": "File"
+                        },
+                        "bam": {
+                            "size": 0,
+                            "nameroot": "deduped_bam",
+                            "contents": "file contents",
+                            "path": "/path/to/deduped_bam.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "deduped_bam.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "perform local realignment of indel sites."
+        },
+        {
+            "out": [
+                {
+                    "id": "recalibrated_table"
+                }
+            ],
+            "sbg:x": 1530.41650390625,
+            "sbg:y": 443.5546875,
+            "in": [
+                {
+                    "source": [
+                        "gatk_indel_realigner/deduped_realigned_bam"
+                    ],
+                    "id": "deduped_realigned_bam"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "dbsnp_138"
+                    ],
+                    "id": "dbsnp_138"
+                }
+            ],
+            "id": "gatk_base_recalibrator",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "arguments": [
+                    {
+                        "position": 0,
+                        "separate": false,
+                        "valueFrom": "=dbsnp_138",
+                        "prefix": "known_sites"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "ReadGroupCovariate",
+                        "prefix": "-cov"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "QualityScoreCovariate",
+                        "prefix": "-cov"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "ContextCovariate",
+                        "prefix": "-cov"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "CycleCovariate",
+                        "prefix": "-cov"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": null,
+                        "id": "recalibrated_table"
+                    }
+                ],
+                "baseCommand": [
+                    "java",
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "BaseRecalibrator"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "deduped_realigned_bam",
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0,
+                            "valueFrom": "/ref/reference_assembly"
+                        },
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ]
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "dbsnp_138",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "class": "CommandLineTool",
+                "label": "Calculate recalibration values for base recalibration.",
+                "sbg:job": {
+                    "inputs": {
+                        "deduped_realigned_bam": {
+                            "size": 0,
+                            "nameroot": "deduped_realigned_bam",
+                            "contents": "file contents",
+                            "path": "/path/to/deduped_realigned_bam.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "deduped_realigned_bam.ext",
+                            "class": "File"
+                        },
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "dbsnp_138": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "Calculate recalibration values for base recalibration."
+        },
+        {
+            "out": [
+                {
+                    "id": "post_recal_table"
+                },
+                {
+                    "id": "recalibration_plots_pdf"
+                }
+            ],
+            "sbg:x": 1874.86962890625,
+            "sbg:y": 503.9140625,
+            "in": [
+                {
+                    "source": [
+                        "gatk_base_recalibrator/recalibrated_table"
+                    ],
+                    "id": "recal_table"
+                }
+            ],
+            "id": "gatk_analyzecovariates_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "FastQC": {
+                                "version": [
+                                    4.3
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "post_recal_table"
+                    },
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3508",
+                        "id": "recalibration_plots_pdf"
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "AnalyzeCovariates"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "recal_table",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "description": "",
+                "id": "gatk_analyzecovariates_cwl",
+                "class": "CommandLineTool",
+                "label": "gatk_analyzeCovariates",
+                "sbg:job": {
+                    "inputs": {
+                        "recal_table": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "gatk_analyzeCovariates"
+        },
+        {
+            "out": [
+                {
+                    "id": "recalibrated_bam"
+                }
+            ],
+            "sbg:x": 1530.41650390625,
+            "sbg:y": 308.828125,
+            "in": [
+                {
+                    "source": [
+                        "gatk_indel_realigner/deduped_realigned_bam"
+                    ],
+                    "id": "realigned_bam"
+                },
+                {
+                    "source": [
+                        "gatk_base_recalibrator/recalibrated_table"
+                    ],
+                    "id": "recalibrated_table"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                }
+            ],
+            "id": "gatk_print_reads",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "arguments": [
+                    {
+                        "position": 0,
+                        "prefix": "-BQSR"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "recalibrated_bam"
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-",
+                    "T",
+                    "PrintReads"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "realigned_bam",
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "recalibrated_table",
+                        "doc": "Coordinates for regions discovered requiring realignment.",
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ]
+                    }
+                ],
+                "doc": "Apply recalibration to bam file. Overwrites values",
+                "class": "CommandLineTool",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "recalibrated_table": {
+                            "size": 0,
+                            "nameroot": "recalibrated_table",
+                            "contents": "file contents",
+                            "path": "/path/to/recalibrated_table.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "recalibrated_table.ext",
+                            "class": "File"
+                        },
+                        "realigned_bam": {
+                            "size": 0,
+                            "nameroot": "deduped_realigned_bam",
+                            "contents": "file contents",
+                            "path": "/path/to/deduped_realigned_bam.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "deduped_realigned_bam.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            }
+        },
+        {
+            "out": [
+                {
+                    "id": "vcf"
+                }
+            ],
+            "sbg:x": 1874.86962890625,
+            "sbg:y": 369.1796875,
+            "in": [
+                {
+                    "source": [
+                        "gatk_print_reads/recalibrated_bam"
+                    ],
+                    "id": "bam"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "dbsnp_138"
+                    ],
+                    "id": "dbsnp_138"
+                }
+            ],
+            "id": "gatk_haplotypecaller_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "vcf",
+                        "outputBinding": {}
+                    }
+                ],
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "bam",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3003",
+                        "id": "target_sites",
+                        "doc": "160609_HG19_MedExome_hg19_empirical_targets_union_padded",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "doc": "human_g1k_v37_decoy_fasta",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "dbsnp_138",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "id": "gatk_haplotypecaller_cwl",
+                "class": "CommandLineTool",
+                "label": "gatk_haplotypecaller",
+                "description": "",
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "DISCOVERY",
+                        "prefix": "--genotyping_mode"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "10",
+                        "prefix": "-stand_emit_conf"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "30",
+                        "prefix": "-stand_call_conf"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "GVCF",
+                        "prefix": "-ERC"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "LINEAR",
+                        "prefix": "-variant_index_type"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "128000",
+                        "prefix": "-variant_index_parameter"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "CALLED_HAPLOTYPES",
+                        "prefix": "-bamWriterType"
+                    }
+                ],
+                "sbg:job": {
+                    "inputs": {
+                        "target_sites": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "bam": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "dbsnp_138": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                },
+                "baseCommand": [
+                    "java",
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "HaplotypeCaller"
+                ],
+                "sbg:modified": true,
+                "cwlVersion": "v1.0"
+            },
+            "label": "gatk_haplotypecaller"
+        },
+        {
+            "out": [
+                {
+                    "id": "variants_gvcf"
+                }
+            ],
+            "sbg:x": 2168.29150390625,
+            "sbg:y": 429.5390625,
+            "in": [
+                {
+                    "source": [
+                        "gatk_haplotypecaller_cwl/vcf"
+                    ],
+                    "id": "variants_vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                }
+            ],
+            "id": "gatk_genotype_g_v_c_fs",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "100",
+                        "prefix": "-ip"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "4",
+                        "prefix": "-nt"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "variants_gvcf",
+                        "doc": "Minimum number of samples required per batch.",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "GenotypeGVCFs"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "variants_vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ],
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "doc": "human_g1k_v37_decoy",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "target_sites",
+                        "doc": "160609_HG19_MedExome_hg19_empirical_targets_union_padded.bed",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "class": "CommandLineTool",
+                "label": "genotype GVCF",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "variants_vcf": {
+                            "size": 0,
+                            "nameroot": "raw_variants_g",
+                            "contents": "file contents",
+                            "path": "/path/to/raw_variants_g.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "raw_variants_g.ext",
+                            "class": "File"
+                        },
+                        "target_sites": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "genotype GVCF"
+        },
+        {
+            "out": [
+                {
+                    "id": "select_variants_vcf"
+                }
+            ],
+            "sbg:x": 2522.9912109375,
+            "sbg:y": 269.4609375,
+            "in": [
+                {
+                    "source": [
+                        "gatk_genotype_g_v_c_fs/variants_gvcf"
+                    ],
+                    "id": "vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                }
+            ],
+            "id": "gatk_select_variants",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "select_variants_vcf"
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "SelectVariants"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ]
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3003",
+                        "id": "target_sites",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "class": "CommandLineTool",
+                "label": "select variants",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "target_sites": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "vcf": {
+                            "size": 0,
+                            "nameroot": "raw_variants_g_gvcf",
+                            "contents": "file contents",
+                            "path": "/path/to/raw_variants_g_gvcf.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "raw_variants_g_gvcf.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "select variants"
+        },
+        {
+            "out": [
+                {
+                    "id": "select_variants_vcf"
+                }
+            ],
+            "sbg:x": 2522.9912109375,
+            "sbg:y": 134.7421875,
+            "in": [
+                {
+                    "source": [
+                        "gatk_genotype_g_v_c_fs/variants_gvcf"
+                    ],
+                    "id": "vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                }
+            ],
+            "id": "gatk_select_variants_1",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "select_variants_vcf"
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "SelectVariants"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ]
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3003",
+                        "id": "target_sites",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "class": "CommandLineTool",
+                "label": "select variants",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "target_sites": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "vcf": {
+                            "size": 0,
+                            "nameroot": "raw_variants_g_gvcf",
+                            "contents": "file contents",
+                            "path": "/path/to/raw_variants_g_gvcf.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "raw_variants_g_gvcf.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "select variants"
+        },
+        {
+            "out": [
+                {
+                    "id": "filtered_variants_vcf"
+                }
+            ],
+            "sbg:x": 2841.00244140625,
+            "sbg:y": 376.1796875,
+            "in": [
+                {
+                    "source": [
+                        "gatk_select_variants_1/select_variants_vcf"
+                    ],
+                    "id": "variants_vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                }
+            ],
+            "id": "gatk_variantfiltration_indels",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "QD < 2.0",
+                        "prefix": "--filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "qual_by_depth_INDEL",
+                        "prefix": "--filterName"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "FS > 200.0",
+                        "prefix": "--filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "fisher_strand_INDEL",
+                        "prefix": "--filterName"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "ReadPosRankSum < -20.0",
+                        "prefix": "filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "read_pos_rank_sum_INDEL",
+                        "prefix": "filterName"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "filtered_variants_vcf"
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "VariantFiltration"
+                ],
+                "cwlVersion": "v1.0",
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "variants_vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3003",
+                        "id": "target_sites",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "id": "gatk_variantfiltration_indels",
+                "class": "CommandLineTool",
+                "label": "gatk_variantfiltration_indels",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": null,
+                        "variants_vcf": null,
+                        "target_sites": null
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "gatk_variantfiltration_indels"
+        },
+        {
+            "out": [
+                {
+                    "id": "filtered_variants_vcf"
+                }
+            ],
+            "sbg:x": 2841.00244140625,
+            "sbg:y": 241.4453125,
+            "in": [
+                {
+                    "source": [
+                        "gatk_select_variants/select_variants_vcf"
+                    ],
+                    "id": "variants_vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                }
+            ],
+            "id": "gatk_variantfiltration_snvs_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "filtered_variants_vcf"
+                    }
+                ],
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "variants_vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3003",
+                        "id": "target_sites",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "id": "gatk_variantfiltration_snvs_cwl",
+                "class": "CommandLineTool",
+                "label": "gatk_variantFiltration-snvs",
+                "description": "",
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "QD < 2.0",
+                        "prefix": "--filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "qual_by_depth_SNP",
+                        "prefix": "--filterName"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "FS > 60.0",
+                        "prefix": "--filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "fisher_strand_SNP",
+                        "prefix": "--filterName"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "MQ < 40.0",
+                        "prefix": "--filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "RMS_mapping_qality",
+                        "prefix": "--filterName"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "MQRankSum < -12.5",
+                        "prefix": "--filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "mapping_quality_rank_sum",
+                        "prefix": "--filterName"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "ReadPosRankSum < -8.0",
+                        "prefix": "filterExpression"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "read_pos_rank_sum_SNP",
+                        "prefix": "filterName"
+                    }
+                ],
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "variants_vcf": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "target_sites": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                },
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "VariantFiltration"
+                ],
+                "sbg:modified": true,
+                "cwlVersion": "v1.0"
+            },
+            "label": "gatk_variantFiltration-snvs"
+        },
+        {
+            "out": [
+                {
+                    "id": "combined_vcf"
+                }
+            ],
+            "sbg:x": 3163.576171875,
+            "sbg:y": 308.8125,
+            "in": [
+                {
+                    "source": [
+                        "gatk_variantfiltration_indels/filtered_variants_vcf"
+                    ],
+                    "id": "indels_vcf"
+                },
+                {
+                    "source": [
+                        "gatk_variantfiltration_snvs_cwl/filtered_variants_vcf"
+                    ],
+                    "id": "snvs_vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                }
+            ],
+            "id": "gatk_combinevariants_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "combined_vcf"
+                    }
+                ],
+                "baseCommand": [
+                    "java",
+                    "-jar",
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "CombineVariants"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "indels_vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "snvs_vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "description": "",
+                "id": "gatk_combinevariants_cwl",
+                "class": "CommandLineTool",
+                "label": "gatk_combineVariants",
+                "sbg:job": {
+                    "inputs": {
+                        "indels_vcf": null,
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "input_2",
+                            "contents": "file contents",
+                            "path": "/path/to/input_2.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_2.ext",
+                            "class": "File"
+                        },
+                        "input_1.vcf": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "snvs_vcf": null,
+                        "input.vcf": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "gatk_combineVariants"
+        },
+        {
+            "out": [
+                {
+                    "id": "select_variants_vcf"
+                }
+            ],
+            "sbg:x": 3463.498046875,
+            "sbg:y": 308.8203125,
+            "in": [
+                {
+                    "source": [
+                        "gatk_combinevariants_cwl/combined_vcf"
+                    ],
+                    "id": "vcf"
+                },
+                {
+                    "source": [
+                        "reference_assembly"
+                    ],
+                    "id": "reference_assembly"
+                },
+                {
+                    "source": [
+                        "target_sites"
+                    ],
+                    "id": "target_sites"
+                }
+            ],
+            "id": "gatk_select_variants_sample",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "4.3"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:SCR_001876"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "arguments": [
+                    {
+                        "position": 0,
+                        "prefix": "-sn"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "select_variants_vcf"
+                    }
+                ],
+                "baseCommand": [
+                    "GenomeAnalysisTK.jar",
+                    "-T",
+                    "SelectVariants"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_3016",
+                        "id": "vcf",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "type": "File",
+                        "format": "http://edamontology.org/format_1929",
+                        "id": "reference_assembly",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "secondaryFiles": [
+                            ".fai",
+                            ".bwt",
+                            ".sa",
+                            ".ann",
+                            ".amb",
+                            ".pac",
+                            ".alt"
+                        ]
+                    },
+                    {
+                        "format": "http://edamontology.org/format_3003",
+                        "id": "target_sites",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "class": "CommandLineTool",
+                "label": "select variants",
+                "sbg:job": {
+                    "inputs": {
+                        "reference_assembly": {
+                            "size": 0,
+                            "nameroot": "reference_assembly",
+                            "contents": "file contents",
+                            "path": "/path/to/reference_assembly.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "reference_assembly.ext",
+                            "class": "File"
+                        },
+                        "target_sites": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "vcf": {
+                            "size": 0,
+                            "nameroot": "raw_variants_g_gvcf",
+                            "contents": "file contents",
+                            "path": "/path/to/raw_variants_g_gvcf.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "raw_variants_g_gvcf.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "select variants"
+        },
+        {
+            "out": [
+                {
+                    "id": "homo_count"
+                },
+                {
+                    "id": "hetero_count"
+                },
+                {
+                    "id": "bam"
+                }
+            ],
+            "sbg:x": 2168.29150390625,
+            "sbg:y": 578.2734375,
+            "in": [
+                {
+                    "source": [
+                        "gatk_print_reads/recalibrated_bam"
+                    ],
+                    "id": "recal.bam"
+                },
+                {
+                    "source": [
+                        "gatk_select_variants_sample/select_variants_vcf"
+                    ],
+                    "id": "combined.vcf"
+                },
+                {
+                    "source": [
+                        "goi.list"
+                    ],
+                    "id": "goi.list"
+                },
+                {
+                    "source": [
+                        "vendor.manifest"
+                    ],
+                    "id": "vendor.manifest"
+                },
+                {
+                    "source": [
+                        "bcl2fastq_cwl/samplesheet_csv"
+                    ],
+                    "id": "sample_sheet.csv"
+                }
+            ],
+            "id": "exec_summary_report_cwl",
+            "run": {
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "homo_count",
+                        "outputBinding": {}
+                    },
+                    {
+                        "type": "File",
+                        "id": "hetero_count",
+                        "outputBinding": {}
+                    },
+                    {
+                        "type": "File",
+                        "id": "bam",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "sample_exec_summary.py"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "recal.bam",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "combined.vcf",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "goi.list",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "vendor.manifest",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "sample_sheet.csv",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "description": "",
+                "id": "exec_summary_report_cwl",
+                "class": "CommandLineTool",
+                "label": "exec_summary_report",
+                "sbg:job": {
+                    "inputs": {
+                        "goi.list": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "input_3": {
+                            "size": 0,
+                            "nameroot": "input_3",
+                            "contents": "file contents",
+                            "path": "/path/to/input_3.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_3.ext",
+                            "class": "File"
+                        },
+                        "combined.vcf": null,
+                        "input_2": {
+                            "size": 0,
+                            "nameroot": "input_2",
+                            "contents": "file contents",
+                            "path": "/path/to/input_2.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_2.ext",
+                            "class": "File"
+                        },
+                        "sample_sheet.csv": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "input_1": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "recal.bam": null,
+                        "vendor.manifest": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "exec_summary_report"
+        },
+        {
+            "out": [
+                {
+                    "id": "bamSex"
+                }
+            ],
+            "sbg:x": 0,
+            "sbg:y": 162.7265625,
+            "in": [],
+            "id": "pydef_bamsex_cwl",
+            "run": {
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "bamSex",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "sample_exec_summary.py",
+                    ">",
+                    "def",
+                    "bamsex()"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "id": "pydef_bamsex_cwl",
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "recal.bam",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "x.reads",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "y.reads",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "description": "",
+                "doc": "calculates the ratio of x and y to infer sex. Use bam when sufficient coverage of x and y chromosomes",
+                "class": "CommandLineTool",
+                "label": "pydef_bamsex",
+                "sbg:job": {
+                    "inputs": {
+                        "recal.bam": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "x.reads": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "y.reads": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "pydef_bamsex"
+        },
+        {
+            "out": [
+                {
+                    "id": "low_complexity_metrics"
+                }
+            ],
+            "sbg:x": 235.7764892578125,
+            "sbg:y": 134.734375,
+            "in": [
+                {
+                    "source": [
+                        "goi.list_1"
+                    ],
+                    "id": "goi.list"
+                },
+                {
+                    "source": [
+                        "low_complexity.bed"
+                    ],
+                    "id": "low_complexity.bed"
+                }
+            ],
+            "id": "pydef_lowcomplexity_cwl",
+            "run": {
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "low_complexity_metrics",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "goi.list",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "low_complexity.bed",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "description": "",
+                "id": "pydef_lowcomplexity_cwl",
+                "class": "CommandLineTool",
+                "label": "pydef_lowComplexity",
+                "sbg:job": {
+                    "inputs": {
+                        "goi.list": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "low_complexity.bed": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "pydef_lowComplexity"
+        },
+        {
+            "out": [
+                {
+                    "id": "output"
+                }
+            ],
+            "sbg:x": 0,
+            "sbg:y": 34.9921875,
+            "in": [],
+            "id": "pydef_vcfsex_cwl",
+            "run": {
+                "outputs": [
+                    {
+                        "type": "string",
+                        "id": "output",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "sample_exec_summary.py",
+                    ">",
+                    "def",
+                    "call_vcf_sex()"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "id": "pydef_vcfsex_cwl",
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "count_chrX_hetero",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "count_chrX_homo",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "description": "",
+                "doc": "ratio of homozygote to heterzygote calls. chrx homo/hetero ratio",
+                "class": "CommandLineTool",
+                "label": "pydef_vcfsex",
+                "sbg:job": {
+                    "inputs": {
+                        "count_chrX_homo": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "count_chrX_hetero": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "pydef_vcfsex"
+        },
+        {
+            "out": [
+                {
+                    "id": "executive_report"
+                }
+            ],
+            "sbg:x": 2168.29150390625,
+            "sbg:y": 280.8046875,
+            "in": [
+                {
+                    "source": [
+                        "picard_calculatehsmetrics_cwl/HS_metrics_txt"
+                    ],
+                    "id": "hs_metrics"
+                },
+                {
+                    "source": [
+                        "collect_insertsize_metrics_cwl/insertsize_metrics_txt"
+                    ],
+                    "id": "insert_size_metrics"
+                },
+                {
+                    "source": [
+                        "pydef_bamsex_cwl/bamSex"
+                    ],
+                    "id": "bam_sex"
+                },
+                {
+                    "source": [
+                        "pydef_vcfsex_cwl/output"
+                    ],
+                    "id": "vcf_sex"
+                },
+                {
+                    "source": [
+                        "pydef_lowcomplexity_cwl/low_complexity_metrics"
+                    ],
+                    "id": "low_complexity_metrics"
+                }
+            ],
+            "id": "generate_report_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "gatk-toolkit": {
+                                "version": [
+                                    "0"
+                                ],
+                                "specs": [
+                                    ""
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "id": "executive_report",
+                        "outputBinding": {}
+                    }
+                ],
+                "baseCommand": [
+                    "sample_exec_summary.py"
+                ],
+                "cwlVersion": "v1.0",
+                "sbg:modified": true,
+                "inputs": [
+                    {
+                        "type": "File",
+                        "id": "hs_metrics",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "insert_size_metrics",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "bam_sex",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "vcf_sex",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    },
+                    {
+                        "type": "File",
+                        "id": "low_complexity_metrics",
+                        "inputBinding": {
+                            "position": 0
+                        }
+                    }
+                ],
+                "description": "",
+                "id": "generate_report_cwl",
+                "class": "CommandLineTool",
+                "label": "generate_report",
+                "sbg:job": {
+                    "inputs": {
+                        "insert_size_metrics": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "vcf_sex": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "hs_metrics": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "low_complexity_metrics": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        },
+                        "bam_sex": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                }
+            },
+            "label": "generate_report"
+        },
+        {
+            "out": [
+                {
+                    "id": "HS_metrics_txt"
+                }
+            ],
+            "sbg:x": 1874.86962890625,
+            "sbg:y": 120.71875,
+            "in": [
+                {
+                    "source": [
+                        "gatk_print_reads/recalibrated_bam"
+                    ],
+                    "id": "recal_bam"
+                },
+                {
+                    "source": [
+                        "bait_intervals"
+                    ],
+                    "id": "bait_intervals"
+                },
+                {
+                    "source": [
+                        "target_intervals"
+                    ],
+                    "id": "target_intervals"
+                }
+            ],
+            "id": "picard_calculatehsmetrics_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "picard": {
+                                "version": [
+                                    "1.114"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "HS_metrics_txt"
+                    }
+                ],
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "recal_bam",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "bait_intervals",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    },
+                    {
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "target_intervals",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "id": "picard_calculatehsmetrics_cwl",
+                "class": "CommandLineTool",
+                "label": "picard-calculateHsMetrics",
+                "description": "",
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "=ALL_READS",
+                        "prefix": "METRIC_ACCUMULATION_LEVEL"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=INFO",
+                        "prefix": "VERBOSITY"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=false",
+                        "prefix": "QUIET"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "STRICT",
+                        "prefix": "VALIDATION_STRINGENCY"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "5",
+                        "prefix": "COMPRESSION_LEVEL"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=false",
+                        "prefix": "CREATE_INDEX"
+                    }
+                ],
+                "sbg:job": {
+                    "inputs": {
+                        "bait_intervals": {
+                            "size": 0,
+                            "nameroot": "input_1",
+                            "contents": "file contents",
+                            "path": "/path/to/input_1.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_1.ext",
+                            "class": "File"
+                        },
+                        "recal_bam": {
+                            "size": 0,
+                            "nameroot": "r",
+                            "contents": "file contents",
+                            "path": "/path/to/r.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "r.ext",
+                            "class": "File"
+                        },
+                        "target_intervals": {
+                            "size": 0,
+                            "nameroot": "input_2",
+                            "contents": "file contents",
+                            "path": "/path/to/input_2.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input_2.ext",
+                            "class": "File"
+                        },
+                        "input": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                },
+                "baseCommand": [
+                    "java",
+                    "-jar",
+                    "picard.jar",
+                    "CalculateHsMetrics"
+                ],
+                "sbg:modified": true,
+                "cwlVersion": "v1.0"
+            },
+            "label": "picard-calculateHsMetrics"
+        },
+        {
+            "out": [
+                {
+                    "id": "insertsize_metrics_txt"
+                },
+                {
+                    "id": "insertsize_metrics_pdf"
+                },
+                {
+                    "id": "histogram"
+                }
+            ],
+            "sbg:x": 1874.86962890625,
+            "sbg:y": 631.640625,
+            "in": [
+                {
+                    "source": [
+                        "gatk_print_reads/recalibrated_bam"
+                    ],
+                    "id": "recal_bam"
+                }
+            ],
+            "id": "collect_insertsize_metrics_cwl",
+            "run": {
+                "hints": [
+                    {
+                        "packages": {
+                            "picard": {
+                                "version": [
+                                    "1.114"
+                                ],
+                                "specs": [
+                                    "https://identifiers.org/rrid/RRID:"
+                                ]
+                            }
+                        },
+                        "class": "SoftwareRequirement"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_2330",
+                        "id": "insertsize_metrics_txt"
+                    },
+                    {
+                        "type": "File",
+                        "outputBinding": {},
+                        "format": "http://edamontology.org/format_3508",
+                        "id": "insertsize_metrics_pdf"
+                    },
+                    {
+                        "type": "File",
+                        "id": "histogram",
+                        "outputBinding": {}
+                    }
+                ],
+                "inputs": [
+                    {
+                        "format": "http://edamontology.org/format_2572",
+                        "id": "recal_bam",
+                        "inputBinding": {
+                            "position": 0
+                        },
+                        "type": "File"
+                    }
+                ],
+                "id": "collect_insertsize_metrics_cwl",
+                "class": "CommandLineTool",
+                "label": "collect_insertsize_metrics",
+                "description": "",
+                "arguments": [
+                    {
+                        "position": 0,
+                        "valueFrom": "=10.0",
+                        "prefix": "DEVIATIONS"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=0.05",
+                        "prefix": "MINIMUM_PCT"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=[ALL_READS]",
+                        "prefix": "METRIC_ACCUMULATION_LEVEL"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=STRICT",
+                        "prefix": "VALIDATION_STRINGENCY"
+                    },
+                    {
+                        "position": 0,
+                        "valueFrom": "=true",
+                        "prefix": "ASSUME_SORTED"
+                    }
+                ],
+                "sbg:job": {
+                    "inputs": {
+                        "recal_bam": {
+                            "size": 0,
+                            "nameroot": "input",
+                            "contents": "file contents",
+                            "path": "/path/to/input.ext",
+                            "secondaryFiles": [],
+                            "nameext": ".ext",
+                            "basename": "input.ext",
+                            "class": "File"
+                        }
+                    },
+                    "runtime": {
+                        "ram": 1000,
+                        "cores": 1
+                    }
+                },
+                "baseCommand": [
+                    "java",
+                    "picard.jarCollectInsertSizeMetrics"
+                ],
+                "sbg:modified": true,
+                "cwlVersion": "v1.0"
+            },
+            "label": "collect_insertsize_metrics"
+        }
+    ],
+    "sbg:revisionsInfo": [
+        {
+            "sbg:revision": 0,
+            "sbg:modifiedOn": 1516671747,
+            "sbg:revisionNotes": null,
+            "sbg:modifiedBy": "mailie_gall"
+        },
+        {
+            "sbg:revision": 1,
+            "sbg:modifiedOn": 1516674705,
+            "sbg:revisionNotes": "",
+            "sbg:modifiedBy": "mailie_gall"
+        }
+    ],
+    "outputs": [
+        {
+            "type": "File",
+            "outputSource": [
+                "bcl2fastq_cwl/samplesheet_csv"
+            ],
+            "sbg:y": 195.1015625,
+            "id": "samplesheet_csv",
+            "sbg:x": 564.9281005859375
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "bcl2fastq_cwl/runINFO_xml"
+            ],
+            "sbg:y": 301.8203125,
+            "id": "runINFO_xml",
+            "sbg:x": 564.9281005859375
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "fastq_qc_cwl/fastqc_report_reverse"
+            ],
+            "sbg:y": 336.828125,
+            "id": "fastqc_report_reverse",
+            "sbg:x": 1182.8428955078125
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "fastq_qc_cwl/fastqc_report_forward"
+            ],
+            "sbg:y": 443.546875,
+            "id": "fastqc_report_forward",
+            "sbg:x": 1182.8428955078125
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "gatk_analyzecovariates_cwl/post_recal_table"
+            ],
+            "sbg:y": 146.078125,
+            "id": "post_recal_table",
+            "sbg:x": 2168.29150390625
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "gatk_analyzecovariates_cwl/recalibration_plots_pdf"
+            ],
+            "sbg:y": 39.359375,
+            "id": "recalibration_plots_pdf",
+            "sbg:x": 2168.29150390625
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "gatk_select_variants_sample/select_variants_vcf"
+            ],
+            "sbg:y": 322.8203125,
+            "id": "select_variants_vcf",
+            "sbg:x": 3781.50927734375
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "generate_report_cwl/executive_report"
+            ],
+            "sbg:y": 390.1796875,
+            "id": "executive_report",
+            "sbg:x": 2522.9912109375
+        },
+        {
+            "type": "File",
+            "outputSource": [
+                "exec_summary_report_cwl/bam"
+            ],
+            "sbg:y": 496.8984375,
+            "id": "bam",
+            "sbg:x": 2522.9912109375
+        }
+    ],
+    "sbg:image_url": null,
+    "sbg:latestRevision": 1,
+    "sbg:contributors": [
+        "mailie_gall"
+    ],
+    "inputs": [
+        {
+            "type": "File",
+            "sbg:y": 496.921875,
+            "id": "bcl2",
+            "sbg:x": 0
+        },
+        {
+            "type": "File",
+            "sbg:y": 603.640625,
+            "id": "bcl1",
+            "sbg:x": 0
+        },
+        {
+            "type": "File",
+            "sbg:y": 397.1796875,
+            "id": "adaptors_5_fasta",
+            "sbg:x": 235.7764892578125
+        },
+        {
+            "type": "File",
+            "sbg:y": 503.8984375,
+            "id": "adaptors_3_fasta",
+            "sbg:x": 235.7764892578125
+        },
+        {
+            "type": "File",
+            "sbg:y": 81.359375,
+            "id": "target_sites",
+            "sbg:x": 1530.41650390625
+        },
+        {
+            "type": "File",
+            "sbg:y": 202.09375,
+            "id": "reference_assembly",
+            "sbg:x": 893.4617919921875
+        },
+        {
+            "type": "File",
+            "sbg:y": 550.265625,
+            "id": "dbsnp_138",
+            "sbg:x": 1182.8428955078125
+        },
+        {
+            "type": "File",
+            "sbg:y": 188.09375,
+            "id": "target_intervals",
+            "sbg:x": 1530.41650390625
+        },
+        {
+            "type": "File",
+            "sbg:y": 564.2734375,
+            "id": "bait_intervals",
+            "sbg:x": 1530.41650390625
+        },
+        {
+            "type": "File",
+            "sbg:y": 241.4453125,
+            "id": "goi.list",
+            "sbg:x": 1874.86962890625
+        },
+        {
+            "type": "File",
+            "sbg:y": 283.4609375,
+            "id": "low_complexity.bed",
+            "sbg:x": 0
+        },
+        {
+            "type": "File",
+            "sbg:y": 390.1953125,
+            "id": "goi.list_1",
+            "sbg:x": 0
+        },
+        {
+            "type": "File",
+            "sbg:y": 0,
+            "id": "vendor.manifest",
+            "sbg:x": 1874.86962890625
+        }
+    ],
+    "id": "https://api.sbgenomics.com/v2/apps/mailie_gall/sap-panel/sap-panel/1/raw/",
+    "sbg:createdBy": "mailie_gall",
+    "sbg:publisher": "sbg",
+    "sbg:projectName": "SAP-panel",
+    "sbg:id": "mailie_gall/sap-panel/sap-panel/1",
+    "sbg:createdOn": 1516671747,
+    "sbg:modifiedBy": "mailie_gall",
+    "cwlVersion": "v1.0"
+}

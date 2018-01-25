@@ -5,9 +5,112 @@
 {% block body %}
     <body>
 
+    <div class="container" style="margin-top: 20px">
+
+        <h3> Workflow comparison </h3>
+        <div class="col-sm-3">
+
+            <form action="{{ url_for('query') }}" method="post" class="form-horizontal">
+
+
+                <div>
+                    <div>
+                        <label for="comparison" style="margin-top: 20px"> Comparator terms </label>
+                        <select class="form-control" id="comparator" name="comparator">
+                            <option selected disabled> Select...</option>
+                            <option> Tool & Version</option>
+                            <option> File types</option>
+                        </select>
+                    </div>
+                    <label for="workflowTypes"> Select workflow type </label>
+
+                    <select class="form-control" name="workflowTypes" id="workflowTypes"
+                            onchange="return showWorkflowStages();">
+                        <option selected disabled> Type</option>
+                        <option value='somatic'> Somatic</option>
+                        <option value='germline'>Germline</option>
+                    </select>
+
+                </div>
+
+
+                <div id="workflowStages" style="visibility: hidden">
+
+                    <div id="somaticworkflow">
+                        <label for="somaticworkflow"> Workflow stages</label>
+
+                        <select class="form-control" name="workflowstage" id="somaticworkflow">
+                            <option value="tumour"> Tumour</option>
+                            <option value="normal"> Normal</option>
+                            <option value="variant-calling"> Variant calling</option>
+
+                        </select>
+                    </div>
+
+                    <div id="germlineworkflow" style="visibility:hidden" onchange="return showWorkflowStages();">
+                        <label for="germlineworkflow"> Workflow stages</label>
+                        <select class="form-control" name="workflowstage" id="germlineworkflow"
+                                onchange="return showWorkflowStages();">
+                            <option value="read_alignment"> Read alignment</option>
+                            <option value="post-alignment-processing"> Post alignment processing</option>
+                            <option value="variant-calling"> Variant calling</option>
+                        </select>
+                    </div>
+
+
+                    <div id="listgermlineworkflows" style="visibility:hidden" onchange="return showWorkflowStages();">
+
+                        <label for="listgermlineworkflows"> Select a germline workflow </label>
+                        <select name="listworkflows1" class="form-control" id="listgermlineworkflows"
+                                onchange="return showWorkflowStages();">
+                            <option selected disabled> Workflow 1...</option>
+                            {% for row in germlineworkflows %}
+                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="listgermlineworkflows"> Select a germline workflow </label>
+                        <select name="listworkflows2" class="form-control" id="listgermlineworkflows"
+                                onchange="return showWorkflowStages();">
+                            <option selected disabled> Workflow 1...</option>
+                            {% for row in germlineworkflows %}
+                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div id="listsomaticworkflows" style="visibility:hidden" onchange="return showWorkflowStages();">
+                        <label for="listworkflows1"> Select somatic workflows </label>
+                        <select name="listworkflows1" class="form-control" id="listsomaticworkflows"
+                                onchange="return showWorkflowStages();">
+                            <option selected disabled> Workflow 2...</option>
+                            {% for row in somaticworkflows %}
+                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="listsomaticworkflows2"> Select somatic workflows </label>
+                        <select name="listworkflows2" class="form-control" id="listsomaticworkflows"
+                                onchange="return showWorkflowStages();">
+                            <option selected disabled> Workflow 2...</option>
+                            {% for row in somaticworkflows %}
+                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Submit" class="btn btn-primary">Query CWL</input>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
     <p style="margin-top: 100px">
 
-    <ul style="circle;">
+    <ul>
         {% for row, row2 in temp2|zip(temp3) %}
 
             <h5> Package </h5>
@@ -27,8 +130,43 @@
 
 
     </p>
-
+    </div>
     </body>
+    <script>
+
+        function showWorkflowStages() {
+
+            var selectBox = document.getElementById("workflowTypes");
+
+            var userInput = selectBox.options[selectBox.selectedIndex].value;
+            if (userInput == "somatic") {
+                document.getElementById('somaticworkflow').style.visibility = 'visible'
+                document.getElementById('workflowStages').style.visibility = 'visible'
+                document.getElementById('listsomaticworkflows').style.visibility = 'visible'
+
+                document.getElementById('germlineworkflow').style.visibility = 'hidden'
+                document.getElementById('workflowStages').style.visibility = 'hidden'
+                document.getElementById('listgermlineworkflows').style.visibility = 'hidden'
+
+            }
+
+            if (userInput == "germline") {
+                document.getElementById('germlineworkflow').style.visibility = 'visible'
+                document.getElementById('workflowStages').style.visibility = 'visible'
+                document.getElementById('listgermlineworkflows').style.visibility = 'visible'
+
+                document.getElementById('somaticworkflow').style.visibility = 'hidden'
+                document.getElementById('workflowStages').style.visibility = 'hidden'
+                document.getElementById('listsomaticworkflows').style.visibility = 'hidden'
+            }
+
+            return false
+
+        }
+
+    </script>
 
 {% endblock %}
+
+
 </html>

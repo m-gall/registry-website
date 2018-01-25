@@ -12,17 +12,47 @@
 
         <div class="panel panel-default">
             <div class="panel-heading"><p>
-                <div class="panel-title"><h3>{{ row.Workflow.workflow_name }} </h3></div>
+
+                <div class="panel-title">
+
+                    {% for row in workflow_join %}
+
+                        <h3>{{ row.Workflow.workflow_name }} </h3>
+                    {% endfor %}
+
+                </div>
             </div>
             <div class="panel-body">
-                <p> <h5> Description </h5> {{ row.Workflow_Description.description }}
-                <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}
-                <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}
-                <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}
-                <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}
-                <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}
-                <p> <h5> CWL explorer</h5> <a href= {{ 'explorer.html/' + row.Workflow.workflow_accession + '.html' }}>
-                link </a>
+                {% for row in workflow_join %}
+                    <p> <h5> Description </h5> {{ row.Workflow_Description.description }}
+                    <p> <h5> Library preparation </h5>{{ row.Workflow.library_preparation }}
+                    <p> <h5> Library layout </h5>{{ row.Workflow.library_layout }}
+                    <p> <h5> Sequencing strategy </h5>{{ row.Workflow.sequencing_strategy }}
+                    <p> <h5> Reference genome </h5>{{ row.Workflow.reference_genome }}
+                    <p> <h5> Usage </h5>{{ row.Workflow.workflow_usage }}
+
+                {% endfor %}
+                <p></p><h5> Additional versions </h5> {{ message }}
+
+                <ul style="margin-left: -40px">
+                    {% if message == True %}
+
+
+                        {% for row in workflow_all %}
+                            <li style="margin-left: 20px">
+                                <a href={{ row.Workflow.workflow_accession|string + '/' + row.Workflow.workflow_version|string }}>
+                                    {{ row.Workflow.workflow_name }} {{ row.Workflow.workflow_version }} </a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+                {#
+                {% set range = 0 %}
+                {% for range in (occurrences,0) %}
+                    <li><a href={{ row.workflow_accession + '/' + loop.index|string }}                {% endfor %}>
+
+                    link </a>
+
+                </li>#}
             </div>
         </div>
         <div class="panel panel-default">
@@ -32,7 +62,7 @@
             <div class="panel-body" style="height: auto">
 
 
-                <table class="rtable rtable--flip" style="width: 900px">
+                <table class="rtable rtable--flip">
                     <thead>
 
                     <tr style="width: 150px">
@@ -50,21 +80,24 @@
                     </tr>
 
                     </thead>
-                    <tbody style="overflow: scroll">
+                    <tbody>
                     <tr style="width: 1000px">
 
-                        <td>{{ row.Workflow_Description.workflow_manager }}</td>
-                        <td>{{ row.Workflow_Description.sample_qc }}</td>
-                        <td> {{ row.Workflow_Description.fastq_qc }}</td>
-                        <td> {{ row.Workflow_Description.alignment }}</td>
-                        <td> {{ row.Workflow_Description.bam_qc }}</td>
-                        <td> {{ row.Workflow_Description.variant_calling }}</td>
-                        <td> {{ row.Workflow_Description.variant_annotation }}</td>
-                        <td> {{ row.Workflow_Description.variant_filtering }}</td>
-                        <td> {{ row.Workflow_Description.variant_qc }}</td>
-                        <td> {{ row.Workflow_Description.verification }}</td>
-                        <td> {{ row.Workflow_Description.reporting }}</td>
+                        {% for row in workflow_join %}
 
+                            <td>{{ row.Workflow_Description.workflow_manager }}</td>
+                            <td>{{ row.Workflow_Description.sample_qc }}</td>
+                            <td> {{ row.Workflow_Description.fastq_qc }}</td>
+                            <td> {{ row.Workflow_Description.alignment }}</td>
+                            <td> {{ row.Workflow_Description.bam_qc }}</td>
+                            <td> {{ row.Workflow_Description.variant_calling }}</td>
+                            <td> {{ row.Workflow_Description.variant_annotation }}</td>
+                            <td> {{ row.Workflow_Description.variant_filtering }}</td>
+                            <td> {{ row.Workflow_Description.variant_qc }}</td>
+                            <td> {{ row.Workflow_Description.verification }}</td>
+                            <td> {{ row.Workflow_Description.reporting }}</td>
+
+                        {% endfor %}
                     </tr>
                     </tbody>
                 </table>
@@ -73,23 +106,33 @@
         </div>
 
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><p>
-                <div class="panel-title"><h3> Additional information </h3></div>
-            </div>
-            <div class="panel-body" style="height: auto">
-                {{ include_md('markdown/' + row.Workflow.workflow_accession + '.md') }}
-            </div>
-        </div>
+        <div class="panel-group" id="steps">
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseOne" data-parent="#steps" aria-expanded="true"
+                           aria-controls="collapseOne"
+                           class="trigger collapse"></a> Additional information
+                    </h3>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel">
 
-        <div>
+                    <div class="panel-body">
+
+                        {% for row in workflow_join %}
+                            {{ include_md('markdown/' + row.Workflow.workflow_accession + '.md') }}
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading"><p>
                     <div class="panel-title"><h3> Key attribute summary </h3></div>
                 </div>
                 <div class="panel-body" style="height: auto">
-                    <table class="rtable rtable--flip" style="width: 900px">
+                    <table class="rtable rtable--flip">
                         <thead>
                         <tr>
                             {% for Pipeline_summary in header %}
@@ -100,24 +143,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            {% for Pipeline_summary in header %}
-                                {% for field in Pipeline_summary.__table__.columns.keys() %}
-                                    <td> {{ Pipeline_summary[field] }} </td>
-                                {% endfor %}
+                        {% for Pipeline_summary in header %}
+                            {% for field in Pipeline_summary.__table__.columns.keys() %}
+                                <td> {{ Pipeline_summary[field] }} </td>
                             {% endfor %}
-                            </td>
+                        {% endfor %}
+                        </td>
 
 
                         </tbody>
 
-
+                    </table>
                 </div>
             </div>
-
         </div>
-
-
+    </div>
     </body>
 
 {% endblock %}

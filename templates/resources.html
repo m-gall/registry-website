@@ -1,80 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{%  extends "base.html" %}
-
-{%  block body %}
-
-<body>
+{% extends "base.html" %}
 
 
-<div class="container" style="margin-top: 50px">
 
-<div class="row">
+{% block body %}
 
 
-        <ul class="nav nav-tabs">
+    <body>
 
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#1", role="tab"> Glossary </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#2", role="tab"> Definitions - concepts  </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#3", role="tab"> Useful references </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#4", role="tab"> Definitions - packages  </a>
-          </li>
 
-        </ul>
+    <div class="container" style="margin-top: 50px">
 
-</div>
-<div class="row">
+        <div class="row">
+            <h1> Glossary of terms </h1>
 
-    <div class="tab-content" style="margin-top: 50px">
+            <ul class="nav nav-tabs">
 
-            <div class="tab-pane" id=1 role="tabpanel">
-                {% for row in termrows%}
-                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#1" , role="tab"> Terms </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#2" , role="tab"> Concepts </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#3" , role="tab"> Software associated </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#4" , role="tab"> References </a>
+                </li>
 
-                {%  endfor %}
+            </ul>
+
+        </div>
+        <div class="row">
+
+            <div class="tab-content" style="margin-top: 50px">
+
+
+                <div class="tab-pane" id=1 role="tabpanel">
+
+                    {% for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ01"|list %}
+                        <h2>{{ char }}</h2>
+                        {% for row in termrows %}
+                            {% if char == row.term_name|upper|truncate(1, True, end='') %}
+                                <dt>{{ row.term_name }}</dt>
+                                <p style="text-indent: 20px"> {{ row.term_definition }}<p/>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="tab-pane" id=2 role="tabpanel">
+
+
+                    {% for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ01"|list %}
+                        <h2>{{ char }}</h2>
+                        {% for row in termconcept %}
+                            {% if char == row.term_name|upper|truncate(1, True, end='') %}
+                                <dt>{{ row.term_name }}</dt>
+                                <p style="text-indent: 20px"> {{ row.term_definition }}</p>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+
+                <div class="tab-pane" id=3 role="tabpanel">
+
+                    {% for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ01"|list %}
+                        <h2>{{ char }}</h2>
+                        {% for row in termsoftware %}
+                            {% if char == row.term_name|upper|truncate(1, True, end='') %}
+                                <dt>{{ row.term_name }}</dt>
+                                <p style="text-indent: 20px"> {{ row.term_definition }}</p>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+
+                <div class="tab-pane" id=4 role="tabpanel">
+
+                    {% for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ01"|list %}
+                        <h2>{{ char }}</h2>
+                        {% for row in term_references %}
+                            {% if char == row.term_definition|upper|truncate(1, True, end='') %}
+                                <dt>{{ row.term_name }}</dt>
+                                <p style="text-indent: 20px"> {{ row.term_definition }}</p>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
-            <div class="tab-pane" id=2 role="tabpanel">
-                {% for row in termconcept %}
-                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
 
-                {%  endfor %}
-            </div>
-            <div class="tab-pane" id=3 role="tabpanel">
-                {% for row in term_references %}
-                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
 
-                {%  endfor %}
-            </div>
-            <div class="tab-pane" id=4 role="tabpanel">
-                {% for row in termsoftware %}
-                    <h5> {{ row.term_name }} </h5><p style="margin-left: 20px"> {{  row.term_definition }}</p>
+        </div>
 
-                {%  endfor %}
-            </div>
+
     </div>
-
-</div>
-
-
-</div>
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+    </body>
 
-
-
-</body>
-
-{%  endblock %}
+{% endblock %}
 
 </html>

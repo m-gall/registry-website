@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+<script>
+
+    function showWorkflowStages() {
+
+        var selectBox = document.getElementById("workflowTypes");
+
+        var userInput = selectBox.options[selectBox.selectedIndex].value;
+            if (userInput == "somatic") {
+                document.getElementById('somaticworkflow').style.visibility = 'visible'
+            }
+
+            else if (userInput == "germline") {
+                document.getElementById('germlineworkflow').style.visibility = 'visible'
+            }
+
+            return false
+
+    }
+
+</script>
+
+
+<body>
+
+
+<div>
+
+    <select name="workflow" id="workflowTypes" onchange="return showWorkflowStages();">
+        <option selected disabled> Type</option>
+        <option value='somatic'>somatic</option>
+        <option value='germline'>germline</option>
+    </select>
+
+
+</div>
+
+<div id="somatic" style=visibility:hidden>
+    <label for="somaticworkflow"> Workflow stages</label>
+    <select name="workflows" id="somaticworkflow">
+        <option value="tumour"> Tumour</option>
+        <option value="normal"> Normal</option>
+        <option value="variant-calling"> Variant calling</option>
+
+    </select>
+</div>
+<div id="germline" style="visibility:hidden">
+    <label for="germlineworkflow"> Workflow stages</label>
+    <select name="workflows" id="germlineworkflow">
+        <option value="read_alignment"> Read alignment</option>
+        <option value="post-alignment-processing"> Post alignment processing</option>
+        <option value="variant-calling"> Variant calling</option>
+    </select>
+</div>
+
+
+
+
+
+</body>
+</html>
