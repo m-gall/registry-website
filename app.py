@@ -1,11 +1,12 @@
 from flask import Flask
 from sqlalchemy.sql import collate
 from sqlalchemy.sql.expression import and_
-from flask import request, render_template, url_for, redirect, Markup, jsonify
+from flask import request, render_template, url_for, redirect, Markup
 from markdown import markdown
 from model import *
 import json
-#from jq import jq
+
+# from jq import jq
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./registry-v1.db'
@@ -184,16 +185,13 @@ def query():
 
 @app.route('/query-return.html', methods=['GET'])
 def queryreturn():
-
-    workflow_name_1='Genome.One Germline WGS'
-    workflow_name_2= 'Genome.One Germline WGS'
+    workflow_name_1 = 'Genome.One Germline WGS'
+    workflow_name_2 = 'Genome.One Germline WGS'
     workflowrow1 = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_1).first()
     workflowrow2 = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_2).first()
 
     workflow1dict = json.loads(workflowrow1.workflow_sb_json)
     workflow2dict = json.loads(workflowrow2.workflow_sb_json)
-
-
 
     return render_template("query-return.html", workflow1dict=workflow1dict, workflow2dict=workflow2dict)
 
@@ -208,6 +206,11 @@ def pipeline_view(pipelinename):
     occurrences = db.session.query(Workflow, Workflow_Description).join(Workflow_Description).filter(
         Workflow.workflow_accession == pipelinename).count()
 
+    workflow_json = db.session.query(Workflow).filter(and_(
+        Workflow.workflow_accession == pipelinename,
+        Workflow.workflow_version == occurrences
+    )).first()
+
     if occurrences == 0:
         return redirect(url_for('search'))
 
@@ -220,7 +223,8 @@ def pipeline_view(pipelinename):
         message = False
 
         return render_template("registry-instance.html", workflow_join=workflow_join,
-                               header=pipeline_summary_header, occurrences=occurrences, message=message)
+                               header=pipeline_summary_header, occurrences=occurrences, message=message,
+                               workflow_json=workflow_json)
     elif occurrences > 1:
 
         workflow_join = db.session.query(Workflow, Workflow_Description, Pipeline_summary).join(Workflow_Description,
@@ -235,7 +239,7 @@ def pipeline_view(pipelinename):
 
         return render_template("registry-instance.html", workflow_join=workflow_join, workflow_all=workflow_all,
                                header=pipeline_summary_header,
-                               occurences=occurrences, message=message)
+                               occurences=occurrences, message=message, workflow_json=workflow_json)
     else:
         return redirect(url_for('search-instance', pipelinename=pipelinename))
 

@@ -16,7 +16,7 @@ import "whatwg-fetch"
  * @param version
  */
 function getCwlJson(name: string, version: string): Promise<WorkflowModel> {
-    return fetch(`/${name}/${version}`, {
+    return fetch(`/pipeline/${name}/${version}`, {
         headers: new Headers({
             'Accept': 'application/json'
         })
@@ -42,7 +42,7 @@ function drawElement(element: SVGSVGElement): void {
     getCwlJson(name, version)
         .then(model => {
             const workflow = new Workflow({
-                editingEnabled: false,
+                editingEnabled: true,
                 model,
                 svgRoot: element,
                 plugins: [
@@ -56,7 +56,13 @@ function drawElement(element: SVGSVGElement): void {
                     new ZoomPlugin(),
                 ]
             });
-			workflow.getPlugin(SVGArrangePlugin).arrange();
+            workflow.getPlugin(SVGArrangePlugin).arrange();
+            workflow.getPlugin(SVGEdgeHoverPlugin);
+            workflow.getPlugin(SVGNodeMovePlugin);
+            workflow.getPlugin(SelectionPlugin);
+            workflow.getPlugin(ZoomPlugin);
+            workflow.getPlugin(SVGPortDragPlugin);
+
         });
 }
 
