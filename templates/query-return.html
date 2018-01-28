@@ -7,23 +7,35 @@
 
     <body>
 
-
-    <h3> Workflow 1 </h3>
-
     <div class="container-fluid">
+
+        <h3>
+            1 </h3>
 
 
         <div>
+            {% for i in range(steps_workflow1) %}
 
-                <li>  {{ workflow1dict['steps'][1]['run']['steps'][0]['run']['hints'][0]['packages']}}  </li>
+
+                <li> package: {{ workflow1dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>
+
+            {% endfor %}
         </div>
 
 
+        <h3> Workflow 2 </h3>
+
+
+        <div>
+            {% for i in range(steps_workflow2) %}
+
+
+                <li> package: {{ workflow2dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>
+
+            {% endfor %}
+        </div>
+
     </div>
-
-
-    <h3> Workflow 2 </h3>
-
 
     </body>
 {% endblock %}

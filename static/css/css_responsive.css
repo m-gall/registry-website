@@ -41,8 +41,9 @@
 
 }*/
 
-// change these gradients from white to your background colour if it differs
-// gradient on the first cells to hide the left shadow
+/* change these gradients from white to your background colour if it differs
+ gradient on the first cells to hide the left shadow
+ */
 .rtable td:first-child,
 .rtable--flip tbody tr:first-child {
   background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
@@ -63,14 +64,12 @@
   font-size: 11px;
   text-align: left;
   background: #f2f0e6;
-    height: 40px;
 }
 
 .rtable th,
 .rtable td {
   padding: 12px 12px;
   border: 1px solid #d9d7ce;
-        height: 40px;
     font-size: 11px;
 
 
@@ -86,7 +85,6 @@
   display: flex;
   /*flex-shrink: 0;*/
   min-width: min-content;
-    height: 40px;
 }
 
 .rtable--flip tbody {

@@ -159,8 +159,8 @@ def query():
         #     data = json.load(json_file)
 
 
-
-        return redirect(queryreturn, workflow_name_1=workflow_name_1, workflow_name_2=workflow_name_2)
+        print(workflow_name_1, workflow_name_2)
+        return redirect(url_for('queryreturn', workflow_name_1=workflow_name_1, workflow_name_2=workflow_name_2))
     return render_template("query.html")
 
 
@@ -183,17 +183,33 @@ def query():
 # temp4 = jq('.').transform(a)
 
 
-@app.route('/query-return.html', methods=['GET'])
-def queryreturn():
-    workflow_name_1 = 'Genome.One Germline WGS'
-    workflow_name_2 = 'Genome.One Germline WGS'
+@app.route('/query-return.html/<workflow_name_1>/<workflow_name_2>', methods=['GET'])
+def queryreturn(workflow_name_1, workflow_name_2):
+
+    ## Enter a workflow name
+    ## Specify whether somatic, germline
+    ## Specify is subworkflows
+    ## If subworkflows, then select XX [steps]{i}{run}[class if Workflow][steps{i}[run][hints]{0}{packages}
+    ## Else, then select [steps][run][hints]{0}{packages}
     workflowrow1 = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_1).first()
     workflowrow2 = db.session.query(Workflow).filter(Workflow.workflow_name == workflow_name_2).first()
 
     workflow1dict = json.loads(workflowrow1.workflow_sb_json)
     workflow2dict = json.loads(workflowrow2.workflow_sb_json)
 
-    return render_template("query-return.html", workflow1dict=workflow1dict, workflow2dict=workflow2dict)
+    select = {'steps'}
+    level2 =workflow1dict['steps'][0]['run']
+    level1_w1 =workflow1dict['steps']
+    level1_w2 =workflow2dict['steps']
+
+    steps_workflow1 = (len(level1_w1))
+    steps_workflow2 = (len(level1_w2))
+
+    temp = { key:level2[key] for key in level2.keys() & select}
+  #  level2 = workflow1dict['steps'][0]['run']['hints'][0]
+
+
+    return render_template("query-return.html", workflow1dict=workflow1dict, workflow2dict=workflow2dict, steps_workflow1=steps_workflow1, steps_workflow2=steps_workflow2)
 
 
 @app.route("/pipeline/<pipelinename>")

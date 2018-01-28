@@ -8,10 +8,9 @@
     <script type="application/javascript" src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
 
     <body>
-  <style>
+    <style>
         #cwl {
-{#            width: 900px;#}
-            height: 500px;
+        {#            width: 900px;#} height: 500px;
             position: relative;
         }
     </style>
@@ -106,18 +105,64 @@
             </div>
         </div>
 
-
         <div class="panel panel-default">
-
             <div class="panel-heading">
                 <div class="panel-title"><h4> Workflow Visual </h4></div>
             </div>
             <div class="panel-body">
-                <svg class="cwl-workflow" id="cwl" data-workflow-name="{{ workflow_json.workflow_accession }}"
-                     data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                <div class="row">
+
+                    <div class="col-sm-2">
+
+                        <nav id="sidebar">
+
+                            <ul class="list-unstyled components">
+                                <li><h4> Stage packages: </h4></li>
+                                <li class="packageName"> Package name</li>
+                                <ul>
+                                    <li class="packageName"></li>
+                                </ul>
+                                <li class="version"> Version</li>
+                                <ul>
+                                    <li class="version"></li>
+                                </ul>
+                                <li class="doc"> Description</li>
+                                <ul>
+                                    <li></li>
+                                </ul>
+                                <li class="hints"><a href="#"> Scicrunch link</a></li>
+                                <li>
+
+                                </li>
+
+
+                                <li><h4> File details </h4></li>
+                                <ul>
+                                    <li></li>
+                                </ul>
+                                <li> Type</li>
+                                <ul>
+                                    <li></li>
+                                </ul>
+                                <li> Description</li>
+                                <ul>
+                                    <li></li>
+                                </ul>
+                                <li> EDAM Identifier</li>
+
+                            </ul>
+                        </nav>
+
+                    </div>
+                    <div class="col-sm-10">
+
+                        <svg class="cwl-workflow" id="cwl"
+                             data-workflow-name="{{ workflow_json.workflow_accession }}"
+                             data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                    </div>
+                </div>
             </div>
         </div>
-
 
         <div class="panel-group" id="accordion">
 
@@ -125,7 +170,7 @@
                 <div class="panel-heading">
                     <div class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#1">
-                            <h4> Additional information </h4>
+                            <h4> Subworkflows </h4>
                         </a>
                     </div>
                 </div>
@@ -133,43 +178,99 @@
 
                     <div class="panel-body">
 
-                        {% for row in workflow_join %}
-                            {{ include_md('markdown/' + row.Workflow.workflow_accession + '.md') }}
-                        {% endfor %}
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <h4>Subworkflow 1</h4>
+                                <svg class="cwl-workflow" id="cwl" style="max-height: 200px"
+                                     data-workflow-name="{{ workflow_json.workflow_accession }}"
+                                     data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h4> Subworkflow 2</h4>
+                                <svg class="cwl-workflow" id="cwl" style="max-height: 200px"
+                                     data-workflow-name="{{ workflow_json.workflow_accession }}"
+                                     data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <h4>Subworkflow 3</h4>
+                                <svg class="cwl-workflow" id="cwl" style="max-height: 200px"
+                                     data-workflow-name="{{ workflow_json.workflow_accession }}"
+                                     data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h4> Subworkflow 4</h4>
+                                <svg class="cwl-workflow" id="cwl" style="max-height: 200px"
+                                     data-workflow-name="{{ workflow_json.workflow_accession }}"
+                                     data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading"><p>
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#2">
-                            <h4> Feature Summary </h4></a></h4>
+
+
+            <div class="panel-group" id="accordion">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#2">
+                                <h4> Additional information </h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="2" class="panel-collapse collapse">
+
+                        <div class="panel-body">
+
+                            {% for row in workflow_join %}
+                                {{ include_md('markdown/' + row.Workflow.workflow_accession + '.md') }}
+                            {% endfor %}
+                        </div>
+                    </div>
+
                 </div>
-                <div id="2" class="panel-collapse collapse">
-                    <div class="panel-body" style="height: auto">
-                        <table class="rtable rtable--flip">
-                            <thead>
-                            <tr>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#3">
+                                <h4> Feature Summary </h4></a></h4>
+                    </div>
+                    <div id="3" class="panel-collapse collapse">
+                        <div class="panel-body" style="height: auto">
+                            <table class="rtable rtable--flip">
+                                <thead>
+                                <tr style="min-width: 300px">
+                                    {% for Pipeline_summary in header %}
+                                        {% for field in Pipeline_summary.__table__.columns.keys() %}
+                                            <th> {{ field|replace("_"," ")|title  }} </th>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
                                 {% for Pipeline_summary in header %}
                                     {% for field in Pipeline_summary.__table__.columns.keys() %}
-                                        <th> {{ field }} </th>
+                                        <td> {{ Pipeline_summary[field] }} </td>
                                     {% endfor %}
                                 {% endfor %}
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for Pipeline_summary in header %}
-                                {% for field in Pipeline_summary.__table__.columns.keys() %}
-                                    <td> {{ Pipeline_summary[field] }} </td>
-                                {% endfor %}
-                            {% endfor %}
-                            </td>
+                                </td>
 
 
-                            </tbody>
+                                </tbody>
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

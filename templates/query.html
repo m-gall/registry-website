@@ -61,39 +61,39 @@
                     <div id="listgermlineworkflows" style="visibility:hidden" onchange="return showWorkflowStages();">
 
                         <label for="listgermlineworkflows"> Select a germline workflow </label>
-                        <select name="listworkflows1" class="form-control" id="listgermlineworkflows"
+                        <select name="listworkflows1" class="form-control" id="listworkflows1"
                                 onchange="return showWorkflowStages();">
                             <option selected disabled> Workflow 1...</option>
                             {% for row in germlineworkflows %}
-                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                                <option value= "{{ row.workflow_name }}">{{ row.workflow_name }}</option>
                             {% endfor %}
                         </select>
 
                         <label for="listgermlineworkflows"> Select a germline workflow </label>
-                        <select name="listworkflows2" class="form-control" id="listgermlineworkflows"
+                        <select name="listworkflows2" class="form-control" id="listworkflows2"
                                 onchange="return showWorkflowStages();">
                             <option selected disabled> Workflow 1...</option>
                             {% for row in germlineworkflows %}
-                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                                <option value= "{{ row.workflow_name }}">{{ row.workflow_name }}</option>
                             {% endfor %}
                         </select>
 
                     </div>
                     <div id="listsomaticworkflows" style="visibility:hidden" onchange="return showWorkflowStages();">
-                        <label for="listworkflows1"> Select somatic workflows </label>
-                        <select name="listworkflows1" class="form-control" id="listsomaticworkflows"
+                        <label for="listworkflows1"> Select workflows </label>
+                        <select name="listworkflows1" class="form-control" id="listworkflows1"
                                 onchange="return showWorkflowStages();">
-                            <option selected disabled> Workflow 2...</option>
+                            <option selected disabled> Workflow 1...</option>
                             {% for row in somaticworkflows %}
-                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                                <option value= "{{ row.workflow_name }}">{{ row.workflow_name }}</option>
                             {% endfor %}
                         </select>
-                        <label for="listsomaticworkflows2"> Select somatic workflows </label>
-                        <select name="listworkflows2" class="form-control" id="listsomaticworkflows"
+                        <label for="listsomaticworkflows2"> Select workflows </label>
+                        <select name="listworkflows2" class="form-control" id="listworkflows2"
                                 onchange="return showWorkflowStages();">
                             <option selected disabled> Workflow 2...</option>
                             {% for row in somaticworkflows %}
-                                <option value= {{ row.id }}>{{ row.workflow_name }}</option>
+                                <option value= "{{ row.workflow_name }}">{{ row.workflow_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
