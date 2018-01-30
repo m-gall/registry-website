@@ -1,31 +1,28 @@
-const webpack = require("webpack");
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const DashboardPlugin = require("webpack-dashboard/plugin");
-const nodeEnv = process.env.NODE_ENV || "development";
-const isProd = nodeEnv === "production";
 
-var config = {
-    devtool: isProd ? "hidden-source-map" : "source-map",
+module.exports = {
+    devtool: "source-map",
 
     // Read files from js/src
-    context: path.resolve("./src"),
     entry: {
-        rabix: "./rabix.ts"
+        rabix: "./rabix.js"
     },
 
     // Output everything into the static folder
     output: {
         path: path.resolve("../static/js"),
-        filename: "[name].bundle.js",
-        sourceMapFilename: "[name].bundle.map",
-        devtoolModuleFilenameTemplate: function (info) {
-            return "file:///" + info.absoluteResourcePath;
-        }
+        filename: "[name].bundle.js"
     },
 
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                }
+            },
             {
                 enforce: "pre",
                 test: /\.ts?$/,
@@ -47,29 +44,6 @@ var config = {
     },
     resolve: {
         extensions: [".ts", ".js"]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            "process.env": {
-                // eslint-disable-line quote-props
-                NODE_ENV: JSON.stringify(nodeEnv)
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {warnings: false},
-            output: {comments: false},
-            sourceMap: true
-        }),
-        new DashboardPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                tslint: {
-                    emitErrors: true,
-                    failOnHint: true
-                }
-            }
-        })
-    ]
+    }
 };
 
-module.exports = config;

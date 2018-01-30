@@ -1,4 +1,5 @@
 *.pyc
+venv
 
 # Ignore node libraries
 js/node_modules

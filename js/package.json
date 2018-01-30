@@ -9,10 +9,17 @@
   "devDependencies": {
     "@types/jasmine": "^2.5.53",
     "@types/lodash": "^4.14.70",
+    "@types/promise": "^7.1.30",
+    "@types/whatwg-fetch": "0.0.33",
     "awesome-typescript-loader": "^3.2.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "cwl-svg": "2.0.0",
+    "cwl-svg-expand": "^1.0.0",
+    "cwlts": "^1.15.18",
     "ejs-loader": "^0.3.0",
     "eslint": "^4.2.0",
     "expose-loader": "^0.7.3",
@@ -32,6 +39,7 @@
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.4",
     "node-sass": "^4.7.2",
+    "promise": "^8.0.1",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
@@ -41,14 +49,7 @@
     "typescript": "^2.4.1",
     "webpack": "^3.10.0",
     "webpack-dashboard": "^0.4.0",
-    "webpack-dev-server": "2.5.1"
-  },
-  "dependencies": {
-    "@types/promise": "^7.1.30",
-    "@types/whatwg-fetch": "0.0.33",
-    "cwl-svg": "^2.0.0",
-    "cwlts": "^1.15.18",
-    "promise": "^8.0.1",
+    "webpack-dev-server": "2.5.1",
     "whatwg-fetch": "^2.0.3"
   }
 }
