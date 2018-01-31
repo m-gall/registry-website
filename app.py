@@ -110,7 +110,6 @@ def resources():
         Term.term_type == 'concept').all()
     termwebsite= Term.query.order_by(collate(Term.term_name, 'NOCASE')).filter(
         Term.term_type == 'website').all()
-    print(termwebsite)
 
     return render_template("resources.html", termrows=termrows, termconcept=termconcept,
                            term_references=term_references, termsoftware=termsoftware, termwebsite=termwebsite)
