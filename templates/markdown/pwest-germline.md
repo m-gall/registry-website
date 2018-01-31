@@ -96,19 +96,5 @@ Most the pipeline in executed on the cloud via Illumina _Basespace_. Most featur
  * Refseq genes reported for panels
  * HGSV nomenclature used for reporting
 
-#### Packages - summary 
-
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control || Built into BaseSpace, custom scripts for coverage (uses bedtools version XX) ||  ||
-||Duplicate marking || picard markduplicates ||
-||Mapping || bwa-mem|| hg19.fasta ||
-||Local realignment || GATK || hg19.fasta, Mills & 1000G gold standard indels, Phase 4 1000G indels  ||
-||Base recalibration || GATK || dbSNP_138 ||
-||Variant calling || NextGENe ||hg19.fasta, dbsnp_138 ||
-||Genotype refinement || Not applicable ||  ||
-||Variant normalisation || Decision of Cartagenia  || hg19.fasta ||
-||Variant filtering || Cartagenia version XX ||  ||
-||Variant annotation || Cartagenia version XX ||   ||
-||File manipulation ||  ||
 
 Page Authors: M. Gall (AGHA), Michael Black (PathWest), Mark Davis (PathWest)

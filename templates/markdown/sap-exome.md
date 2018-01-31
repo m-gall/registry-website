@@ -130,34 +130,6 @@ Each of these reports is examined prior to reporting. These reports are used to 
 Each batch is validated by comparing values to 'gold standard' reference values. This range provides a benchmark for quality. Reference values have been derived through repeated testing of a set of high-quality patient samples to arrive at an expected and acceptable range of values for sets of genes/exons.
 
 NB: although the entire medical exome may be analysed, typically, only well-characterised, subsets of diagnostic genes would be extracted from this dataset, with matching reference values available.
-||'''Report description''' ||'''Tool generating and metric''' ||
-||% of bases with >20x coverage across GOI ||samtools mpileup + script ||
-||% of bases with >10x coverage across GOI ||samtools mpileup + script ||
-||Mean coverage across GOI ||samtools mpileup + script ||
-||Mean coverage across kit || ||
-||Uniformity of coverage ||in-house coverage ||
-||Read enrichment (%) ||Picard HS_metrics (PCT_SELECTED_BASES) ||
-||Duplicated alignable reads ||Picard HS_metrics output (PCT_PF_UQ_READS) ||
-||Median insert ||Picard insert_metrics output (MEDIAN INSERT SIZE) ||
-||Ts/Tv || ||
-||Number SNPs ||in-house scripts ||
-||%SNPs in dbSNP ||in-house scripts ||
-||Number indels ||in-house scripts ||
-||%indels in dbSNP ||in-house scripts ||
-||Sex match ||in-house scripts ||
-||GOI with less than 100% of bases having at least 20x coverage || ||
 
-#### Packages - summary
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control ||FastQC 0.11.5, Picard CollectInsertSizeMetrics, Picard [[MarkDuplicates|CalculateHsMetrics]], samblaster 0.1.20, samtools mpileup (v1.0) ||human_g1k_v37_decoy.fasta ||
-||Mapping ||bwa-kit v0.7.12-r1039 ||human_g1k_v37_decoy.fasta ||
-||Local realignment ||GATK suite v2014.4-2 RealignerTargetCreator + IndelRealigner ||human_g1k_v37_decoy.fasta ||
-||Base recalibration ||GATK suite v2014.4-2 Base recalibrator + PrintReads + AnalyzeCovariates ||human_g1k_v37_decoy.fasta, dbSNP_138_b37 ||
-||Variant calling ||GATK suite v2014.4-2 Haplotype Caller ||human_g1k_v37_decoy.fasta ||
-||Variant recalibration ||Not performed || ||
-||Variant normalisation ||Not performed || ||
-||Variant filtering ||GATK suite v2014.4-2 GenotypeGVCF + SelectVariants + VariantFiltration ||human_g1k_v37_decoy.fasta ||
-||Variant annotation ||VariantStudio, gatk VariantAnnotator ||dbSNP_138.hg19.vcf ||
-||File manipulation ||samtools v1.0 || ||
 
 Page contributors: M. Gall (AGHA), Maeley Gauthier (SAP), Julien Soubrier (SAP)

@@ -123,17 +123,6 @@ Two variant callers are implemented: qSNP (for SNPs) and GATK HaplotypeCaller (f
  * _qsignature_ - in-silico genotyper effectively creating an artificial 'array'. Genotype at omni 1M (1.1 million positions) and dbsnp (inside coding regions) positions is called and snp concordance estimates are called between tumour vs normal samples to verify samples originate from the same patient
 
 
-#### Packages - summary
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control ||qprofiler + qvisualise, Picard markduplicates, samtools version x (part of bwa-kit) || GrCH37.75_ICGC_standardv2 ||
-||Mapping ||bwa-kit v0.7.12-r1039 ||GRCH37.fasta ||
-||Local realignment || Not performed (except where part of HaplotypeCaller) ||GRCH37.fasta ||
-||Base recalibration || Not performed ||||
-||Variant calling ||GATK Haplotype Caller version , qSNP version 1.0, q3indel version 1.0 || GrCH37.75_ICGC_standardv2, dbSNP_141 ||
-||Variant normalisation || Not performed || ||
-||Variant filtering || GATK suite v2014.4-2 SelectVariants + VariantFiltration || GrCH37.75_ICGC_standardv2 ||
-||Variant annotation ||snpEFF version as part of qannotate || dbSNP_141 ||
-||File manipulation ||samtools v1.0, qbammerge version X, Picard MergeSamFile version X || ||
 
 #### Reporting
 

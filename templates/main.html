@@ -8,68 +8,68 @@
     <body>
 
     <div class="container" style="margin-top: 50px">
-        <div class="row">
-            <div class="col-sm-9 col-md-3 sidebar" style="margin-bottom: 100px; margin-top: 20px">
-                <nav class="nav-sidebar">
-                    <ul class="nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="/registry-overview.html">Pipeline Registry</a></li>
-                        <li><a href="/flagship.html">AGHA Flagships</a></li>
-                        <li><a href="/resources.html">Resources</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/query.html"> Query Workflow TODO </a></li>
+        <div class="col-md-3 sidebar" style="margin-bottom: 120px; margin-top: 20px">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/registry-overview.html">Pipeline Registry</a></li>
+                    <li><a href="/flagship.html">AGHA Flagships</a></li>
+                    <li><a href="/resources.html">Resources</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/query.html"> Query Workflow TODO </a></li>
 
-                    </ul>
-                </nav>
-            </div>
-            <div class="'col s9">
-                <h3 style=margin-left:50px;> Australian Genomics Registry of Pipelines </h3>
-                <p style=margin-left:50px;color:black> This is the home of the Australian Genomics Bioinformatics
-                    pipeline registry. </p>
-                <div class="section">
-                    <h5 style="font-size: 20px"> Purpose and scope </h5>
-                    <p> The Australian Genomics registry provides a standardised description of the bioinformatic
-                        pipelines.This includes the pipelines in operation across key
-                        Australian Healthcare organisations including those used by Australian Genomics Flagships.
-                        The pipelines have been described using a community-developed and engineered standard, the
-                        Common Workflow language (CWL).
-                        Using CWL explorer, the documents can be rendered into a dynamic graphical visualisation,
-                        enabling detailed exploration of the structure and composition of a pipeline.</p>
-                </div>
-
-                <div class="section">
-                    <h5 style="font-size: 20px"> Links </h5>
-                    <ul class="list-unstyled components">
-                        <li><a href="http://www.commonwl.org/" ; style=color:black;>The Common Workflow Language
-                            (http://www.commonwl.org) </a></li>
-                        <li><a href="http://edamontology.org/page" ; style=color:black;>EDAM Ontology
-                            (http://edamontology.org/page) </a></li>
-                        <li><a href="https://bio.tools/" ; style=color:black;>Elixir tool registry
-                            (https://bio.tools) </a></li>
-                        <li><a href="https://scicrunch.org/" ; style=color:black;>SciCrunch data portal
-                            (https://scicrunch.org) </a></li>
-                        <li><a href="http://rabix.io/" ; style=color:black;>Rabix tools for creating and running CWL
-                            workflows (http://rabix.io/) </a></li>
-                        <li><a href="https://view.commonwl.org/" ; style=color:black;>CWL Viewer
-                            (https://view.commonwl.org/) </a></li>
-                    </ul>
-                </div>
-            </div>
+                </ul>
+            </nav>
         </div>
-        <div class="row">
-            <div class="col s9" style="margin-left: 20px">
-                <h3 style="margin-left: 0px; margin-bottom: 20px"> Pipelines registered </h3>
-                <div id="googleMap" style="width:100%;height:400px"></div>
-                <h3 style="margin-bottom:50px;margin-top: 20px"> Contributing Centres </h3>
+        <div class="'col md-9">
+            <h3 style=margin-left:50px;> Australian Genomics Registry of Pipelines </h3>
+            <p style=margin-left:50px;color:black> This is the home of the Australian Genomics Bioinformatics
+                pipeline registry. </p>
+            <h5 style="font-size: 20px"> Purpose and scope </h5>
+            <p> The Australian Genomics registry provides a standardised description of the bioinformatic
+                pipelines.This includes the pipelines in operation across key
+                Australian Healthcare organisations including those used by Australian Genomics Flagships.
+                The pipelines have been described using a community-developed and engineered standard, the
+                Common Workflow language (CWL).
+                To facilitate exploration of the pipelines, the documents are rendered into a dynamic
+                visualisation,
+                providing an overview of the structure and composition of each pipeline.</p>
 
-                {% for row in institute_query_all %}
-                    <img style='max-width:200px; max-height: 150px; margin-top: -20px;'
-                         src="{{ url_for('static', filename='images/logos/' + row.institute_logo) }}">
-                {% endfor %}
+            <h5 style="font-size: 20px"> Links </h5>
+            <ul class="list-unstyled components">
+                <li><a href="http://www.commonwl.org/" ; style=color:black;>The Common Workflow Language
+                    (http://www.commonwl.org) </a></li>
+                <li><a href="http://edamontology.org/page" ; style=color:black;>EDAM Ontology
+                    (http://edamontology.org/page) </a></li>
+                <li><a href="https://bio.tools/" ; style=color:black;>Elixir tool registry
+                    (https://bio.tools) </a></li>
+                <li><a href="https://scicrunch.org/" ; style=color:black;>SciCrunch data portal
+                    (https://scicrunch.org) </a></li>
+                <li><a href="http://rabix.io/" ; style=color:black;> Rabix tools and libraries for creating and
+                    visualising CWL
+                    workflows (http://rabix.io/) </a></li>
+                <li><a href="https://view.commonwl.org/" ; style=color:black;>CWL Viewer
+                    (https://view.commonwl.org/) </a></li>
+            </ul>
 
-                <h3 style="margin-bottom:50px;"></h3>
-            </div>
+        <div class="'col s9">
+
+
         </div>
+    </div>
+
+    <div class="col s9" style="margin-left: 20px">
+        <h3 style="margin-left: 0px; margin-bottom: 20px"> Pipelines registered </h3>
+        <div id="googleMap" style="width:100%;height:400px"></div>
+        <h3 style="margin-bottom:50px;margin-top: 20px"> Contributing Centres </h3>
+
+        {% for row in institute_query_all %}
+            <img style='max-width:200px; max-height: 150px; margin-top: -20px;'
+                 src="{{ url_for('static', filename='images/logos/' + row.institute_logo) }}">
+        {% endfor %}
+
+        <h3 style="margin-bottom:50px;"></h3>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

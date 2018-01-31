@@ -120,24 +120,4 @@
  * Variants reported in HGSV format on Refseq transcripts
  * HGSV nomenclature for reporting
 
-#### Packages - summary
-
-'''Stage''' |'''Tools & version''' |'''Data inputs'''
-
-Quality control | bam quality metrics generated using in-house scripts
-
-
-||Duplicate marking || Novosort |
-
-
-||Mapping || bwa-mem || hg19.fasta ||
-||Local realignment || GATK Indelrealigner || hg19.fasta, Mills & 1000G gold standard indels ||
-||Base recalibration || GATK Base recalibrator || germline control cohort, standard GATK resources ||
-||Variant calling || Unified Genotyper (SNPs), HaplotypeCaller (indels) ||hg19.fasta ||
-||Genotype refinement || Not applicable ||  ||
-||Variant normalisation || Part of in-house annotation script  || hg19.fasta ||
-||Variant filtering || GATK VariantRecalibrator ||  ||
-||Variant annotation || VEP, VEP cache 88, Annovar ||   ||
-||File manipulation || picard MergeSamFiles ||
-
 Page Authors: M. Gall (AGHA), Jonathan Ellis (QUT), Paul Leo (QUT)

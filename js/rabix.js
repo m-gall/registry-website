@@ -53,10 +53,16 @@ function drawElement(element) {
                     }),
                     new SVGPortDragPlugin(),
                     new SelectionPlugin(),
-                    // new ZoomPlugin(),
+                    new ZoomPlugin(),
                     new WorkflowExpansionPlugin(json)
                 ]
             });
+            workflow.getPlugin(SVGArrangePlugin).arrange();
+            workflow.getPlugin(SVGEdgeHoverPlugin);
+            workflow.getPlugin(SVGNodeMovePlugin);
+            workflow.getPlugin(SelectionPlugin);
+            workflow.getPlugin(ZoomPlugin);
+            workflow.getPlugin(SVGPortDragPlugin);
         });
 }
 

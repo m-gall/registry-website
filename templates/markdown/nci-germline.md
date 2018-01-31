@@ -89,20 +89,4 @@ Variants may be filtered for the following:
  * readReport.summary.txt - generated from the merged bam
  * final list of variants with annotations output as a table
 
-#### Packages - summary 
- <<BR>>
-
-|| '''Stage''' || '''Tools & version''' || '''Data inputs''' ||
-||Quality control || exondepth.pl ||  ||
-|| Mapping || bwa-mem, picard MarkDuplicates version 2.4.1 || hs37d5.fa  ||
-|| Local realignment || GATK indel realignment || 1000G_phase1.indels.b37.vcf, hs37d5.fa  ||
-|| Base recalibration || GATK BQSR || dbsnp_138.b37.vcf, Mills_and_1000G_gold_standard.indels.b37.vcf, hs37d5.fa ||
-|| Variant calling || GATK HaplotypeCaller, genotypeGVCF, delly version 0.7.3, lumpy version 0.2.13|| hs37d5.fa ||
-|| Variant QC || GATK VSQR || hapmap_3.3.b37.vcf, 1000G_omni2.5.b37.vcf, 1000G_phase1.snps.high_confidence.b37.vcf, dbsnp_138.b37.vcf, hs37d5.fa||
-|| Genotype refinement || Not performed ||  ||
-|| Variant normalisation || Not performed ||  ||
-|| Variant filtering || in-house scripts ||  ||
-|| Variant annotation || vep version 88 ||  ||
-|| File manipulation || samtools mpileup, picard MergeSamFiles ||
-
 Page contributors: M. Gall (AGHA), Aaron Chuah (NCI), Dan Andrews (NCI)

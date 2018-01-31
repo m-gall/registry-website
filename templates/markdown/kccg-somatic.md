@@ -73,19 +73,3 @@
  * Clinically relevant variants managed in Patient Archive
  * Report template drafted in Patient Archive, then manually edited.
 <<BR>>
-
-#### Packages - summary
-
-e.g.
-|| '''Stage''' || '''Tools & version''' || '''Data inputs''' ||
-||Quality control || Illumina HAS, FastQC v || hg19.fasta ||
-|| Duplicate marking || Novosort v1.03.01 ||
-|| Mapping || bwa-mem v0.7.10-r789 || hg19.fasta ||
-|| Local realignment || GATK RealignerTargetCreator, GATK IndelRealigner || hg19.fasta, '''Mills & 1000g gold standard indels''' ||
-|| Base recalibration || GATK Base recalibrator, GATK PrintReads || '''dbSNP_138.hg19.vcf''' ||
-|| Variant calling || GATK Haplotype caller v3.3, VarPipeSV (CNVnator and lumpy) || hg19.fasta, '''dbsnp_138.hg19.vcf''' ||
-|| Genotype refinement ||  || hg19.fasta, 1000g phase3v4 indels.vcf ||
-|| Variant normalisation || '''bcftools v''' || hg19.fasta ||
-|| Variant filtering || GATK VSQR || truthsets ||
-|| Variant annotation || VEP v74 || '''dbNSFP.gz''' ||
-|| File manipulation || '''Picard MergeSamFiles v, samtools v''' ||

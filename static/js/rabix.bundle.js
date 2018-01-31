@@ -12873,10 +12873,14 @@ function drawElement(element) {
             svgRoot: element,
             plugins: [new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGArrangePlugin"](), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGEdgeHoverPlugin"](), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGNodeMovePlugin"]({
                 movementSpeed: 10
-            }), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGPortDragPlugin"](), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SelectionPlugin"](),
-            // new ZoomPlugin(),
-            new __WEBPACK_IMPORTED_MODULE_5_cwl_svg_expand___default.a(json)]
+            }), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGPortDragPlugin"](), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SelectionPlugin"](), new __WEBPACK_IMPORTED_MODULE_4_cwl_svg__["ZoomPlugin"](), new __WEBPACK_IMPORTED_MODULE_5_cwl_svg_expand___default.a(json)]
         });
+        workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGArrangePlugin"]).arrange();
+        workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGEdgeHoverPlugin"]);
+        workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGNodeMovePlugin"]);
+        workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SelectionPlugin"]);
+        workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["ZoomPlugin"]);
+        workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGPortDragPlugin"]);
     });
 }
 

@@ -63,19 +63,4 @@
  * ''Prior to reporting, variants are manually checked by curators''
  * ''Example of quality report generated ''
 
-#### Packages - summary
-
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control ||Illumina HAS, FastQC v ||hg19.fasta ||
-||Duplicate marking ||Novosort v1.03.01 ||
-||Mapping ||bwa-mem v0.7.10-r789 ||hg19.fasta ||
-||Local realignment ||GATK RealignerTargetCreator, GATK IndelRealigner ||hg19.fasta, Mills & 1000g gold standard indels ||
-||Base recalibration ||GATK Base recalibrator, GATK PrintReads ||dbSNP_138, Mills & 1000G gold standard indels ||
-||Variant calling ||GATK Haplotype caller v3.3, VarPipeSV (CNVnator and lumpy) ||hg19.fasta, dbsnp_138 ||
-||Genotype refinement || ||hg19.fasta, 1000g phase1 indels, Mills & 1000G gold standard ||
-||Variant normalisation ||Not part of pipeline. ||hg19.fasta ||
-||Variant filtering ||GATK VSQR || SNPs: hapmap_3.3, 1000G_omni2.5, 1000G_phase1 SNPs, dbSNP_138 ||
-||Variant annotation ||VEP v74 ||vepv79, dbNSFP, LOFTEE in single command  ||
-||File manipulation ||'''Picard MergeSamFiles v, samtools v''' ||
-
 Page contributors: M. Gall (AGHA), Mark Cowley (TKCC)

@@ -1,7 +1,7 @@
 import json
 import sqlite3
 
-with open('cpipe-2.3-main.json') as json_file:
+with open('bcbio-subworkflow.json') as json_file:
     data = json.load(json_file)
 
 temp = json.dumps(data, indent=4)

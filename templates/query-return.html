@@ -9,15 +9,30 @@
 
     <div class="container-fluid">
 
-        <h3>
-            1 </h3>
-
 
         <div>
+            <h5> Workflow 1</h5>
             {% for i in range(steps_workflow1) %}
 
+                {% if set_flag == True %}
+                    {% if 'Workflow' in workflow1dict['steps'][i]['run'] %}
+\
+                        <p>
+                            package: {{ workflow1dict['steps'][i]['run']['steps'] }}  </p>
 
-                <li> package: {{ workflow1dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>
+
+                        {#                    {% elif %}#}
+                        {#                        <li> package: {{ workflow1dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>#}
+
+                    {% else %}
+{#                        #=<p> {{ workflow1dict['steps'][i]['run'] }}</p>#}
+
+                    {% endif %}
+                {% else %}
+                    {#                    <li> package: {{ workflow1dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>#}
+
+
+                {% endif %}
 
             {% endfor %}
         </div>
@@ -30,7 +45,7 @@
             {% for i in range(steps_workflow2) %}
 
 
-                <li> package: {{ workflow2dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>
+                {#                <li> package: {{ workflow2dict['steps'][i]['run']['hints'][0]['packages'] }}  </li>#}
 
             {% endfor %}
         </div>

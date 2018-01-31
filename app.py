@@ -185,7 +185,6 @@ def query():
 
 @app.route('/query-return.html/<workflow_name_1>/<workflow_name_2>', methods=['GET'])
 def queryreturn(workflow_name_1, workflow_name_2):
-
     ## Enter a workflow name
     ## Specify whether somatic, germline
     ## Specify is subworkflows
@@ -197,19 +196,34 @@ def queryreturn(workflow_name_1, workflow_name_2):
     workflow1dict = json.loads(workflowrow1.workflow_sb_json)
     workflow2dict = json.loads(workflowrow2.workflow_sb_json)
 
+    ## check if has subworkflows
+
+
+    check = workflow1dict['steps'][0]['run']
+
     select = {'steps'}
-    level2 =workflow1dict['steps'][0]['run']
-    level1_w1 =workflow1dict['steps']
-    level1_w2 =workflow2dict['steps']
+    level2 = workflow1dict['steps'][0]['run']
+    level1_w1 = workflow1dict['steps']
+    level1_w2 = workflow2dict['steps']
 
     steps_workflow1 = (len(level1_w1))
     steps_workflow2 = (len(level1_w2))
 
-    temp = { key:level2[key] for key in level2.keys() & select}
-  #  level2 = workflow1dict['steps'][0]['run']['hints'][0]
+    for i in range(1, steps_workflow1):
+        check = workflow1dict['steps'][i]['run']['class']
+        if check == 'Workflow':
+            set_flag = True
+            break
 
 
-    return render_template("query-return.html", workflow1dict=workflow1dict, workflow2dict=workflow2dict, steps_workflow1=steps_workflow1, steps_workflow2=steps_workflow2)
+    print(set_flag)
+
+    # temp = {key: level2[key] for key in level2.keys() & select}
+    #  level2 = workflow1dict['steps'][0]['run']['hints'][0]
+
+
+    return render_template("query-return.html", workflow1dict=workflow1dict, workflow2dict=workflow2dict,
+                           steps_workflow1=steps_workflow1, steps_workflow2=steps_workflow2, set_flag=set_flag)
 
 
 @app.route("/pipeline/<pipelinename>")
@@ -290,6 +304,7 @@ def pipeline_visualize(pipelinename, version):
         Workflow.workflow_accession == pipelinename,
         Workflow.workflow_version == version
     )).first()
+
     return render_template('rabix-view.html', workflow_instance=workflow)
 
 

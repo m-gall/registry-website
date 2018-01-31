@@ -5,19 +5,19 @@
 {% extends "base.html" %}
 {% block body %}
     <script type="application/javascript" src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
-     <style>
+    <style>
         #cwl {
-            width: 100%;
-            height: 100%;
-            position: absolute;
+            height: 600px;
+            width: 1200px;
+            position: relative;
         }
     </style>
     <div class="container container-fluid">
-        <h1> CWL visualisation </h1>
-        <p> Visualisation using rabix open-source library </p>
-        <h3> Workflow: {{ workflow_instance.workflow_name }}</h3>
+        <h3> {{ workflow_instance.workflow_name }}</h3>
+            <svg class="cwl-workflow" id="cwl" data-workflow-name="{{ workflow_instance.workflow_accession }}"
+                 data-workflow-version="{{ workflow_instance.workflow_version }}"></svg>
+            <p> Visualisation generated using rabix open-source library </p>
 
-        <svg class="cwl-workflow" id="cwl" data-workflow-name="{{ workflow_instance.workflow_accession}}" data-workflow-version="{{ workflow_instance.workflow_version }}"></svg>
 
     </div>
 {% endblock %}

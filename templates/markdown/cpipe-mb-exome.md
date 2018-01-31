@@ -126,29 +126,5 @@ Gene-level metrics
 
 
 
-#### Packages - summary - with ELIXIR reference
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control || [[https://bio.tools/tool/FastQC/version/none|FastQC 0.11.5|target"_blank"]], [[https://bio.tools/tool/gatk2_depth_of_coverage-/version/none|GATK DepthOfCoverage|target"_blank"]], Picard CollectInsertSizeMetrics, Picard MarkDuplicates v2.6.0, [[https://bio.tools/tool/BEDTools/version/none|bedtools v2.25.0|target"_blank"]] || [[http://edamontology.org/data_2340|hg19.fasta|target"_blank"]] ||
-||Mapping ||[[https://bio.tools/tool/BWA/version/none|bwa-mem v0.7.13|target"_blank"]] ||hg19.fasta ||
-||Local realignment ||[[https://bio.tools/tool/gatk2_realigner_target_c/version/none|GATK RealignerTargetCreator|target"_blank"]], [[https://bio.tools/tool/gatk2_indel_realigner-IP/version/none|GATK IndelRealigner|target"_blank"]] ||hg19.fasta, Mills & 1000g gold standard indels ||
-||Base recalibration ||[[https://bio.tools/tool/gatk2_base_recalibrator-/version/none|GATK Base recalibrator|target"_blank"]], [[https://bio.tools/tool/gatk2_print_reads-IP/version/none|GATK PrintReads|target"_blank"]] ||dbSNP_138.hg19.vcf ||
-||Variant calling ||[[https://bio.tools/tool/gatk2_haplotype_caller-I/version/none|GATK HaplotypeCaller|target"_blank"]] ||hg19.fasta, dbsnp_138.hg19.vcf ||
-||Variant normalisation || [[https://bio.tools/tool/bcftools/version/1.2|bcftools v 1.3|target"_blank"]] ||hg19.fasta ||
-||Variant filtering || [[https://bio.tools/tool/bcftools/version/1.2|GATK SelectVariants|target"_blank"]] ||hg19.fasta, dbSNP_138.hg19.vcf ||
-||Variant annotation || [https://bio.tools/tool/VEP/version/none|VEP v85 + plugins|target"_blank"]] ||dbNSFP.gz ||
-||File manipulation ||Picard MergeSamFiles v2.6.0, [[https://bio.tools/tool/SAMtools/version/none|samtools v1.3|target"_blank"]] ||
-
-#### Major file types - summary - with EDAM reference
-||'''Stage''' ||'''Associated data file'''||
-||Quality control || [[http://edamontology.org/format_1930| fastq|target"_blank"]], [[http://edamontology.org/format_2331| html report|target"_blank"]]||
-||Mapping || [[http://edamontology.org/format_1930| fastq|target"_blank"]], [[http://edamontology.org/format_2572|bam|target"_blank"]], [[http://edamontology.org/format_3327| bam index|target"_blank"]] ||
-||Local realignment ||[[http://edamontology.org/format_2330| text file with intervals|target"_blank"]], [[http://edamontology.org/format_2572| realigned bam|target"_blank"]] ||
-||Base recalibration || [[http://edamontology.org/format_2572| realigned-recalibrated bam|target"_blank"]], [[http://edamontology.org/format_2330| text file containing covariates scores|target"_blank"]] ||
-||Variant calling || [[http://edamontology.org/format_3016| variant calling file|target"_blank"]] ||
-||Variant normalisation ||[[http://edamontology.org/format_3016| variant calling file|target"_blank"]]  ||
-||Variant filtering || [[http://edamontology.org/format_3016| variant calling file|target"_blank"]]  ||
-||Variant annotation ||[[http://edamontology.org/format_3016| variant calling file|target"_blank"]]   ||
-||File manipulation || [[http://edamontology.org/format_3327| bam index|target"_blank"]] ||
-
 
 Page contributors: M. Gall (AGHA), Gayle Philip (Melbourne Bioinformatics), Peter Georgeson (Melbourne Bioinformatics)

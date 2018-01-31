@@ -116,7 +116,7 @@
 
                         <nav id="sidebar">
 
-                            <ul class="list-unstyled components">
+                            <ul class="list-unstyled components" style="font-size: 12px">
                                 <li><h4> Stage packages: </h4></li>
                                 <li class="packageName"> Package name</li>
                                 <ul>
@@ -155,25 +155,29 @@
 
                     </div>
                     <div class="col-sm-10">
+                        {% if workflow_json != None %}
+                            <svg class="cwl-workflow" id="cwl"
+                                 data-workflow-name="{{ workflow_json.workflow_accession }}"
+                                 data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                        {% else %}
+                            <p> No visual available </p>
 
-                        <svg class="cwl-workflow" id="cwl"
-                             data-workflow-name="{{ workflow_json.workflow_accession }}"
-                             data-workflow-version="{{ workflow_json.workflow_version }}"></svg>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="panel-group" id="accordion">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#1">
-                            <h4> Subworkflows </h4>
-                        </a>
-                    </div>
-                </div>
+{##}
+{#            <div class="panel panel-default">#}
+{#                <div class="panel-heading">#}
+{#                    <div class="panel-title">#}
+{#                        <a data-toggle="collapse" data-parent="#accordion" href="#1">#}
+{#                            <h4> Subworkflows </h4>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
                 <div id="1" class="panel-collapse collapse">
 
                     <div class="panel-body">
@@ -253,7 +257,7 @@
                                 <tr style="min-width: 300px">
                                     {% for Pipeline_summary in header %}
                                         {% for field in Pipeline_summary.__table__.columns.keys() %}
-                                            <th> {{ field|replace("_"," ")|title  }} </th>
+                                            <th> {{ field|replace("_"," ")|title }} </th>
                                         {% endfor %}
                                     {% endfor %}
                                 </tr>
