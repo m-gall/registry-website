@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#4" , role="tab"> References </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#5" , role="tab"> Website definitions </a>
+                </li>
 
             </ul>
 
@@ -87,6 +90,20 @@
                         <h2>{{ char }}</h2>
                         {% for row in term_references %}
                             {% if char == row.term_definition|upper|truncate(1, True, end='') %}
+                                <dt>{{ row.term_name }}</dt>
+                                <p style="text-indent: 20px"> {{ row.term_definition }}</p>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+
+                <div class="tab-pane" id=5 role="tabpanel">
+
+                    {% for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ01"|list %}
+                        <h2>{{ char }}</h2>
+                        {% for row in termwebsite %}
+                            {% if char == row.term_name|upper|truncate(1, True, end='') %}
                                 <dt>{{ row.term_name }}</dt>
                                 <p style="text-indent: 20px"> {{ row.term_definition }}</p>
 
