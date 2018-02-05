@@ -1,0 +1,9 @@
+# Database model
+
+- SQLite3
+
+
+# Website framework
+
+- Flask
+- SQLAlchemy to parse the sql to the website

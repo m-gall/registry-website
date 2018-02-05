@@ -12,11 +12,19 @@
             position: relative;
         }
     </style>
+
+    <style>
+         svg.cwl-workflow .node.step .inner {
+    fill: #3395a7; }
+
+    </style>
+
+
     <div class="container container-fluid">
         <h3> {{ workflow_instance.workflow_name }}</h3>
-            <svg class="cwl-workflow" id="cwl" data-workflow-name="{{ workflow_instance.workflow_accession }}"
-                 data-workflow-version="{{ workflow_instance.workflow_version }}"></svg>
-            <p> Visualisation generated using rabix open-source library </p>
+        <svg class="cwl-workflow" id="cwl" data-workflow-name="{{ workflow_instance.workflow_accession }}"
+             data-workflow-version="{{ workflow_instance.workflow_version }}"></svg>
+        <p> Visualisation generated using rabix open-source library </p>
 
 
     </div>

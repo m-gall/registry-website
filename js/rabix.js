@@ -53,7 +53,7 @@ function drawElement(element) {
                     }),
                     new SVGPortDragPlugin(),
                     new SelectionPlugin(),
-             #       new ZoomPlugin(),
+                    new ZoomPlugin(),
                     new WorkflowExpansionPlugin(json)
                 ]
             });
