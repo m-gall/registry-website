@@ -33,7 +33,12 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#5" , role="tab"> Website definitions </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#6" , role="tab"> Pipeline description </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#7" , role="tab"> CWL usage of terms </a>
+                </li>
             </ul>
 
         </div>
@@ -111,10 +116,25 @@
                         {% endfor %}
                     {% endfor %}
                 </div>
+                <div class="tab-pane" id=6 role="tabpanel">
+                    <h5> General pipeline structure </h5>
+
+                    <img src="{{ url_for('static', filename='images/pipeline-overview.svg') }}">
+                </div>
+                <div class="tab-pane" id=7 role="tabpanel">
+                    <h5> CWL terms </h5>
+                    <h6> Tool class </h6>
+
+                    <img style ="max-height: 500px" src="{{ url_for('static', filename='images/cwl-tool.svg') }}">
+
+                    <h6> Workflow class </h6>
+                    <img style = "max-height: 500px" src="{{ url_for('static', filename='images/cwl-workflow.svg') }}">
+
+                </div>
             </div>
-
-
         </div>
+
+    </div>
 
 
     </div>
