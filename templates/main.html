@@ -52,24 +52,24 @@
                     (https://view.commonwl.org/) </a></li>
             </ul>
 
-        <div class="'col s9">
+            <div class="'col s9">
 
 
+            </div>
         </div>
-    </div>
 
-    <div class="col s9" style="margin-left: 20px">
-        <h3 style="margin-left: 0px; margin-bottom: 20px"> Pipelines registered </h3>
-        <div id="googleMap" style="width:100%;height:400px"></div>
-        <h3 style="margin-bottom:50px;margin-top: 20px"> Contributing Centres </h3>
+        <div class="col s9" style="margin-left: 20px">
+            <h3 style="margin-left: 0px; margin-bottom: 20px"> Pipelines registered </h3>
+            <div id="googleMap" style="width:100%;height:400px"></div>
+            <h3 style="margin-bottom:50px;margin-top: 20px"> Contributing Centres </h3>
 
-        {% for row in institute_query_all %}
-            <img style='max-width:200px; max-height: 150px; margin-top: -20px;'
-                 src="{{ url_for('static', filename='images/logos/' + row.institute_logo) }}">
-        {% endfor %}
+            {% for row in institute_query_all %}
+                <img style='max-width:200px; max-height: 150px; margin-top: -20px;'
+                     src="{{ url_for('static', filename='images/logos/' + row.institute_logo) }}">
+            {% endfor %}
 
-        <h3 style="margin-bottom:50px;"></h3>
-    </div>
+            <h3 style="margin-bottom:50px;"></h3>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -81,7 +81,7 @@
             var locations =
                 [
                     {% for row in instituterow %}
-                        ['{{ row.institute_name }}', {{ row.institute_lat }}, {{ row.institute_long }}],
+                        ['{{ row.institute_name }}', {{ row.institute_lat }}, {{ row.institute_long }}, '{{ row.institute_logo }}'],
                     {% endfor %}
                 ]
             ;
@@ -107,25 +107,37 @@
             var count;
             for (count = 0; count < locations.length; count++) {
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: locations[count][0],
-                    maxWidth: 400
-                });
-
 
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations[count][1], locations[count][2]),
-                    map: map,
-                    {#                icon: image#}
+                    map: map
+
                 });
 
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
+
+                attachInfo(marker, locations[count][0], locations[count][3]);
             }
 
-
             {#            marker.setMap(googleMap);#}
+        }
+
+        function attachInfo(marker, location, image) {
+
+            var contentString = '<div class="info-window">' +
+                '<div class="info-content">' +
+                "<img width = '80' src=" + "static/images/logos/" + image + ">" + '<h5>' + location + '</h5>' +
+
+                '</div>' +
+                '</div>';
+
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 400
+            });
+            marker.addListener('click', function () {
+                infowindow.open('googleMap', marker);
+            });
         }
 
 
