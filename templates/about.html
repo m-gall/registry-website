@@ -11,33 +11,33 @@
     <div class="container container-fluid">
 
                                 {{ include_md('markdown/' + 'readme-registry' + '.md') }}
-
-        <h2 style=margin-left:0px;> About </h2>
-        <h5 style=font-size:20px;> The organisation </h5>
-        <ul class="list-unstyled components" style="list-style-type:disc; margin-left:50px;">
-            <li><a href="https://www.australiangenomics.org.au/" style=color:black;>Australian Genomics
-                (https://www.australiangenomics.org.au/) </a></li>
-            <li><a href="https://agha.qimrberghofer.edu.au/wiki/" style=color:black;> AGHA wiki site
-                (https://agha.qimrberghofer.edu.au/wiki/) </a></li>
-        </ul>
-
-        <h4 style=margin-bottom:10px;> Pipeline descriptions </h4>
-        <ul class="list-unstyled components" style="list-style-type:disc; margin-left:50px;">
-
-            <li><a style=color:black;> Each pipeline is described using the Common Workflow Language. </a></li>
-            <li> For each pipeline, the following information has been captured in the CWL document:</li>
-            <ul class="list-unstyled components" style="list-style-type:disc; margin-left:25px;" >
-                <li><a style=color:black;> Objects: Packages, versions, data & file inputs/outputs, databases,
-                    genome versions, parameters </a></li>
-                <li><a style=color:black;> Descriptions: Definitions and purpose with links to other standards
-                    (e.g. EDAM format) where applicable </a></li>
-                <li><a style=color:black;> Usage: Use cases for documents, evaluation checkpoints, pipeline
-                    exits, report provenance </a></li>
-            </ul>
-            <li><a style=color:black;> This document is rendered into a graphical representation using the cwl-svg
-                typescript library created by rabix </a></li>
-        </ul>
-
+{##}
+{#        <h2 style=margin-left:0px;> About </h2>#}
+{#        <h5 style=font-size:20px;> The organisation </h5>#}
+{#        <ul class="list-unstyled components" style="list-style-type:disc; margin-left:50px;">#}
+{#            <li><a href="https://www.australiangenomics.org.au/" style=color:black;>Australian Genomics#}
+{#                (https://www.australiangenomics.org.au/) </a></li>#}
+{#            <li><a href="https://agha.qimrberghofer.edu.au/wiki/" style=color:black;> AGHA wiki site#}
+{#                (https://agha.qimrberghofer.edu.au/wiki/) </a></li>#}
+{#        </ul>#}
+{##}
+{#        <h4 style=margin-bottom:10px;> Pipeline descriptions </h4>#}
+{#        <ul class="list-unstyled components" style="list-style-type:disc; margin-left:50px;">#}
+{##}
+{#            <li><a style=color:black;> Each pipeline is described using the Common Workflow Language. </a></li>#}
+{#            <li> For each pipeline, the following information has been captured in the CWL document:</li>#}
+{#            <ul class="list-unstyled components" style="list-style-type:disc; margin-left:25px;" >#}
+{#                <li><a style=color:black;> Objects: Packages, versions, data & file inputs/outputs, databases,#}
+{#                    genome versions, parameters </a></li>#}
+{#                <li><a style=color:black;> Descriptions: Definitions and purpose with links to other standards#}
+{#                    (e.g. EDAM format) where applicable </a></li>#}
+{#                <li><a style=color:black;> Usage: Use cases for documents, evaluation checkpoints, pipeline#}
+{#                    exits, report provenance </a></li>#}
+{#            </ul>#}
+{#            <li><a style=color:black;> This document is rendered into a graphical representation using the cwl-svg#}
+{#                typescript library created by rabix </a></li>#}
+{#        </ul>#}
+{##}
 {##}
 {#        <h5 style=font-size:20px;> Conference presentations </h5>#}
 {#        <ul class="list-unstyled components" style="list-style-type:disc; margin-left:50px;">#}
@@ -48,10 +48,10 @@
 {#        <img style='max-width:500px;margin-top:50px'#}
 {#             src="{{ url_for('static', filename='images/poster.AGHA2017.jpg') }}"/>#}
 {##}
-
-        <h4> About the website </h4>
-        <li> This website is built using the Flask framework </li>
-        <li> Information is stored in an sqlite database </li>
+{##}
+{#        <h4> About the website </h4>#}
+{#        <li> This website is built using the Flask framework </li>#}
+{#        <li> Information is stored in an sqlite database </li>#}
         <img style='margin-top:50px; max-width: 400px'
              src="{{ url_for('static', filename='images/UML_registry.jpeg') }}"/>
 
