@@ -102,6 +102,7 @@
                 anchor: new google.maps.Point(0, 0)
             };
 
+
             var markerImage = "/static/agha.ico";
 
             var count;
@@ -117,6 +118,8 @@
 
                 attachInfo(marker, locations[count][0], locations[count][3]);
             }
+
+            var mc = new MarkerClusterer(map);
 
             {#            marker.setMap(googleMap);#}
         }
@@ -144,6 +147,8 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvRM8RUAyX8O9eODVQmPBoYngM2ya8BOU&callback=myMap"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
 
 
     </body>
