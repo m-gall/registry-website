@@ -4,17 +4,18 @@
 
 {% extends "base.html" %}
 {% block body %}
-    <script type="application/javascript"
-            src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
     <style>
     </style>
-    <div class="container container-fluid">
+    <div id="vue" class="container container-fluid">
         <h3> {{ workflow_instance.workflow_name }}</h3>
-        <cwl v-bind:cwl="cwl"></cwl>
+        <cwl
+                cwl-url="/pipeline/{{workflow_instance.workflow_accession}}/{{workflow_instance.workflow_version}}"
+                v-bind:plugins="plugins"
+        ></cwl>
         <p> Visualisation generated using rabix open-source library </p>
-
-
     </div>
+    <script type="application/javascript"
+            src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
 {% endblock %}
 
 

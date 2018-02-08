@@ -14,34 +14,69 @@
         data() {
             return {
                 selectedNode: null,
-                workflow: null
+                workflow: null,
+                cwlState: null
             };
         },
 
         computed: {
             cwlModel() {
-                return WorkflowFactory.from(this.cwl);
+                return WorkflowFactory.from(this.cwlState);
             }
         },
 
         props: {
+            cwlUrl: {
+                type: String,
+                default: null,
+                note: `A URL to request for the initial CWL object from. Used as an alternative to
+                the "cwl" prop`
+            },
             cwl: {
                 type: Object,
-                default: null
+                default: null,
+                note: `The JSON object representing the CWL workflow to render`
             },
 
             editingEnabled: {
                 type: Boolean,
-                default: false
+                default: false,
+                note: `True if the workflow is editable`
             },
             plugins: {
                 type: Array,
-                default: []
+                default: () => [],
+                note: `A list of CWL plugins to use in the CWL rendering`
+            }
+        },
+
+        /**
+         * If the cwlUrl prop was set, send a request for the CWL object, and set it to the internal
+         * state
+         */
+        mounted(){
+            if (this.cwlUrl){
+                fetch(this.cwlUrl, {
+                    headers: new Headers({
+                        'Accept': 'application/json'
+                    })
+                }).then(response => {
+                    return response.json();
+                }).then(json => {
+                    this.cwlState = json;
+                });
             }
         },
 
         watch: {
+            /**
+             * If the cwl prop ever changes, update the internal workflow object to that
+             */
             cwl() {
+                this.cwlState = this.cwl;
+            },
+
+            cwlState(){
                 this.workflow = new Workflow({
                     editingEnabled: this.editingEnabled,
                     model: this.cwlModel,
