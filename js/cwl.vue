@@ -8,7 +8,7 @@
     import "cwl-svg/src/plugins/selection/theme.dark.scss";
 
     import {WorkflowFactory} from "cwlts/models";
-    import {Workflow} from "cwl-svg";
+    import {Workflow, SVGArrangePlugin} from "cwl-svg";
 
     export default {
         data() {
@@ -83,6 +83,12 @@
                     svgRoot: this.$refs.svg,
                     plugins: this.plugins
                 });
+
+                // Hack to force ArrangePlugin to rearrange
+                //Force rearrange if we have the SVGArrangePlugin
+                const arranger = this.workflow.plugins.find(plugin => plugin.constructor.name == 'SVGArrangePlugin');
+                if (arranger)
+                    arranger.arrange();
             }
         }
     }

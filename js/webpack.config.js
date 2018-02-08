@@ -25,7 +25,11 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
-                }
+                    options: {
+                        presets: [require('babel-preset-env')]
+                    }
+                },
+
             },
             {
                 enforce: "pre",
