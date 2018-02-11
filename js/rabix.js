@@ -1,34 +1,29 @@
 import CWL from './cwl'
 import Vue from 'vue'
-import {SVGArrangePlugin} from 'cwl-svg'
+import {SVGArrangePlugin, SelectionPlugin} from 'cwl-svg'
 import ExpansionPlugin from 'cwl-svg-expand'
 
 Vue.config.devtools = true;
 Vue.config.debug = true;
-
+const selection = new SelectionPlugin();
 const vue = new Vue({
     el: '#vue',
     data: {
         plugins: [
-            new SVGArrangePlugin,
-            new ExpansionPlugin
-        ]
+            new SVGArrangePlugin(),
+            new ExpansionPlugin(),
+            selection
+        ],
+        selection: null
     },
     components: {
         cwl: CWL
     },
-    computed: {
-        /**
-         * Returns an array of selected CWL nodes for all the child <cwl> components
-         */
-        selcted(){
-            const refs =this.$refs.vue;
-            if (!refs)
-                return null;
-            else if (Array.isArray(refs))
-                return refs;
-            else
-                return [refs]
+    methods: {
+        selectionChanged(payload){
+            this.selection = payload;
         }
     }
 });
+
+

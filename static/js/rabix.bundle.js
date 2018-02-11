@@ -6828,9 +6828,18 @@ module.exports = g;
             });
 
             // Hack to force ArrangePlugin to rearrange
-            //Force rearrange if we have the SVGArrangePlugin
             const arranger = this.workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SVGArrangePlugin"]);
             if (arranger) arranger.arrange();
+
+            // Emit a selectionChanged event when selection changes
+            const selection = this.workflow.getPlugin(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__["SelectionPlugin"]);
+            selection.registerOnSelectionChange(element => {
+                if (element) {
+                    const id = element.getAttribute("data-connection-id");
+                    const selected = this.workflow.model.findById(id);
+                    this.$emit('selection-changed', selected);
+                }
+            });
         }
     }
 });
@@ -9675,14 +9684,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _vue2.default.config.devtools = true;
 _vue2.default.config.debug = true;
-
+var selection = new _cwlSvg.SelectionPlugin();
 var vue = new _vue2.default({
     el: '#vue',
     data: {
-        plugins: [new _cwlSvg.SVGArrangePlugin(), new _cwlSvgExpand2.default()]
+        plugins: [new _cwlSvg.SVGArrangePlugin(), new _cwlSvgExpand2.default(), selection],
+        selection: null
     },
     components: {
         cwl: _cwl2.default
+    },
+    methods: {
+        selectionChanged: function selectionChanged(payload) {
+            this.selection = payload;
+        }
     }
 });
 
@@ -9781,7 +9796,7 @@ exports = module.exports = __webpack_require__(16)(true);
 
 
 // module
-exports.push([module.i, "\n.cwl-workflow {\n    height: 500px;\n    position: relative;\n}\n", "", {"version":3,"sources":["/home/michael/Programming/registry-website/js/cwl.vue"],"names":[],"mappings":";AAiGA;IACA,cAAA;IACA,mBAAA;CACA","file":"cwl.vue","sourcesContent":["<template>\n    <svg ref=\"svg\" class=\"cwl-workflow\"></svg>\n</template>\n\n<script>\n    import \"cwl-svg/src/assets/styles/themes/rabix-dark/theme.scss\";\n    import \"cwl-svg/src/plugins/port-drag/theme.dark.scss\";\n    import \"cwl-svg/src/plugins/selection/theme.dark.scss\";\n\n    import {WorkflowFactory} from \"cwlts/models\";\n    import {Workflow, SVGArrangePlugin} from \"cwl-svg\";\n\n    export default {\n        data() {\n            return {\n                selectedNode: null,\n                workflow: null,\n                cwlState: null\n            };\n        },\n\n        computed: {\n            cwlModel() {\n                return WorkflowFactory.from(this.cwlState);\n            }\n        },\n\n        props: {\n            cwlUrl: {\n                type: String,\n                default: null,\n                note: `A URL to request for the initial CWL object from. Used as an alternative to\n                the \"cwl\" prop`\n            },\n            cwl: {\n                type: Object,\n                default: null,\n                note: `The JSON object representing the CWL workflow to render`\n            },\n\n            editingEnabled: {\n                type: Boolean,\n                default: false,\n                note: `True if the workflow is editable`\n            },\n            plugins: {\n                type: Array,\n                default: () => [],\n                note: `A list of CWL plugins to use in the CWL rendering`\n            }\n        },\n\n        /**\n         * If the cwlUrl prop was set, send a request for the CWL object, and set it to the internal\n         * state\n         */\n        mounted(){\n            if (this.cwlUrl){\n                fetch(this.cwlUrl, {\n                    headers: new Headers({\n                        'Accept': 'application/json'\n                    })\n                }).then(response => {\n                    return response.json();\n                }).then(json => {\n                    this.cwlState = json;\n                });\n            }\n        },\n\n        watch: {\n            /**\n             * If the cwl prop ever changes, update the internal workflow object to that\n             */\n            cwl() {\n                this.cwlState = this.cwl;\n            },\n\n            cwlState(){\n                this.workflow = new Workflow({\n                    editingEnabled: this.editingEnabled,\n                    model: this.cwlModel,\n                    svgRoot: this.$refs.svg,\n                    plugins: this.plugins\n                });\n\n                // Hack to force ArrangePlugin to rearrange\n                //Force rearrange if we have the SVGArrangePlugin\n                const arranger = this.workflow.getPlugin(SVGArrangePlugin);\n                if (arranger)\n                    arranger.arrange();\n            }\n        }\n    }\n</script>\n\n<style lang=\"css\">\n    .cwl-workflow {\n        height: 500px;\n        position: relative;\n    }\n</style>"],"sourceRoot":""}]);
+exports.push([module.i, "\n.cwl-workflow {\n    height: 500px;\n    position: relative;\n}\n", "", {"version":3,"sources":["/home/michael/Programming/registry-website/js/cwl.vue"],"names":[],"mappings":";AA0GA;IACA,cAAA;IACA,mBAAA;CACA","file":"cwl.vue","sourcesContent":["<template>\n    <svg ref=\"svg\" class=\"cwl-workflow\"></svg>\n</template>\n\n<script>\n    import \"cwl-svg/src/assets/styles/themes/rabix-dark/theme.scss\";\n    import \"cwl-svg/src/plugins/port-drag/theme.dark.scss\";\n    import \"cwl-svg/src/plugins/selection/theme.dark.scss\";\n\n    import {WorkflowFactory} from \"cwlts/models\";\n    import {Workflow, SVGArrangePlugin, SelectionPlugin} from \"cwl-svg\";\n\n    export default {\n        data() {\n            return {\n                selectedNode: null,\n                workflow: null,\n                cwlState: null\n            };\n        },\n\n        computed: {\n            cwlModel() {\n                return WorkflowFactory.from(this.cwlState);\n            }\n        },\n\n        props: {\n            cwlUrl: {\n                type: String,\n                default: null,\n                note: `A URL to request for the initial CWL object from. Used as an alternative to\n                the \"cwl\" prop`\n            },\n            cwl: {\n                type: Object,\n                default: null,\n                note: `The JSON object representing the CWL workflow to render`\n            },\n\n            editingEnabled: {\n                type: Boolean,\n                default: false,\n                note: `True if the workflow is editable`\n            },\n            plugins: {\n                type: Array,\n                default: () => [],\n                note: `A list of CWL plugins to use in the CWL rendering`\n            }\n        },\n\n        /**\n         * If the cwlUrl prop was set, send a request for the CWL object, and set it to the internal\n         * state\n         */\n        mounted(){\n            if (this.cwlUrl){\n                fetch(this.cwlUrl, {\n                    headers: new Headers({\n                        'Accept': 'application/json'\n                    })\n                }).then(response => {\n                    return response.json();\n                }).then(json => {\n                    this.cwlState = json;\n                });\n            }\n        },\n\n        watch: {\n            /**\n             * If the cwl prop ever changes, update the internal workflow object to that\n             */\n            cwl() {\n                this.cwlState = this.cwl;\n            },\n\n            cwlState(){\n                this.workflow = new Workflow({\n                    editingEnabled: this.editingEnabled,\n                    model: this.cwlModel,\n                    svgRoot: this.$refs.svg,\n                    plugins: this.plugins\n                });\n\n                // Hack to force ArrangePlugin to rearrange\n                const arranger = this.workflow.getPlugin(SVGArrangePlugin);\n                if (arranger)\n                    arranger.arrange();\n\n                // Emit a selectionChanged event when selection changes\n                const selection = this.workflow.getPlugin(SelectionPlugin);\n                selection.registerOnSelectionChange(element => {\n                    if (element) {\n                        const id = element.getAttribute(\"data-connection-id\");\n                        const selected = this.workflow.model.findById(id);\n                        this.$emit('selection-changed', selected);\n                    }\n                });\n            }\n        }\n    }\n</script>\n\n<style lang=\"css\">\n    .cwl-workflow {\n        height: 500px;\n        position: relative;\n    }\n</style>"],"sourceRoot":""}]);
 
 // exports
 
