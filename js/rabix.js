@@ -16,5 +16,19 @@ const vue = new Vue({
     },
     components: {
         cwl: CWL
+    },
+    computed: {
+        /**
+         * Returns an array of selected CWL nodes for all the child <cwl> components
+         */
+        selcted(){
+            const refs =this.$refs.vue;
+            if (!refs)
+                return null;
+            else if (Array.isArray(refs))
+                return refs;
+            else
+                return [refs]
+        }
     }
 });

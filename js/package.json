@@ -18,7 +18,6 @@
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "cwl-svg": "^2.0.0",
-    "cwl-svg-expand": "^1.0.1",
     "cwlts": "^1.15.18",
     "ejs-loader": "^0.3.0",
     "eslint": "^4.2.0",
