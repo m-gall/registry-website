@@ -35,7 +35,12 @@ module.exports = {
                 enforce: "pre",
                 test: /\.ts?$/,
                 exclude: ["node_modules"],
-                use: ["awesome-typescript-loader", "source-map-loader"]
+                use: {
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        useBabel: true
+                    }
+                }
             },
             {test: /\.css$/, loaders: ["style-loader", "css-loader"]},
             {

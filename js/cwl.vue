@@ -86,7 +86,7 @@
 
                 // Hack to force ArrangePlugin to rearrange
                 //Force rearrange if we have the SVGArrangePlugin
-                const arranger = this.workflow.plugins.find(plugin => plugin.constructor.name == 'SVGArrangePlugin');
+                const arranger = this.workflow.getPlugin(SVGArrangePlugin);
                 if (arranger)
                     arranger.arrange();
             }
