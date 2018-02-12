@@ -1,0 +1,2 @@
+webpackJsonp([0],[function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var c=function(){function e(){console.log("Typescript Webpack starter launched")}return e}();n.default=c;new c}],[0]);
+//# sourceMappingURL=app.bundle.map

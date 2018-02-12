@@ -17,17 +17,30 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
+            {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
-                }
+                    options: {
+                        presets: [require('babel-preset-env')]
+                    }
+                },
+
             },
             {
                 enforce: "pre",
                 test: /\.ts?$/,
                 exclude: ["node_modules"],
-                use: ["awesome-typescript-loader", "source-map-loader"]
+                use: {
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        useBabel: true
+                    }
+                }
             },
             {test: /\.css$/, loaders: ["style-loader", "css-loader"]},
             {
@@ -43,7 +56,10 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts", ".js", ".vue"],
+        alias: {
+            vue: 'vue/dist/vue.esm.js'
+        }
     }
 };
 

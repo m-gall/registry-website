@@ -4,31 +4,19 @@
 
 {% extends "base.html" %}
 {% block body %}
-    <script type="application/javascript" src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
     <style>
-        #cwl {
-            height: 600px;
-            width: 1200px;
-            position: relative;
-        }
     </style>
-
-    <style>
-         svg.cwl-workflow .node.step .inner {
-    fill: #3395a7; }
-
-    </style>
-
-
-    <div class="container container-fluid">
+    <div id="vue" class="container container-fluid">
         <h3> {{ workflow_instance.workflow_name }}</h3>
-        <svg class="cwl-workflow" id="cwl" data-workflow-name="{{ workflow_instance.workflow_accession }}"
-             data-workflow-version="{{ workflow_instance.workflow_version }}"></svg>
+        <cwl
+                cwl-url="/pipeline/{{workflow_instance.workflow_accession}}/{{workflow_instance.workflow_version}}"
+                v-bind:plugins="plugins"
+        ></cwl>
         <p> Visualisation generated using rabix open-source library </p>
-    <p> Please note: this tool is still in development and only full renders in Chrome </p>
-
-
+	<p> Please note: this tool is still in development and only full renders in Chrome </p>
     </div>
+    <script type="application/javascript"
+            src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
 {% endblock %}
 
 
