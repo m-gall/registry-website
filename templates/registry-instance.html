@@ -100,13 +100,14 @@
                 <div class="panel-title"><h4> Workflow Visual </h4></div>
             </div>
             <div class="panel-body">
-                <div class="row">
+                <div id="vue" class="row">
 
                     <div class="col-sm-2">
 
                         <nav id="sidebar">
 
                             <ul class="list-unstyled components" style="font-size: 12px">
+                                <div>ID: [[ selection.id ]] </div>
                                 <li><h4> Stage packages: </h4></li>
                                 <li class="packageName"> Package name</li>
                                 <ul>
@@ -144,7 +145,7 @@
                         </nav>
 
                     </div>
-                    <div id="vue" class="col-sm-10">
+                    <div class="col-sm-10">
                         {% if workflow_json != None %}
                             <cwl
                                     cwl-url="/pipeline/{{ workflow_json.workflow_accession }}/{{ workflow_json.workflow_version }}"

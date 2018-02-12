@@ -14,7 +14,7 @@ const vue = new Vue({
             new ExpansionPlugin(),
             selection
         ],
-        selection: null
+        selection: {}
     },
     components: {
         cwl: CWL
@@ -23,7 +23,6 @@ const vue = new Vue({
         selectionChanged(payload){
             this.selection = payload;
         }
-    }
+    },
+    delimiters: ['[[', ']]']
 });
-
-

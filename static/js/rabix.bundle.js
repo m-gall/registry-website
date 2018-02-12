@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 70);
+/******/ 	return __webpack_require__(__webpack_require__.s = 90);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -742,7 +742,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var TypeResolver_1 = __webpack_require__(29);
+var TypeResolver_1 = __webpack_require__(31);
 var ValidationBase_1 = __webpack_require__(2);
 var utils_1 = __webpack_require__(0);
 var ErrorCode_1 = __webpack_require__(1);
@@ -1163,8 +1163,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ExpressionModel_1 = __webpack_require__(9);
-var ExpressionEvaluator_1 = __webpack_require__(18);
+var ExpressionModel_1 = __webpack_require__(10);
+var ExpressionEvaluator_1 = __webpack_require__(20);
 var V1ExpressionModel = /** @class */ (function (_super) {
     __extends(V1ExpressionModel, _super);
     function V1ExpressionModel(expression, loc, eventHub) {
@@ -1272,7 +1272,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ExpressionModel_1 = __webpack_require__(9);
+var ExpressionModel_1 = __webpack_require__(10);
 var SBDraft2ExpressionModel = /** @class */ (function (_super) {
     __extends(SBDraft2ExpressionModel, _super);
     function SBDraft2ExpressionModel(value, loc, eventHub) {
@@ -1417,6 +1417,33 @@ exports.PluginBase = PluginBase;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var PluginBase = /** @class */ (function () {
+    function PluginBase() {
+    }
+    PluginBase.prototype.registerWorkflow = function (workflow) {
+        this.workflow = workflow;
+    };
+    PluginBase.prototype.registerOnBeforeChange = function (fn) {
+        this.onBeforeChange = fn;
+    };
+    PluginBase.prototype.registerOnAfterChange = function (fn) {
+        this.onAfterChange = fn;
+    };
+    PluginBase.prototype.registerOnAfterRender = function (fn) {
+        this.onAfterRender = fn;
+    };
+    return PluginBase;
+}());
+exports.PluginBase = PluginBase;
+//# sourceMappingURL=plugin-base.js.map
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1429,7 +1456,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationBase_1 = __webpack_require__(2);
-var ExpressionEvaluator_1 = __webpack_require__(18);
+var ExpressionEvaluator_1 = __webpack_require__(20);
 var ErrorCode_1 = __webpack_require__(1);
 var ExpressionModel = /** @class */ (function (_super) {
     __extends(ExpressionModel, _super);
@@ -1517,7 +1544,7 @@ exports.ExpressionModel = ExpressionModel;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1647,7 +1674,7 @@ exports.CommandInputParameterModel = CommandInputParameterModel;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1664,18 +1691,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var constants_1 = __webpack_require__(6);
-var EventHub_1 = __webpack_require__(45);
-var Graph_1 = __webpack_require__(46);
+var EventHub_1 = __webpack_require__(49);
+var Graph_1 = __webpack_require__(50);
 var UnimplementedMethodException_1 = __webpack_require__(3);
 var utils_1 = __webpack_require__(0);
 var ValidationBase_1 = __webpack_require__(2);
-var V1WorkflowOutputParameterModel_1 = __webpack_require__(47);
-var RequirementBaseModel_1 = __webpack_require__(14);
-var StepModel_1 = __webpack_require__(19);
-var WorkflowInputParameterModel_1 = __webpack_require__(15);
-var WorkflowOutputParameterModel_1 = __webpack_require__(17);
-var WorkflowStepInputModel_1 = __webpack_require__(20);
-var WorkflowStepOutputModel_1 = __webpack_require__(21);
+var V1WorkflowOutputParameterModel_1 = __webpack_require__(51);
+var RequirementBaseModel_1 = __webpack_require__(16);
+var StepModel_1 = __webpack_require__(21);
+var WorkflowInputParameterModel_1 = __webpack_require__(17);
+var WorkflowOutputParameterModel_1 = __webpack_require__(19);
+var WorkflowStepInputModel_1 = __webpack_require__(22);
+var WorkflowStepOutputModel_1 = __webpack_require__(23);
 var ErrorCode_1 = __webpack_require__(1);
 var WorkflowModel = /** @class */ (function (_super) {
     __extends(WorkflowModel, _super);
@@ -2781,7 +2808,7 @@ exports.WorkflowModel = WorkflowModel;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2819,7 +2846,7 @@ exports.ProcessRequirementModel = ProcessRequirementModel;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2908,7 +2935,21 @@ exports.CommandOutputParameterModel = CommandOutputParameterModel;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(103));
+__export(__webpack_require__(130));
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2924,10 +2965,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ProcessRequirementModel_1 = __webpack_require__(12);
+var ProcessRequirementModel_1 = __webpack_require__(13);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var utils_1 = __webpack_require__(0);
-var ExpressionModel_1 = __webpack_require__(9);
+var ExpressionModel_1 = __webpack_require__(10);
 var RequirementBaseModel = /** @class */ (function (_super) {
     __extends(RequirementBaseModel, _super);
     function RequirementBaseModel(req, exprConstructor, loc, eventHub) {
@@ -2989,7 +3030,7 @@ exports.RequirementBaseModel = RequirementBaseModel;
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3076,7 +3117,7 @@ exports.WorkflowInputParameterModel = WorkflowInputParameterModel;
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /*
@@ -3158,7 +3199,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3240,7 +3281,7 @@ exports.WorkflowOutputParameterModel = WorkflowOutputParameterModel;
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3418,7 +3459,7 @@ var State;
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3444,7 +3485,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationBase_1 = __webpack_require__(2);
 var UnimplementedMethodException_1 = __webpack_require__(3);
-var RequirementBaseModel_1 = __webpack_require__(14);
+var RequirementBaseModel_1 = __webpack_require__(16);
 var StepModel = /** @class */ (function (_super) {
     __extends(StepModel, _super);
     function StepModel(loc, eventHub) {
@@ -3542,7 +3583,7 @@ exports.StepModel = StepModel;
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3621,7 +3662,7 @@ exports.WorkflowStepInputModel = WorkflowStepInputModel;
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3681,7 +3722,7 @@ exports.WorkflowStepOutputModel = WorkflowStepOutputModel;
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3697,15 +3738,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineUtils_1 = __webpack_require__(86);
-var EventHub_1 = __webpack_require__(45);
-var JobHelper_1 = __webpack_require__(24);
+var CommandLineUtils_1 = __webpack_require__(106);
+var EventHub_1 = __webpack_require__(49);
+var JobHelper_1 = __webpack_require__(26);
 var UnimplementedMethodException_1 = __webpack_require__(3);
 var utils_1 = __webpack_require__(0);
 var ErrorCode_1 = __webpack_require__(1);
 var ValidationBase_1 = __webpack_require__(2);
-var CommandInputParameterModel_1 = __webpack_require__(10);
-var CommandOutputParameterModel_1 = __webpack_require__(13);
+var CommandInputParameterModel_1 = __webpack_require__(11);
+var CommandOutputParameterModel_1 = __webpack_require__(14);
 var CommandLineToolModel = /** @class */ (function (_super) {
     __extends(CommandLineToolModel, _super);
     function CommandLineToolModel(loc) {
@@ -4116,7 +4157,7 @@ exports.CommandLineToolModel = CommandLineToolModel;
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4221,7 +4262,7 @@ exports.CommandArgumentModel = CommandArgumentModel;
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4235,8 +4276,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var V1CommandInputParameterModel_1 = __webpack_require__(33);
-var V1WorkflowInputParameterModel_1 = __webpack_require__(51);
+var V1CommandInputParameterModel_1 = __webpack_require__(35);
+var V1WorkflowInputParameterModel_1 = __webpack_require__(55);
 var JobHelper = /** @class */ (function () {
     function JobHelper() {
     }
@@ -4357,16 +4398,16 @@ exports.JobHelper = JobHelper;
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var models_1 = __webpack_require__(27);
-var html_utils_1 = __webpack_require__(116);
-var svg_utils_1 = __webpack_require__(58);
-var io_port_1 = __webpack_require__(57);
+var models_1 = __webpack_require__(15);
+var html_utils_1 = __webpack_require__(136);
+var svg_utils_1 = __webpack_require__(63);
+var io_port_1 = __webpack_require__(62);
 var GraphNode = /** @class */ (function () {
     function GraphNode(position, dataModel) {
         this.dataModel = dataModel;
@@ -4491,7 +4532,141 @@ exports.GraphNode = GraphNode;
 //# sourceMappingURL=graph-node.js.map
 
 /***/ }),
-/* 26 */
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var models_1 = __webpack_require__(15);
+var html_utils_1 = __webpack_require__(146);
+var svg_utils_1 = __webpack_require__(78);
+var io_port_1 = __webpack_require__(77);
+var GraphNode = /** @class */ (function () {
+    function GraphNode(position, dataModel) {
+        this.dataModel = dataModel;
+        this.position = { x: 0, y: 0 };
+        this.dataModel = dataModel;
+        Object.assign(this.position, position);
+    }
+    GraphNode.makeIconFragment = function (model) {
+        var iconStr = "";
+        if (model instanceof models_1.StepModel && model.run) {
+            if (model.run.class === "Workflow") {
+                iconStr = this.workflowIconSvg;
+            }
+            else if (model.run.class === "CommandLineTool") {
+                iconStr = this.toolIconSvg;
+            }
+        }
+        else if (model instanceof models_1.WorkflowInputParameterModel && model.type) {
+            if (model.type.type === "File" || (model.type.type === "array" && model.type.items === "File")) {
+                iconStr = this.fileInputIconSvg;
+            }
+            else {
+                iconStr = this.inputIconSvg;
+            }
+        }
+        else if (model instanceof models_1.WorkflowOutputParameterModel && model.type) {
+            if (model.type.type === "File" || (model.type.type === "array" && model.type.items === "File")) {
+                iconStr = this.fileOutputIconSvg;
+            }
+            else {
+                iconStr = this.outputIconSvg;
+            }
+        }
+        return iconStr;
+    };
+    GraphNode.makeTemplate = function (dataModel, labelScale) {
+        if (labelScale === void 0) { labelScale = 1; }
+        var x = ~~(dataModel.customProps && dataModel.customProps["sbg:x"]);
+        var y = ~~(dataModel.customProps && dataModel.customProps["sbg:y"]);
+        var nodeTypeClass = "step";
+        if (dataModel instanceof models_1.WorkflowInputParameterModel) {
+            nodeTypeClass = "input";
+        }
+        else if (dataModel instanceof models_1.WorkflowOutputParameterModel) {
+            nodeTypeClass = "output";
+        }
+        var inputs = (dataModel["in"] || []).filter(function (p) { return p.isVisible; });
+        var outputs = (dataModel["out"] || []).filter(function (p) { return p.isVisible; });
+        var maxPorts = Math.max(inputs.length, outputs.length);
+        var radius = GraphNode.radius + maxPorts * io_port_1.IOPort.radius;
+        var typeClass = "";
+        var itemsClass = "";
+        if (dataModel.type) {
+            typeClass = "type-" + dataModel.type.type;
+            if (dataModel.type.items) {
+                itemsClass = "items-" + dataModel.type.items;
+            }
+        }
+        var inputPortTemplates = inputs
+            .sort(function (a, b) { return -a.id.localeCompare(b.id); })
+            .map(function (p, i, arr) { return GraphNode.makePortTemplate(p, "input", svg_utils_1.SVGUtils.matrixToTransformAttr(GraphNode.createPortMatrix(arr.length, i, radius, "input"))); })
+            .reduce(function (acc, tpl) { return acc + tpl; }, "");
+        var outputPortTemplates = outputs
+            .sort(function (a, b) { return -a.id.localeCompare(b.id); })
+            .map(function (p, i, arr) { return GraphNode.makePortTemplate(p, "output", svg_utils_1.SVGUtils.matrixToTransformAttr(GraphNode.createPortMatrix(arr.length, i, radius, "output"))); })
+            .reduce(function (acc, tpl) { return acc + tpl; }, "");
+        return "\n            <g tabindex=\"-1\" class=\"node " + nodeTypeClass + " " + typeClass + " " + itemsClass + "\"\n               data-connection-id=\"" + dataModel.connectionId + "\"\n               transform=\"matrix(1, 0, 0, 1, " + x + ", " + y + ")\"\n               data-id=\"" + dataModel.id + "\">\n               \n                <g class=\"core\" transform=\"matrix(1, 0, 0, 1, 0, 0)\">\n                    <circle cx=\"0\" cy=\"0\" r=\"" + radius + "\" class=\"outer\"></circle>\n                    <circle cx=\"0\" cy=\"0\" r=\"" + radius * .75 + "\" class=\"inner\"></circle>\n                    \n                    " + GraphNode.makeIconFragment(dataModel) + "\n                </g>\n                \n                <text transform=\"matrix(" + labelScale + ",0,0," + labelScale + ",0," + (radius + 30) + ")\" class=\"title label\">" + html_utils_1.HtmlUtils.escapeHTML(dataModel.label || dataModel.id) + "</text>\n                \n                " + inputPortTemplates + "\n                " + outputPortTemplates + "\n            </g>\n        ";
+    };
+    GraphNode.makePortTemplate = function (port, type, transform) {
+        if (transform === void 0) { transform = "matrix(1, 0, 0, 1, 0, 0)"; }
+        var portClass = type === "input" ? "input-port" : "output-port";
+        var label = port.label || port.id;
+        return "\n            <g class=\"port " + portClass + "\" transform=\"" + (transform || "matrix(1, 0, 0, 1, 0, 0)") + "\"\n               data-connection-id=\"" + port.connectionId + "\"\n               data-port-id=\"" + port.id + "\"\n            >\n                <g class=\"io-port\">\n                    <circle cx=\"0\" cy=\"0\" r=\"7\" class=\"port-handle\"></circle>\n                </g>\n                <text x=\"0\" y=\"0\" transform=\"matrix(1,0,0,1,0,0)\" class=\"label unselectable\">" + label + "</text>\n            </g>\n            \n        ";
+    };
+    GraphNode.createPortMatrix = function (totalPortLength, portIndex, radius, type) {
+        var availableAngle = 140;
+        var rotationAngle = 
+        // Starting rotation angle
+        (-availableAngle / 2) +
+            (
+            // Angular offset by element index
+            (portIndex + 1)
+                // Angle between elements
+                * availableAngle / (totalPortLength + 1));
+        if (type === "input") {
+            rotationAngle =
+                // Determines the starting rotation angle
+                180 - (availableAngle / -2)
+                    // Determines the angular offset modifier for the current index
+                    - (portIndex + 1)
+                        // Determines the angular offset
+                        * availableAngle / (totalPortLength + 1);
+        }
+        var matrix = svg_utils_1.SVGUtils.createMatrix();
+        return matrix.rotate(rotationAngle).translate(radius, 0).rotate(-rotationAngle);
+    };
+    GraphNode.patchModelPorts = function (model) {
+        var patch = [{ connectionId: model.connectionId, isVisible: true, id: model.id }];
+        if (model instanceof models_1.WorkflowInputParameterModel) {
+            var copy = Object.create(model);
+            return Object.assign(copy, { out: patch });
+        }
+        else if (model instanceof models_1.WorkflowOutputParameterModel) {
+            var copy = Object.create(model);
+            return Object.assign(copy, { in: patch });
+        }
+        return model;
+    };
+    GraphNode.radius = 30;
+    /**
+     * @FIXME Making icons increases the rendering time by 50-100%. Try embedding the SVG directly.
+     */
+    GraphNode.workflowIconSvg = "<svg class=\"node-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400.01 399.88\" x=\"-9\" y=\"-10\" width=\"20\" height=\"20\"><title>workflow</title><path d=\"M400,200a80,80,0,0,1-140.33,52.53L158.23,303.24a80,80,0,1,1-17.9-35.77l101.44-50.71a80.23,80.23,0,0,1,0-33.52L140.33,132.53a79.87,79.87,0,1,1,17.9-35.77l101.44,50.71A80,80,0,0,1,400,200Z\" transform=\"translate(0.01 -0.16)\"/></svg>";
+    GraphNode.toolIconSvg = "<svg class=\"node-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 398.39 397.78\" x=\"-10\" y=\"-8\" width=\"20\" height=\"15\"><title>tool2</title><polygon points=\"38.77 397.57 0 366 136.15 198.78 0 31.57 38.77 0 200.63 198.78 38.77 397.57\"/><rect x=\"198.39\" y=\"347.78\" width=\"200\" height=\"50\"/></svg>";
+    GraphNode.fileInputIconSvg = "<svg class=\"node-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 499 462.86\" y=\"-10\" x=\"-11\" width=\"20\" height=\"20\"><title>file_input</title><path d=\"M386.06,0H175V58.29l50,50V50H337.81V163.38h25l86.19.24V412.86H225V353.71l-50,50v59.15H499V112.94Zm1.75,113.45v-41l41.1,41.1Z\"/><polygon points=\"387.81 1.06 387.81 1.75 387.12 1.06 387.81 1.06\"/><polygon points=\"290.36 231 176.68 344.68 141.32 309.32 194.64 256 0 256 0 206 194.64 206 142.32 153.68 177.68 118.32 290.36 231\"/></svg>";
+    GraphNode.fileOutputIconSvg = "<svg class=\"node-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 499 462.86\" x=\"-7\" y=\"-11\" width=\"20\" height=\"20\"><title>file_output</title><polygon points=\"387.81 1.06 387.81 1.75 387.12 1.06 387.81 1.06\"/><polygon points=\"499 231 385.32 344.68 349.96 309.32 403.28 256 208.64 256 208.64 206 403.28 206 350.96 153.68 386.32 118.32 499 231\"/><path d=\"M187.81,163.38l77.69.22H324V112.94L211.06,0H0V462.86H324V298.5H274V412.86H50V50H162.81V163.38Zm25-90.92,41.1,41.1-41.1-.11Z\"/></svg>";
+    GraphNode.inputIconSvg = "<svg class=\"node-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 499 365\" x=\"-11\" y=\"-10\" width=\"20\" height=\"20\"><title>type_input</title><g id=\"input\"><path d=\"M316.5,68a181.72,181.72,0,0,0-114.12,40.09L238,143.72a132.5,132.5,0,1,1,1.16,214.39L203.48,393.8A182.5,182.5,0,1,0,316.5,68Z\" transform=\"translate(0 -68)\"/><g id=\"Layer_22\" data-name=\"Layer 22\"><g id=\"Layer_9_copy_4\" data-name=\"Layer 9 copy 4\"><polygon points=\"290.36 182 176.68 295.68 141.32 260.32 194.64 207 0 207 0 157 194.64 157 142.32 104.68 177.68 69.32 290.36 182\"/></g></g></g></svg>";
+    GraphNode.outputIconSvg = "<svg class=\"node-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500.36 365\" x=\"-9\" y=\"-10\" width=\"20\" height=\"20\"><title>type_output</title><g id=\"output\"><path d=\"M291.95,325.23a134,134,0,0,1-15.76,19,132.5,132.5,0,1,1,0-187.38,133.9,133.9,0,0,1,16.16,19.55l35.81-35.81A182.5,182.5,0,1,0,327.73,361Z\" transform=\"translate(0 -68)\"/><g id=\"circle_source_copy\" data-name=\"circle source copy\"><g id=\"Layer_22_copy\" data-name=\"Layer 22 copy\"><g id=\"Layer_9_copy_5\" data-name=\"Layer 9 copy 5\"><polygon points=\"500.36 182 386.68 295.68 351.32 260.32 404.64 207 210 207 210 157 404.64 157 352.32 104.68 387.68 69.32 500.36 182\"/></g></g></g></g></svg>";
+    return GraphNode;
+}());
+exports.GraphNode = GraphNode;
+//# sourceMappingURL=graph-node.js.map
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -4537,7 +4712,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(78);
+var	fixUrls = __webpack_require__(98);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -4850,29 +5025,15 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(83));
-__export(__webpack_require__(110));
-
-
-/***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowModel_1 = __webpack_require__(11);
-var V1WorkflowModel_1 = __webpack_require__(84);
-var SBDraft2WorkflowModel_1 = __webpack_require__(104);
+var WorkflowModel_1 = __webpack_require__(12);
+var V1WorkflowModel_1 = __webpack_require__(104);
+var SBDraft2WorkflowModel_1 = __webpack_require__(124);
 var WorkflowFactory = /** @class */ (function () {
     function WorkflowFactory() {
     }
@@ -4898,7 +5059,7 @@ exports.WorkflowFactory = WorkflowFactory;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5202,15 +5363,15 @@ exports.TypeResolver = TypeResolver;
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineToolModel_1 = __webpack_require__(22);
-var V1CommandLineToolModel_1 = __webpack_require__(88);
-var SBDraft2CommandLineToolModel_1 = __webpack_require__(94);
+var CommandLineToolModel_1 = __webpack_require__(24);
+var V1CommandLineToolModel_1 = __webpack_require__(108);
+var SBDraft2CommandLineToolModel_1 = __webpack_require__(114);
 var CommandLineToolFactory = /** @class */ (function () {
     function CommandLineToolFactory() {
     }
@@ -5236,7 +5397,7 @@ exports.CommandLineToolFactory = CommandLineToolFactory;
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5256,7 +5417,7 @@ exports.CommandLinePart = CommandLinePart;
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5316,7 +5477,7 @@ exports.CommandLineBindingModel = CommandLineBindingModel;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5340,10 +5501,10 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandInputParameterModel_1 = __webpack_require__(10);
+var CommandInputParameterModel_1 = __webpack_require__(11);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
-var V1CommandLineBindingModel_1 = __webpack_require__(50);
+var V1CommandLineBindingModel_1 = __webpack_require__(54);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var V1CommandInputParameterModel = /** @class */ (function (_super) {
     __extends(V1CommandInputParameterModel, _super);
@@ -5442,7 +5603,7 @@ exports.V1CommandInputParameterModel = V1CommandInputParameterModel;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5458,7 +5619,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ProcessRequirementModel_1 = __webpack_require__(12);
+var ProcessRequirementModel_1 = __webpack_require__(13);
 var utils_1 = __webpack_require__(0);
 var DockerRequirementModel = /** @class */ (function (_super) {
     __extends(DockerRequirementModel, _super);
@@ -5507,7 +5668,7 @@ exports.DockerRequirementModel = DockerRequirementModel;
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5572,7 +5733,7 @@ exports.CommandOutputBindingModel = CommandOutputBindingModel;
 
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5589,7 +5750,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var UnimplementedMethodException_1 = __webpack_require__(3);
-var ProcessRequirementModel_1 = __webpack_require__(12);
+var ProcessRequirementModel_1 = __webpack_require__(13);
 var ErrorCode_1 = __webpack_require__(1);
 var CreateFileRequirementModel = /** @class */ (function (_super) {
     __extends(CreateFileRequirementModel, _super);
@@ -5618,7 +5779,7 @@ exports.CreateFileRequirementModel = CreateFileRequirementModel;
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5662,7 +5823,7 @@ exports.DirentModel = DirentModel;
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5678,7 +5839,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ProcessRequirementModel_1 = __webpack_require__(12);
+var ProcessRequirementModel_1 = __webpack_require__(13);
 var ResourceRequirementModel = /** @class */ (function (_super) {
     __extends(ResourceRequirementModel, _super);
     function ResourceRequirementModel(loc, eventHub) {
@@ -5693,31 +5854,7 @@ exports.ResourceRequirementModel = ResourceRequirementModel;
 
 
 /***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(40));
-__export(__webpack_require__(59));
-__export(__webpack_require__(61));
-__export(__webpack_require__(64));
-__export(__webpack_require__(68));
-__export(__webpack_require__(66));
-__export(__webpack_require__(65));
-__export(__webpack_require__(42));
-__export(__webpack_require__(63));
-__export(__webpack_require__(69));
-// for implementing third-party plugins
-__export(__webpack_require__(8));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5753,12 +5890,12 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dom_events_1 = __webpack_require__(114);
-var event_hub_1 = __webpack_require__(115);
-var edge_1 = __webpack_require__(41);
-var graph_node_1 = __webpack_require__(25);
-var step_node_1 = __webpack_require__(59);
-var template_parser_1 = __webpack_require__(60);
+var dom_events_1 = __webpack_require__(134);
+var event_hub_1 = __webpack_require__(135);
+var edge_1 = __webpack_require__(42);
+var graph_node_1 = __webpack_require__(27);
+var step_node_1 = __webpack_require__(64);
+var template_parser_1 = __webpack_require__(65);
 /**
  * @FIXME validation states of old and newly created edges
  */
@@ -6251,7 +6388,7 @@ exports.Workflow = Workflow;
 //# sourceMappingURL=workflow.js.map
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6283,9 +6420,9 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var geometry_1 = __webpack_require__(56);
-var io_port_1 = __webpack_require__(57);
-var workflow_1 = __webpack_require__(40);
+var geometry_1 = __webpack_require__(61);
+var io_port_1 = __webpack_require__(62);
+var workflow_1 = __webpack_require__(41);
 var Edge = /** @class */ (function () {
     function Edge() {
     }
@@ -6392,7 +6529,7 @@ exports.Edge = Edge;
 //# sourceMappingURL=edge.js.map
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6700,7 +6837,7 @@ exports.SelectionPlugin = SelectionPlugin;
 //# sourceMappingURL=selection.js.map
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 var g;
@@ -6727,19 +6864,1002 @@ module.exports = g;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var dom_events_1 = __webpack_require__(144);
+var event_hub_1 = __webpack_require__(145);
+var edge_1 = __webpack_require__(46);
+var graph_node_1 = __webpack_require__(28);
+var step_node_1 = __webpack_require__(79);
+var template_parser_1 = __webpack_require__(80);
+/**
+ * @FIXME validation states of old and newly created edges
+ */
+var Workflow = /** @class */ (function () {
+    function Workflow(parameters) {
+        var _this = this;
+        this.svgID = this.makeID();
+        this.minScale = 0.2;
+        this.maxScale = 2;
+        this.editingEnabled = true;
+        /** Scale of labels, they are different than scale of other elements in the workflow */
+        this.labelScale = 1;
+        this.plugins = [];
+        this.handlersThatCanBeDisabled = [];
+        this.disposers = [];
+        this.pendingFirstDraw = true;
+        /** Current scale of the document */
+        this._scale = 1;
+        this.svgRoot = parameters.svgRoot;
+        this.plugins = parameters.plugins || [];
+        this.domEvents = new dom_events_1.DomEvents(this.svgRoot);
+        this.model = parameters.model;
+        this.editingEnabled = parameters.editingEnabled !== false; // default to true if undefined
+        this.svgRoot.classList.add(this.svgID);
+        this.svgRoot.innerHTML = "\n            <rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" class=\"pan-handle\" transform=\"matrix(1,0,0,1,0,0)\"></rect>\n            <g class=\"workflow\" transform=\"matrix(1,0,0,1,0,0)\"></g>\n        ";
+        this.workflow = this.svgRoot.querySelector(".workflow");
+        this.invokePlugins("registerWorkflow", this);
+        this.eventHub = new event_hub_1.EventHub([
+            "connection.create",
+            "app.create.step",
+            "app.create.input",
+            "app.create.output",
+            "beforeChange",
+            "afterChange",
+            "afterRender",
+            "selectionChange"
+        ]);
+        this.hookPlugins();
+        this.draw(parameters.model);
+        this.eventHub.on("afterRender", function () { return _this.invokePlugins("afterRender"); });
+    }
+    Object.defineProperty(Workflow.prototype, "scale", {
+        get: function () {
+            return this._scale;
+        },
+        // noinspection JSUnusedGlobalSymbols
+        set: function (scale) {
+            this.workflowBoundingClientRect = this.svgRoot.getBoundingClientRect();
+            var x = (this.workflowBoundingClientRect.right + this.workflowBoundingClientRect.left) / 2;
+            var y = (this.workflowBoundingClientRect.top + this.workflowBoundingClientRect.bottom) / 2;
+            this.scaleAtPoint(scale, x, y);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Workflow.canDrawIn = function (element) {
+        return element.getBoundingClientRect().width !== 0;
+    };
+    Workflow.makeConnectionPath = function (x1, y1, x2, y2, forceDirection) {
+        if (forceDirection === void 0) { forceDirection = "right"; }
+        if (!forceDirection) {
+            return "M " + x1 + " " + y1 + " C " + (x1 + x2) / 2 + " " + y1 + " " + (x1 + x2) / 2 + " " + y2 + " " + x2 + " " + y2;
+        }
+        else if (forceDirection === "right") {
+            var outDir = x1 + Math.abs(x1 - x2) / 2;
+            var inDir = x2 - Math.abs(x1 - x2) / 2;
+            return "M " + x1 + " " + y1 + " C " + outDir + " " + y1 + " " + inDir + " " + y2 + " " + x2 + " " + y2;
+        }
+        else if (forceDirection === "left") {
+            var outDir = x1 - Math.abs(x1 - x2) / 2;
+            var inDir = x2 + Math.abs(x1 - x2) / 2;
+            return "M " + x1 + " " + y1 + " C " + outDir + " " + y1 + " " + inDir + " " + y2 + " " + x2 + " " + y2;
+        }
+    };
+    Workflow.prototype.draw = function (model) {
+        var _this = this;
+        if (model === void 0) { model = this.model; }
+        // We will need to restore the transformations when we redraw the model, so save the current state
+        var oldTransform = this.workflow.getAttribute("transform");
+        var modelChanged = this.model !== model;
+        if (modelChanged || this.pendingFirstDraw) {
+            this.pendingFirstDraw = false;
+            this.model = model;
+            var stepChangeDisposer_1 = this.model.on("step.change", this.onStepChange.bind(this));
+            var stepCreateDisposer_1 = this.model.on("step.create", this.onStepCreate.bind(this));
+            var stepRemoveDisposer_1 = this.model.on("step.remove", this.onStepRemove.bind(this));
+            var inputCreateDisposer_1 = this.model.on("input.create", this.onInputCreate.bind(this));
+            var inputRemoveDisposer_1 = this.model.on("input.remove", this.onInputRemove.bind(this));
+            var outputCreateDisposer_1 = this.model.on("output.create", this.onOutputCreate.bind(this));
+            var outputRemoveDisposer_1 = this.model.on("output.remove", this.onOutputRemove.bind(this));
+            var stepInPortShowDisposer_1 = this.model.on("step.inPort.show", this.onInputPortShow.bind(this));
+            var stepInPortHideDisposer_1 = this.model.on("step.inPort.hide", this.onInputPortHide.bind(this));
+            var connectionCreateDisposer_1 = this.model.on("connection.create", this.onConnectionCreate.bind(this));
+            var connectionRemoveDisposer_1 = this.model.on("connection.remove", this.onConnectionRemove.bind(this));
+            var stepOutPortCreateDisposer_1 = this.model.on("step.outPort.create", this.onOutputPortCreate.bind(this));
+            var stepOutPortRemoveDisposer_1 = this.model.on("step.outPort.remove", this.onOutputPortRemove.bind(this));
+            this.disposers.push(function () {
+                stepChangeDisposer_1.dispose();
+                stepCreateDisposer_1.dispose();
+                stepRemoveDisposer_1.dispose();
+                inputCreateDisposer_1.dispose();
+                inputRemoveDisposer_1.dispose();
+                outputCreateDisposer_1.dispose();
+                outputRemoveDisposer_1.dispose();
+                stepInPortShowDisposer_1.dispose();
+                stepInPortHideDisposer_1.dispose();
+                connectionCreateDisposer_1.dispose();
+                connectionRemoveDisposer_1.dispose();
+                stepOutPortCreateDisposer_1.dispose();
+                stepOutPortRemoveDisposer_1.dispose();
+            });
+            this.invokePlugins("afterModelChange");
+        }
+        this.clearCanvas();
+        var nodes = __spread(this.model.steps, this.model.inputs, this.model.outputs).filter(function (n) { return n.isVisible; });
+        /**
+         * If there is a missing sbg:x or sbg:y property on any node model,
+         * graph should be arranged to avoid random placement.
+         */
+        var arrangeNecessary = false;
+        var nodeTemplate = "";
+        try {
+            for (var nodes_1 = __values(nodes), nodes_1_1 = nodes_1.next(); !nodes_1_1.done; nodes_1_1 = nodes_1.next()) {
+                var node = nodes_1_1.value;
+                var patched = graph_node_1.GraphNode.patchModelPorts(node);
+                var missingX = isNaN(parseInt(patched.customProps["sbg:x"]));
+                var missingY = isNaN(parseInt(patched.customProps["sbg:y"]));
+                if (missingX || missingY) {
+                    arrangeNecessary = true;
+                }
+                nodeTemplate += graph_node_1.GraphNode.makeTemplate(patched);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (nodes_1_1 && !nodes_1_1.done && (_a = nodes_1.return)) _a.call(nodes_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        this.workflow.innerHTML += nodeTemplate;
+        this.redrawEdges();
+        Array.from(this.workflow.querySelectorAll(".node")).forEach(function (e) {
+            _this.workflow.appendChild(e);
+        });
+        this.addEventListeners();
+        this.workflow.setAttribute("transform", oldTransform);
+        this.scaleAtPoint(this.scale);
+        this.invokePlugins("afterRender");
+        var e_1, _a;
+    };
+    Workflow.prototype.findParent = function (el, parentClass) {
+        if (parentClass === void 0) { parentClass = "node"; }
+        var parentNode = el;
+        while (parentNode) {
+            if (parentNode.classList.contains(parentClass)) {
+                return parentNode;
+            }
+            parentNode = parentNode.parentElement;
+        }
+    };
+    /**
+     * Retrieves a plugin instance
+     * @param {{new(...args: any[]) => T}} plugin
+     * @returns {T}
+     */
+    Workflow.prototype.getPlugin = function (plugin) {
+        return this.plugins.find(function (p) { return p instanceof plugin; });
+    };
+    Workflow.prototype.on = function (event, handler) {
+        this.eventHub.on(event, handler);
+    };
+    Workflow.prototype.off = function (event, handler) {
+        this.eventHub.off(event, handler);
+    };
+    /**
+     * Scales the workflow to fit the available viewport
+     */
+    Workflow.prototype.fitToViewport = function (ignoreScaleLimits) {
+        if (ignoreScaleLimits === void 0) { ignoreScaleLimits = false; }
+        this.scaleAtPoint(1);
+        Object.assign(this.workflow.transform.baseVal.getItem(0).matrix, {
+            e: 0,
+            f: 0
+        });
+        var clientBounds = this.svgRoot.getBoundingClientRect();
+        var wfBounds = this.workflow.getBoundingClientRect();
+        var padding = 100;
+        if (clientBounds.width === 0 || clientBounds.height === 0) {
+            throw new Error("Cannot fit workflow to the area that has no visible viewport.");
+        }
+        var verticalScale = (wfBounds.height) / (clientBounds.height - padding);
+        var horizontalScale = (wfBounds.width) / (clientBounds.width - padding);
+        var scaleFactor = Math.max(verticalScale, horizontalScale);
+        // Cap the upscaling to 1, we don't want to zoom in workflows that would fit anyway
+        var newScale = Math.min(this.scale / scaleFactor, 1);
+        if (!ignoreScaleLimits) {
+            newScale = Math.max(newScale, this.minScale);
+        }
+        this.scaleAtPoint(newScale);
+        var scaledWFBounds = this.workflow.getBoundingClientRect();
+        var moveY = clientBounds.top - scaledWFBounds.top + Math.abs(clientBounds.height - scaledWFBounds.height) / 2;
+        var moveX = clientBounds.left - scaledWFBounds.left + Math.abs(clientBounds.width - scaledWFBounds.width) / 2;
+        var matrix = this.workflow.transform.baseVal.getItem(0).matrix;
+        matrix.e += moveX;
+        matrix.f += moveY;
+    };
+    Workflow.prototype.redrawEdges = function () {
+        var _this = this;
+        var highlightedEdges = new Set();
+        Array.from(this.workflow.querySelectorAll(".edge")).forEach(function (el) {
+            if (el.classList.contains("highlighted")) {
+                var edgeID = el.attributes["data-source-connection"].value + el.attributes["data-destination-connection"].value;
+                highlightedEdges.add(edgeID);
+            }
+            el.remove();
+        });
+        var edgesTpl = this.model.connections
+            .map(function (c) {
+            var edgeId = c.source.id + c.destination.id;
+            var edgeStates = highlightedEdges.has(edgeId) ? "highlighted" : "";
+            return edge_1.Edge.makeTemplate(c, _this.workflow, edgeStates);
+        })
+            .reduce(function (acc, tpl) { return acc + tpl; }, "");
+        this.workflow.innerHTML = edgesTpl + this.workflow.innerHTML;
+    };
+    /**
+     * Scale the workflow by the scaleCoefficient (not compounded) over given coordinates
+     */
+    Workflow.prototype.scaleAtPoint = function (scale, x, y) {
+        if (scale === void 0) { scale = 1; }
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        this._scale = scale;
+        this.labelScale = 1 + (1 - this._scale) / (this._scale * 2);
+        var transform = this.workflow.transform.baseVal;
+        var matrix = transform.getItem(0).matrix;
+        var coords = this.transformScreenCTMtoCanvas(x, y);
+        matrix.e += matrix.a * coords.x;
+        matrix.f += matrix.a * coords.y;
+        matrix.a = matrix.d = scale;
+        matrix.e -= scale * coords.x;
+        matrix.f -= scale * coords.y;
+        var nodeLabels = this.workflow.querySelectorAll(".node .label");
+        try {
+            for (var nodeLabels_1 = __values(nodeLabels), nodeLabels_1_1 = nodeLabels_1.next(); !nodeLabels_1_1.done; nodeLabels_1_1 = nodeLabels_1.next()) {
+                var el = nodeLabels_1_1.value;
+                var matrix_1 = el.transform.baseVal.getItem(0).matrix;
+                Object.assign(matrix_1, {
+                    a: this.labelScale,
+                    d: this.labelScale
+                });
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (nodeLabels_1_1 && !nodeLabels_1_1.done && (_a = nodeLabels_1.return)) _a.call(nodeLabels_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        var e_2, _a;
+    };
+    Workflow.prototype.transformScreenCTMtoCanvas = function (x, y) {
+        var svg = this.svgRoot;
+        var ctm = this.workflow.getScreenCTM();
+        var point = svg.createSVGPoint();
+        point.x = x;
+        point.y = y;
+        var t = point.matrixTransform(ctm.inverse());
+        return {
+            x: t.x,
+            y: t.y
+        };
+    };
+    Workflow.prototype.enableEditing = function (enabled) {
+        this.invokePlugins("onEditableStateChange", enabled);
+        this.editingEnabled = enabled;
+    };
+    // noinspection JSUnusedGlobalSymbols
+    Workflow.prototype.destroy = function () {
+        this.svgRoot.classList.remove(this.svgID);
+        this.clearCanvas();
+        this.eventHub.empty();
+        this.invokePlugins("destroy");
+        try {
+            for (var _a = __values(this.disposers), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var dispose = _b.value;
+                dispose();
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        var e_3, _c;
+    };
+    Workflow.prototype.resetTransform = function () {
+        this.workflow.setAttribute("transform", "matrix(1,0,0,1,0,0)");
+        this.scaleAtPoint();
+    };
+    Workflow.prototype.addEventListeners = function () {
+        var _this = this;
+        /**
+         * Attach canvas panning
+         */
+        {
+            var pane_1;
+            var x_1;
+            var y_1;
+            var matrix_2;
+            this.domEvents.drag(".pan-handle", function (dx, dy) {
+                matrix_2.e = x_1 + dx;
+                matrix_2.f = y_1 + dy;
+            }, function (ev, el, root) {
+                pane_1 = root.querySelector(".workflow");
+                matrix_2 = pane_1.transform.baseVal.getItem(0).matrix;
+                x_1 = matrix_2.e;
+                y_1 = matrix_2.f;
+            }, function () {
+                pane_1 = undefined;
+                matrix_2 = undefined;
+            });
+        }
+        /**
+         * On mouse over node, bring it to the front
+         */
+        this.domEvents.on("mouseover", ".node", function (ev, target, root) {
+            if (_this.workflow.querySelector(".edge.dragged")) {
+                return;
+            }
+            target.parentElement.appendChild(target);
+        });
+    };
+    Workflow.prototype.clearCanvas = function () {
+        this.domEvents.detachAll();
+        this.workflow.innerHTML = "";
+        this.workflow.setAttribute("transform", "matrix(1,0,0,1,0,0)");
+        this.workflow.setAttribute("class", "workflow");
+    };
+    Workflow.prototype.hookPlugins = function () {
+        var _this = this;
+        this.plugins.forEach(function (plugin) {
+            plugin.registerOnBeforeChange(function (event) {
+                _this.eventHub.emit("beforeChange", event);
+            });
+            plugin.registerOnAfterChange(function (event) {
+                _this.eventHub.emit("afterChange", event);
+            });
+            plugin.registerOnAfterRender(function (event) {
+                _this.eventHub.emit("afterRender", event);
+            });
+        });
+    };
+    Workflow.prototype.invokePlugins = function (methodName) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        this.plugins.forEach(function (plugin) {
+            if (typeof plugin[methodName] === "function") {
+                plugin[methodName].apply(plugin, __spread(args));
+            }
+        });
+    };
+    /**
+     * Listener for “connection.create” event on model that renders new edges on canvas
+     */
+    Workflow.prototype.onConnectionCreate = function (source, destination) {
+        if (!source.isVisible || !destination.isVisible) {
+            return;
+        }
+        var sourceID = source.connectionId;
+        var destinationID = destination.connectionId;
+        edge_1.Edge.spawnBetweenConnectionIDs(this.workflow, sourceID, destinationID);
+    };
+    /**
+     * Listener for "connection.remove" event on the model that disconnects nodes
+     */
+    Workflow.prototype.onConnectionRemove = function (source, destination) {
+        if (!source.isVisible || !destination.isVisible) {
+            return;
+        }
+        var sourceID = source.connectionId;
+        var destinationID = destination.connectionId;
+        var edge = this.svgRoot.querySelector(".edge[data-source-connection=\"" + sourceID + "\"][data-destination-connection=\"" + destinationID + "\"");
+        edge.remove();
+    };
+    /**
+     * Listener for “input.create” event on model that renders workflow inputs
+     */
+    Workflow.prototype.onInputCreate = function (input) {
+        if (!input.isVisible) {
+            return;
+        }
+        var patched = graph_node_1.GraphNode.patchModelPorts(input);
+        var graphTemplate = graph_node_1.GraphNode.makeTemplate(patched, this.labelScale);
+        var el = template_parser_1.TemplateParser.parse(graphTemplate);
+        this.workflow.appendChild(el);
+    };
+    /**
+     * Listener for “output.create” event on model that renders workflow outputs
+     */
+    Workflow.prototype.onOutputCreate = function (output) {
+        if (!output.isVisible) {
+            return;
+        }
+        var patched = graph_node_1.GraphNode.patchModelPorts(output);
+        var graphTemplate = graph_node_1.GraphNode.makeTemplate(patched, this.labelScale);
+        var el = template_parser_1.TemplateParser.parse(graphTemplate);
+        this.workflow.appendChild(el);
+    };
+    Workflow.prototype.onStepCreate = function (step) {
+        // if the step doesn't have x & y coordinates, check if they are in the run property
+        if (!step.customProps["sbg:x"] && step.run.customProps && step.run.customProps["sbg:x"]) {
+            Object.assign(step.customProps, {
+                "sbg:x": step.run.customProps["sbg:x"],
+                "sbg:y": step.run.customProps["sbg:y"]
+            });
+            // remove them from the run property once finished
+            delete step.run.customProps["sbg:x"];
+            delete step.run.customProps["sbg:y"];
+        }
+        var template = graph_node_1.GraphNode.makeTemplate(step, this.labelScale);
+        var element = template_parser_1.TemplateParser.parse(template);
+        this.workflow.appendChild(element);
+    };
+    Workflow.prototype.onStepChange = function (change) {
+        var title = this.workflow.querySelector(".step[data-id=\"" + change.connectionId + "\"] .title");
+        if (title) {
+            title.textContent = change.label;
+        }
+    };
+    Workflow.prototype.onInputPortShow = function (input) {
+        var stepEl = this.svgRoot.querySelector(".step[data-connection-id=\"" + input.parentStep.connectionId + "\"]");
+        new step_node_1.StepNode(stepEl, input.parentStep).update();
+    };
+    Workflow.prototype.onInputPortHide = function (input) {
+        var stepEl = this.svgRoot.querySelector(".step[data-connection-id=\"" + input.parentStep.connectionId + "\"]");
+        new step_node_1.StepNode(stepEl, input.parentStep).update();
+    };
+    Workflow.prototype.onOutputPortCreate = function (output) {
+        var stepEl = this.svgRoot.querySelector(".step[data-connection-id=\"" + output.parentStep.connectionId + "\"]");
+        new step_node_1.StepNode(stepEl, output.parentStep).update();
+    };
+    Workflow.prototype.onOutputPortRemove = function (output) {
+        var stepEl = this.svgRoot.querySelector(".step[data-connection-id=\"" + output.parentStep.connectionId + "\"]");
+        new step_node_1.StepNode(stepEl, output.parentStep).update();
+    };
+    /**
+     * Listener for "step.remove" event on model which removes steps
+     */
+    Workflow.prototype.onStepRemove = function (step) {
+        var stepEl = this.svgRoot.querySelector(".step[data-connection-id=\"" + step.connectionId + "\"]");
+        stepEl.remove();
+    };
+    /**
+     * Listener for "input.remove" event on model which removes inputs
+     */
+    Workflow.prototype.onInputRemove = function (input) {
+        if (!input.isVisible)
+            return;
+        var inputEl = this.svgRoot.querySelector(".node.input[data-connection-id=\"" + input.connectionId + "\"]");
+        inputEl.remove();
+    };
+    /**
+     * Listener for "output.remove" event on model which removes outputs
+     */
+    Workflow.prototype.onOutputRemove = function (output) {
+        if (!output.isVisible)
+            return;
+        var outputEl = this.svgRoot.querySelector(".node.output[data-connection-id=\"" + output.connectionId + "\"]");
+        outputEl.remove();
+    };
+    Workflow.prototype.makeID = function (length) {
+        if (length === void 0) { length = 6; }
+        var output = "";
+        var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        for (var i = 0; i < length; i++) {
+            output += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        return output;
+    };
+    return Workflow;
+}());
+exports.Workflow = Workflow;
+//# sourceMappingURL=workflow.js.map
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var geometry_1 = __webpack_require__(76);
+var io_port_1 = __webpack_require__(77);
+var workflow_1 = __webpack_require__(45);
+var Edge = /** @class */ (function () {
+    function Edge() {
+    }
+    Edge.makeTemplate = function (edge, containerNode, connectionStates) {
+        if (!edge.isVisible || edge.source.type === "Step" || edge.destination.type === "Step") {
+            return "";
+        }
+        var _a = __read(edge.source.id.split("/"), 3), sourceSide = _a[0], sourceStepId = _a[1], sourcePort = _a[2];
+        var _b = __read(edge.destination.id.split("/"), 3), destSide = _b[0], destStepId = _b[1], destPort = _b[2];
+        var sourceVertex = containerNode.querySelector(".node[data-id=\"" + sourceStepId + "\"] .output-port[data-port-id=\"" + sourcePort + "\"] .io-port");
+        var destVertex = containerNode.querySelector(".node[data-id=\"" + destStepId + "\"] .input-port[data-port-id=\"" + destPort + "\"] .io-port");
+        if (edge.source.type === edge.destination.type) {
+            console.error("Can't update edge between nodes of the same type.", edge);
+            return;
+        }
+        if (!sourceVertex) {
+            console.error("Source vertex not found for edge " + edge.source.id, edge);
+            return;
+        }
+        if (!destVertex) {
+            console.error("Destination vertex not found for edge " + edge.destination.id, edge);
+            return;
+        }
+        var sourceCTM = sourceVertex.getCTM();
+        var destCTM = destVertex.getCTM();
+        var wfMatrix = containerNode.transform.baseVal[0].matrix;
+        var pathStr = workflow_1.Workflow.makeConnectionPath((sourceCTM.e - wfMatrix.e) / sourceCTM.a, (sourceCTM.f - wfMatrix.f) / sourceCTM.a, (destCTM.e - wfMatrix.e) / sourceCTM.a, (destCTM.f - wfMatrix.f) / sourceCTM.a);
+        return "\n            <g tabindex=\"-1\" class=\"edge " + connectionStates + "\"\n               data-source-port=\"" + sourcePort + "\"\n               data-destination-port=\"" + destPort + "\"\n               data-source-node=\"" + sourceStepId + "\"\n               data-source-connection=\"" + edge.source.id + "\"\n               data-destination-connection=\"" + edge.destination.id + "\"\n               data-destination-node=\"" + destStepId + "\">\n                <path class=\"sub-edge outer\" d=\"" + pathStr + "\"></path>\n                <path class=\"sub-edge inner\" d=\"" + pathStr + "\"></path>\n            </g>\n        ";
+    };
+    Edge.spawn = function (pathStr, connectionIDs) {
+        if (pathStr === void 0) { pathStr = ""; }
+        if (connectionIDs === void 0) { connectionIDs = {}; }
+        var ns = "http://www.w3.org/2000/svg";
+        var edge = document.createElementNS(ns, "g");
+        var _a = __read((connectionIDs.source || "//").split("/"), 3), sourceSide = _a[0], sourceStepId = _a[1], sourcePort = _a[2];
+        var _b = __read((connectionIDs.destination || "//").split("/"), 3), destSide = _b[0], destStepId = _b[1], destPort = _b[2];
+        edge.classList.add("edge");
+        if (sourceStepId) {
+            edge.classList.add(sourceStepId);
+        }
+        if (destStepId) {
+            edge.classList.add(destStepId);
+        }
+        edge.setAttribute("tabindex", "-1");
+        edge.setAttribute("data-destination-node", destStepId);
+        edge.setAttribute("data-destination-port", destPort);
+        edge.setAttribute("data-source-port", sourcePort);
+        edge.setAttribute("data-source-node", sourceStepId);
+        edge.setAttribute("data-source-connection", connectionIDs.source);
+        edge.setAttribute("data-destination-connection", connectionIDs.destination);
+        edge.innerHTML = "\n            <path class=\"sub-edge outer\" d=\"" + pathStr + "\"></path>\n            <path class=\"sub-edge inner\" d=\"" + pathStr + "\"></path>\n        ";
+        return edge;
+    };
+    Edge.spawnBetweenConnectionIDs = function (root, source, destination) {
+        if (source.startsWith("in")) {
+            var tmp = source;
+            source = destination;
+            destination = tmp;
+        }
+        var sourceNode = root.querySelector(".port[data-connection-id=\"" + source + "\"]");
+        var destinationNode = root.querySelector(".port[data-connection-id=\"" + destination + "\"]");
+        var sourceCTM = geometry_1.Geometry.getTransformToElement(sourceNode, root);
+        var destCTM = geometry_1.Geometry.getTransformToElement(destinationNode, root);
+        var path = io_port_1.IOPort.makeConnectionPath(sourceCTM.e, sourceCTM.f, destCTM.e, destCTM.f);
+        // If there is already a connection between these ports, update that one instead
+        var existingEdge = root.querySelector(".edge[data-source-connection=\"" + source + "\"][data-destination-connection=\"" + destination + "\"]");
+        if (existingEdge) {
+            console.log("Updating existing edge");
+            try {
+                for (var _a = __values(existingEdge.querySelectorAll(".sub-edge")), _b = _a.next(); !_b.done; _b = _a.next()) {
+                    var sub = _b.value;
+                    sub.setAttribute("d", path);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return existingEdge;
+        }
+        var edge = Edge.spawn(path, {
+            source: source,
+            destination: destination
+        });
+        var firstNode = root.querySelector(".node");
+        root.insertBefore(edge, firstNode);
+        return edge;
+        var e_1, _c;
+    };
+    ;
+    Edge.findEdge = function (root, sourceConnectionID, destinationConnectionID) {
+        return root.querySelector("[data-source-connection=\"" + sourceConnectionID + "\"][data-destination-connection=\"" + destinationConnectionID + "\"]");
+    };
+    Edge.parseConnectionID = function (cid) {
+        var _a = __read((cid || "//").split("/"), 3), side = _a[0], stepID = _a[1], portID = _a[2];
+        return { side: side, stepID: stepID, portID: portID };
+    };
+    return Edge;
+}());
+exports.Edge = Edge;
+//# sourceMappingURL=edge.js.map
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var plugin_base_1 = __webpack_require__(9);
+var SelectionPlugin = /** @class */ (function (_super) {
+    __extends(SelectionPlugin, _super);
+    function SelectionPlugin() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.selection = new Map();
+        _this.cleanups = [];
+        _this.selectionChangeCallbacks = [];
+        _this.css = {
+            selected: "__selection-plugin-selected",
+            highlight: "__selection-plugin-highlight",
+            fade: "__selection-plugin-fade",
+            plugin: "__plugin-selection"
+        };
+        return _this;
+    }
+    SelectionPlugin.prototype.registerWorkflow = function (workflow) {
+        var _this = this;
+        _super.prototype.registerWorkflow.call(this, workflow);
+        this.svg = this.workflow.svgRoot;
+        this.svg.classList.add(this.css.plugin);
+        var clickListener = this.onClick.bind(this);
+        this.svg.addEventListener("click", clickListener);
+        this.cleanups.push(function () { return _this.svg.removeEventListener("click", clickListener); });
+    };
+    SelectionPlugin.prototype.afterRender = function () {
+        this.restoreSelection();
+    };
+    SelectionPlugin.prototype.afterModelChange = function () {
+        if (typeof this.detachModelEvents === "function") {
+            this.detachModelEvents();
+        }
+        this.detachModelEvents = this.bindModelEvents();
+    };
+    SelectionPlugin.prototype.destroy = function () {
+        this.detachModelEvents();
+        this.detachModelEvents = undefined;
+        this.svg.classList.remove(this.css.plugin);
+        try {
+            for (var _a = __values(this.cleanups), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var fn = _b.value;
+                fn();
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        var e_1, _c;
+    };
+    SelectionPlugin.prototype.clearSelection = function () {
+        var selection = this.svg.querySelectorAll("." + this.css.selected);
+        var highlights = this.svg.querySelectorAll("." + this.css.highlight);
+        try {
+            for (var selection_1 = __values(selection), selection_1_1 = selection_1.next(); !selection_1_1.done; selection_1_1 = selection_1.next()) {
+                var el = selection_1_1.value;
+                el.classList.remove(this.css.selected);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (selection_1_1 && !selection_1_1.done && (_a = selection_1.return)) _a.call(selection_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        try {
+            for (var highlights_1 = __values(highlights), highlights_1_1 = highlights_1.next(); !highlights_1_1.done; highlights_1_1 = highlights_1.next()) {
+                var el = highlights_1_1.value;
+                el.classList.remove(this.css.highlight);
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (highlights_1_1 && !highlights_1_1.done && (_b = highlights_1.return)) _b.call(highlights_1);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        this.svg.classList.remove(this.css.fade);
+        this.selection.clear();
+        this.emitChange(null);
+        var e_2, _a, e_3, _b;
+    };
+    SelectionPlugin.prototype.getSelection = function () {
+        return this.selection;
+    };
+    SelectionPlugin.prototype.registerOnSelectionChange = function (fn) {
+        this.selectionChangeCallbacks.push(fn);
+    };
+    SelectionPlugin.prototype.selectStep = function (stepID) {
+        var query = "[data-connection-id=\"" + stepID + "\"]";
+        var el = this.svg.querySelector(query);
+        if (el) {
+            this.materializeClickOnElement(el);
+        }
+    };
+    SelectionPlugin.prototype.bindModelEvents = function () {
+        var _this = this;
+        var handler = function () { return _this.restoreSelection(); };
+        var cleanup = [];
+        var events = ["connection.create", "connection.remove"];
+        var _loop_1 = function (ev) {
+            var dispose = this_1.workflow.model.on(ev, handler);
+            cleanup.push(function () { return dispose.dispose(); });
+        };
+        var this_1 = this;
+        try {
+            for (var events_1 = __values(events), events_1_1 = events_1.next(); !events_1_1.done; events_1_1 = events_1.next()) {
+                var ev = events_1_1.value;
+                _loop_1(ev);
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (events_1_1 && !events_1_1.done && (_a = events_1.return)) _a.call(events_1);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
+        return function () { return cleanup.forEach(function (fn) { return fn(); }); };
+        var e_4, _a;
+    };
+    SelectionPlugin.prototype.restoreSelection = function () {
+        var _this = this;
+        this.selection.forEach(function (type, connectionID) {
+            if (type === "node") {
+                var el = _this.svg.querySelector("[data-connection-id=\"" + connectionID + "\"]");
+                if (el) {
+                    _this.selectNode(el);
+                }
+            }
+            else if (type === "edge") {
+                var _a = __read(connectionID.split(SelectionPlugin.edgePortsDelimiter), 2), sID = _a[0], dID = _a[1];
+                var edgeSelector = "[data-source-connection=\"" + sID + "\"][data-destination-connection=\"" + dID + "\"]";
+                var edge = _this.svg.querySelector(edgeSelector);
+                if (edge) {
+                    _this.selectEdge(edge);
+                }
+            }
+        });
+    };
+    SelectionPlugin.prototype.onClick = function (click) {
+        var target = click.target;
+        this.clearSelection();
+        this.materializeClickOnElement(target);
+    };
+    SelectionPlugin.prototype.materializeClickOnElement = function (target) {
+        var element;
+        if (element = this.workflow.findParent(target, "node")) {
+            this.selectNode(element);
+            this.selection.set(element.getAttribute("data-connection-id"), "node");
+            this.emitChange(element);
+        }
+        else if (element = this.workflow.findParent(target, "edge")) {
+            this.selectEdge(element);
+            var cid = [
+                element.getAttribute("data-source-connection"),
+                SelectionPlugin.edgePortsDelimiter,
+                element.getAttribute("data-destination-connection")
+            ].join("");
+            this.selection.set(cid, "edge");
+            this.emitChange(cid);
+        }
+    };
+    SelectionPlugin.prototype.selectNode = function (element) {
+        // Fade everything on canvas so we can highlight only selected stuff
+        this.svg.classList.add(this.css.fade);
+        // Mark this node as selected
+        element.classList.add(this.css.selected);
+        // Highlight it in case there are no edges on the graph
+        element.classList.add(this.css.highlight);
+        // Take all adjacent edges since we should highlight them and move them above the other edges
+        var nodeID = element.getAttribute("data-id");
+        var adjacentEdges = this.svg.querySelectorAll(".edge[data-source-node=\"" + nodeID + "\"]," +
+            (".edge[data-destination-node=\"" + nodeID + "\""));
+        // Find the first node to be an anchor, so we can put all those edges just before that one.
+        var firstNode = this.svg.getElementsByClassName("node")[0];
+        try {
+            for (var adjacentEdges_1 = __values(adjacentEdges), adjacentEdges_1_1 = adjacentEdges_1.next(); !adjacentEdges_1_1.done; adjacentEdges_1_1 = adjacentEdges_1.next()) {
+                var edge = adjacentEdges_1_1.value;
+                // Highlight each adjacent edge
+                edge.classList.add(this.css.highlight);
+                // Move it above other edges
+                this.workflow.workflow.insertBefore(edge, firstNode);
+                // Find all adjacent nodes so we can highlight them
+                var sourceNodeID = edge.getAttribute("data-source-node");
+                var destinationNodeID = edge.getAttribute("data-destination-node");
+                var connectedNodes = this.svg.querySelectorAll(".node[data-id=\"" + sourceNodeID + "\"]," +
+                    (".node[data-id=\"" + destinationNodeID + "\"]"));
+                try {
+                    // Highlight each adjacent node
+                    for (var connectedNodes_1 = __values(connectedNodes), connectedNodes_1_1 = connectedNodes_1.next(); !connectedNodes_1_1.done; connectedNodes_1_1 = connectedNodes_1.next()) {
+                        var n = connectedNodes_1_1.value;
+                        n.classList.add(this.css.highlight);
+                    }
+                }
+                catch (e_5_1) { e_5 = { error: e_5_1 }; }
+                finally {
+                    try {
+                        if (connectedNodes_1_1 && !connectedNodes_1_1.done && (_a = connectedNodes_1.return)) _a.call(connectedNodes_1);
+                    }
+                    finally { if (e_5) throw e_5.error; }
+                }
+            }
+        }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
+        finally {
+            try {
+                if (adjacentEdges_1_1 && !adjacentEdges_1_1.done && (_b = adjacentEdges_1.return)) _b.call(adjacentEdges_1);
+            }
+            finally { if (e_6) throw e_6.error; }
+        }
+        var e_6, _b, e_5, _a;
+    };
+    SelectionPlugin.prototype.selectEdge = function (element) {
+        element.classList.add(this.css.highlight);
+        element.classList.add(this.css.selected);
+        var sourceNode = element.getAttribute("data-source-node");
+        var destNode = element.getAttribute("data-destination-node");
+        var sourcePort = element.getAttribute("data-source-port");
+        var destPort = element.getAttribute("data-destination-port");
+        var inputPortSelector = ".node[data-id=\"" + destNode + "\"] .input-port[data-port-id=\"" + destPort + "\"]";
+        var outputPortSelector = ".node[data-id=\"" + sourceNode + "\"] .output-port[data-port-id=\"" + sourcePort + "\"]";
+        var connectedPorts = this.svg.querySelectorAll(inputPortSelector + ", " + outputPortSelector);
+        try {
+            for (var connectedPorts_1 = __values(connectedPorts), connectedPorts_1_1 = connectedPorts_1.next(); !connectedPorts_1_1.done; connectedPorts_1_1 = connectedPorts_1.next()) {
+                var port = connectedPorts_1_1.value;
+                port.classList.add(this.css.highlight);
+            }
+        }
+        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        finally {
+            try {
+                if (connectedPorts_1_1 && !connectedPorts_1_1.done && (_a = connectedPorts_1.return)) _a.call(connectedPorts_1);
+            }
+            finally { if (e_7) throw e_7.error; }
+        }
+        var e_7, _a;
+    };
+    SelectionPlugin.prototype.emitChange = function (change) {
+        try {
+            for (var _a = __values(this.selectionChangeCallbacks), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var fn = _b.value;
+                fn(change);
+            }
+        }
+        catch (e_8_1) { e_8 = { error: e_8_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_8) throw e_8.error; }
+        }
+        var e_8, _c;
+    };
+    SelectionPlugin.edgePortsDelimiter = "$!$";
+    return SelectionPlugin;
+}(plugin_base_1.PluginBase));
+exports.SelectionPlugin = SelectionPlugin;
+//# sourceMappingURL=selection.js.map
+
+/***/ }),
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cwlts_models__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cwlts_models__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cwlts_models___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cwlts_models__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_cwl_svg__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_cwl_svg__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_cwl_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_cwl_svg__);
 //
 //
@@ -6845,7 +7965,7 @@ module.exports = g;
 });
 
 /***/ }),
-/* 45 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6895,7 +8015,7 @@ exports.EventHub = EventHub;
 
 
 /***/ }),
-/* 46 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7139,7 +8259,7 @@ exports.Graph = Graph;
 
 
 /***/ }),
-/* 47 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7155,7 +8275,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowOutputParameterModel_1 = __webpack_require__(17);
+var WorkflowOutputParameterModel_1 = __webpack_require__(19);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
 var V1WorkflowOutputParameterModel = /** @class */ (function (_super) {
@@ -7219,16 +8339,16 @@ exports.V1WorkflowOutputParameterModel = V1WorkflowOutputParameterModel;
 
 
 /***/ }),
-/* 48 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineParsers_1 = __webpack_require__(87);
-var CommandArgumentModel_1 = __webpack_require__(23);
-var CommandInputParameterModel_1 = __webpack_require__(10);
-var ExpressionModel_1 = __webpack_require__(9);
+var CommandLineParsers_1 = __webpack_require__(107);
+var CommandArgumentModel_1 = __webpack_require__(25);
+var CommandInputParameterModel_1 = __webpack_require__(11);
+var ExpressionModel_1 = __webpack_require__(10);
 var CommandLinePrepare = /** @class */ (function () {
     function CommandLinePrepare() {
     }
@@ -7312,7 +8432,7 @@ exports.CommandLinePrepare = CommandLinePrepare;
 
 
 /***/ }),
-/* 49 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7328,9 +8448,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandArgumentModel_1 = __webpack_require__(23);
+var CommandArgumentModel_1 = __webpack_require__(25);
 var V1ExpressionModel_1 = __webpack_require__(5);
-var V1CommandLineBindingModel_1 = __webpack_require__(50);
+var V1CommandLineBindingModel_1 = __webpack_require__(54);
 var ErrorCode_1 = __webpack_require__(1);
 var V1CommandArgumentModel = /** @class */ (function (_super) {
     __extends(V1CommandArgumentModel, _super);
@@ -7425,7 +8545,7 @@ exports.V1CommandArgumentModel = V1CommandArgumentModel;
 
 
 /***/ }),
-/* 50 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7441,7 +8561,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineBindingModel_1 = __webpack_require__(32);
+var CommandLineBindingModel_1 = __webpack_require__(34);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var utils_1 = __webpack_require__(0);
 var ErrorCode_1 = __webpack_require__(1);
@@ -7519,7 +8639,7 @@ exports.V1CommandLineBindingModel = V1CommandLineBindingModel;
 
 
 /***/ }),
-/* 51 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7535,7 +8655,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowInputParameterModel_1 = __webpack_require__(15);
+var WorkflowInputParameterModel_1 = __webpack_require__(17);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
 var V1WorkflowInputParameterModel = /** @class */ (function (_super) {
@@ -7585,7 +8705,7 @@ exports.V1WorkflowInputParameterModel = V1WorkflowInputParameterModel;
 
 
 /***/ }),
-/* 52 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7601,10 +8721,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandOutputParameterModel_1 = __webpack_require__(13);
+var CommandOutputParameterModel_1 = __webpack_require__(14);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
-var V1CommandOutputBindingModel_1 = __webpack_require__(53);
+var V1CommandOutputBindingModel_1 = __webpack_require__(57);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var V1CommandOutputParameterModel = /** @class */ (function (_super) {
     __extends(V1CommandOutputParameterModel, _super);
@@ -7677,7 +8797,7 @@ exports.V1CommandOutputParameterModel = V1CommandOutputParameterModel;
 
 
 /***/ }),
-/* 53 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7693,7 +8813,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandOutputBindingModel_1 = __webpack_require__(35);
+var CommandOutputBindingModel_1 = __webpack_require__(37);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var ErrorCode_1 = __webpack_require__(1);
 var V1CommandOutputBindingModel = /** @class */ (function (_super) {
@@ -7803,7 +8923,7 @@ exports.V1CommandOutputBindingModel = V1CommandOutputBindingModel;
 
 
 /***/ }),
-/* 54 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7819,7 +8939,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineBindingModel_1 = __webpack_require__(32);
+var CommandLineBindingModel_1 = __webpack_require__(34);
 var utils_1 = __webpack_require__(0);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2CommandLineBindingModel = /** @class */ (function (_super) {
@@ -7891,7 +9011,7 @@ exports.SBDraft2CommandLineBindingModel = SBDraft2CommandLineBindingModel;
 
 
 /***/ }),
-/* 55 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7908,8 +9028,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var ValidationBase_1 = __webpack_require__(2);
-var V1CommandInputParameterModel_1 = __webpack_require__(33);
-var V1CommandOutputParameterModel_1 = __webpack_require__(52);
+var V1CommandInputParameterModel_1 = __webpack_require__(35);
+var V1CommandOutputParameterModel_1 = __webpack_require__(56);
 var utils_1 = __webpack_require__(0);
 var ExpressionToolModel = /** @class */ (function (_super) {
     __extends(ExpressionToolModel, _super);
@@ -7938,7 +9058,31 @@ exports.ExpressionToolModel = ExpressionToolModel;
 
 
 /***/ }),
-/* 56 */
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(41));
+__export(__webpack_require__(64));
+__export(__webpack_require__(66));
+__export(__webpack_require__(69));
+__export(__webpack_require__(73));
+__export(__webpack_require__(71));
+__export(__webpack_require__(70));
+__export(__webpack_require__(43));
+__export(__webpack_require__(68));
+__export(__webpack_require__(74));
+// for implementing third-party plugins
+__export(__webpack_require__(8));
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7980,7 +9124,7 @@ exports.Geometry = Geometry;
 //# sourceMappingURL=geometry.js.map
 
 /***/ }),
-/* 57 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8020,7 +9164,7 @@ exports.IOPort = IOPort;
 //# sourceMappingURL=io-port.js.map
 
 /***/ }),
-/* 58 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8042,7 +9186,7 @@ exports.SVGUtils = SVGUtils;
 //# sourceMappingURL=svg-utils.js.map
 
 /***/ }),
-/* 59 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8078,9 +9222,9 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var edge_1 = __webpack_require__(41);
-var graph_node_1 = __webpack_require__(25);
-var template_parser_1 = __webpack_require__(60);
+var edge_1 = __webpack_require__(42);
+var graph_node_1 = __webpack_require__(27);
+var template_parser_1 = __webpack_require__(65);
 var StepNode = /** @class */ (function () {
     function StepNode(element, stepModel) {
         this.stepEl = element;
@@ -8116,7 +9260,7 @@ exports.StepNode = StepNode;
 //# sourceMappingURL=step-node.js.map
 
 /***/ }),
-/* 60 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8137,7 +9281,7 @@ exports.TemplateParser = TemplateParser;
 //# sourceMappingURL=template-parser.js.map
 
 /***/ }),
-/* 61 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8164,11 +9308,11 @@ var __values = (this && this.__values) || function (o) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var plugin_base_1 = __webpack_require__(8);
-var _1 = __webpack_require__(62);
-var graph_node_1 = __webpack_require__(25);
-var geometry_1 = __webpack_require__(56);
-var edge_1 = __webpack_require__(41);
-var edge_panning_1 = __webpack_require__(67);
+var _1 = __webpack_require__(67);
+var graph_node_1 = __webpack_require__(27);
+var geometry_1 = __webpack_require__(61);
+var edge_1 = __webpack_require__(42);
+var edge_panning_1 = __webpack_require__(72);
 var SVGPortDragPlugin = /** @class */ (function (_super) {
     __extends(SVGPortDragPlugin, _super);
     function SVGPortDragPlugin() {
@@ -8505,7 +9649,7 @@ exports.SVGPortDragPlugin = SVGPortDragPlugin;
 //# sourceMappingURL=port-drag.js.map
 
 /***/ }),
-/* 62 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8514,19 +9658,19 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(40));
-__export(__webpack_require__(63));
-__export(__webpack_require__(64));
-__export(__webpack_require__(65));
-__export(__webpack_require__(66));
-__export(__webpack_require__(61));
-__export(__webpack_require__(42));
+__export(__webpack_require__(41));
 __export(__webpack_require__(68));
 __export(__webpack_require__(69));
+__export(__webpack_require__(70));
+__export(__webpack_require__(71));
+__export(__webpack_require__(66));
+__export(__webpack_require__(43));
+__export(__webpack_require__(73));
+__export(__webpack_require__(74));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 63 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8583,7 +9727,7 @@ exports.ZoomPlugin = ZoomPlugin;
 //# sourceMappingURL=zoom.js.map
 
 /***/ }),
-/* 64 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8619,8 +9763,8 @@ var __spread = (this && this.__spread) || function () {
     return ar;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var graph_node_1 = __webpack_require__(25);
-var svg_utils_1 = __webpack_require__(58);
+var graph_node_1 = __webpack_require__(27);
+var svg_utils_1 = __webpack_require__(63);
 var SVGArrangePlugin = /** @class */ (function () {
     function SVGArrangePlugin() {
     }
@@ -8971,7 +10115,7 @@ exports.SVGArrangePlugin = SVGArrangePlugin;
 //# sourceMappingURL=arrange.js.map
 
 /***/ }),
-/* 65 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9111,7 +10255,7 @@ exports.SVGValidatePlugin = SVGValidatePlugin;
 //# sourceMappingURL=validate.js.map
 
 /***/ }),
-/* 66 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9137,9 +10281,9 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var _1 = __webpack_require__(62);
+var _1 = __webpack_require__(67);
 var plugin_base_1 = __webpack_require__(8);
-var edge_panning_1 = __webpack_require__(67);
+var edge_panning_1 = __webpack_require__(72);
 /**
  * This plugin makes node dragging and movement possible.
  *
@@ -9338,7 +10482,7 @@ exports.SVGNodeMovePlugin = SVGNodeMovePlugin;
 //# sourceMappingURL=node-move.js.map
 
 /***/ }),
-/* 67 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9446,7 +10590,7 @@ exports.EdgePanner = EdgePanner;
 //# sourceMappingURL=edge-panning.js.map
 
 /***/ }),
-/* 68 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9555,7 +10699,7 @@ exports.SVGEdgeHoverPlugin = SVGEdgeHoverPlugin;
 //# sourceMappingURL=edge-hover.js.map
 
 /***/ }),
-/* 69 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9588,8 +10732,8 @@ var __read = (this && this.__read) || function (o, n) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var plugin_base_1 = __webpack_require__(8);
-var selection_1 = __webpack_require__(42);
-var models_1 = __webpack_require__(27);
+var selection_1 = __webpack_require__(43);
+var models_1 = __webpack_require__(15);
 var DeletionPlugin = /** @class */ (function (_super) {
     __extends(DeletionPlugin, _super);
     function DeletionPlugin() {
@@ -9660,23 +10804,1935 @@ exports.DeletionPlugin = DeletionPlugin;
 //# sourceMappingURL=deletion.js.map
 
 /***/ }),
-/* 70 */
+/* 75 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Geometry = /** @class */ (function () {
+    function Geometry() {
+    }
+    Geometry.distance = function (x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    };
+    Geometry.getTransformToElement = function (from, to) {
+        var getPosition = function (node, addE, addF) {
+            if (addE === void 0) { addE = 0; }
+            if (addF === void 0) { addF = 0; }
+            if (!node.ownerSVGElement) {
+                // node is the root svg element
+                var matrix = node.createSVGMatrix();
+                matrix.e = addE;
+                matrix.f = addF;
+                return matrix;
+            }
+            else {
+                // node still has parent elements
+                var _a = node.transform.baseVal.getItem(0).matrix, e = _a.e, f = _a.f;
+                return getPosition(node.parentNode, e + addE, f + addF);
+            }
+        };
+        var toPosition = getPosition(to);
+        var fromPosition = getPosition(from);
+        var result = from.ownerSVGElement.createSVGMatrix();
+        result.e = toPosition.e - fromPosition.e;
+        result.f = toPosition.f - fromPosition.f;
+        return result.inverse();
+    };
+    return Geometry;
+}());
+exports.Geometry = Geometry;
+//# sourceMappingURL=geometry.js.map
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var IOPort = /** @class */ (function () {
+    function IOPort() {
+    }
+    /**
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param {"right" | "left" | string} forceDirection
+     * @returns {string}
+     */
+    IOPort.makeConnectionPath = function (x1, y1, x2, y2, forceDirection) {
+        if (forceDirection === void 0) { forceDirection = "right"; }
+        if (!forceDirection) {
+            return "M " + x1 + " " + y1 + " C " + (x1 + x2) / 2 + " " + y1 + " " + (x1 + x2) / 2 + " " + y2 + " " + x2 + " " + y2;
+        }
+        else if (forceDirection === "right") {
+            var outDir = x1 + Math.abs(x1 - x2) / 2;
+            var inDir = x2 - Math.abs(x1 - x2) / 2;
+            return "M " + x1 + " " + y1 + " C " + outDir + " " + y1 + " " + inDir + " " + y2 + " " + x2 + " " + y2;
+        }
+        else if (forceDirection === "left") {
+            var outDir = x1 - Math.abs(x1 - x2) / 2;
+            var inDir = x2 + Math.abs(x1 - x2) / 2;
+            return "M " + x1 + " " + y1 + " C " + outDir + " " + y1 + " " + inDir + " " + y2 + " " + x2 + " " + y2;
+        }
+    };
+    IOPort.radius = 7;
+    return IOPort;
+}());
+exports.IOPort = IOPort;
+//# sourceMappingURL=io-port.js.map
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var SVGUtils = /** @class */ (function () {
+    function SVGUtils() {
+    }
+    SVGUtils.matrixToTransformAttr = function (matrix) {
+        var a = matrix.a, b = matrix.b, c = matrix.c, d = matrix.d, e = matrix.e, f = matrix.f;
+        return "matrix(" + a + ", " + b + ", " + c + ", " + d + ", " + e + ", " + f + ")";
+    };
+    SVGUtils.createMatrix = function () {
+        return document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix();
+    };
+    return SVGUtils;
+}());
+exports.SVGUtils = SVGUtils;
+//# sourceMappingURL=svg-utils.js.map
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var edge_1 = __webpack_require__(46);
+var graph_node_1 = __webpack_require__(28);
+var template_parser_1 = __webpack_require__(80);
+var StepNode = /** @class */ (function () {
+    function StepNode(element, stepModel) {
+        this.stepEl = element;
+        this.svg = element.ownerSVGElement;
+        this.model = stepModel;
+    }
+    StepNode.prototype.update = function () {
+        var tpl = graph_node_1.GraphNode.makeTemplate(this.model);
+        var el = template_parser_1.TemplateParser.parse(tpl);
+        this.stepEl.innerHTML = el.innerHTML;
+        // Reposition all edges
+        var incomingEdges = this.svg.querySelectorAll(".edge[data-destination-node=\"" + this.model.connectionId + "\"]");
+        var outgoingEdges = this.svg.querySelectorAll(".edge[data-source-node=\"" + this.model.connectionId + "\"");
+        try {
+            for (var _a = __values(__spread(incomingEdges, outgoingEdges)), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var edge = _b.value;
+                edge_1.Edge.spawnBetweenConnectionIDs(this.svg.querySelector(".workflow"), edge.getAttribute("data-source-connection"), edge.getAttribute("data-destination-connection"));
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        console.log("Should redraw input port", incomingEdges);
+        var e_1, _c;
+    };
+    return StepNode;
+}());
+exports.StepNode = StepNode;
+//# sourceMappingURL=step-node.js.map
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var TemplateParser = /** @class */ (function () {
+    function TemplateParser() {
+    }
+    TemplateParser.parse = function (tpl) {
+        var ns = "http://www.w3.org/2000/svg";
+        var node = document.createElementNS(ns, "g");
+        node.innerHTML = tpl;
+        return node.firstElementChild;
+    };
+    return TemplateParser;
+}());
+exports.TemplateParser = TemplateParser;
+//# sourceMappingURL=template-parser.js.map
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var plugin_base_1 = __webpack_require__(9);
+var _1 = __webpack_require__(82);
+var graph_node_1 = __webpack_require__(28);
+var geometry_1 = __webpack_require__(76);
+var edge_1 = __webpack_require__(46);
+var edge_panning_1 = __webpack_require__(87);
+var SVGPortDragPlugin = /** @class */ (function (_super) {
+    __extends(SVGPortDragPlugin, _super);
+    function SVGPortDragPlugin() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /** How far away from the port you need to drag in order to create a new input/output instead of snapping */
+        _this.snapRadius = 120;
+        /** Map of CSS classes attached by this plugin */
+        _this.css = {
+            /** Added to svgRoot as a sign that this plugin is active */
+            plugin: "__plugin-port-drag",
+            /** Suggests that an element that contains it will be the one to snap to */
+            snap: "__port-drag-snap",
+            /** Added to svgRoot while dragging is in progress */
+            dragging: "__port-drag-dragging",
+            /** Will be added to suggested ports and their parent nodes */
+            suggestion: "__port-drag-suggestion",
+        };
+        _this.detachDragListenerFn = undefined;
+        _this.wheelPrevent = function (ev) { return ev.stopPropagation(); };
+        _this.ghostX = 0;
+        _this.ghostY = 0;
+        return _this;
+    }
+    SVGPortDragPlugin.prototype.registerWorkflow = function (workflow) {
+        _super.prototype.registerWorkflow.call(this, workflow);
+        this.panner = new edge_panning_1.EdgePanner(this.workflow);
+        this.workflow.svgRoot.classList.add(this.css.plugin);
+    };
+    SVGPortDragPlugin.prototype.afterRender = function () {
+        if (this.workflow.editingEnabled) {
+            this.attachPortDrag();
+        }
+    };
+    SVGPortDragPlugin.prototype.onEditableStateChange = function (enabled) {
+        if (enabled) {
+            this.attachPortDrag();
+        }
+        else {
+            this.detachPortDrag();
+        }
+    };
+    SVGPortDragPlugin.prototype.destroy = function () {
+        this.detachPortDrag();
+    };
+    SVGPortDragPlugin.prototype.detachPortDrag = function () {
+        if (typeof this.detachDragListenerFn === "function") {
+            this.detachDragListenerFn();
+        }
+        this.detachDragListenerFn = undefined;
+    };
+    SVGPortDragPlugin.prototype.attachPortDrag = function () {
+        this.detachPortDrag();
+        this.detachDragListenerFn = this.workflow.domEvents.drag(".port", this.onMove.bind(this), this.onMoveStart.bind(this), this.onMoveEnd.bind(this));
+    };
+    SVGPortDragPlugin.prototype.onMove = function (dx, dy, ev, portElement) {
+        var _this = this;
+        document.addEventListener("mousewheel", this.wheelPrevent, true);
+        var mouseOnSVG = this.workflow.transformScreenCTMtoCanvas(ev.clientX, ev.clientY);
+        var scale = this.workflow.scale;
+        var sdx = (dx - this.lastMouseMove.x) / scale;
+        var sdy = (dy - this.lastMouseMove.y) / scale;
+        /** We might have hit the boundary and need to start panning */
+        this.panner.triggerCollisionDetection(ev.clientX, ev.clientY, function (sdx, sdy) {
+            _this.ghostX += sdx;
+            _this.ghostY += sdy;
+            _this.translateGhostNode(_this.ghostX, _this.ghostY);
+            _this.updateEdge(_this.portOnCanvas.x, _this.portOnCanvas.y, _this.ghostX, _this.ghostY);
+        });
+        var nodeToMouseDistance = geometry_1.Geometry.distance(this.nodeCoords.x, this.nodeCoords.y, mouseOnSVG.x, mouseOnSVG.y);
+        var closestPort = this.findClosestPort(mouseOnSVG.x, mouseOnSVG.y);
+        this.updateSnapPort(closestPort.portEl, closestPort.distance);
+        this.ghostX += sdx;
+        this.ghostY += sdy;
+        this.translateGhostNode(this.ghostX, this.ghostY);
+        this.updateGhostNodeVisibility(nodeToMouseDistance, closestPort.distance);
+        this.updateEdge(this.portOnCanvas.x, this.portOnCanvas.y, this.ghostX, this.ghostY);
+        this.lastMouseMove = { x: dx, y: dy };
+    };
+    /**
+     * @FIXME: Add panning
+     * @param {MouseEvent} ev
+     * @param {SVGGElement} portEl
+     */
+    SVGPortDragPlugin.prototype.onMoveStart = function (ev, portEl) {
+        this.lastMouseMove = { x: 0, y: 0 };
+        this.originPort = portEl;
+        var portCTM = portEl.getScreenCTM();
+        this.portOnCanvas = this.workflow.transformScreenCTMtoCanvas(portCTM.e, portCTM.f);
+        this.ghostX = this.portOnCanvas.x;
+        this.ghostY = this.portOnCanvas.y;
+        // Needed for collision detection
+        this.boundingClientRect = this.workflow.svgRoot.getBoundingClientRect();
+        var nodeMatrix = this.workflow.findParent(portEl).transform.baseVal.getItem(0).matrix;
+        this.nodeCoords = {
+            x: nodeMatrix.e,
+            y: nodeMatrix.f
+        };
+        var workflowGroup = this.workflow.workflow;
+        this.portType = portEl.classList.contains("input-port") ? "input" : "output";
+        this.ghostNode = this.createGhostNode(this.portType);
+        workflowGroup.appendChild(this.ghostNode);
+        /** @FIXME: this should come from workflow */
+        this.edgeGroup = edge_1.Edge.spawn();
+        this.edgeGroup.classList.add(this.css.dragging);
+        workflowGroup.appendChild(this.edgeGroup);
+        this.workflow.svgRoot.classList.add(this.css.dragging);
+        this.portOrigins = this.getPortCandidateTransformations(portEl);
+        this.highlightSuggestedPorts(portEl.getAttribute("data-connection-id"));
+    };
+    SVGPortDragPlugin.prototype.onMoveEnd = function (ev) {
+        document.removeEventListener("mousewheel", this.wheelPrevent, true);
+        this.panner.stop();
+        var ghostType = this.ghostNode.getAttribute("data-type");
+        var ghostIsVisible = !this.ghostNode.classList.contains("hidden");
+        var shouldSnap = this.snapPort !== undefined;
+        var shouldCreateInput = ghostIsVisible && ghostType === "input";
+        var shouldCreateOutput = ghostIsVisible && ghostType === "output";
+        var portID = this.originPort.getAttribute("data-connection-id");
+        if (shouldSnap) {
+            this.createEdgeBetweenPorts(this.originPort, this.snapPort);
+        }
+        else if (shouldCreateInput || shouldCreateOutput) {
+            var svgCoordsUnderMouse = this.workflow.transformScreenCTMtoCanvas(ev.clientX, ev.clientY);
+            var customProps = {
+                "sbg:x": svgCoordsUnderMouse.x,
+                "sbg:y": svgCoordsUnderMouse.y
+            };
+            if (shouldCreateInput) {
+                this.workflow.model.createInputFromPort(portID, { customProps: customProps });
+            }
+            else {
+                this.workflow.model.createOutputFromPort(portID, { customProps: customProps });
+            }
+        }
+        this.cleanMemory();
+        this.cleanStyles();
+    };
+    SVGPortDragPlugin.prototype.updateSnapPort = function (closestPort, closestPortDistance) {
+        var closestPortChanged = closestPort !== this.snapPort;
+        var closestPortIsOutOfRange = closestPortDistance > this.snapRadius;
+        // We might need to remove old class for snapping if we are closer to some other port now
+        if (this.snapPort && (closestPortChanged || closestPortIsOutOfRange)) {
+            var node_1 = this.workflow.findParent(this.snapPort);
+            this.snapPort.classList.remove(this.css.snap);
+            node_1.classList.remove(this.css.snap);
+            delete this.snapPort;
+        }
+        // If closest port is further away than our snapRadius, no highlighting should be done
+        if (closestPortDistance > this.snapRadius) {
+            return;
+        }
+        var originID = this.originPort.getAttribute("data-connection-id");
+        var targetID = closestPort.getAttribute("data-connection-id");
+        if (this.findEdge(originID, targetID)) {
+            delete this.snapPort;
+            return;
+        }
+        this.snapPort = closestPort;
+        var node = this.workflow.findParent(closestPort);
+        var oppositePortType = this.portType === "input" ? "output" : "input";
+        closestPort.classList.add(this.css.snap);
+        node.classList.add(this.css.snap);
+        node.classList.add(this.css.snap + "-" + oppositePortType);
+    };
+    SVGPortDragPlugin.prototype.updateEdge = function (fromX, fromY, toX, toY) {
+        var subEdges = this.edgeGroup.children;
+        try {
+            for (var _a = __values(subEdges), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var subEdge = _b.value;
+                var path = _1.Workflow.makeConnectionPath(fromX, fromY, toX, toY, this.portType === "input" ? "left" : "right");
+                subEdge.setAttribute("d", path);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        var e_1, _c;
+    };
+    SVGPortDragPlugin.prototype.updateGhostNodeVisibility = function (distanceToMouse, distanceToClosestPort) {
+        var isHidden = this.ghostNode.classList.contains("hidden");
+        var shouldBeVisible = distanceToMouse > this.snapRadius && distanceToClosestPort > this.snapRadius;
+        if (shouldBeVisible && isHidden) {
+            this.ghostNode.classList.remove("hidden");
+        }
+        else if (!shouldBeVisible && !isHidden) {
+            this.ghostNode.classList.add("hidden");
+        }
+    };
+    SVGPortDragPlugin.prototype.translateGhostNode = function (x, y) {
+        this.ghostNode.transform.baseVal.getItem(0).setTranslate(x, y);
+    };
+    SVGPortDragPlugin.prototype.getPortCandidateTransformations = function (portEl) {
+        var nodeEl = this.workflow.findParent(portEl);
+        var nodeConnectionID = nodeEl.getAttribute("data-connection-id");
+        var otherPortType = this.portType === "input" ? "output" : "input";
+        var portQuery = ".node:not([data-connection-id=\"" + nodeConnectionID + "\"]) .port." + otherPortType + "-port";
+        var candidates = this.workflow.workflow.querySelectorAll(portQuery);
+        var matrices = new Map();
+        try {
+            for (var candidates_1 = __values(candidates), candidates_1_1 = candidates_1.next(); !candidates_1_1.done; candidates_1_1 = candidates_1.next()) {
+                var port = candidates_1_1.value;
+                matrices.set(port, geometry_1.Geometry.getTransformToElement(port, this.workflow.workflow));
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (candidates_1_1 && !candidates_1_1.done && (_a = candidates_1.return)) _a.call(candidates_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        return matrices;
+        var e_2, _a;
+    };
+    /**
+     * Highlights ports that are model says are suggested.
+     * Also marks their parent nodes as highlighted.
+     *
+     * @param {string} targetConnectionID ConnectionID of the origin port
+     */
+    SVGPortDragPlugin.prototype.highlightSuggestedPorts = function (targetConnectionID) {
+        // Find all ports that we can validly connect to
+        // Note that we can connect to any port, but some of them are suggested based on hypothetical validity.
+        var portModels = this.workflow.model.gatherValidConnectionPoints(targetConnectionID);
+        for (var i = 0; i < portModels.length; i++) {
+            var portModel = portModels[i];
+            if (!portModel.isVisible)
+                continue;
+            // Find port element by this connectionID and it's parent node element
+            var portQuery = ".port[data-connection-id=\"" + portModel.connectionId + "\"]";
+            var portElement = this.workflow.workflow.querySelector(portQuery);
+            var parentNode = this.workflow.findParent(portElement);
+            // Add highlighting classes to port and it's parent node
+            parentNode.classList.add(this.css.suggestion);
+            portElement.classList.add(this.css.suggestion);
+        }
+    };
+    /**
+     * @FIXME: GraphNode.radius should somehow come through Workflow,
+     */
+    SVGPortDragPlugin.prototype.createGhostNode = function (type) {
+        var namespace = "http://www.w3.org/2000/svg";
+        var node = document.createElementNS(namespace, "g");
+        node.setAttribute("transform", "matrix(1,0,0,1,0,0)");
+        node.setAttribute("data-type", type);
+        node.classList.add("ghost");
+        node.classList.add("node");
+        node.innerHTML = "<circle class=\"ghost-circle\" cx=\"0\" cy=\"0\" r=\"" + graph_node_1.GraphNode.radius / 1.5 + "\"></circle>";
+        return node;
+    };
+    /**
+     * Finds a port closest to given SVG coordinates.
+     */
+    SVGPortDragPlugin.prototype.findClosestPort = function (x, y) {
+        var closestPort = undefined;
+        var closestDistance = Infinity;
+        this.portOrigins.forEach(function (matrix, port) {
+            var distance = geometry_1.Geometry.distance(x, y, matrix.e, matrix.f);
+            if (distance < closestDistance) {
+                closestPort = port;
+                closestDistance = distance;
+            }
+        });
+        return {
+            portEl: closestPort,
+            distance: closestDistance
+        };
+    };
+    /**
+     * Removes all dom elements and objects cached in-memory during dragging that are no longer needed.
+     */
+    SVGPortDragPlugin.prototype.cleanMemory = function () {
+        this.edgeGroup.remove();
+        this.ghostNode.remove();
+        this.snapPort = undefined;
+        this.edgeGroup = undefined;
+        this.nodeCoords = undefined;
+        this.originPort = undefined;
+        this.portOrigins = undefined;
+        this.boundingClientRect = undefined;
+    };
+    /**
+     * Removes all css classes attached by this plugin
+     */
+    SVGPortDragPlugin.prototype.cleanStyles = function () {
+        this.workflow.svgRoot.classList.remove(this.css.dragging);
+        for (var cls in this.css) {
+            var query = this.workflow.svgRoot.querySelectorAll("." + this.css[cls]);
+            try {
+                for (var query_1 = __values(query), query_1_1 = query_1.next(); !query_1_1.done; query_1_1 = query_1.next()) {
+                    var el = query_1_1.value;
+                    el.classList.remove(this.css[cls]);
+                }
+            }
+            catch (e_3_1) { e_3 = { error: e_3_1 }; }
+            finally {
+                try {
+                    if (query_1_1 && !query_1_1.done && (_a = query_1.return)) _a.call(query_1);
+                }
+                finally { if (e_3) throw e_3.error; }
+            }
+        }
+        var e_3, _a;
+    };
+    /**
+     * Creates an edge (connection) between two elements determined by their connection IDs
+     * This edge is created on the model, and not rendered directly on graph, as main workflow
+     * is supposed to catch the creation event and draw it.
+     */
+    SVGPortDragPlugin.prototype.createEdgeBetweenPorts = function (source, destination) {
+        // Find the connection ids of origin port and the highlighted port
+        var sourceID = source.getAttribute("data-connection-id");
+        var destinationID = destination.getAttribute("data-connection-id");
+        // Swap their places in case you dragged out from input to output, since they have to be ordered output->input
+        if (sourceID.startsWith("in")) {
+            var tmp = sourceID;
+            sourceID = destinationID;
+            destinationID = tmp;
+        }
+        this.workflow.model.connect(sourceID, destinationID);
+    };
+    SVGPortDragPlugin.prototype.findEdge = function (sourceID, destinationID) {
+        var ltrQuery = "[data-source-connection=\"" + sourceID + "\"][data-destination-connection=\"" + destinationID + "\"]";
+        var rtlQuery = "[data-source-connection=\"" + destinationID + "\"][data-destination-connection=\"" + sourceID + "\"]";
+        return this.workflow.workflow.querySelector(ltrQuery + "," + rtlQuery);
+    };
+    return SVGPortDragPlugin;
+}(plugin_base_1.PluginBase));
+exports.SVGPortDragPlugin = SVGPortDragPlugin;
+//# sourceMappingURL=port-drag.js.map
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(45));
+__export(__webpack_require__(83));
+__export(__webpack_require__(84));
+__export(__webpack_require__(85));
+__export(__webpack_require__(86));
+__export(__webpack_require__(81));
+__export(__webpack_require__(47));
+__export(__webpack_require__(88));
+__export(__webpack_require__(89));
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var plugin_base_1 = __webpack_require__(9);
+var ZoomPlugin = /** @class */ (function (_super) {
+    __extends(ZoomPlugin, _super);
+    function ZoomPlugin() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ZoomPlugin.prototype.registerWorkflow = function (workflow) {
+        _super.prototype.registerWorkflow.call(this, workflow);
+        this.svg = workflow.svgRoot;
+        this.dispose = this.attachWheelListener();
+    };
+    ZoomPlugin.prototype.attachWheelListener = function () {
+        var _this = this;
+        var handler = this.onMouseWheel.bind(this);
+        this.svg.addEventListener("mousewheel", handler, true);
+        return function () { return _this.svg.removeEventListener("mousewheel", handler, true); };
+    };
+    ZoomPlugin.prototype.onMouseWheel = function (event) {
+        var scale = this.workflow.scale;
+        var scaleUpdate = scale - event.deltaY / 500;
+        var zoominOut = scaleUpdate < scale;
+        var zoomingIn = scaleUpdate > scale;
+        if (zoomingIn && this.workflow.maxScale < scaleUpdate) {
+            return;
+        }
+        if (zoominOut && this.workflow.minScale > scaleUpdate) {
+            return;
+        }
+        this.workflow.scaleAtPoint(scaleUpdate, event.clientX, event.clientY);
+        event.stopPropagation();
+    };
+    ZoomPlugin.prototype.destroy = function () {
+        this.dispose();
+        this.dispose = undefined;
+    };
+    return ZoomPlugin;
+}(plugin_base_1.PluginBase));
+exports.ZoomPlugin = ZoomPlugin;
+//# sourceMappingURL=zoom.js.map
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var graph_node_1 = __webpack_require__(28);
+var svg_utils_1 = __webpack_require__(78);
+var SVGArrangePlugin = /** @class */ (function () {
+    function SVGArrangePlugin() {
+    }
+    SVGArrangePlugin.prototype.registerWorkflow = function (workflow) {
+        this.workflow = workflow;
+        this.svgRoot = workflow.svgRoot;
+    };
+    SVGArrangePlugin.prototype.registerOnBeforeChange = function (fn) {
+        this.onBeforeChange = function () { return fn({ type: "arrange" }); };
+    };
+    SVGArrangePlugin.prototype.registerOnAfterChange = function (fn) {
+        this.onAfterChange = function () { return fn({ type: "arrange" }); };
+    };
+    SVGArrangePlugin.prototype.registerOnAfterRender = function (fn) {
+        this.triggerAfterRender = function () { return fn({ type: "arrange" }); };
+    };
+    SVGArrangePlugin.prototype.afterRender = function () {
+        try {
+            for (var _a = __values(this.workflow.model.steps), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var step = _b.value;
+                if (step.isVisible) {
+                    var missingCoordinate = isNaN(parseInt(step.customProps["sbg:x"]));
+                    if (missingCoordinate) {
+                        this.arrange();
+                    }
+                    return;
+                }
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        var e_1, _c;
+    };
+    SVGArrangePlugin.prototype.arrange = function () {
+        this.onBeforeChange();
+        // We need to reset all transformations on the workflow for now.
+        // @TODO Make arranging work without this
+        this.workflow.resetTransform();
+        // We need main graph and dangling nodes separately, they will be distributed differently
+        var _a = this.makeNodeGraphs(), mainGraph = _a.mainGraph, danglingNodes = _a.danglingNodes;
+        // Create an array of columns, each containing a list of NodeIOs
+        var columns = this.distributeNodesIntoColumns(mainGraph);
+        // Get total area in which we will fit the graph, and per-column dimensions
+        var _b = this.calculateColumnSizes(columns), distributionArea = _b.distributionArea, columnDimensions = _b.columnDimensions;
+        // This will be the vertical middle around which the graph should be centered
+        var verticalBaseline = distributionArea.height / 2;
+        var xOffset = 0;
+        var maxYOffset = 0;
+        // Here we will store positions for each node that is to be updated.
+        // This should then be emitted as an afterChange event.
+        var nodePositionUpdates = {};
+        columns.forEach(function (column, index) {
+            var colSize = columnDimensions[index];
+            var yOffset = verticalBaseline - (colSize.height / 2) - column[0].rect.height / 2;
+            column.forEach(function (node) {
+                yOffset += node.rect.height / 2;
+                var matrix = svg_utils_1.SVGUtils.createMatrix().translate(xOffset, yOffset);
+                yOffset += node.rect.height / 2;
+                if (yOffset > maxYOffset) {
+                    maxYOffset = yOffset;
+                }
+                node.el.setAttribute("transform", svg_utils_1.SVGUtils.matrixToTransformAttr(matrix));
+                nodePositionUpdates[node.connectionID] = {
+                    x: matrix.e,
+                    y: matrix.f
+                };
+            });
+            xOffset += colSize.width;
+        });
+        var danglingNodeKeys = Object.keys(danglingNodes).sort(function (a, b) {
+            var aIsInput = a.startsWith("out/");
+            var aIsOutput = a.startsWith("in/");
+            var bIsInput = b.startsWith("out/");
+            var bIsOutput = b.startsWith("in/");
+            var lowerA = a.toLowerCase();
+            var lowerB = b.toLowerCase();
+            if (aIsOutput) {
+                if (bIsOutput) {
+                    return lowerB.localeCompare(lowerA);
+                }
+                else {
+                    return 1;
+                }
+            }
+            else if (aIsInput) {
+                if (bIsOutput) {
+                    return -1;
+                }
+                if (bIsInput) {
+                    return lowerB.localeCompare(lowerA);
+                }
+                else {
+                    return 1;
+                }
+            }
+            else {
+                if (!bIsOutput && !bIsInput) {
+                    return lowerB.localeCompare(lowerA);
+                }
+                else {
+                    return -1;
+                }
+            }
+        });
+        var danglingNodeMarginOffset = 30;
+        var danglingNodeSideLength = graph_node_1.GraphNode.radius * 5;
+        var maxNodeHeightInRow = 0;
+        var row = 0;
+        var indexWidthMap = new Map();
+        var rowMaxHeightMap = new Map();
+        xOffset = 0;
+        var danglingRowAreaWidth = Math.max(distributionArea.width, danglingNodeSideLength * 3);
+        danglingNodeKeys.forEach(function (connectionID, index) {
+            var el = danglingNodes[connectionID];
+            var rect = el.firstElementChild.getBoundingClientRect();
+            indexWidthMap.set(index, rect.width);
+            if (xOffset === 0) {
+                xOffset -= rect.width / 2;
+            }
+            if (rect.height > maxNodeHeightInRow) {
+                maxNodeHeightInRow = rect.height;
+            }
+            xOffset += rect.width + danglingNodeMarginOffset + Math.max(150 - rect.width, 0);
+            if (xOffset >= danglingRowAreaWidth && index < danglingNodeKeys.length - 1) {
+                rowMaxHeightMap.set(row++, maxNodeHeightInRow);
+                maxNodeHeightInRow = 0;
+                xOffset = 0;
+            }
+        });
+        rowMaxHeightMap.set(row, maxNodeHeightInRow);
+        var colYOffset = maxYOffset;
+        xOffset = 0;
+        row = 0;
+        danglingNodeKeys.forEach(function (connectionID, index) {
+            var el = danglingNodes[connectionID];
+            var width = indexWidthMap.get(index);
+            var rowHeight = rowMaxHeightMap.get(row);
+            var left = xOffset + width / 2;
+            var top = colYOffset
+                + danglingNodeMarginOffset
+                + Math.ceil(rowHeight / 2)
+                + ((xOffset === 0 ? 0 : left) / danglingRowAreaWidth) * danglingNodeSideLength;
+            if (xOffset === 0) {
+                left -= width / 2;
+                xOffset -= width / 2;
+            }
+            xOffset += width + danglingNodeMarginOffset + Math.max(150 - width, 0);
+            var matrix = svg_utils_1.SVGUtils.createMatrix().translate(left, top);
+            el.setAttribute("transform", svg_utils_1.SVGUtils.matrixToTransformAttr(matrix));
+            nodePositionUpdates[connectionID] = { x: matrix.e, y: matrix.f };
+            if (xOffset >= danglingRowAreaWidth) {
+                colYOffset += Math.ceil(rowHeight) + danglingNodeMarginOffset;
+                xOffset = 0;
+                maxNodeHeightInRow = 0;
+                row++;
+            }
+        });
+        this.workflow.redrawEdges();
+        this.workflow.fitToViewport();
+        this.onAfterChange(nodePositionUpdates);
+        this.triggerAfterRender();
+        for (var id in nodePositionUpdates) {
+            var pos = nodePositionUpdates[id];
+            var nodeModel = this.workflow.model.findById(id);
+            if (!nodeModel.customProps) {
+                nodeModel.customProps = {};
+            }
+            Object.assign(nodeModel.customProps, {
+                "sbg:x": pos.x,
+                "sbg:y": pos.y
+            });
+        }
+        return nodePositionUpdates;
+    };
+    /**
+     * Calculates column dimensions and total graph area
+     * @param {NodeIO[][]} columns
+     */
+    SVGArrangePlugin.prototype.calculateColumnSizes = function (columns) {
+        var distributionArea = { width: 0, height: 0 };
+        var columnDimensions = [];
+        for (var i = 1; i < columns.length; i++) {
+            var width = 0;
+            var height = 0;
+            for (var j = 0; j < columns[i].length; j++) {
+                var entry = columns[i][j];
+                height += entry.rect.height;
+                if (width < entry.rect.width) {
+                    width = entry.rect.width;
+                }
+            }
+            columnDimensions[i] = { height: height, width: width };
+            distributionArea.width += width;
+            if (height > distributionArea.height) {
+                distributionArea.height = height;
+            }
+        }
+        return {
+            columnDimensions: columnDimensions,
+            distributionArea: distributionArea
+        };
+    };
+    /**
+     * Maps node's connectionID to a 1-indexed column number
+     */
+    SVGArrangePlugin.prototype.distributeNodesIntoColumns = function (graph) {
+        var idToZoneMap = {};
+        var sortedNodeIDs = Object.keys(graph).sort(function (a, b) { return b.localeCompare(a); });
+        var zones = [];
+        for (var i = 0; i < sortedNodeIDs.length; i++) {
+            var nodeID = sortedNodeIDs[i];
+            var node = graph[nodeID];
+            // For outputs and steps, we calculate the zone as a longest path you can take to them
+            if (node.type !== "input") {
+                idToZoneMap[nodeID] = this.traceLongestNodePathLength(node, graph);
+            }
+            else {
+                //
+                // Longest trace methods would put all inputs in the first column,
+                // but we want it just behind the leftmost step that it is connected to
+                // So instead of:
+                //
+                // (input)<----------------->(step)---
+                // (input)<---------->(step)----------
+                //
+                // It should be:
+                //
+                // ---------------(input)<--->(step)---
+                // --------(input)<-->(step)-----------
+                //
+                var closestNodeZone = Infinity;
+                for (var i_1 = 0; i_1 < node.outputs.length; i_1++) {
+                    var successorNodeZone = idToZoneMap[node.outputs[i_1]];
+                    if (successorNodeZone < closestNodeZone) {
+                        closestNodeZone = successorNodeZone;
+                    }
+                }
+                if (closestNodeZone === Infinity) {
+                    idToZoneMap[nodeID] = 1;
+                }
+                else {
+                    idToZoneMap[nodeID] = closestNodeZone - 1;
+                }
+            }
+            var zone = idToZoneMap[nodeID];
+            zones[zone] || (zones[zone] = []);
+            zones[zone].push(graph[nodeID]);
+        }
+        return zones;
+    };
+    /**
+     * Finds all nodes in the graph, and indexes them by their "data-connection-id" attribute
+     */
+    SVGArrangePlugin.prototype.indexNodesByID = function () {
+        var indexed = {};
+        var nodes = this.svgRoot.querySelectorAll(".node");
+        for (var i = 0; i < nodes.length; i++) {
+            indexed[nodes[i].getAttribute("data-connection-id")] = nodes[i];
+        }
+        return indexed;
+    };
+    /**
+     * Finds length of the longest possible path from the graph root to a node.
+     * Lengths are 1-indexed. When a node has no predecessors, it will have length of 1.
+     */
+    SVGArrangePlugin.prototype.traceLongestNodePathLength = function (node, nodeGraph, visited) {
+        if (visited === void 0) { visited = new Set(); }
+        visited.add(node);
+        if (node.inputs.length === 0) {
+            return 1;
+        }
+        var inputPathLengths = [];
+        for (var i = 0; i < node.inputs.length; i++) {
+            var el = nodeGraph[node.inputs[i]];
+            if (visited.has(el)) {
+                continue;
+            }
+            inputPathLengths.push(this.traceLongestNodePathLength(el, nodeGraph, visited));
+        }
+        return Math.max.apply(Math, __spread(inputPathLengths)) + 1;
+    };
+    SVGArrangePlugin.prototype.makeNodeGraphs = function () {
+        // We need all nodes in order to find the dangling ones, those will be sorted separately
+        var allNodes = this.indexNodesByID();
+        // Make a graph representation where you can trace inputs and outputs from/to connection ids
+        var nodeGraph = {};
+        // Edges are the main source of information from which we will distribute nodes
+        var edges = this.svgRoot.querySelectorAll(".edge");
+        for (var i = 0; i < edges.length; i++) {
+            var edge = edges[i];
+            var sourceConnectionID = edge.getAttribute("data-source-connection");
+            var destinationConnectionID = edge.getAttribute("data-destination-connection");
+            var _a = __read(sourceConnectionID.split("/"), 3), sourceSide = _a[0], sourceNodeID = _a[1], sourcePortID = _a[2];
+            var _b = __read(destinationConnectionID.split("/"), 3), destinationSide = _b[0], destinationNodeID = _b[1], destinationPortID = _b[2];
+            // Both source and destination are considered to be steps by default
+            var sourceType = "step";
+            var destinationType = "step";
+            // Ports have the same node and port ids
+            if (sourceNodeID === sourcePortID) {
+                sourceType = sourceSide === "in" ? "output" : "input";
+            }
+            if (destinationNodeID === destinationPortID) {
+                destinationType = destinationSide === "in" ? "output" : "input";
+            }
+            // Initialize keys on graph if they don't exist
+            var sourceNode = this.svgRoot.querySelector(".node[data-id=\"" + sourceNodeID + "\"]");
+            var destinationNode = this.svgRoot.querySelector(".node[data-id=\"" + destinationNodeID + "\"]");
+            var sourceNodeConnectionID = sourceNode.getAttribute("data-connection-id");
+            var destinationNodeConnectionID = destinationNode.getAttribute("data-connection-id");
+            // Source and destination of this edge are obviously not dangling, so we can remove them
+            // from the set of potentially dangling nodes
+            delete allNodes[sourceNodeConnectionID];
+            delete allNodes[destinationNodeConnectionID];
+            // Ensure that the source node has its entry in the node graph
+            (nodeGraph[sourceNodeID] || (nodeGraph[sourceNodeID] = {
+                inputs: [],
+                outputs: [],
+                type: sourceType,
+                connectionID: sourceNodeConnectionID,
+                el: sourceNode,
+                rect: sourceNode.getBoundingClientRect()
+            }));
+            // Ensure that the source node has its entry in the node graph
+            (nodeGraph[destinationNodeID] || (nodeGraph[destinationNodeID] = {
+                inputs: [],
+                outputs: [],
+                type: destinationType,
+                connectionID: destinationNodeConnectionID,
+                el: destinationNode,
+                rect: destinationNode.getBoundingClientRect()
+            }));
+            nodeGraph[sourceNodeID].outputs.push(destinationNodeID);
+            nodeGraph[destinationNodeID].inputs.push(sourceNodeID);
+        }
+        return {
+            mainGraph: nodeGraph,
+            danglingNodes: allNodes
+        };
+    };
+    return SVGArrangePlugin;
+}());
+exports.SVGArrangePlugin = SVGArrangePlugin;
+//# sourceMappingURL=arrange.js.map
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var plugin_base_1 = __webpack_require__(9);
+var SVGValidatePlugin = /** @class */ (function (_super) {
+    __extends(SVGValidatePlugin, _super);
+    function SVGValidatePlugin() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.modelDisposers = [];
+        /** Map of CSS classes attached by this plugin */
+        _this.css = {
+            plugin: "__plugin-validate",
+            invalid: "__validate-invalid"
+        };
+        return _this;
+    }
+    SVGValidatePlugin.prototype.registerWorkflow = function (workflow) {
+        _super.prototype.registerWorkflow.call(this, workflow);
+        // add plugin specific class to the svgRoot for scoping
+        this.workflow.svgRoot.classList.add(this.css.plugin);
+    };
+    SVGValidatePlugin.prototype.afterModelChange = function () {
+        this.disposeModelListeners();
+        // add listener for all subsequent edge validation
+        var update = this.workflow.model.on("connections.updated", this.renderEdgeValidation.bind(this));
+        var create = this.workflow.model.on("connection.create", this.renderEdgeValidation.bind(this));
+        this.modelDisposers.concat([update.dispose, create.dispose]);
+    };
+    SVGValidatePlugin.prototype.destroy = function () {
+        this.disposeModelListeners();
+    };
+    SVGValidatePlugin.prototype.afterRender = function () {
+        // do initial validation rendering for edges
+        this.renderEdgeValidation();
+    };
+    SVGValidatePlugin.prototype.onEditableStateChange = function (enabled) {
+        if (enabled) {
+            // only show validation if workflow is editable
+            this.renderEdgeValidation();
+        }
+        else {
+            this.removeClasses(this.workflow.workflow.querySelectorAll(".edge"));
+        }
+    };
+    SVGValidatePlugin.prototype.disposeModelListeners = function () {
+        try {
+            for (var _a = __values(this.modelDisposers), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var disposeListener = _b.value;
+                disposeListener();
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        this.modelDisposers = [];
+        var e_1, _c;
+    };
+    SVGValidatePlugin.prototype.removeClasses = function (edges) {
+        try {
+            // remove validity class on all edges
+            for (var edges_1 = __values(edges), edges_1_1 = edges_1.next(); !edges_1_1.done; edges_1_1 = edges_1.next()) {
+                var e = edges_1_1.value;
+                e.classList.remove(this.css.invalid);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (edges_1_1 && !edges_1_1.done && (_a = edges_1.return)) _a.call(edges_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        var e_2, _a;
+    };
+    SVGValidatePlugin.prototype.renderEdgeValidation = function () {
+        var _this = this;
+        var graphEdges = this.workflow.workflow.querySelectorAll(".edge");
+        this.removeClasses(graphEdges);
+        // iterate through all modal connections
+        this.workflow.model.connections.forEach(function (e) {
+            // if the connection isn't valid (should be colored on graph)
+            if (!e.isValid) {
+                try {
+                    // iterate through edges on the svg
+                    for (var graphEdges_1 = __values(graphEdges), graphEdges_1_1 = graphEdges_1.next(); !graphEdges_1_1.done; graphEdges_1_1 = graphEdges_1.next()) {
+                        var ge = graphEdges_1_1.value;
+                        var sourceNodeID = ge.getAttribute("data-source-connection");
+                        var destinationNodeID = ge.getAttribute("data-destination-connection");
+                        // compare invalid edge source/destination with svg edge
+                        if (e.source.id === sourceNodeID && e.destination.id === destinationNodeID) {
+                            // if its a match, tag it with the appropriate class and break from the loop
+                            ge.classList.add(_this.css.invalid);
+                            break;
+                        }
+                    }
+                }
+                catch (e_3_1) { e_3 = { error: e_3_1 }; }
+                finally {
+                    try {
+                        if (graphEdges_1_1 && !graphEdges_1_1.done && (_a = graphEdges_1.return)) _a.call(graphEdges_1);
+                    }
+                    finally { if (e_3) throw e_3.error; }
+                }
+            }
+            var e_3, _a;
+        });
+    };
+    return SVGValidatePlugin;
+}(plugin_base_1.PluginBase));
+exports.SVGValidatePlugin = SVGValidatePlugin;
+//# sourceMappingURL=validate.js.map
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var _1 = __webpack_require__(82);
+var plugin_base_1 = __webpack_require__(9);
+var edge_panning_1 = __webpack_require__(87);
+/**
+ * This plugin makes node dragging and movement possible.
+ *
+ * @FIXME: attach events for before and after change
+ */
+var SVGNodeMovePlugin = /** @class */ (function (_super) {
+    __extends(SVGNodeMovePlugin, _super);
+    function SVGNodeMovePlugin(parameters) {
+        if (parameters === void 0) { parameters = {}; }
+        var _this = _super.call(this) || this;
+        /** How far from the edge of the viewport does mouse need to be before panning is triggered */
+        _this.scrollMargin = 50;
+        /** How fast does workflow move while panning */
+        _this.movementSpeed = 10;
+        _this.wheelPrevent = function (ev) { return ev.stopPropagation(); };
+        _this.boundMoveHandler = _this.onMove.bind(_this);
+        _this.boundMoveStartHandler = _this.onMoveStart.bind(_this);
+        _this.boundMoveEndHandler = _this.onMoveEnd.bind(_this);
+        _this.detachDragListenerFn = undefined;
+        Object.assign(_this, parameters);
+        return _this;
+    }
+    SVGNodeMovePlugin.prototype.onEditableStateChange = function (enabled) {
+        if (enabled) {
+            this.attachDrag();
+        }
+        else {
+            this.detachDrag();
+        }
+    };
+    SVGNodeMovePlugin.prototype.afterRender = function () {
+        if (this.workflow.editingEnabled) {
+            this.attachDrag();
+        }
+    };
+    SVGNodeMovePlugin.prototype.destroy = function () {
+        this.detachDrag();
+    };
+    SVGNodeMovePlugin.prototype.registerWorkflow = function (workflow) {
+        _super.prototype.registerWorkflow.call(this, workflow);
+        this.edgePanner = new edge_panning_1.EdgePanner(this.workflow, {
+            scrollMargin: this.scrollMargin,
+            movementSpeed: this.movementSpeed
+        });
+    };
+    SVGNodeMovePlugin.prototype.detachDrag = function () {
+        if (typeof this.detachDragListenerFn === "function") {
+            this.detachDragListenerFn();
+        }
+        this.detachDragListenerFn = undefined;
+    };
+    SVGNodeMovePlugin.prototype.attachDrag = function () {
+        this.detachDrag();
+        this.detachDragListenerFn = this.workflow.domEvents.drag(".node .core", this.boundMoveHandler, this.boundMoveStartHandler, this.boundMoveEndHandler);
+    };
+    SVGNodeMovePlugin.prototype.getWorkflowMatrix = function () {
+        return this.workflow.workflow.transform.baseVal.getItem(0).matrix;
+    };
+    SVGNodeMovePlugin.prototype.onMove = function (dx, dy, ev) {
+        var _this = this;
+        /** We will use workflow scale to determine how our mouse movement translate to svg proportions */
+        var scale = this.workflow.scale;
+        /** Need to know how far did the workflow itself move since when we started dragging */
+        var matrixMovement = {
+            x: this.getWorkflowMatrix().e - this.startWorkflowTranslation.x,
+            y: this.getWorkflowMatrix().f - this.startWorkflowTranslation.y
+        };
+        /** We might have hit the boundary and need to start panning */
+        this.edgePanner.triggerCollisionDetection(ev.clientX, ev.clientY, function (sdx, sdy) {
+            _this.sdx += sdx;
+            _this.sdy += sdy;
+            _this.translateNodeBy(_this.movingNode, sdx, sdy);
+            _this.redrawEdges(_this.sdx, _this.sdy);
+        });
+        /**
+         * We need to store scaled ∆x and ∆y because this is not the only place from which node is being moved.
+         * If mouse is outside the viewport, and the workflow is panning, startScroll will continue moving
+         * this node, so it needs to know where to start from and update it, so this method can take
+         * over when mouse gets back to the viewport.
+         *
+         * If there was no handoff, node would jump back and forth to
+         * last positions for each movement initiator separately.
+         */
+        this.sdx = (dx - matrixMovement.x) / scale;
+        this.sdy = (dy - matrixMovement.y) / scale;
+        var moveX = this.sdx + this.startX;
+        var moveY = this.sdy + this.startY;
+        this.translateNodeTo(this.movingNode, moveX, moveY);
+        this.redrawEdges(this.sdx, this.sdy);
+    };
+    /**
+     * Triggered from {@link attachDrag} when drag starts.
+     * This method initializes properties that are needed for calculations during movement.
+     */
+    SVGNodeMovePlugin.prototype.onMoveStart = function (event, handle) {
+        /** We will query the SVG dom for edges that we need to move, so store svg element for easy access */
+        var svg = this.workflow.svgRoot;
+        document.addEventListener("mousewheel", this.wheelPrevent, true);
+        /** Our drag handle is not the whole node because that would include ports and labels, but a child of it*/
+        var node = handle.parentNode;
+        /** Store initial transform values so we know how much we've moved relative from the starting position */
+        var nodeMatrix = node.transform.baseVal.getItem(0).matrix;
+        this.startX = nodeMatrix.e;
+        this.startY = nodeMatrix.f;
+        /** We have to query for edges that are attached to this node because we will move them as well */
+        var nodeID = node.getAttribute("data-id");
+        /**
+         * When user drags the node to the edge and waits while workflow pans to the side,
+         * mouse movement stops, but workflow movement starts.
+         * We then utilize this to get movement ∆ of the workflow, and use that for translation instead.
+         */
+        this.startWorkflowTranslation = {
+            x: this.getWorkflowMatrix().e,
+            y: this.getWorkflowMatrix().f
+        };
+        /** Used to determine whether dragged node is hitting the edge, so we can pan the Workflow*/
+        this.boundingClientRect = svg.getBoundingClientRect();
+        /** Node movement can be initiated from both mouse events and animationFrame, so make it accessible */
+        this.movingNode = handle.parentNode;
+        /**
+         * While node is being moved, incoming and outgoing edges also need to be moved in order to stay attached.
+         * We don't want to query them all the time, so we cache them in maps that point from their dom elements
+         * to an array of numbers that represent their bezier curves, since we will update those curves.
+         */
+        this.inputEdges = new Map();
+        this.outputEdges = new Map();
+        var outputsSelector = ".edge[data-source-node='" + nodeID + "'] .sub-edge";
+        var inputsSelector = ".edge[data-destination-node='" + nodeID + "'] .sub-edge";
+        var query = svg.querySelectorAll([inputsSelector, outputsSelector].join(", "));
+        try {
+            for (var query_1 = __values(query), query_1_1 = query_1.next(); !query_1_1.done; query_1_1 = query_1.next()) {
+                var subEdge = query_1_1.value;
+                var isInput = subEdge.parentElement.getAttribute("data-destination-node") === nodeID;
+                var path = subEdge.getAttribute("d").split(" ").map(Number).filter(function (e) { return !isNaN(e); });
+                isInput ? this.inputEdges.set(subEdge, path) : this.outputEdges.set(subEdge, path);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (query_1_1 && !query_1_1.done && (_a = query_1.return)) _a.call(query_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        var e_1, _a;
+    };
+    SVGNodeMovePlugin.prototype.translateNodeBy = function (node, x, y) {
+        var matrix = node.transform.baseVal.getItem(0).matrix;
+        this.translateNodeTo(node, matrix.e + x, matrix.f + y);
+    };
+    SVGNodeMovePlugin.prototype.translateNodeTo = function (node, x, y) {
+        node.transform.baseVal.getItem(0).setTranslate(x, y);
+    };
+    /**
+     * Redraws stored input and output edges so as to transform them with respect to
+     * scaled transformation differences, sdx and sdy.
+     */
+    SVGNodeMovePlugin.prototype.redrawEdges = function (sdx, sdy) {
+        this.inputEdges.forEach(function (p, el) {
+            var path = _1.Workflow.makeConnectionPath(p[0], p[1], p[6] + sdx, p[7] + sdy);
+            el.setAttribute("d", path);
+        });
+        this.outputEdges.forEach(function (p, el) {
+            var path = _1.Workflow.makeConnectionPath(p[0] + sdx, p[1] + sdy, p[6], p[7]);
+            el.setAttribute("d", path);
+        });
+    };
+    /**
+     * Triggered from {@link attachDrag} after move event ends
+     */
+    SVGNodeMovePlugin.prototype.onMoveEnd = function () {
+        this.edgePanner.stop();
+        var id = this.movingNode.getAttribute("data-connection-id");
+        var nodeModel = this.workflow.model.findById(id);
+        if (!nodeModel.customProps) {
+            nodeModel.customProps = {};
+        }
+        var matrix = this.movingNode.transform.baseVal.getItem(0).matrix;
+        Object.assign(nodeModel.customProps, {
+            "sbg:x": matrix.e,
+            "sbg:y": matrix.f,
+        });
+        this.onAfterChange({ type: "node-move" });
+        document.removeEventListener("mousewheel", this.wheelPrevent, true);
+        delete this.startX;
+        delete this.startY;
+        delete this.movingNode;
+        delete this.inputEdges;
+        delete this.outputEdges;
+        delete this.boundingClientRect;
+        delete this.startWorkflowTranslation;
+    };
+    return SVGNodeMovePlugin;
+}(plugin_base_1.PluginBase));
+exports.SVGNodeMovePlugin = SVGNodeMovePlugin;
+//# sourceMappingURL=node-move.js.map
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var EdgePanner = /** @class */ (function () {
+    function EdgePanner(workflow, config) {
+        if (config === void 0) { config = {
+            scrollMargin: 100,
+            movementSpeed: 10
+        }; }
+        this.movementSpeed = 10;
+        this.scrollMargin = 100;
+        /**
+         * Current state of collision on both axes, each negative if beyond top/left border,
+         * positive if beyond right/bottom, zero if inside the viewport
+         */
+        this.collision = { x: 0, y: 0 };
+        this.panningCallback = function (sdx, sdy) { return void 0; };
+        var options = Object.assign({
+            scrollMargin: 100,
+            movementSpeed: 10
+        }, config);
+        this.workflow = workflow;
+        this.scrollMargin = options.scrollMargin;
+        this.movementSpeed = options.movementSpeed;
+        this.viewportClientRect = this.workflow.svgRoot.getBoundingClientRect();
+    }
+    /**
+     * Calculates if dragged node is at or beyond the point beyond which workflow panning should be triggered.
+     * If collision state has changed, {@link onBoundaryCollisionChange} will be triggered.
+     */
+    EdgePanner.prototype.triggerCollisionDetection = function (x, y, callback) {
+        var collision = { x: 0, y: 0 };
+        this.panningCallback = callback;
+        var _a = this.viewportClientRect, left = _a.left, right = _a.right, top = _a.top, bottom = _a.bottom;
+        left = left + this.scrollMargin;
+        right = right - this.scrollMargin;
+        top = top + this.scrollMargin;
+        bottom = bottom - this.scrollMargin;
+        if (x < left) {
+            collision.x = x - left;
+        }
+        else if (x > right) {
+            collision.x = x - right;
+        }
+        if (y < top) {
+            collision.y = y - top;
+        }
+        else if (y > bottom) {
+            collision.y = y - bottom;
+        }
+        if (Math.sign(collision.x) !== Math.sign(this.collision.x)
+            || Math.sign(collision.y) !== Math.sign(this.collision.y)) {
+            var previous = this.collision;
+            this.collision = collision;
+            this.onBoundaryCollisionChange(collision, previous);
+        }
+    };
+    /**
+     * Triggered when {@link triggerCollisionDetection} determines that collision properties have changed.
+     */
+    EdgePanner.prototype.onBoundaryCollisionChange = function (current, previous) {
+        this.stop();
+        if (current.x === 0 && current.y === 0) {
+            return;
+        }
+        this.start(this.collision);
+    };
+    EdgePanner.prototype.start = function (direction) {
+        var _this = this;
+        var startTimestamp;
+        var scale = this.workflow.scale;
+        var matrix = this.workflow.workflow.transform.baseVal.getItem(0).matrix;
+        var sixtyFPS = 16.6666;
+        var onFrame = function (timestamp) {
+            var frameDeltaTime = timestamp - (startTimestamp || timestamp);
+            startTimestamp = timestamp;
+            // We need to stop the animation at some point
+            // It should be stopped when there is no animation frame ID anymore,
+            // which means that stopScroll() was called
+            // However, don't do that if we haven't made the first move yet, which is a situation when ∆t is 0
+            if (frameDeltaTime !== 0 && !_this.panAnimationFrame) {
+                startTimestamp = undefined;
+                return;
+            }
+            var moveX = Math.sign(direction.x) * _this.movementSpeed * frameDeltaTime / sixtyFPS;
+            var moveY = Math.sign(direction.y) * _this.movementSpeed * frameDeltaTime / sixtyFPS;
+            matrix.e -= moveX;
+            matrix.f -= moveY;
+            var frameDiffX = moveX / scale;
+            var frameDiffY = moveY / scale;
+            _this.panningCallback(frameDiffX, frameDiffY);
+            _this.panAnimationFrame = window.requestAnimationFrame(onFrame);
+        };
+        this.panAnimationFrame = window.requestAnimationFrame(onFrame);
+    };
+    EdgePanner.prototype.stop = function () {
+        window.cancelAnimationFrame(this.panAnimationFrame);
+        this.panAnimationFrame = undefined;
+    };
+    return EdgePanner;
+}());
+exports.EdgePanner = EdgePanner;
+//# sourceMappingURL=edge-panning.js.map
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var plugin_base_1 = __webpack_require__(9);
+var SVGEdgeHoverPlugin = /** @class */ (function (_super) {
+    __extends(SVGEdgeHoverPlugin, _super);
+    function SVGEdgeHoverPlugin() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.boundEdgeEnterFunction = _this.onEdgeEnter.bind(_this);
+        _this.modelListener = {
+            dispose: function () { return void 0; }
+        };
+        return _this;
+    }
+    SVGEdgeHoverPlugin.prototype.afterRender = function () {
+        this.attachEdgeHoverBehavior();
+    };
+    SVGEdgeHoverPlugin.prototype.destroy = function () {
+        this.detachEdgeHoverBehavior();
+        this.modelListener.dispose();
+    };
+    SVGEdgeHoverPlugin.prototype.attachEdgeHoverBehavior = function () {
+        this.detachEdgeHoverBehavior();
+        this.workflow.workflow.addEventListener("mouseenter", this.boundEdgeEnterFunction, true);
+    };
+    SVGEdgeHoverPlugin.prototype.detachEdgeHoverBehavior = function () {
+        this.workflow.workflow.removeEventListener("mouseenter", this.boundEdgeEnterFunction, true);
+    };
+    SVGEdgeHoverPlugin.prototype.onEdgeEnter = function (ev) {
+        var _this = this;
+        // Ignore if we did not enter an edge
+        if (!ev.srcElement.classList.contains("edge"))
+            return;
+        var target = ev.srcElement;
+        var tipEl;
+        var onMouseMove = (function (ev) {
+            var coords = _this.workflow.transformScreenCTMtoCanvas(ev.clientX, ev.clientY);
+            tipEl.setAttribute("x", String(coords.x));
+            tipEl.setAttribute("y", String(coords.y - 16));
+        }).bind(this);
+        var onMouseLeave = (function (ev) {
+            tipEl.remove();
+            target.removeEventListener("mousemove", onMouseMove);
+            target.removeEventListener("mouseleave", onMouseLeave);
+        }).bind(this);
+        this.modelListener = this.workflow.model.on("connection.remove", function (source, destination) {
+            if (!tipEl)
+                return;
+            var _a = __read(tipEl.getAttribute("data-source-destination").split("$!$"), 2), tipS = _a[0], tipD = _a[1];
+            if (tipS === source.connectionId && tipD === destination.connectionId) {
+                tipEl.remove();
+            }
+        });
+        var sourceNode = target.getAttribute("data-source-node");
+        var destNode = target.getAttribute("data-destination-node");
+        var sourcePort = target.getAttribute("data-source-port");
+        var destPort = target.getAttribute("data-destination-port");
+        var sourceConnect = target.getAttribute("data-source-connection");
+        var destConnect = target.getAttribute("data-destination-connection");
+        var sourceLabel = sourceNode === sourcePort ? sourceNode : sourceNode + " (" + sourcePort + ")";
+        var destLabel = destNode === destPort ? destNode : destNode + " (" + destPort + ")";
+        var coords = this.workflow.transformScreenCTMtoCanvas(ev.clientX, ev.clientY);
+        var ns = "http://www.w3.org/2000/svg";
+        tipEl = document.createElementNS(ns, "text");
+        tipEl.classList.add("label");
+        tipEl.classList.add("label-edge");
+        tipEl.setAttribute("x", String(coords.x));
+        tipEl.setAttribute("y", String(coords.y));
+        tipEl.setAttribute("data-source-destination", sourceConnect + "$!$" + destConnect);
+        tipEl.innerHTML = sourceLabel + " → " + destLabel;
+        this.workflow.workflow.appendChild(tipEl);
+        target.addEventListener("mousemove", onMouseMove);
+        target.addEventListener("mouseleave", onMouseLeave);
+    };
+    return SVGEdgeHoverPlugin;
+}(plugin_base_1.PluginBase));
+exports.SVGEdgeHoverPlugin = SVGEdgeHoverPlugin;
+//# sourceMappingURL=edge-hover.js.map
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var plugin_base_1 = __webpack_require__(9);
+var selection_1 = __webpack_require__(47);
+var models_1 = __webpack_require__(15);
+var DeletionPlugin = /** @class */ (function (_super) {
+    __extends(DeletionPlugin, _super);
+    function DeletionPlugin() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.boundDeleteFunction = _this.onDelete.bind(_this);
+        return _this;
+    }
+    DeletionPlugin.prototype.afterRender = function () {
+        this.attachDeleteBehavior();
+    };
+    DeletionPlugin.prototype.onEditableStateChange = function (enable) {
+        if (enable) {
+            this.attachDeleteBehavior();
+        }
+        else {
+            this.detachDeleteBehavior();
+        }
+    };
+    DeletionPlugin.prototype.attachDeleteBehavior = function () {
+        this.detachDeleteBehavior();
+        window.addEventListener("keyup", this.boundDeleteFunction, true);
+    };
+    DeletionPlugin.prototype.detachDeleteBehavior = function () {
+        window.removeEventListener("keyup", this.boundDeleteFunction, true);
+    };
+    DeletionPlugin.prototype.onDelete = function (ev) {
+        if (ev.which !== 8 && ev.which !== 46 || !(ev.target instanceof SVGElement)) {
+            return;
+        }
+        this.deleteSelection();
+    };
+    DeletionPlugin.prototype.deleteSelection = function () {
+        var _this = this;
+        var selection = this.workflow.getPlugin(selection_1.SelectionPlugin);
+        if (!selection || !this.workflow.editingEnabled) {
+            return;
+        }
+        var selected = selection.getSelection();
+        selected.forEach(function (type, id) {
+            if (type === "node") {
+                var model = _this.workflow.model.findById(id);
+                if (model instanceof models_1.StepModel) {
+                    _this.workflow.model.removeStep(model);
+                    selection.clearSelection();
+                }
+                else if (model instanceof models_1.WorkflowInputParameterModel) {
+                    _this.workflow.model.removeInput(model);
+                    selection.clearSelection();
+                }
+                else if (model instanceof models_1.WorkflowOutputParameterModel) {
+                    _this.workflow.model.removeOutput(model);
+                    selection.clearSelection();
+                }
+            }
+            else {
+                var _a = __read(id.split(selection_1.SelectionPlugin.edgePortsDelimiter), 2), source = _a[0], destination = _a[1];
+                _this.workflow.model.disconnect(source, destination);
+                selection.clearSelection();
+            }
+        });
+    };
+    DeletionPlugin.prototype.destroy = function () {
+        this.detachDeleteBehavior();
+    };
+    return DeletionPlugin;
+}(plugin_base_1.PluginBase));
+exports.DeletionPlugin = DeletionPlugin;
+//# sourceMappingURL=deletion.js.map
+
+/***/ }),
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _cwl = __webpack_require__(71);
+var _cwl = __webpack_require__(91);
 
 var _cwl2 = _interopRequireDefault(_cwl);
 
-var _vue = __webpack_require__(119);
+var _vue = __webpack_require__(139);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _cwlSvg = __webpack_require__(39);
+var _cwlSvg = __webpack_require__(60);
 
-var _cwlSvgExpand = __webpack_require__(123);
+var _cwlSvgExpand = __webpack_require__(142);
 
 var _cwlSvgExpand2 = _interopRequireDefault(_cwlSvgExpand);
 
@@ -9689,7 +12745,7 @@ var vue = new _vue2.default({
     el: '#vue',
     data: {
         plugins: [new _cwlSvg.SVGArrangePlugin(), new _cwlSvgExpand2.default(), selection],
-        selection: null
+        selection: {}
     },
     components: {
         cwl: _cwl2.default
@@ -9698,23 +12754,24 @@ var vue = new _vue2.default({
         selectionChanged: function selectionChanged(payload) {
             this.selection = payload;
         }
-    }
+    },
+    delimiters: ['[[', ']]']
 });
 
 /***/ }),
-/* 71 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cwl_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cwl_vue__ = __webpack_require__(48);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_597a6c5a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_cwl_vue__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_597a6c5a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_cwl_vue__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(138);
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(72)
+  __webpack_require__(92)
 }
 /* script */
 
@@ -9761,17 +12818,17 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 72 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(73);
+var content = __webpack_require__(93);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var add = __webpack_require__(74).default
+var add = __webpack_require__(94).default
 var update = add("3887b45a", content, false, {});
 // Hot Module Replacement
 if(false) {
@@ -9788,10 +12845,10 @@ if(false) {
 }
 
 /***/ }),
-/* 73 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(16)(true);
+exports = module.exports = __webpack_require__(18)(true);
 // imports
 
 
@@ -9802,13 +12859,13 @@ exports.push([module.i, "\n.cwl-workflow {\n    height: 500px;\n    position: re
 
 
 /***/ }),
-/* 74 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["default"] = addStylesClient;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listToStyles__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listToStyles__ = __webpack_require__(95);
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
@@ -10034,7 +13091,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 75 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10069,13 +13126,13 @@ function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 76 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(77);
+var content = __webpack_require__(97);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10083,7 +13140,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(26)(content, options);
+var update = __webpack_require__(29)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -10100,10 +13157,10 @@ if(false) {
 }
 
 /***/ }),
-/* 77 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(16)(false);
+exports = module.exports = __webpack_require__(18)(undefined);
 // imports
 
 
@@ -10114,7 +13171,7 @@ exports.push([module.i, "svg.cwl-workflow {\n  fill: #303030;\n  color: white;\n
 
 
 /***/ }),
-/* 78 */
+/* 98 */
 /***/ (function(module, exports) {
 
 
@@ -10209,13 +13266,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 79 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(80);
+var content = __webpack_require__(100);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10223,7 +13280,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(26)(content, options);
+var update = __webpack_require__(29)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -10240,10 +13297,10 @@ if(false) {
 }
 
 /***/ }),
-/* 80 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(16)(false);
+exports = module.exports = __webpack_require__(18)(undefined);
 // imports
 
 
@@ -10254,13 +13311,13 @@ exports.push([module.i, ".cwl-workflow.__plugin-port-drag .port.__port-drag-sugg
 
 
 /***/ }),
-/* 81 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(82);
+var content = __webpack_require__(102);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10268,7 +13325,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(26)(content, options);
+var update = __webpack_require__(29)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -10285,21 +13342,21 @@ if(false) {
 }
 
 /***/ }),
-/* 82 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(16)(false);
+exports = module.exports = __webpack_require__(18)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".cwl-workflow.__plugin-selection .node,\n.cwl-workflow.__plugin-selection .edge {\n  cursor: pointer; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .outer {\n  stroke: #444343; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .inner {\n  fill: #216b6b; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight).input .inner {\n  fill: #838383; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight).output .inner {\n  fill: #838383; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .label {\n  fill: #7e7d7d; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .port {\n  fill: #444343; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .edge:not(.__selection-plugin-highlight) .inner {\n  stroke: #444343; }\n\n.cwl-workflow.__plugin-selection .port.__selection-plugin-highlight .label {\n  opacity: 1; }\n\n.cwl-workflow.__plugin-selection .__selection-plugin-selected.edge .inner {\n  stroke: #11a7a7; }\n\n.cwl-workflow.__plugin-selection .__selection-plugin-selected.node .outer {\n  stroke: #11a7a7; }\n", ""]);
+exports.push([module.i, ".cwl-workflow.__plugin-selection .node,\n.cwl-workflow.__plugin-selection .edge {\n  cursor: pointer; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .outer {\n  stroke: #444343; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .inner {\n  fill: #4E6767; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight).input .inner {\n  fill: #838383; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight).output .inner {\n  fill: #838383; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .label {\n  fill: #7e7d7d; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .node:not(.__selection-plugin-highlight) .port {\n  fill: #444343; }\n\n.cwl-workflow.__plugin-selection.__selection-plugin-fade .edge:not(.__selection-plugin-highlight) .inner {\n  stroke: #444343; }\n\n.cwl-workflow.__plugin-selection .port.__selection-plugin-highlight .label {\n  opacity: 1; }\n\n.cwl-workflow.__plugin-selection .__selection-plugin-selected.edge .inner {\n  stroke: #11a7a7; }\n\n.cwl-workflow.__plugin-selection .__selection-plugin-selected.node .outer {\n  stroke: #11a7a7; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 83 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10309,34 +13366,34 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 // Workflow
-__export(__webpack_require__(28));
-__export(__webpack_require__(11));
-__export(__webpack_require__(19));
-__export(__webpack_require__(15));
-__export(__webpack_require__(17));
-__export(__webpack_require__(20));
-__export(__webpack_require__(21));
-// Command Line Tool
 __export(__webpack_require__(30));
+__export(__webpack_require__(12));
+__export(__webpack_require__(21));
+__export(__webpack_require__(17));
+__export(__webpack_require__(19));
 __export(__webpack_require__(22));
-__export(__webpack_require__(10));
-__export(__webpack_require__(32));
-__export(__webpack_require__(13));
-__export(__webpack_require__(35));
 __export(__webpack_require__(23));
-__export(__webpack_require__(9));
+// Command Line Tool
+__export(__webpack_require__(32));
+__export(__webpack_require__(24));
+__export(__webpack_require__(11));
+__export(__webpack_require__(34));
+__export(__webpack_require__(14));
+__export(__webpack_require__(37));
+__export(__webpack_require__(25));
+__export(__webpack_require__(10));
 // Common
 __export(__webpack_require__(4));
-__export(__webpack_require__(34));
-__export(__webpack_require__(12));
-__export(__webpack_require__(14));
 __export(__webpack_require__(36));
-__export(__webpack_require__(37));
+__export(__webpack_require__(13));
+__export(__webpack_require__(16));
 __export(__webpack_require__(38));
+__export(__webpack_require__(39));
+__export(__webpack_require__(40));
 
 
 /***/ }),
-/* 84 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10352,10 +13409,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowModel_1 = __webpack_require__(11);
-var V1StepModel_1 = __webpack_require__(85);
-var V1WorkflowInputParameterModel_1 = __webpack_require__(51);
-var V1WorkflowOutputParameterModel_1 = __webpack_require__(47);
+var WorkflowModel_1 = __webpack_require__(12);
+var V1StepModel_1 = __webpack_require__(105);
+var V1WorkflowInputParameterModel_1 = __webpack_require__(55);
+var V1WorkflowOutputParameterModel_1 = __webpack_require__(51);
 var utils_1 = __webpack_require__(0);
 var constants_1 = __webpack_require__(6);
 var V1ExpressionModel_1 = __webpack_require__(5);
@@ -10564,7 +13621,7 @@ exports.V1WorkflowModel = V1WorkflowModel;
 
 
 /***/ }),
-/* 85 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10588,15 +13645,15 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineToolFactory_1 = __webpack_require__(30);
-var ExpressionToolModel_1 = __webpack_require__(55);
-var StepModel_1 = __webpack_require__(19);
-var WorkflowFactory_1 = __webpack_require__(28);
-var WorkflowModel_1 = __webpack_require__(11);
+var CommandLineToolFactory_1 = __webpack_require__(32);
+var ExpressionToolModel_1 = __webpack_require__(59);
+var StepModel_1 = __webpack_require__(21);
+var WorkflowFactory_1 = __webpack_require__(30);
+var WorkflowModel_1 = __webpack_require__(12);
 var utils_1 = __webpack_require__(0);
 var V1ExpressionModel_1 = __webpack_require__(5);
-var V1WorkflowStepInputModel_1 = __webpack_require__(102);
-var V1WorkflowStepOutputModel_1 = __webpack_require__(103);
+var V1WorkflowStepInputModel_1 = __webpack_require__(122);
+var V1WorkflowStepOutputModel_1 = __webpack_require__(123);
 var V1StepModel = /** @class */ (function (_super) {
     __extends(V1StepModel, _super);
     function V1StepModel(step, loc, eventHub) {
@@ -10825,7 +13882,7 @@ exports.V1StepModel = V1StepModel;
 
 
 /***/ }),
-/* 86 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10839,10 +13896,10 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLinePart_1 = __webpack_require__(31);
-var CommandLinePrepare_1 = __webpack_require__(48);
+var CommandLinePart_1 = __webpack_require__(33);
+var CommandLinePrepare_1 = __webpack_require__(52);
 var utils_1 = __webpack_require__(0);
-var JobHelper_1 = __webpack_require__(24);
+var JobHelper_1 = __webpack_require__(26);
 exports.generateCommandLineParts = function (tool, jobInputs, runtime) {
     var flatInputs = CommandLinePrepare_1.CommandLinePrepare.flattenInputsAndArgs([].concat(tool.arguments).concat(tool.inputs));
     var job = utils_1.isEmpty(jobInputs) ? // if job has not been populated
@@ -10875,17 +13932,17 @@ exports.generateCommandLineParts = function (tool, jobInputs, runtime) {
 
 
 /***/ }),
-/* 87 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ExpressionModel_1 = __webpack_require__(9);
-var CommandLinePart_1 = __webpack_require__(31);
-var CommandLinePrepare_1 = __webpack_require__(48);
-var TypeResolver_1 = __webpack_require__(29);
-var V1CommandArgumentModel_1 = __webpack_require__(49);
+var ExpressionModel_1 = __webpack_require__(10);
+var CommandLinePart_1 = __webpack_require__(33);
+var CommandLinePrepare_1 = __webpack_require__(52);
+var TypeResolver_1 = __webpack_require__(31);
+var V1CommandArgumentModel_1 = __webpack_require__(53);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var CommandLineParsers = /** @class */ (function () {
     function CommandLineParsers() {
@@ -11049,7 +14106,7 @@ exports.CommandLineParsers = CommandLineParsers;
 
 
 /***/ }),
-/* 88 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11073,23 +14130,23 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineToolModel_1 = __webpack_require__(22);
-var DockerRequirementModel_1 = __webpack_require__(34);
-var RequirementBaseModel_1 = __webpack_require__(14);
-var JobHelper_1 = __webpack_require__(24);
+var CommandLineToolModel_1 = __webpack_require__(24);
+var DockerRequirementModel_1 = __webpack_require__(36);
+var RequirementBaseModel_1 = __webpack_require__(16);
+var JobHelper_1 = __webpack_require__(26);
 var utils_1 = __webpack_require__(0);
-var V1CommandArgumentModel_1 = __webpack_require__(49);
-var V1CommandInputParameterModel_1 = __webpack_require__(33);
-var V1CommandOutputParameterModel_1 = __webpack_require__(52);
+var V1CommandArgumentModel_1 = __webpack_require__(53);
+var V1CommandInputParameterModel_1 = __webpack_require__(35);
+var V1CommandOutputParameterModel_1 = __webpack_require__(56);
 var V1ExpressionModel_1 = __webpack_require__(5);
-var V1InitialWorkDirRequirementModel_1 = __webpack_require__(89);
-var V1InlineJavascriptRequirementModel_1 = __webpack_require__(91);
-var V1ResourceRequirementModel_1 = __webpack_require__(92);
-var CommandInputParameterModel_1 = __webpack_require__(10);
-var CommandOutputParameterModel_1 = __webpack_require__(13);
-var sbg_expression_lib_1 = __webpack_require__(93);
-var ExpressionEvaluator_1 = __webpack_require__(18);
-var V1CommandOutputBindingModel_1 = __webpack_require__(53);
+var V1InitialWorkDirRequirementModel_1 = __webpack_require__(109);
+var V1InlineJavascriptRequirementModel_1 = __webpack_require__(111);
+var V1ResourceRequirementModel_1 = __webpack_require__(112);
+var CommandInputParameterModel_1 = __webpack_require__(11);
+var CommandOutputParameterModel_1 = __webpack_require__(14);
+var sbg_expression_lib_1 = __webpack_require__(113);
+var ExpressionEvaluator_1 = __webpack_require__(20);
+var V1CommandOutputBindingModel_1 = __webpack_require__(57);
 var V1CommandLineToolModel = /** @class */ (function (_super) {
     __extends(V1CommandLineToolModel, _super);
     function V1CommandLineToolModel(json, loc) {
@@ -11415,7 +14472,7 @@ exports.V1CommandLineToolModel = V1CommandLineToolModel;
 
 
 /***/ }),
-/* 89 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11439,10 +14496,10 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CreateFileRequirementModel_1 = __webpack_require__(36);
-var V1DirentModel_1 = __webpack_require__(90);
+var CreateFileRequirementModel_1 = __webpack_require__(38);
+var V1DirentModel_1 = __webpack_require__(110);
 var utils_1 = __webpack_require__(0);
-var ExpressionModel_1 = __webpack_require__(9);
+var ExpressionModel_1 = __webpack_require__(10);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var V1InitialWorkDirRequirementModel = /** @class */ (function (_super) {
     __extends(V1InitialWorkDirRequirementModel, _super);
@@ -11534,7 +14591,7 @@ exports.V1InitialWorkDirRequirementModel = V1InitialWorkDirRequirementModel;
 
 
 /***/ }),
-/* 90 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11550,7 +14607,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var DirentModel_1 = __webpack_require__(37);
+var DirentModel_1 = __webpack_require__(39);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var utils_1 = __webpack_require__(0);
 var V1DirentModel = /** @class */ (function (_super) {
@@ -11585,7 +14642,7 @@ exports.V1DirentModel = V1DirentModel;
 
 
 /***/ }),
-/* 91 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11601,7 +14658,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ProcessRequirementModel_1 = __webpack_require__(12);
+var ProcessRequirementModel_1 = __webpack_require__(13);
 var utils_1 = __webpack_require__(0);
 var V1InlineJavascriptRequirementModel = /** @class */ (function (_super) {
     __extends(V1InlineJavascriptRequirementModel, _super);
@@ -11642,7 +14699,7 @@ exports.V1InlineJavascriptRequirementModel = V1InlineJavascriptRequirementModel;
 
 
 /***/ }),
-/* 92 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11658,7 +14715,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ResourceRequirementModel_1 = __webpack_require__(38);
+var ResourceRequirementModel_1 = __webpack_require__(40);
 var V1ExpressionModel_1 = __webpack_require__(5);
 var utils_1 = __webpack_require__(0);
 var V1ResourceRequirementModel = /** @class */ (function (_super) {
@@ -11716,7 +14773,7 @@ exports.V1ResourceRequirementModel = V1ResourceRequirementModel;
 
 
 /***/ }),
-/* 93 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11726,7 +14783,7 @@ exports.sbgHelperLibrary = "\nvar setMetadata = function(file, metadata) {\n    
 
 
 /***/ }),
-/* 94 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11750,19 +14807,19 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineToolModel_1 = __webpack_require__(22);
-var DockerRequirementModel_1 = __webpack_require__(34);
-var RequirementBaseModel_1 = __webpack_require__(14);
-var JobHelper_1 = __webpack_require__(24);
+var CommandLineToolModel_1 = __webpack_require__(24);
+var DockerRequirementModel_1 = __webpack_require__(36);
+var RequirementBaseModel_1 = __webpack_require__(16);
+var JobHelper_1 = __webpack_require__(26);
 var utils_1 = __webpack_require__(0);
-var SBDraft2CommandArgumentModel_1 = __webpack_require__(95);
-var SBDraft2CommandInputParameterModel_1 = __webpack_require__(96);
-var SBDraft2CommandOutputParameterModel_1 = __webpack_require__(97);
-var SBDraft2CreateFileRequirementModel_1 = __webpack_require__(99);
+var SBDraft2CommandArgumentModel_1 = __webpack_require__(115);
+var SBDraft2CommandInputParameterModel_1 = __webpack_require__(116);
+var SBDraft2CommandOutputParameterModel_1 = __webpack_require__(117);
+var SBDraft2CreateFileRequirementModel_1 = __webpack_require__(119);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
-var SBDraft2ResourceRequirementModel_1 = __webpack_require__(101);
-var CommandInputParameterModel_1 = __webpack_require__(10);
-var CommandOutputParameterModel_1 = __webpack_require__(13);
+var SBDraft2ResourceRequirementModel_1 = __webpack_require__(121);
+var CommandInputParameterModel_1 = __webpack_require__(11);
+var CommandOutputParameterModel_1 = __webpack_require__(14);
 var ErrorCode_1 = __webpack_require__(1);
 var SBDraft2CommandLineToolModel = /** @class */ (function (_super) {
     __extends(SBDraft2CommandLineToolModel, _super);
@@ -12102,7 +15159,7 @@ exports.SBDraft2CommandLineToolModel = SBDraft2CommandLineToolModel;
 
 
 /***/ }),
-/* 95 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12118,8 +15175,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandArgumentModel_1 = __webpack_require__(23);
-var SBDraft2CommandLineBindingModel_1 = __webpack_require__(54);
+var CommandArgumentModel_1 = __webpack_require__(25);
+var SBDraft2CommandLineBindingModel_1 = __webpack_require__(58);
 var ErrorCode_1 = __webpack_require__(1);
 var SBDraft2CommandArgumentModel = /** @class */ (function (_super) {
     __extends(SBDraft2CommandArgumentModel, _super);
@@ -12206,7 +15263,7 @@ exports.SBDraft2CommandArgumentModel = SBDraft2CommandArgumentModel;
 
 
 /***/ }),
-/* 96 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12230,10 +15287,10 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandInputParameterModel_1 = __webpack_require__(10);
+var CommandInputParameterModel_1 = __webpack_require__(11);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
-var SBDraft2CommandLineBindingModel_1 = __webpack_require__(54);
+var SBDraft2CommandLineBindingModel_1 = __webpack_require__(58);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2CommandInputParameterModel = /** @class */ (function (_super) {
     __extends(SBDraft2CommandInputParameterModel, _super);
@@ -12353,7 +15410,7 @@ exports.SBDraft2CommandInputParameterModel = SBDraft2CommandInputParameterModel;
 
 
 /***/ }),
-/* 97 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12369,10 +15426,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandOutputParameterModel_1 = __webpack_require__(13);
+var CommandOutputParameterModel_1 = __webpack_require__(14);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
-var SBDraft2CommandOutputBindingModel_1 = __webpack_require__(98);
+var SBDraft2CommandOutputBindingModel_1 = __webpack_require__(118);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2CommandOutputParameterModel = /** @class */ (function (_super) {
     __extends(SBDraft2CommandOutputParameterModel, _super);
@@ -12479,7 +15536,7 @@ exports.SBDraft2CommandOutputParameterModel = SBDraft2CommandOutputParameterMode
 
 
 /***/ }),
-/* 98 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12495,7 +15552,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandOutputBindingModel_1 = __webpack_require__(35);
+var CommandOutputBindingModel_1 = __webpack_require__(37);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var ErrorCode_1 = __webpack_require__(1);
 var SBDraft2CommandOutputBindingModel = /** @class */ (function (_super) {
@@ -12633,7 +15690,7 @@ exports.SBDraft2CommandOutputBindingModel = SBDraft2CommandOutputBindingModel;
 
 
 /***/ }),
-/* 99 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12649,8 +15706,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CreateFileRequirementModel_1 = __webpack_require__(36);
-var SBDraft2FileDefModel_1 = __webpack_require__(100);
+var CreateFileRequirementModel_1 = __webpack_require__(38);
+var SBDraft2FileDefModel_1 = __webpack_require__(120);
 var SBDraft2CreateFileRequirementModel = /** @class */ (function (_super) {
     __extends(SBDraft2CreateFileRequirementModel, _super);
     function SBDraft2CreateFileRequirementModel(req, loc, eventHub) {
@@ -12725,7 +15782,7 @@ exports.SBDraft2CreateFileRequirementModel = SBDraft2CreateFileRequirementModel;
 
 
 /***/ }),
-/* 100 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12741,7 +15798,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var DirentModel_1 = __webpack_require__(37);
+var DirentModel_1 = __webpack_require__(39);
 var utils_1 = __webpack_require__(0);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2FileDefModel = /** @class */ (function (_super) {
@@ -12782,7 +15839,7 @@ exports.SBDraft2FileDefModel = SBDraft2FileDefModel;
 
 
 /***/ }),
-/* 101 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12798,7 +15855,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ResourceRequirementModel_1 = __webpack_require__(38);
+var ResourceRequirementModel_1 = __webpack_require__(40);
 var utils_1 = __webpack_require__(0);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2ResourceRequirementModel = /** @class */ (function (_super) {
@@ -12818,7 +15875,7 @@ exports.SBDraft2ResourceRequirementModel = SBDraft2ResourceRequirementModel;
 
 
 /***/ }),
-/* 102 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12834,7 +15891,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowStepInputModel_1 = __webpack_require__(20);
+var WorkflowStepInputModel_1 = __webpack_require__(22);
 var utils_1 = __webpack_require__(0);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var V1ExpressionModel_1 = __webpack_require__(5);
@@ -12898,7 +15955,7 @@ exports.V1WorkflowStepInputModel = V1WorkflowStepInputModel;
 
 
 /***/ }),
-/* 103 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12914,7 +15971,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowStepOutputModel_1 = __webpack_require__(21);
+var WorkflowStepOutputModel_1 = __webpack_require__(23);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var V1WorkflowStepOutputModel = /** @class */ (function (_super) {
     __extends(V1WorkflowStepOutputModel, _super);
@@ -12955,7 +16012,7 @@ exports.V1WorkflowStepOutputModel = V1WorkflowStepOutputModel;
 
 
 /***/ }),
-/* 104 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12971,13 +16028,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowModel_1 = __webpack_require__(11);
-var SBDraft2StepModel_1 = __webpack_require__(105);
-var SBDraft2WorkflowInputParameterModel_1 = __webpack_require__(108);
-var SBDraft2WorkflowOutputParameterModel_1 = __webpack_require__(109);
+var WorkflowModel_1 = __webpack_require__(12);
+var SBDraft2StepModel_1 = __webpack_require__(125);
+var SBDraft2WorkflowInputParameterModel_1 = __webpack_require__(128);
+var SBDraft2WorkflowOutputParameterModel_1 = __webpack_require__(129);
 var utils_1 = __webpack_require__(0);
 var constants_1 = __webpack_require__(6);
-var WorkflowInputParameterModel_1 = __webpack_require__(15);
+var WorkflowInputParameterModel_1 = __webpack_require__(17);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2WorkflowModel = /** @class */ (function (_super) {
     __extends(SBDraft2WorkflowModel, _super);
@@ -13179,7 +16236,7 @@ exports.SBDraft2WorkflowModel = SBDraft2WorkflowModel;
 
 
 /***/ }),
-/* 105 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13203,14 +16260,14 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var StepModel_1 = __webpack_require__(19);
-var WorkflowModel_1 = __webpack_require__(11);
-var ExpressionToolModel_1 = __webpack_require__(55);
-var SBDraft2WorkflowStepInputModel_1 = __webpack_require__(106);
-var SBDraft2WorkflowStepOutputModel_1 = __webpack_require__(107);
+var StepModel_1 = __webpack_require__(21);
+var WorkflowModel_1 = __webpack_require__(12);
+var ExpressionToolModel_1 = __webpack_require__(59);
+var SBDraft2WorkflowStepInputModel_1 = __webpack_require__(126);
+var SBDraft2WorkflowStepOutputModel_1 = __webpack_require__(127);
 var utils_1 = __webpack_require__(0);
-var WorkflowFactory_1 = __webpack_require__(28);
-var CommandLineToolFactory_1 = __webpack_require__(30);
+var WorkflowFactory_1 = __webpack_require__(30);
+var CommandLineToolFactory_1 = __webpack_require__(32);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2StepModel = /** @class */ (function (_super) {
     __extends(SBDraft2StepModel, _super);
@@ -13422,7 +16479,7 @@ exports.SBDraft2StepModel = SBDraft2StepModel;
 
 
 /***/ }),
-/* 106 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13438,7 +16495,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowStepInputModel_1 = __webpack_require__(20);
+var WorkflowStepInputModel_1 = __webpack_require__(22);
 var utils_1 = __webpack_require__(0);
 var constants_1 = __webpack_require__(6);
 var ParameterTypeModel_1 = __webpack_require__(4);
@@ -13523,7 +16580,7 @@ exports.SBDraft2WorkflowStepInputModel = SBDraft2WorkflowStepInputModel;
 
 
 /***/ }),
-/* 107 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13539,7 +16596,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowStepOutputModel_1 = __webpack_require__(21);
+var WorkflowStepOutputModel_1 = __webpack_require__(23);
 var utils_1 = __webpack_require__(0);
 var constants_1 = __webpack_require__(6);
 var ParameterTypeModel_1 = __webpack_require__(4);
@@ -13603,7 +16660,7 @@ exports.SBDraft2WorkflowStepOutputModel = SBDraft2WorkflowStepOutputModel;
 
 
 /***/ }),
-/* 108 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13619,7 +16676,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowInputParameterModel_1 = __webpack_require__(15);
+var WorkflowInputParameterModel_1 = __webpack_require__(17);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var constants_1 = __webpack_require__(6);
 var utils_1 = __webpack_require__(0);
@@ -13690,7 +16747,7 @@ exports.SBDraft2WorkflowInputParameterModel = SBDraft2WorkflowInputParameterMode
 
 
 /***/ }),
-/* 109 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13706,7 +16763,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var WorkflowOutputParameterModel_1 = __webpack_require__(17);
+var WorkflowOutputParameterModel_1 = __webpack_require__(19);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
 var SBDraft2WorkflowOutputParameterModel = /** @class */ (function (_super) {
@@ -13759,7 +16816,7 @@ exports.SBDraft2WorkflowOutputParameterModel = SBDraft2WorkflowOutputParameterMo
 
 
 /***/ }),
-/* 110 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13768,23 +16825,23 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(18));
+__export(__webpack_require__(20));
+__export(__webpack_require__(33));
+__export(__webpack_require__(131));
+__export(__webpack_require__(50));
 __export(__webpack_require__(31));
-__export(__webpack_require__(111));
-__export(__webpack_require__(46));
-__export(__webpack_require__(29));
 __export(__webpack_require__(6));
 __export(__webpack_require__(0));
 
 
 /***/ }),
-/* 111 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var vm = __webpack_require__(112);
+var vm = __webpack_require__(132);
 var JSExecutor = /** @class */ (function () {
     function JSExecutor() {
     }
@@ -13805,10 +16862,10 @@ exports.JSExecutor = JSExecutor;
 
 
 /***/ }),
-/* 112 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var indexOf = __webpack_require__(113);
+var indexOf = __webpack_require__(133);
 
 var Object_keys = function (obj) {
     if (Object.keys) return Object.keys(obj)
@@ -13949,7 +17006,7 @@ exports.createContext = Script.createContext = function (context) {
 
 
 /***/ }),
-/* 113 */
+/* 133 */
 /***/ (function(module, exports) {
 
 
@@ -13964,7 +17021,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 114 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14220,7 +17277,7 @@ exports.DomEvents = DomEvents;
 //# sourceMappingURL=dom-events.js.map
 
 /***/ }),
-/* 115 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14290,7 +17347,7 @@ exports.EventHub = EventHub;
 //# sourceMappingURL=event-hub.js.map
 
 /***/ }),
-/* 116 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14316,7 +17373,7 @@ exports.HtmlUtils = HtmlUtils;
 //# sourceMappingURL=html-utils.js.map
 
 /***/ }),
-/* 117 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14339,7 +17396,7 @@ if (false) {
 }
 
 /***/ }),
-/* 118 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14448,20 +17505,16 @@ function normalizeComponent (
 
 
 /***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 139 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(process, global, setImmediate) {/*!
  * Vue.js v2.5.13
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Vue = factory());
-}(this, (function () { 'use strict';
-
 /*  */
 
 var emptyObject = Object.freeze({});
@@ -14812,12 +17865,12 @@ var config = ({
   /**
    * Show production mode tip message on boot?
    */
-  productionTip: "development" !== 'production',
+  productionTip: process.env.NODE_ENV !== 'production',
 
   /**
    * Whether to enable devtools
    */
-  devtools: "development" !== 'production',
+  devtools: process.env.NODE_ENV !== 'production',
 
   /**
    * Whether to record perf
@@ -15021,7 +18074,7 @@ var tip = noop;
 var generateComponentTrace = (noop); // work around flow check
 var formatComponentName = (noop);
 
-{
+if (process.env.NODE_ENV !== 'production') {
   var hasConsole = typeof console !== 'undefined';
   var classifyRE = /(?:^|[-_])(\w)/g;
   var classify = function (str) { return str
@@ -15456,7 +18509,7 @@ function defineReactive (
         return
       }
       /* eslint-enable no-self-compare */
-      if ("development" !== 'production' && customSetter) {
+      if (process.env.NODE_ENV !== 'production' && customSetter) {
         customSetter();
       }
       if (setter) {
@@ -15487,7 +18540,7 @@ function set (target, key, val) {
   }
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    "development" !== 'production' && warn(
+    process.env.NODE_ENV !== 'production' && warn(
       'Avoid adding reactive properties to a Vue instance or its root $data ' +
       'at runtime - declare it upfront in the data option.'
     );
@@ -15512,7 +18565,7 @@ function del (target, key) {
   }
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    "development" !== 'production' && warn(
+    process.env.NODE_ENV !== 'production' && warn(
       'Avoid deleting properties on a Vue instance or its root $data ' +
       '- just set it to null.'
     );
@@ -15554,7 +18607,7 @@ var strats = config.optionMergeStrategies;
 /**
  * Options with restrictions
  */
-{
+if (process.env.NODE_ENV !== 'production') {
   strats.el = strats.propsData = function (parent, child, vm, key) {
     if (!vm) {
       warn(
@@ -15638,7 +18691,7 @@ strats.data = function (
 ) {
   if (!vm) {
     if (childVal && typeof childVal !== 'function') {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         'The "data" option should be a function ' +
         'that returns a per-instance value in component ' +
         'definitions.',
@@ -15688,7 +18741,7 @@ function mergeAssets (
 ) {
   var res = Object.create(parentVal || null);
   if (childVal) {
-    "development" !== 'production' && assertObjectType(key, childVal, vm);
+    process.env.NODE_ENV !== 'production' && assertObjectType(key, childVal, vm);
     return extend(res, childVal)
   } else {
     return res
@@ -15716,7 +18769,7 @@ strats.watch = function (
   if (childVal === nativeWatch) { childVal = undefined; }
   /* istanbul ignore if */
   if (!childVal) { return Object.create(parentVal || null) }
-  {
+  if (process.env.NODE_ENV !== 'production') {
     assertObjectType(key, childVal, vm);
   }
   if (!parentVal) { return childVal }
@@ -15747,7 +18800,7 @@ strats.computed = function (
   vm,
   key
 ) {
-  if (childVal && "development" !== 'production') {
+  if (childVal && process.env.NODE_ENV !== 'production') {
     assertObjectType(key, childVal, vm);
   }
   if (!parentVal) { return childVal }
@@ -15808,7 +18861,7 @@ function normalizeProps (options, vm) {
       if (typeof val === 'string') {
         name = camelize(val);
         res[name] = { type: null };
-      } else {
+      } else if (process.env.NODE_ENV !== 'production') {
         warn('props must be strings when using array syntax.');
       }
     }
@@ -15820,7 +18873,7 @@ function normalizeProps (options, vm) {
         ? val
         : { type: val };
     }
-  } else {
+  } else if (process.env.NODE_ENV !== 'production') {
     warn(
       "Invalid value for option \"props\": expected an Array or an Object, " +
       "but got " + (toRawType(props)) + ".",
@@ -15848,7 +18901,7 @@ function normalizeInject (options, vm) {
         ? extend({ from: key }, val)
         : { from: val };
     }
-  } else {
+  } else if (process.env.NODE_ENV !== 'production') {
     warn(
       "Invalid value for option \"inject\": expected an Array or an Object, " +
       "but got " + (toRawType(inject)) + ".",
@@ -15891,7 +18944,7 @@ function mergeOptions (
   child,
   vm
 ) {
-  {
+  if (process.env.NODE_ENV !== 'production') {
     checkComponents(child);
   }
 
@@ -15952,7 +19005,7 @@ function resolveAsset (
   if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
   // fallback to prototype chain
   var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
-  if ("development" !== 'production' && warnMissing && !res) {
+  if (process.env.NODE_ENV !== 'production' && warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
       options
@@ -15990,7 +19043,11 @@ function validateProp (
     observe(value);
     observerState.shouldConvert = prevShouldConvert;
   }
-  {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    // skip validation for weex recycle-list child component props
+    !(false && isObject(value) && ('@binding' in value))
+  ) {
     assertProp(prop, key, value, vm, absent);
   }
   return value
@@ -16006,7 +19063,7 @@ function getPropDefaultValue (vm, prop, key) {
   }
   var def = prop.default;
   // warn against non-factory defaults for Object & Array
-  if ("development" !== 'production' && isObject(def)) {
+  if (process.env.NODE_ENV !== 'production' && isObject(def)) {
     warn(
       'Invalid default value for prop "' + key + '": ' +
       'Props with type Object/Array must use a factory function ' +
@@ -16164,7 +19221,7 @@ function globalHandleError (err, vm, info) {
 }
 
 function logError (err, vm, info) {
-  {
+  if (process.env.NODE_ENV !== 'production') {
     warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
   }
   /* istanbul ignore else */
@@ -16294,7 +19351,7 @@ function nextTick (cb, ctx) {
 var mark;
 var measure;
 
-{
+if (process.env.NODE_ENV !== 'production') {
   var perf = inBrowser && window.performance;
   /* istanbul ignore if */
   if (
@@ -16318,7 +19375,7 @@ var measure;
 
 var initProxy;
 
-{
+if (process.env.NODE_ENV !== 'production') {
   var allowedGlobals = makeMap(
     'Infinity,undefined,NaN,isFinite,isNaN,' +
     'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
@@ -16477,7 +19534,7 @@ function updateListeners (
     event = normalizeEvent(name);
     /* istanbul ignore if */
     if (isUndef(cur)) {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
         vm
       );
@@ -16554,7 +19611,7 @@ function extractPropsFromVNodeData (
   if (isDef(attrs) || isDef(props)) {
     for (var key in propOptions) {
       var altKey = hyphenate(key);
-      {
+      if (process.env.NODE_ENV !== 'production') {
         var keyInLowerCase = key.toLowerCase();
         if (
           key !== keyInLowerCase &&
@@ -16757,7 +19814,7 @@ function resolveAsyncComponent (
     });
 
     var reject = once(function (reason) {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         "Failed to resolve async component: " + (String(factory)) +
         (reason ? ("\nReason: " + reason) : '')
       );
@@ -16800,7 +19857,9 @@ function resolveAsyncComponent (
           setTimeout(function () {
             if (isUndef(factory.resolved)) {
               reject(
-                "timeout (" + (res.timeout) + "ms)"
+                process.env.NODE_ENV !== 'production'
+                  ? ("timeout (" + (res.timeout) + "ms)")
+                  : null
               );
             }
           }, res.timeout);
@@ -16947,7 +20006,7 @@ function eventsMixin (Vue) {
 
   Vue.prototype.$emit = function (event) {
     var vm = this;
-    {
+    if (process.env.NODE_ENV !== 'production') {
       var lowerCaseEvent = event.toLowerCase();
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
         tip(
@@ -17174,7 +20233,7 @@ function mountComponent (
   vm.$el = el;
   if (!vm.$options.render) {
     vm.$options.render = createEmptyVNode;
-    {
+    if (process.env.NODE_ENV !== 'production') {
       /* istanbul ignore if */
       if ((vm.$options.template && vm.$options.template.charAt(0) !== '#') ||
         vm.$options.el || el) {
@@ -17196,7 +20255,7 @@ function mountComponent (
 
   var updateComponent;
   /* istanbul ignore if */
-  if ("development" !== 'production' && config.performance && mark) {
+  if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
     updateComponent = function () {
       var name = vm._name;
       var id = vm._uid;
@@ -17241,7 +20300,7 @@ function updateChildComponent (
   parentVnode,
   renderChildren
 ) {
-  {
+  if (process.env.NODE_ENV !== 'production') {
     isUpdatingChildComponent = true;
   }
 
@@ -17294,7 +20353,7 @@ function updateChildComponent (
     vm.$forceUpdate();
   }
 
-  {
+  if (process.env.NODE_ENV !== 'production') {
     isUpdatingChildComponent = false;
   }
 }
@@ -17375,7 +20434,7 @@ var index = 0;
 function resetSchedulerState () {
   index = queue.length = activatedChildren.length = 0;
   has = {};
-  {
+  if (process.env.NODE_ENV !== 'production') {
     circular = {};
   }
   waiting = flushing = false;
@@ -17406,7 +20465,7 @@ function flushSchedulerQueue () {
     has[id] = null;
     watcher.run();
     // in dev build, check and stop circular updates.
-    if ("development" !== 'production' && has[id] != null) {
+    if (process.env.NODE_ENV !== 'production' && has[id] != null) {
       circular[id] = (circular[id] || 0) + 1;
       if (circular[id] > MAX_UPDATE_COUNT) {
         warn(
@@ -17534,7 +20593,9 @@ var Watcher = function Watcher (
   this.newDeps = [];
   this.depIds = new _Set();
   this.newDepIds = new _Set();
-  this.expression = expOrFn.toString();
+  this.expression = process.env.NODE_ENV !== 'production'
+    ? expOrFn.toString()
+    : '';
   // parse expression for getter
   if (typeof expOrFn === 'function') {
     this.getter = expOrFn;
@@ -17542,7 +20603,7 @@ var Watcher = function Watcher (
     this.getter = parsePath(expOrFn);
     if (!this.getter) {
       this.getter = function () {};
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         "Failed watching path: \"" + expOrFn + "\" " +
         'Watcher only accepts simple dot-delimited paths. ' +
         'For full control, use a function instead.',
@@ -17755,7 +20816,7 @@ function initProps (vm, propsOptions) {
     keys.push(key);
     var value = validateProp(key, propsOptions, propsData, vm);
     /* istanbul ignore else */
-    {
+    if (process.env.NODE_ENV !== 'production') {
       var hyphenatedKey = hyphenate(key);
       if (isReservedAttribute(hyphenatedKey) ||
           config.isReservedAttr(hyphenatedKey)) {
@@ -17775,6 +20836,8 @@ function initProps (vm, propsOptions) {
           );
         }
       });
+    } else {
+      defineReactive(props, key, value);
     }
     // static props are already proxied on the component's prototype
     // during Vue.extend(). We only need to proxy props defined at
@@ -17795,7 +20858,7 @@ function initData (vm) {
     : data || {};
   if (!isPlainObject(data)) {
     data = {};
-    "development" !== 'production' && warn(
+    process.env.NODE_ENV !== 'production' && warn(
       'data functions should return an object:\n' +
       'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
       vm
@@ -17808,7 +20871,7 @@ function initData (vm) {
   var i = keys.length;
   while (i--) {
     var key = keys[i];
-    {
+    if (process.env.NODE_ENV !== 'production') {
       if (methods && hasOwn(methods, key)) {
         warn(
           ("Method \"" + key + "\" has already been defined as a data property."),
@@ -17817,7 +20880,7 @@ function initData (vm) {
       }
     }
     if (props && hasOwn(props, key)) {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         "The data property \"" + key + "\" is already declared as a prop. " +
         "Use prop default value instead.",
         vm
@@ -17850,7 +20913,7 @@ function initComputed (vm, computed) {
   for (var key in computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
-    if ("development" !== 'production' && getter == null) {
+    if (process.env.NODE_ENV !== 'production' && getter == null) {
       warn(
         ("Getter is missing for computed property \"" + key + "\"."),
         vm
@@ -17872,7 +20935,7 @@ function initComputed (vm, computed) {
     // at instantiation here.
     if (!(key in vm)) {
       defineComputed(vm, key, userDef);
-    } else {
+    } else if (process.env.NODE_ENV !== 'production') {
       if (key in vm.$data) {
         warn(("The computed property \"" + key + "\" is already defined in data."), vm);
       } else if (vm.$options.props && key in vm.$options.props) {
@@ -17903,7 +20966,7 @@ function defineComputed (
       ? userDef.set
       : noop;
   }
-  if ("development" !== 'production' &&
+  if (process.env.NODE_ENV !== 'production' &&
       sharedPropertyDefinition.set === noop) {
     sharedPropertyDefinition.set = function () {
       warn(
@@ -17933,7 +20996,7 @@ function createComputedGetter (key) {
 function initMethods (vm, methods) {
   var props = vm.$options.props;
   for (var key in methods) {
-    {
+    if (process.env.NODE_ENV !== 'production') {
       if (methods[key] == null) {
         warn(
           "Method \"" + key + "\" has an undefined value in the component definition. " +
@@ -17995,7 +21058,7 @@ function stateMixin (Vue) {
   dataDef.get = function () { return this._data };
   var propsDef = {};
   propsDef.get = function () { return this._props };
-  {
+  if (process.env.NODE_ENV !== 'production') {
     dataDef.set = function (newData) {
       warn(
         'Avoid replacing instance root $data. ' +
@@ -18051,7 +21114,7 @@ function initInjections (vm) {
     observerState.shouldConvert = false;
     Object.keys(result).forEach(function (key) {
       /* istanbul ignore else */
-      {
+      if (process.env.NODE_ENV !== 'production') {
         defineReactive(vm, key, result[key], function () {
           warn(
             "Avoid mutating an injected value directly since the changes will be " +
@@ -18060,6 +21123,8 @@ function initInjections (vm) {
             vm
           );
         });
+      } else {
+        defineReactive(vm, key, result[key]);
       }
     });
     observerState.shouldConvert = true;
@@ -18094,7 +21159,7 @@ function resolveInject (inject, vm) {
           result[key] = typeof provideDefault === 'function'
             ? provideDefault.call(vm)
             : provideDefault;
-        } else {
+        } else if (process.env.NODE_ENV !== 'production') {
           warn(("Injection \"" + key + "\" not found"), vm);
         }
       }
@@ -18153,7 +21218,7 @@ function renderSlot (
   if (scopedSlotFn) { // scoped slot
     props = props || {};
     if (bindObject) {
-      if ("development" !== 'production' && !isObject(bindObject)) {
+      if (process.env.NODE_ENV !== 'production' && !isObject(bindObject)) {
         warn(
           'slot v-bind without argument expects an Object',
           this
@@ -18166,7 +21231,7 @@ function renderSlot (
     var slotNodes = this.$slots[name];
     // warn duplicate slot usage
     if (slotNodes) {
-      if ("development" !== 'production' && slotNodes._rendered) {
+      if (process.env.NODE_ENV !== 'production' && slotNodes._rendered) {
         warn(
           "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
           "- this will likely cause render errors.",
@@ -18234,7 +21299,7 @@ function bindObjectProps (
 ) {
   if (value) {
     if (!isObject(value)) {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         'v-bind without argument expects an Object or Array value',
         this
       );
@@ -18342,7 +21407,7 @@ function markStaticNode (node, key, isOnce) {
 function bindObjectListeners (data, value) {
   if (value) {
     if (!isPlainObject(value)) {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         'v-on without argument expects an Object value',
         this
       );
@@ -18585,7 +21650,7 @@ function createComponent (
   // if at this stage it's not a constructor or an async component factory,
   // reject.
   if (typeof Ctor !== 'function') {
-    {
+    if (process.env.NODE_ENV !== 'production') {
       warn(("Invalid Component definition: " + (String(Ctor))), context);
     }
     return
@@ -18755,7 +21820,7 @@ function _createElement (
   normalizationType
 ) {
   if (isDef(data) && isDef((data).__ob__)) {
-    "development" !== 'production' && warn(
+    process.env.NODE_ENV !== 'production' && warn(
       "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
       'Always create fresh vnode data objects in each render!',
       context
@@ -18771,7 +21836,7 @@ function _createElement (
     return createEmptyVNode()
   }
   // warn against non-primitive key
-  if ("development" !== 'production' &&
+  if (process.env.NODE_ENV !== 'production' &&
     isDef(data) && isDef(data.key) && !isPrimitive(data.key)
   ) {
     {
@@ -18870,13 +21935,16 @@ function initRender (vm) {
   var parentData = parentVnode && parentVnode.data;
 
   /* istanbul ignore else */
-  {
+  if (process.env.NODE_ENV !== 'production') {
     defineReactive(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
       !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
     }, true);
     defineReactive(vm, '$listeners', options._parentListeners || emptyObject, function () {
       !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
     }, true);
+  } else {
+    defineReactive(vm, '$attrs', parentData && parentData.attrs || emptyObject, null, true);
+    defineReactive(vm, '$listeners', options._parentListeners || emptyObject, null, true);
   }
 }
 
@@ -18921,7 +21989,7 @@ function renderMixin (Vue) {
       // return error render result,
       // or previous vnode to prevent render error causing blank component
       /* istanbul ignore else */
-      {
+      if (process.env.NODE_ENV !== 'production') {
         if (vm.$options.renderError) {
           try {
             vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e);
@@ -18932,11 +22000,13 @@ function renderMixin (Vue) {
         } else {
           vnode = vm._vnode;
         }
+      } else {
+        vnode = vm._vnode;
       }
     }
     // return empty vnode in case the render function errored out
     if (!(vnode instanceof VNode)) {
-      if ("development" !== 'production' && Array.isArray(vnode)) {
+      if (process.env.NODE_ENV !== 'production' && Array.isArray(vnode)) {
         warn(
           'Multiple root nodes returned from render function. Render function ' +
           'should return a single root node.',
@@ -18963,7 +22033,7 @@ function initMixin (Vue) {
 
     var startTag, endTag;
     /* istanbul ignore if */
-    if ("development" !== 'production' && config.performance && mark) {
+    if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
       startTag = "vue-perf-start:" + (vm._uid);
       endTag = "vue-perf-end:" + (vm._uid);
       mark(startTag);
@@ -18985,8 +22055,10 @@ function initMixin (Vue) {
       );
     }
     /* istanbul ignore else */
-    {
+    if (process.env.NODE_ENV !== 'production') {
       initProxy(vm);
+    } else {
+      vm._renderProxy = vm;
     }
     // expose real self
     vm._self = vm;
@@ -19000,7 +22072,7 @@ function initMixin (Vue) {
     callHook(vm, 'created');
 
     /* istanbul ignore if */
-    if ("development" !== 'production' && config.performance && mark) {
+    if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
       vm._name = formatComponentName(vm, false);
       mark(endTag);
       measure(("vue " + (vm._name) + " init"), startTag, endTag);
@@ -19091,7 +22163,7 @@ function dedupe (latest, extended, sealed) {
 }
 
 function Vue$3 (options) {
-  if ("development" !== 'production' &&
+  if (process.env.NODE_ENV !== 'production' &&
     !(this instanceof Vue$3)
   ) {
     warn('Vue is a constructor and should be called with the `new` keyword');
@@ -19160,7 +22232,7 @@ function initExtend (Vue) {
     }
 
     var name = extendOptions.name || Super.options.name;
-    if ("development" !== 'production' && name) {
+    if (process.env.NODE_ENV !== 'production' && name) {
       validateComponentName(name);
     }
 
@@ -19243,7 +22315,7 @@ function initAssetRegisters (Vue) {
         return this.options[type + 's'][id]
       } else {
         /* istanbul ignore if */
-        if ("development" !== 'production' && type === 'component') {
+        if (process.env.NODE_ENV !== 'production' && type === 'component') {
           validateComponentName(id);
         }
         if (type === 'component' && isPlainObject(definition)) {
@@ -19398,7 +22470,7 @@ function initGlobalAPI (Vue) {
   // config
   var configDef = {};
   configDef.get = function () { return config; };
-  {
+  if (process.env.NODE_ENV !== 'production') {
     configDef.set = function () {
       warn(
         'Do not replace the Vue.config object, set individual fields instead.'
@@ -19660,7 +22732,7 @@ function query (el) {
   if (typeof el === 'string') {
     var selected = document.querySelector(el);
     if (!selected) {
-      "development" !== 'production' && warn(
+      process.env.NODE_ENV !== 'production' && warn(
         'Cannot find element: ' + el
       );
       return document.createElement('div')
@@ -19905,7 +22977,7 @@ function createPatchFunction (backend) {
     var children = vnode.children;
     var tag = vnode.tag;
     if (isDef(tag)) {
-      {
+      if (process.env.NODE_ENV !== 'production') {
         if (data && data.pre) {
           creatingElmInVPre++;
         }
@@ -19932,7 +23004,7 @@ function createPatchFunction (backend) {
         insert(parentElm, vnode.elm, refElm);
       }
 
-      if ("development" !== 'production' && data && data.pre) {
+      if (process.env.NODE_ENV !== 'production' && data && data.pre) {
         creatingElmInVPre--;
       }
     } else if (isTrue(vnode.isComment)) {
@@ -20019,7 +23091,7 @@ function createPatchFunction (backend) {
 
   function createChildren (vnode, children, insertedVnodeQueue) {
     if (Array.isArray(children)) {
-      {
+      if (process.env.NODE_ENV !== 'production') {
         checkDuplicateKeys(children);
       }
       for (var i = 0; i < children.length; ++i) {
@@ -20153,7 +23225,7 @@ function createPatchFunction (backend) {
     // during leaving transitions
     var canMove = !removeOnly;
 
-    {
+    if (process.env.NODE_ENV !== 'production') {
       checkDuplicateKeys(newCh);
     }
 
@@ -20327,7 +23399,7 @@ function createPatchFunction (backend) {
       return true
     }
     // assert node match
-    {
+    if (process.env.NODE_ENV !== 'production') {
       if (!assertNodeMatch(elm, vnode, inVPre)) {
         return false
       }
@@ -20350,7 +23422,7 @@ function createPatchFunction (backend) {
           if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
             if (i !== elm.innerHTML) {
               /* istanbul ignore if */
-              if ("development" !== 'production' &&
+              if (process.env.NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
                 !hydrationBailed
               ) {
@@ -20376,7 +23448,7 @@ function createPatchFunction (backend) {
             // longer than the virtual children list.
             if (!childrenMatch || childNode) {
               /* istanbul ignore if */
-              if ("development" !== 'production' &&
+              if (process.env.NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
                 !hydrationBailed
               ) {
@@ -20451,7 +23523,7 @@ function createPatchFunction (backend) {
             if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
               invokeInsertHook(vnode, insertedVnodeQueue, true);
               return oldVnode
-            } else {
+            } else if (process.env.NODE_ENV !== 'production') {
               warn(
                 'The client-side rendered virtual DOM tree is not matching ' +
                 'server-rendered content. This is likely caused by incorrect ' +
@@ -20933,7 +24005,7 @@ function addHandler (
   // warn prevent and passive modifier
   /* istanbul ignore if */
   if (
-    "development" !== 'production' && warn &&
+    process.env.NODE_ENV !== 'production' && warn &&
     modifiers.prevent && modifiers.passive
   ) {
     warn(
@@ -21208,7 +24280,7 @@ function model (
   var tag = el.tag;
   var type = el.attrsMap.type;
 
-  {
+  if (process.env.NODE_ENV !== 'production') {
     // inputs with type="file" are read only and setting the input's
     // value will throw an error.
     if (tag === 'input' && type === 'file') {
@@ -21235,7 +24307,7 @@ function model (
     genComponentModel(el, value, modifiers);
     // component v-model doesn't need extra runtime
     return false
-  } else {
+  } else if (process.env.NODE_ENV !== 'production') {
     warn$1(
       "<" + (el.tag) + " v-model=\"" + value + "\">: " +
       "v-model is not supported on this element type. " +
@@ -21316,7 +24388,7 @@ function genDefaultModel (
   var type = el.attrsMap.type;
 
   // warn if v-bind:value conflicts with v-model
-  {
+  if (process.env.NODE_ENV !== 'production') {
     var value$1 = el.attrsMap['v-bind:value'] || el.attrsMap[':value'];
     if (value$1) {
       var binding = el.attrsMap['v-bind:value'] ? 'v-bind:value' : ':value';
@@ -22023,7 +25095,7 @@ function enter (vnode, toggleDisplay) {
       : duration
   );
 
-  if ("development" !== 'production' && explicitEnterDuration != null) {
+  if (process.env.NODE_ENV !== 'production' && explicitEnterDuration != null) {
     checkDuration(explicitEnterDuration, 'enter', vnode);
   }
 
@@ -22129,7 +25201,7 @@ function leave (vnode, rm) {
       : duration
   );
 
-  if ("development" !== 'production' && isDef(explicitLeaveDuration)) {
+  if (process.env.NODE_ENV !== 'production' && isDef(explicitLeaveDuration)) {
     checkDuration(explicitLeaveDuration, 'leave', vnode);
   }
 
@@ -22356,7 +25428,7 @@ function actuallySetSelected (el, binding, vm) {
   var value = binding.value;
   var isMultiple = el.multiple;
   if (isMultiple && !Array.isArray(value)) {
-    "development" !== 'production' && warn(
+    process.env.NODE_ENV !== 'production' && warn(
       "<select multiple v-model=\"" + (binding.expression) + "\"> " +
       "expects an Array value for its binding, but got " + (Object.prototype.toString.call(value).slice(8, -1)),
       vm
@@ -22572,7 +25644,7 @@ var Transition = {
     }
 
     // warn multiple elements
-    if ("development" !== 'production' && children.length > 1) {
+    if (process.env.NODE_ENV !== 'production' && children.length > 1) {
       warn(
         '<transition> can only be used on a single element. Use ' +
         '<transition-group> for lists.',
@@ -22583,7 +25655,7 @@ var Transition = {
     var mode = this.mode;
 
     // warn invalid mode
-    if ("development" !== 'production' &&
+    if (process.env.NODE_ENV !== 'production' &&
       mode && mode !== 'in-out' && mode !== 'out-in'
     ) {
       warn(
@@ -22708,7 +25780,7 @@ var TransitionGroup = {
           children.push(c);
           map[c.key] = c
           ;(c.data || (c.data = {})).transition = transitionData;
-        } else {
+        } else if (process.env.NODE_ENV !== 'production') {
           var opts = c.componentOptions;
           var name = opts ? (opts.Ctor.options.name || opts.tag || '') : c.tag;
           warn(("<transition-group> children must be keyed: <" + name + ">"));
@@ -22875,14 +25947,14 @@ Vue$3.nextTick(function () {
   if (config.devtools) {
     if (devtools) {
       devtools.emit('init', Vue$3);
-    } else if ("development" !== 'production' && isChrome) {
+    } else if (process.env.NODE_ENV !== 'production' && isChrome) {
       console[console.info ? 'info' : 'log'](
         'Download the Vue Devtools extension for a better development experience:\n' +
         'https://github.com/vuejs/vue-devtools'
       );
     }
   }
-  if ("development" !== 'production' &&
+  if (process.env.NODE_ENV !== 'production' &&
     config.productionTip !== false &&
     inBrowser && typeof console !== 'undefined'
   ) {
@@ -22947,7 +26019,7 @@ function parseText (
 function transformNode (el, options) {
   var warn = options.warn || baseWarn;
   var staticClass = getAndRemoveAttr(el, 'class');
-  if ("development" !== 'production' && staticClass) {
+  if (process.env.NODE_ENV !== 'production' && staticClass) {
     var res = parseText(staticClass, options.delimiters);
     if (res) {
       warn(
@@ -22991,7 +26063,7 @@ function transformNode$1 (el, options) {
   var staticStyle = getAndRemoveAttr(el, 'style');
   if (staticStyle) {
     /* istanbul ignore if */
-    {
+    if (process.env.NODE_ENV !== 'production') {
       var res = parseText(staticStyle, options.delimiters);
       if (res) {
         warn(
@@ -23232,7 +26304,7 @@ function parseHTML (html, options) {
 
     if (html === last) {
       options.chars && options.chars(html);
-      if ("development" !== 'production' && !stack.length && options.warn) {
+      if (process.env.NODE_ENV !== 'production' && !stack.length && options.warn) {
         options.warn(("Mal-formatted tag at end of template: \"" + html + "\""));
       }
       break
@@ -23339,7 +26411,7 @@ function parseHTML (html, options) {
     if (pos >= 0) {
       // Close all the open elements, up the stack
       for (var i = stack.length - 1; i >= pos; i--) {
-        if ("development" !== 'production' &&
+        if (process.env.NODE_ENV !== 'production' &&
           (i > pos || !tagName) &&
           options.warn
         ) {
@@ -23485,7 +26557,7 @@ function parse (
 
       if (isForbiddenTag(element) && !isServerRendering()) {
         element.forbidden = true;
-        "development" !== 'production' && warn$2(
+        process.env.NODE_ENV !== 'production' && warn$2(
           'Templates should only be responsible for mapping the state to the ' +
           'UI. Avoid placing tags with side-effects in your templates, such as ' +
           "<" + tag + ">" + ', as they will not be parsed.'
@@ -23518,7 +26590,7 @@ function parse (
       }
 
       function checkRootConstraints (el) {
-        {
+        if (process.env.NODE_ENV !== 'production') {
           if (el.tag === 'slot' || el.tag === 'template') {
             warnOnce(
               "Cannot use <" + (el.tag) + "> as component root element because it may " +
@@ -23546,7 +26618,7 @@ function parse (
             exp: element.elseif,
             block: element
           });
-        } else {
+        } else if (process.env.NODE_ENV !== 'production') {
           warnOnce(
             "Component template should contain exactly one root element. " +
             "If you are using v-if on multiple elements, " +
@@ -23588,7 +26660,7 @@ function parse (
 
     chars: function chars (text) {
       if (!currentParent) {
-        {
+        if (process.env.NODE_ENV !== 'production') {
           if (text === template) {
             warnOnce(
               'Component template requires a root element, rather than just text.'
@@ -23683,7 +26755,7 @@ function processElement (element, options) {
 function processKey (el) {
   var exp = getBindingAttr(el, 'key');
   if (exp) {
-    if ("development" !== 'production' && el.tag === 'template') {
+    if (process.env.NODE_ENV !== 'production' && el.tag === 'template') {
       warn$2("<template> cannot be keyed. Place the key on real elements instead.");
     }
     el.key = exp;
@@ -23704,7 +26776,7 @@ function processFor (el) {
     var res = parseFor(exp);
     if (res) {
       extend(el, res);
-    } else {
+    } else if (process.env.NODE_ENV !== 'production') {
       warn$2(
         ("Invalid v-for expression: " + exp)
       );
@@ -23757,7 +26829,7 @@ function processIfConditions (el, parent) {
       exp: el.elseif,
       block: el
     });
-  } else {
+  } else if (process.env.NODE_ENV !== 'production') {
     warn$2(
       "v-" + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + " " +
       "used on element <" + (el.tag) + "> without corresponding v-if."
@@ -23771,7 +26843,7 @@ function findPrevElement (children) {
     if (children[i].type === 1) {
       return children[i]
     } else {
-      if ("development" !== 'production' && children[i].text !== ' ') {
+      if (process.env.NODE_ENV !== 'production' && children[i].text !== ' ') {
         warn$2(
           "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
           "will be ignored."
@@ -23799,7 +26871,7 @@ function processOnce (el) {
 function processSlot (el) {
   if (el.tag === 'slot') {
     el.slotName = getBindingAttr(el, 'name');
-    if ("development" !== 'production' && el.key) {
+    if (process.env.NODE_ENV !== 'production' && el.key) {
       warn$2(
         "`key` does not work on <slot> because slots are abstract outlets " +
         "and can possibly expand into multiple elements. " +
@@ -23811,7 +26883,7 @@ function processSlot (el) {
     if (el.tag === 'template') {
       slotScope = getAndRemoveAttr(el, 'scope');
       /* istanbul ignore if */
-      if ("development" !== 'production' && slotScope) {
+      if (process.env.NODE_ENV !== 'production' && slotScope) {
         warn$2(
           "the \"scope\" attribute for scoped slots have been deprecated and " +
           "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attribute " +
@@ -23823,7 +26895,7 @@ function processSlot (el) {
       el.slotScope = slotScope || getAndRemoveAttr(el, 'slot-scope');
     } else if ((slotScope = getAndRemoveAttr(el, 'slot-scope'))) {
       /* istanbul ignore if */
-      if ("development" !== 'production' && el.attrsMap['v-for']) {
+      if (process.env.NODE_ENV !== 'production' && el.attrsMap['v-for']) {
         warn$2(
           "Ambiguous combined usage of slot-scope and v-for on <" + (el.tag) + "> " +
           "(v-for takes higher priority). Use a wrapper <template> for the " +
@@ -23909,13 +26981,13 @@ function processAttrs (el) {
           name = name.slice(0, -(arg.length + 1));
         }
         addDirective(el, name, rawName, value, arg, modifiers);
-        if ("development" !== 'production' && name === 'model') {
+        if (process.env.NODE_ENV !== 'production' && name === 'model') {
           checkForAliasModel(el, value);
         }
       }
     } else {
       // literal attribute
-      {
+      if (process.env.NODE_ENV !== 'production') {
         var res = parseText(value, delimiters);
         if (res) {
           warn$2(
@@ -23962,7 +27034,7 @@ function makeAttrsMap (attrs) {
   var map = {};
   for (var i = 0, l = attrs.length; i < l; i++) {
     if (
-      "development" !== 'production' &&
+      process.env.NODE_ENV !== 'production' &&
       map[attrs[i].name] && !isIE && !isEdge
     ) {
       warn$2('duplicate attribute: ' + attrs[i].name);
@@ -24390,7 +27462,7 @@ function genFilterCode (key) {
 /*  */
 
 function on (el, dir) {
-  if ("development" !== 'production' && dir.modifiers) {
+  if (process.env.NODE_ENV !== 'production' && dir.modifiers) {
     warn("v-on without argument does not support modifiers.");
   }
   el.wrapListeners = function (code) { return ("_g(" + code + "," + (dir.value) + ")"); };
@@ -24495,7 +27567,7 @@ function genOnce (el, state) {
       parent = parent.parent;
     }
     if (!key) {
-      "development" !== 'production' && state.warn(
+      process.env.NODE_ENV !== 'production' && state.warn(
         "v-once can only be used inside v-for that is keyed. "
       );
       return genElement(el, state)
@@ -24554,7 +27626,7 @@ function genFor (
   var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
   var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
 
-  if ("development" !== 'production' &&
+  if (process.env.NODE_ENV !== 'production' &&
     state.maybeComponent(el) &&
     el.tag !== 'slot' &&
     el.tag !== 'template' &&
@@ -24680,7 +27752,7 @@ function genDirectives (el, state) {
 
 function genInlineTemplate (el, state) {
   var ast = el.children[0];
-  if ("development" !== 'production' && (
+  if (process.env.NODE_ENV !== 'production' && (
     el.children.length !== 1 || ast.type !== 1
   )) {
     state.warn('Inline-template components must have exactly one child element.');
@@ -24988,7 +28060,7 @@ function createCompileToFunctionFn (compile) {
     delete options.warn;
 
     /* istanbul ignore if */
-    {
+    if (process.env.NODE_ENV !== 'production') {
       // detect possible CSP restriction
       try {
         new Function('return 1');
@@ -25017,7 +28089,7 @@ function createCompileToFunctionFn (compile) {
     var compiled = compile(template, options);
 
     // check compilation errors/tips
-    {
+    if (process.env.NODE_ENV !== 'production') {
       if (compiled.errors && compiled.errors.length) {
         warn$$1(
           "Error compiling template:\n\n" + template + "\n\n" +
@@ -25042,7 +28114,7 @@ function createCompileToFunctionFn (compile) {
     // this should only happen if there is a bug in the compiler itself.
     // mostly for codegen development use
     /* istanbul ignore if */
-    {
+    if (process.env.NODE_ENV !== 'production') {
       if ((!compiled.errors || !compiled.errors.length) && fnGenErrors.length) {
         warn$$1(
           "Failed to generate render function:\n\n" +
@@ -25098,7 +28170,7 @@ function createCompilerCreator (baseCompile) {
       }
 
       var compiled = baseCompile(template, finalOptions);
-      {
+      if (process.env.NODE_ENV !== 'production') {
         errors.push.apply(errors, detectErrors(compiled.ast));
       }
       compiled.errors = errors;
@@ -25170,7 +28242,7 @@ Vue$3.prototype.$mount = function (
 
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {
-    "development" !== 'production' && warn(
+    process.env.NODE_ENV !== 'production' && warn(
       "Do not mount Vue to <html> or <body> - mount to normal elements instead."
     );
     return this
@@ -25185,7 +28257,7 @@ Vue$3.prototype.$mount = function (
         if (template.charAt(0) === '#') {
           template = idToTemplate(template);
           /* istanbul ignore if */
-          if ("development" !== 'production' && !template) {
+          if (process.env.NODE_ENV !== 'production' && !template) {
             warn(
               ("Template element not found or is empty: " + (options.template)),
               this
@@ -25195,7 +28267,7 @@ Vue$3.prototype.$mount = function (
       } else if (template.nodeType) {
         template = template.innerHTML;
       } else {
-        {
+        if (process.env.NODE_ENV !== 'production') {
           warn('invalid template option:' + template, this);
         }
         return this
@@ -25205,7 +28277,7 @@ Vue$3.prototype.$mount = function (
     }
     if (template) {
       /* istanbul ignore if */
-      if ("development" !== 'production' && config.performance && mark) {
+      if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
         mark('compile');
       }
 
@@ -25221,7 +28293,7 @@ Vue$3.prototype.$mount = function (
       options.staticRenderFns = staticRenderFns;
 
       /* istanbul ignore if */
-      if ("development" !== 'production' && config.performance && mark) {
+      if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
         mark('compile end');
         measure(("vue " + (this._name) + " compile"), 'compile', 'compile end');
       }
@@ -25246,14 +28318,12 @@ function getOuterHTML (el) {
 
 Vue$3.compile = compileToFunctions;
 
-return Vue$3;
+/* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-})));
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43), __webpack_require__(120).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(75), __webpack_require__(44), __webpack_require__(140).setImmediate))
 
 /***/ }),
-/* 120 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -25306,7 +28376,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(121);
+__webpack_require__(141);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -25317,10 +28387,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ }),
-/* 121 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -25510,200 +28580,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43), __webpack_require__(122)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44), __webpack_require__(75)))
 
 /***/ }),
-/* 122 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 123 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25719,9 +28599,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var cwl_svg_1 = __webpack_require__(39);
-var objectPath = __webpack_require__(124);
-var autoBind = __webpack_require__(125);
+var cwl_svg_1 = __webpack_require__(143);
+var objectPath = __webpack_require__(147);
+var autoBind = __webpack_require__(148);
 var WorkflowExpansionPlugin = /** @class */ (function (_super) {
     __extends(WorkflowExpansionPlugin, _super);
     function WorkflowExpansionPlugin() {
@@ -25801,7 +28681,383 @@ exports.default = WorkflowExpansionPlugin;
 //# sourceMappingURL=cwl-svg-expand.js.map
 
 /***/ }),
-/* 124 */
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(45));
+__export(__webpack_require__(79));
+__export(__webpack_require__(81));
+__export(__webpack_require__(84));
+__export(__webpack_require__(88));
+__export(__webpack_require__(86));
+__export(__webpack_require__(85));
+__export(__webpack_require__(47));
+__export(__webpack_require__(83));
+__export(__webpack_require__(89));
+// for implementing third-party plugins
+__export(__webpack_require__(9));
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var DomEvents = /** @class */ (function () {
+    function DomEvents(root) {
+        this.root = root;
+        this.handlers = new Map();
+    }
+    DomEvents.prototype.on = function () {
+        var _this = this;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var event = args.shift();
+        var selector = typeof args[0] === "string" ? args.shift() : undefined;
+        var handler = typeof args[0] === "function" ? args.shift() : function () {
+        };
+        var root = args.shift();
+        var eventHolder = root || this.root;
+        if (!this.handlers.has(eventHolder)) {
+            this.handlers.set(eventHolder, {});
+        }
+        if (!this.handlers.get(eventHolder)[event]) {
+            this.handlers.get(eventHolder)[event] = [];
+        }
+        var evListener = function (ev) {
+            var target;
+            if (selector) {
+                var selected = Array.from(_this.root.querySelectorAll(selector));
+                target = ev.target;
+                while (target) {
+                    if (selected.find(function (el) { return el === target; })) {
+                        break;
+                    }
+                    target = target.parentNode;
+                }
+                if (!target) {
+                    return;
+                }
+            }
+            var handlerOutput = handler(ev, target || ev.target, _this.root);
+            if (handlerOutput === false) {
+                return false;
+            }
+            return false;
+        };
+        eventHolder.addEventListener(event, evListener);
+        this.handlers.get(eventHolder)[event].push(evListener);
+        return function off() {
+            eventHolder.removeEventListener(event, evListener);
+        };
+    };
+    DomEvents.prototype.keyup = function () {
+    };
+    DomEvents.prototype.adaptedDrag = function (selector, move, start, end) {
+        var _this = this;
+        var dragging = false;
+        var lastMove;
+        var draggedEl;
+        var moveEventCount = 0;
+        var mouseDownEv;
+        var threshold = 3;
+        var mouseOverListeners;
+        var onMouseDown = function (ev, el) {
+            dragging = true;
+            lastMove = ev;
+            draggedEl = el;
+            mouseDownEv = ev;
+            ev.preventDefault();
+            mouseOverListeners = _this.detachHandlers("mouseover");
+            document.addEventListener("mousemove", moveHandler);
+            document.addEventListener("mouseup", upHandler);
+            return false;
+        };
+        var off = this.on("mousedown", selector, onMouseDown);
+        var moveHandler = function (ev) {
+            if (!dragging) {
+                return;
+            }
+            var dx = ev.screenX - lastMove.screenX;
+            var dy = ev.screenY - lastMove.screenY;
+            moveEventCount++;
+            if (moveEventCount === threshold && typeof start === "function") {
+                start(mouseDownEv, draggedEl, _this.root);
+            }
+            if (moveEventCount >= threshold && typeof move === "function") {
+                move(dx, dy, ev, draggedEl, _this.root);
+            }
+        };
+        var upHandler = function (ev) {
+            if (moveEventCount >= threshold) {
+                if (dragging) {
+                    if (typeof end === "function") {
+                        end(ev, draggedEl, _this.root);
+                    }
+                }
+                var parentNode_1 = draggedEl.parentNode;
+                var clickCancellation_1 = function (ev) {
+                    ev.stopPropagation();
+                    parentNode_1.removeEventListener("click", clickCancellation_1, true);
+                };
+                parentNode_1.addEventListener("click", clickCancellation_1, true);
+            }
+            dragging = false;
+            draggedEl = undefined;
+            lastMove = undefined;
+            moveEventCount = 0;
+            document.removeEventListener("mouseup", upHandler);
+            document.removeEventListener("mousemove", moveHandler);
+            for (var i in mouseOverListeners) {
+                _this.root.addEventListener("mouseover", mouseOverListeners[i]);
+                _this.handlers.get(_this.root)["mouseover"] = [];
+                _this.handlers.get(_this.root)["mouseover"].push(mouseOverListeners[i]);
+            }
+        };
+        return off;
+    };
+    DomEvents.prototype.drag = function (selector, move, start, end) {
+        var _this = this;
+        var dragging = false;
+        var lastMove;
+        var draggedEl;
+        var moveEventCount = 0;
+        var mouseDownEv;
+        var threshold = 3;
+        var mouseOverListeners;
+        var onMouseDown = function (ev, el, root) {
+            dragging = true;
+            lastMove = ev;
+            draggedEl = el;
+            mouseDownEv = ev;
+            ev.preventDefault();
+            mouseOverListeners = _this.detachHandlers("mouseover");
+            document.addEventListener("mousemove", moveHandler);
+            document.addEventListener("mouseup", upHandler);
+            return false;
+        };
+        var off = this.on("mousedown", selector, onMouseDown);
+        var moveHandler = function (ev) {
+            if (!dragging) {
+                return;
+            }
+            var dx = ev.screenX - lastMove.screenX;
+            var dy = ev.screenY - lastMove.screenY;
+            moveEventCount++;
+            if (moveEventCount === threshold && typeof start === "function") {
+                start(mouseDownEv, draggedEl, _this.root);
+            }
+            if (moveEventCount >= threshold && typeof move === "function") {
+                move(dx, dy, ev, draggedEl, _this.root);
+            }
+        };
+        var upHandler = function (ev) {
+            if (moveEventCount >= threshold) {
+                if (dragging) {
+                    if (typeof end === "function") {
+                        end(ev, draggedEl, _this.root);
+                    }
+                }
+                // When releasing the mouse button, if it happens over the same element that we initially had
+                // the mouseDown event, it will trigger a click event. We want to stop that, so we intercept
+                // it by capturing click top-down and stopping its propagation.
+                // However, if the mouseUp didn't happen above the starting element, it wouldn't trigger a click,
+                // but it would intercept the next (unrelated) click event unless we prevent interception in the
+                // first place by checking if we released above the starting element.
+                if (draggedEl.contains(ev.target)) {
+                    var parentNode_2 = draggedEl.parentNode;
+                    var clickCancellation_2 = function (ev) {
+                        ev.stopPropagation();
+                        parentNode_2.removeEventListener("click", clickCancellation_2, true);
+                    };
+                    parentNode_2.addEventListener("click", clickCancellation_2, true);
+                }
+            }
+            dragging = false;
+            draggedEl = undefined;
+            lastMove = undefined;
+            moveEventCount = 0;
+            document.removeEventListener("mouseup", upHandler);
+            document.removeEventListener("mousemove", moveHandler);
+            for (var i in mouseOverListeners) {
+                _this.root.addEventListener("mouseover", mouseOverListeners[i]);
+                _this.handlers.get(_this.root)["mouseover"] = [];
+                _this.handlers.get(_this.root)["mouseover"].push(mouseOverListeners[i]);
+            }
+        };
+        return off;
+    };
+    DomEvents.prototype.hover = function (element, hover, enter, leave) {
+        var _this = this;
+        if (hover === void 0) { hover = function () {
+        }; }
+        if (enter === void 0) { enter = function () {
+        }; }
+        if (leave === void 0) { leave = function () {
+        }; }
+        var hovering = false;
+        element.addEventListener("mouseenter", function (ev) {
+            hovering = true;
+            enter(ev, element, _this.root);
+        });
+        element.addEventListener("mouseleave", function (ev) {
+            hovering = false;
+            leave(ev, element, _this.root);
+        });
+        element.addEventListener("mousemove", function (ev) {
+            if (!hovering) {
+                return;
+            }
+            hover(ev, element, _this.root);
+        });
+    };
+    DomEvents.prototype.detachHandlers = function (evName, root) {
+        root = root || this.root;
+        var eventListeners = [];
+        this.handlers.forEach(function (handlers, listenerRoot) {
+            if (listenerRoot.id !== root.id || listenerRoot !== root) {
+                return;
+            }
+            var _loop_1 = function (eventName) {
+                if (eventName !== evName) {
+                    return "continue";
+                }
+                handlers[eventName].forEach(function (handler) {
+                    eventListeners.push(handler);
+                    listenerRoot.removeEventListener(eventName, handler);
+                });
+            };
+            for (var eventName in handlers) {
+                _loop_1(eventName);
+            }
+        });
+        delete this.handlers.get(this.root)[evName];
+        return eventListeners;
+    };
+    DomEvents.prototype.detachAll = function () {
+        this.handlers.forEach(function (handlers, listenerRoot) {
+            var _loop_2 = function (eventName) {
+                handlers[eventName].forEach(function (handler) { return listenerRoot.removeEventListener(eventName, handler); });
+            };
+            for (var eventName in handlers) {
+                _loop_2(eventName);
+            }
+        });
+        this.handlers.clear();
+    };
+    return DomEvents;
+}());
+exports.DomEvents = DomEvents;
+//# sourceMappingURL=dom-events.js.map
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var EventHub = /** @class */ (function () {
+    function EventHub(validEventList) {
+        this.handlers = validEventList.reduce(function (acc, ev) {
+            return Object.assign(acc, (_a = {}, _a[ev] = [], _a));
+            var _a;
+        }, {});
+    }
+    EventHub.prototype.on = function (event, handler) {
+        var _this = this;
+        this.guard(event, "subscribe to");
+        this.handlers[event].push(handler);
+        return function () { return _this.off(event, handler); };
+    };
+    EventHub.prototype.off = function (event, handler) {
+        this.guard(event, "unsubscribe from");
+        return this.handlers[event].splice(this.handlers[event].findIndex(function (h) { return handler === h; }), 1);
+    };
+    EventHub.prototype.emit = function (event) {
+        var data = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            data[_i - 1] = arguments[_i];
+        }
+        this.guard(event, "emit");
+        for (var i = 0; i < this.handlers[event].length; i++) {
+            (_a = this.handlers[event])[i].apply(_a, __spread(data));
+        }
+        var _a;
+    };
+    EventHub.prototype.empty = function () {
+        for (var event_1 in this.handlers) {
+            this.handlers[event_1] = [];
+        }
+    };
+    EventHub.prototype.guard = function (event, verb) {
+        if (!this.handlers[event]) {
+            console.warn("Trying to " + verb + " a non-supported event \u201C" + event + "\u201D. \n            Supported events are: " + Object.keys(this.handlers).join(", ") + "\u201D");
+        }
+    };
+    return EventHub;
+}());
+exports.EventHub = EventHub;
+//# sourceMappingURL=event-hub.js.map
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var HtmlUtils = /** @class */ (function () {
+    function HtmlUtils() {
+    }
+    HtmlUtils.escapeHTML = function (source) {
+        return String(source).replace(/[&<>"'\/]/g, function (s) { return HtmlUtils.entityMap[s]; });
+    };
+    HtmlUtils.entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"\"": "&quot;",
+        "'": "&#39;",
+        "/": "&#x2F;"
+    };
+    return HtmlUtils;
+}());
+exports.HtmlUtils = HtmlUtils;
+//# sourceMappingURL=html-utils.js.map
+
+/***/ }),
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory){
@@ -26102,7 +29358,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 125 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
