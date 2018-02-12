@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 90);
+/******/ 	return __webpack_require__(__webpack_require__.s = 91);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2944,8 +2944,8 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(103));
-__export(__webpack_require__(130));
+__export(__webpack_require__(104));
+__export(__webpack_require__(131));
 
 
 /***/ }),
@@ -3738,7 +3738,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineUtils_1 = __webpack_require__(106);
+var CommandLineUtils_1 = __webpack_require__(107);
 var EventHub_1 = __webpack_require__(49);
 var JobHelper_1 = __webpack_require__(26);
 var UnimplementedMethodException_1 = __webpack_require__(3);
@@ -4405,7 +4405,7 @@ exports.JobHelper = JobHelper;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var models_1 = __webpack_require__(15);
-var html_utils_1 = __webpack_require__(136);
+var html_utils_1 = __webpack_require__(137);
 var svg_utils_1 = __webpack_require__(63);
 var io_port_1 = __webpack_require__(62);
 var GraphNode = /** @class */ (function () {
@@ -4539,7 +4539,7 @@ exports.GraphNode = GraphNode;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var models_1 = __webpack_require__(15);
-var html_utils_1 = __webpack_require__(146);
+var html_utils_1 = __webpack_require__(147);
 var svg_utils_1 = __webpack_require__(78);
 var io_port_1 = __webpack_require__(77);
 var GraphNode = /** @class */ (function () {
@@ -4712,7 +4712,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(98);
+var	fixUrls = __webpack_require__(99);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -5032,8 +5032,8 @@ function updateLink (link, options, obj) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var WorkflowModel_1 = __webpack_require__(12);
-var V1WorkflowModel_1 = __webpack_require__(104);
-var SBDraft2WorkflowModel_1 = __webpack_require__(124);
+var V1WorkflowModel_1 = __webpack_require__(105);
+var SBDraft2WorkflowModel_1 = __webpack_require__(125);
 var WorkflowFactory = /** @class */ (function () {
     function WorkflowFactory() {
     }
@@ -5370,8 +5370,8 @@ exports.TypeResolver = TypeResolver;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var CommandLineToolModel_1 = __webpack_require__(24);
-var V1CommandLineToolModel_1 = __webpack_require__(108);
-var SBDraft2CommandLineToolModel_1 = __webpack_require__(114);
+var V1CommandLineToolModel_1 = __webpack_require__(109);
+var SBDraft2CommandLineToolModel_1 = __webpack_require__(115);
 var CommandLineToolFactory = /** @class */ (function () {
     function CommandLineToolFactory() {
     }
@@ -5890,8 +5890,8 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dom_events_1 = __webpack_require__(134);
-var event_hub_1 = __webpack_require__(135);
+var dom_events_1 = __webpack_require__(135);
+var event_hub_1 = __webpack_require__(136);
 var edge_1 = __webpack_require__(42);
 var graph_node_1 = __webpack_require__(27);
 var step_node_1 = __webpack_require__(64);
@@ -6900,8 +6900,8 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dom_events_1 = __webpack_require__(144);
-var event_hub_1 = __webpack_require__(145);
+var dom_events_1 = __webpack_require__(145);
+var event_hub_1 = __webpack_require__(146);
 var edge_1 = __webpack_require__(46);
 var graph_node_1 = __webpack_require__(28);
 var step_node_1 = __webpack_require__(79);
@@ -7851,11 +7851,11 @@ exports.SelectionPlugin = SelectionPlugin;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_cwl_svg_src_assets_styles_themes_rabix_dark_theme_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cwl_svg_src_plugins_port_drag_theme_dark_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cwl_svg_src_plugins_selection_theme_dark_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cwlts_models__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cwlts_models___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cwlts_models__);
@@ -8345,7 +8345,7 @@ exports.V1WorkflowOutputParameterModel = V1WorkflowOutputParameterModel;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CommandLineParsers_1 = __webpack_require__(107);
+var CommandLineParsers_1 = __webpack_require__(108);
 var CommandArgumentModel_1 = __webpack_require__(25);
 var CommandInputParameterModel_1 = __webpack_require__(11);
 var ExpressionModel_1 = __webpack_require__(10);
@@ -12719,24 +12719,331 @@ exports.DeletionPlugin = DeletionPlugin;
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory){
+  'use strict';
+
+  /*istanbul ignore next:cant test*/
+  if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = factory();
+  } else if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {
+    // Browser globals
+    root.objectPath = factory();
+  }
+})(this, function(){
+  'use strict';
+
+  var toStr = Object.prototype.toString;
+  function hasOwnProperty(obj, prop) {
+    if(obj == null) {
+      return false
+    }
+    //to handle objects with null prototypes (too edge case?)
+    return Object.prototype.hasOwnProperty.call(obj, prop)
+  }
+
+  function isEmpty(value){
+    if (!value) {
+      return true;
+    }
+    if (isArray(value) && value.length === 0) {
+        return true;
+    } else if (typeof value !== 'string') {
+        for (var i in value) {
+            if (hasOwnProperty(value, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+  }
+
+  function toString(type){
+    return toStr.call(type);
+  }
+
+  function isObject(obj){
+    return typeof obj === 'object' && toString(obj) === "[object Object]";
+  }
+
+  var isArray = Array.isArray || function(obj){
+    /*istanbul ignore next:cant test*/
+    return toStr.call(obj) === '[object Array]';
+  }
+
+  function isBoolean(obj){
+    return typeof obj === 'boolean' || toString(obj) === '[object Boolean]';
+  }
+
+  function getKey(key){
+    var intKey = parseInt(key);
+    if (intKey.toString() === key) {
+      return intKey;
+    }
+    return key;
+  }
+
+  function factory(options) {
+    options = options || {}
+
+    var objectPath = function(obj) {
+      return Object.keys(objectPath).reduce(function(proxy, prop) {
+        if(prop === 'create') {
+          return proxy;
+        }
+
+        /*istanbul ignore else*/
+        if (typeof objectPath[prop] === 'function') {
+          proxy[prop] = objectPath[prop].bind(objectPath, obj);
+        }
+
+        return proxy;
+      }, {});
+    };
+
+    function hasShallowProperty(obj, prop) {
+      return (options.includeInheritedProps || (typeof prop === 'number' && Array.isArray(obj)) || hasOwnProperty(obj, prop))
+    }
+
+    function getShallowProperty(obj, prop) {
+      if (hasShallowProperty(obj, prop)) {
+        return obj[prop];
+      }
+    }
+
+    function set(obj, path, value, doNotReplace){
+      if (typeof path === 'number') {
+        path = [path];
+      }
+      if (!path || path.length === 0) {
+        return obj;
+      }
+      if (typeof path === 'string') {
+        return set(obj, path.split('.').map(getKey), value, doNotReplace);
+      }
+      var currentPath = path[0];
+      var currentValue = getShallowProperty(obj, currentPath);
+      if (path.length === 1) {
+        if (currentValue === void 0 || !doNotReplace) {
+          obj[currentPath] = value;
+        }
+        return currentValue;
+      }
+
+      if (currentValue === void 0) {
+        //check if we assume an array
+        if(typeof path[1] === 'number') {
+          obj[currentPath] = [];
+        } else {
+          obj[currentPath] = {};
+        }
+      }
+
+      return set(obj[currentPath], path.slice(1), value, doNotReplace);
+    }
+
+    objectPath.has = function (obj, path) {
+      if (typeof path === 'number') {
+        path = [path];
+      } else if (typeof path === 'string') {
+        path = path.split('.');
+      }
+
+      if (!path || path.length === 0) {
+        return !!obj;
+      }
+
+      for (var i = 0; i < path.length; i++) {
+        var j = getKey(path[i]);
+
+        if((typeof j === 'number' && isArray(obj) && j < obj.length) ||
+          (options.includeInheritedProps ? (j in Object(obj)) : hasOwnProperty(obj, j))) {
+          obj = obj[j];
+        } else {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    objectPath.ensureExists = function (obj, path, value){
+      return set(obj, path, value, true);
+    };
+
+    objectPath.set = function (obj, path, value, doNotReplace){
+      return set(obj, path, value, doNotReplace);
+    };
+
+    objectPath.insert = function (obj, path, value, at){
+      var arr = objectPath.get(obj, path);
+      at = ~~at;
+      if (!isArray(arr)) {
+        arr = [];
+        objectPath.set(obj, path, arr);
+      }
+      arr.splice(at, 0, value);
+    };
+
+    objectPath.empty = function(obj, path) {
+      if (isEmpty(path)) {
+        return void 0;
+      }
+      if (obj == null) {
+        return void 0;
+      }
+
+      var value, i;
+      if (!(value = objectPath.get(obj, path))) {
+        return void 0;
+      }
+
+      if (typeof value === 'string') {
+        return objectPath.set(obj, path, '');
+      } else if (isBoolean(value)) {
+        return objectPath.set(obj, path, false);
+      } else if (typeof value === 'number') {
+        return objectPath.set(obj, path, 0);
+      } else if (isArray(value)) {
+        value.length = 0;
+      } else if (isObject(value)) {
+        for (i in value) {
+          if (hasShallowProperty(value, i)) {
+            delete value[i];
+          }
+        }
+      } else {
+        return objectPath.set(obj, path, null);
+      }
+    };
+
+    objectPath.push = function (obj, path /*, values */){
+      var arr = objectPath.get(obj, path);
+      if (!isArray(arr)) {
+        arr = [];
+        objectPath.set(obj, path, arr);
+      }
+
+      arr.push.apply(arr, Array.prototype.slice.call(arguments, 2));
+    };
+
+    objectPath.coalesce = function (obj, paths, defaultValue) {
+      var value;
+
+      for (var i = 0, len = paths.length; i < len; i++) {
+        if ((value = objectPath.get(obj, paths[i])) !== void 0) {
+          return value;
+        }
+      }
+
+      return defaultValue;
+    };
+
+    objectPath.get = function (obj, path, defaultValue){
+      if (typeof path === 'number') {
+        path = [path];
+      }
+      if (!path || path.length === 0) {
+        return obj;
+      }
+      if (obj == null) {
+        return defaultValue;
+      }
+      if (typeof path === 'string') {
+        return objectPath.get(obj, path.split('.'), defaultValue);
+      }
+
+      var currentPath = getKey(path[0]);
+      var nextObj = getShallowProperty(obj, currentPath)
+      if (nextObj === void 0) {
+        return defaultValue;
+      }
+
+      if (path.length === 1) {
+        return nextObj;
+      }
+
+      return objectPath.get(obj[currentPath], path.slice(1), defaultValue);
+    };
+
+    objectPath.del = function del(obj, path) {
+      if (typeof path === 'number') {
+        path = [path];
+      }
+
+      if (obj == null) {
+        return obj;
+      }
+
+      if (isEmpty(path)) {
+        return obj;
+      }
+      if(typeof path === 'string') {
+        return objectPath.del(obj, path.split('.'));
+      }
+
+      var currentPath = getKey(path[0]);
+      if (!hasShallowProperty(obj, currentPath)) {
+        return obj;
+      }
+
+      if(path.length === 1) {
+        if (isArray(obj)) {
+          obj.splice(currentPath, 1);
+        } else {
+          delete obj[currentPath];
+        }
+      } else {
+        return objectPath.del(obj[currentPath], path.slice(1));
+      }
+
+      return obj;
+    }
+
+    return objectPath;
+  }
+
+  var mod = factory();
+  mod.create = factory;
+  mod.withInheritedProps = factory({includeInheritedProps: true})
+  return mod;
+});
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var _cwl = __webpack_require__(91);
+var _cwl = __webpack_require__(92);
 
 var _cwl2 = _interopRequireDefault(_cwl);
 
-var _vue = __webpack_require__(139);
+var _vue = __webpack_require__(140);
 
 var _vue2 = _interopRequireDefault(_vue);
 
 var _cwlSvg = __webpack_require__(60);
 
-var _cwlSvgExpand = __webpack_require__(142);
+var _cwlSvgExpand = __webpack_require__(143);
 
 var _cwlSvgExpand2 = _interopRequireDefault(_cwlSvgExpand);
 
+var _objectPath = __webpack_require__(90);
+
+var _objectPath2 = _interopRequireDefault(_objectPath);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var op = (0, _objectPath2.default)();
 
 _vue2.default.config.devtools = true;
 _vue2.default.config.debug = true;
@@ -12753,25 +13060,28 @@ var vue = new _vue2.default({
     methods: {
         selectionChanged: function selectionChanged(payload) {
             this.selection = payload;
+        },
+        selectionPath: function selectionPath(path) {
+            op.get(this.selection, path);
         }
     },
     delimiters: ['[[', ']]']
 });
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cwl_vue__ = __webpack_require__(48);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_597a6c5a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_cwl_vue__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_597a6c5a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_cwl_vue__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(139);
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(92)
+  __webpack_require__(93)
 }
 /* script */
 
@@ -12818,17 +13128,17 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(93);
+var content = __webpack_require__(94);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var add = __webpack_require__(94).default
+var add = __webpack_require__(95).default
 var update = add("3887b45a", content, false, {});
 // Hot Module Replacement
 if(false) {
@@ -12845,7 +13155,7 @@ if(false) {
 }
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(18)(true);
@@ -12853,19 +13163,19 @@ exports = module.exports = __webpack_require__(18)(true);
 
 
 // module
-exports.push([module.i, "\n.cwl-workflow {\n    height: 500px;\n    position: relative;\n}\n", "", {"version":3,"sources":["/home/michael/Programming/registry-website/js/cwl.vue"],"names":[],"mappings":";AA0GA;IACA,cAAA;IACA,mBAAA;CACA","file":"cwl.vue","sourcesContent":["<template>\n    <svg ref=\"svg\" class=\"cwl-workflow\"></svg>\n</template>\n\n<script>\n    import \"cwl-svg/src/assets/styles/themes/rabix-dark/theme.scss\";\n    import \"cwl-svg/src/plugins/port-drag/theme.dark.scss\";\n    import \"cwl-svg/src/plugins/selection/theme.dark.scss\";\n\n    import {WorkflowFactory} from \"cwlts/models\";\n    import {Workflow, SVGArrangePlugin, SelectionPlugin} from \"cwl-svg\";\n\n    export default {\n        data() {\n            return {\n                selectedNode: null,\n                workflow: null,\n                cwlState: null\n            };\n        },\n\n        computed: {\n            cwlModel() {\n                return WorkflowFactory.from(this.cwlState);\n            }\n        },\n\n        props: {\n            cwlUrl: {\n                type: String,\n                default: null,\n                note: `A URL to request for the initial CWL object from. Used as an alternative to\n                the \"cwl\" prop`\n            },\n            cwl: {\n                type: Object,\n                default: null,\n                note: `The JSON object representing the CWL workflow to render`\n            },\n\n            editingEnabled: {\n                type: Boolean,\n                default: false,\n                note: `True if the workflow is editable`\n            },\n            plugins: {\n                type: Array,\n                default: () => [],\n                note: `A list of CWL plugins to use in the CWL rendering`\n            }\n        },\n\n        /**\n         * If the cwlUrl prop was set, send a request for the CWL object, and set it to the internal\n         * state\n         */\n        mounted(){\n            if (this.cwlUrl){\n                fetch(this.cwlUrl, {\n                    headers: new Headers({\n                        'Accept': 'application/json'\n                    })\n                }).then(response => {\n                    return response.json();\n                }).then(json => {\n                    this.cwlState = json;\n                });\n            }\n        },\n\n        watch: {\n            /**\n             * If the cwl prop ever changes, update the internal workflow object to that\n             */\n            cwl() {\n                this.cwlState = this.cwl;\n            },\n\n            cwlState(){\n                this.workflow = new Workflow({\n                    editingEnabled: this.editingEnabled,\n                    model: this.cwlModel,\n                    svgRoot: this.$refs.svg,\n                    plugins: this.plugins\n                });\n\n                // Hack to force ArrangePlugin to rearrange\n                const arranger = this.workflow.getPlugin(SVGArrangePlugin);\n                if (arranger)\n                    arranger.arrange();\n\n                // Emit a selectionChanged event when selection changes\n                const selection = this.workflow.getPlugin(SelectionPlugin);\n                selection.registerOnSelectionChange(element => {\n                    if (element) {\n                        const id = element.getAttribute(\"data-connection-id\");\n                        const selected = this.workflow.model.findById(id);\n                        this.$emit('selection-changed', selected);\n                    }\n                });\n            }\n        }\n    }\n</script>\n\n<style lang=\"css\">\n    .cwl-workflow {\n        height: 500px;\n        position: relative;\n    }\n</style>"],"sourceRoot":""}]);
+exports.push([module.i, "\n.cwl-workflow {\n    height: 500px;\n    position: relative;\n}\n", "", {"version":3,"sources":["/Users/mailie/PycharmProjects/registry-v1/js/cwl.vue"],"names":[],"mappings":";AA0GA;IACA,cAAA;IACA,mBAAA;CACA","file":"cwl.vue","sourcesContent":["<template>\n    <svg ref=\"svg\" class=\"cwl-workflow\"></svg>\n</template>\n\n<script>\n    import \"cwl-svg/src/assets/styles/themes/rabix-dark/theme.scss\";\n    import \"cwl-svg/src/plugins/port-drag/theme.dark.scss\";\n    import \"cwl-svg/src/plugins/selection/theme.dark.scss\";\n\n    import {WorkflowFactory} from \"cwlts/models\";\n    import {Workflow, SVGArrangePlugin, SelectionPlugin} from \"cwl-svg\";\n\n    export default {\n        data() {\n            return {\n                selectedNode: null,\n                workflow: null,\n                cwlState: null\n            };\n        },\n\n        computed: {\n            cwlModel() {\n                return WorkflowFactory.from(this.cwlState);\n            }\n        },\n\n        props: {\n            cwlUrl: {\n                type: String,\n                default: null,\n                note: `A URL to request for the initial CWL object from. Used as an alternative to\n                the \"cwl\" prop`\n            },\n            cwl: {\n                type: Object,\n                default: null,\n                note: `The JSON object representing the CWL workflow to render`\n            },\n\n            editingEnabled: {\n                type: Boolean,\n                default: false,\n                note: `True if the workflow is editable`\n            },\n            plugins: {\n                type: Array,\n                default: () => [],\n                note: `A list of CWL plugins to use in the CWL rendering`\n            }\n        },\n\n        /**\n         * If the cwlUrl prop was set, send a request for the CWL object, and set it to the internal\n         * state\n         */\n        mounted(){\n            if (this.cwlUrl){\n                fetch(this.cwlUrl, {\n                    headers: new Headers({\n                        'Accept': 'application/json'\n                    })\n                }).then(response => {\n                    return response.json();\n                }).then(json => {\n                    this.cwlState = json;\n                });\n            }\n        },\n\n        watch: {\n            /**\n             * If the cwl prop ever changes, update the internal workflow object to that\n             */\n            cwl() {\n                this.cwlState = this.cwl;\n            },\n\n            cwlState(){\n                this.workflow = new Workflow({\n                    editingEnabled: this.editingEnabled,\n                    model: this.cwlModel,\n                    svgRoot: this.$refs.svg,\n                    plugins: this.plugins\n                });\n\n                // Hack to force ArrangePlugin to rearrange\n                const arranger = this.workflow.getPlugin(SVGArrangePlugin);\n                if (arranger)\n                    arranger.arrange();\n\n                // Emit a selectionChanged event when selection changes\n                const selection = this.workflow.getPlugin(SelectionPlugin);\n                selection.registerOnSelectionChange(element => {\n                    if (element) {\n                        const id = element.getAttribute(\"data-connection-id\");\n                        const selected = this.workflow.model.findById(id);\n                        this.$emit('selection-changed', selected);\n                    }\n                });\n            }\n        }\n    }\n</script>\n\n<style lang=\"css\">\n    .cwl-workflow {\n        height: 500px;\n        position: relative;\n    }\n</style>"],"sourceRoot":""}]);
 
 // exports
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["default"] = addStylesClient;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listToStyles__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listToStyles__ = __webpack_require__(96);
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
@@ -13091,7 +13401,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13126,13 +13436,13 @@ function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(97);
+var content = __webpack_require__(98);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -13157,7 +13467,7 @@ if(false) {
 }
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(18)(undefined);
@@ -13171,7 +13481,7 @@ exports.push([module.i, "svg.cwl-workflow {\n  fill: #303030;\n  color: white;\n
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports) {
 
 
@@ -13266,13 +13576,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(100);
+var content = __webpack_require__(101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -13297,7 +13607,7 @@ if(false) {
 }
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(18)(undefined);
@@ -13311,13 +13621,13 @@ exports.push([module.i, ".cwl-workflow.__plugin-port-drag .port.__port-drag-sugg
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(102);
+var content = __webpack_require__(103);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -13342,7 +13652,7 @@ if(false) {
 }
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(18)(undefined);
@@ -13356,7 +13666,7 @@ exports.push([module.i, ".cwl-workflow.__plugin-selection .node,\n.cwl-workflow.
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13393,7 +13703,7 @@ __export(__webpack_require__(40));
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13410,7 +13720,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var WorkflowModel_1 = __webpack_require__(12);
-var V1StepModel_1 = __webpack_require__(105);
+var V1StepModel_1 = __webpack_require__(106);
 var V1WorkflowInputParameterModel_1 = __webpack_require__(55);
 var V1WorkflowOutputParameterModel_1 = __webpack_require__(51);
 var utils_1 = __webpack_require__(0);
@@ -13621,7 +13931,7 @@ exports.V1WorkflowModel = V1WorkflowModel;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13652,8 +13962,8 @@ var WorkflowFactory_1 = __webpack_require__(30);
 var WorkflowModel_1 = __webpack_require__(12);
 var utils_1 = __webpack_require__(0);
 var V1ExpressionModel_1 = __webpack_require__(5);
-var V1WorkflowStepInputModel_1 = __webpack_require__(122);
-var V1WorkflowStepOutputModel_1 = __webpack_require__(123);
+var V1WorkflowStepInputModel_1 = __webpack_require__(123);
+var V1WorkflowStepOutputModel_1 = __webpack_require__(124);
 var V1StepModel = /** @class */ (function (_super) {
     __extends(V1StepModel, _super);
     function V1StepModel(step, loc, eventHub) {
@@ -13882,7 +14192,7 @@ exports.V1StepModel = V1StepModel;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13932,7 +14242,7 @@ exports.generateCommandLineParts = function (tool, jobInputs, runtime) {
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14106,7 +14416,7 @@ exports.CommandLineParsers = CommandLineParsers;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14139,12 +14449,12 @@ var V1CommandArgumentModel_1 = __webpack_require__(53);
 var V1CommandInputParameterModel_1 = __webpack_require__(35);
 var V1CommandOutputParameterModel_1 = __webpack_require__(56);
 var V1ExpressionModel_1 = __webpack_require__(5);
-var V1InitialWorkDirRequirementModel_1 = __webpack_require__(109);
-var V1InlineJavascriptRequirementModel_1 = __webpack_require__(111);
-var V1ResourceRequirementModel_1 = __webpack_require__(112);
+var V1InitialWorkDirRequirementModel_1 = __webpack_require__(110);
+var V1InlineJavascriptRequirementModel_1 = __webpack_require__(112);
+var V1ResourceRequirementModel_1 = __webpack_require__(113);
 var CommandInputParameterModel_1 = __webpack_require__(11);
 var CommandOutputParameterModel_1 = __webpack_require__(14);
-var sbg_expression_lib_1 = __webpack_require__(113);
+var sbg_expression_lib_1 = __webpack_require__(114);
 var ExpressionEvaluator_1 = __webpack_require__(20);
 var V1CommandOutputBindingModel_1 = __webpack_require__(57);
 var V1CommandLineToolModel = /** @class */ (function (_super) {
@@ -14472,7 +14782,7 @@ exports.V1CommandLineToolModel = V1CommandLineToolModel;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14497,7 +14807,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var CreateFileRequirementModel_1 = __webpack_require__(38);
-var V1DirentModel_1 = __webpack_require__(110);
+var V1DirentModel_1 = __webpack_require__(111);
 var utils_1 = __webpack_require__(0);
 var ExpressionModel_1 = __webpack_require__(10);
 var V1ExpressionModel_1 = __webpack_require__(5);
@@ -14591,7 +14901,7 @@ exports.V1InitialWorkDirRequirementModel = V1InitialWorkDirRequirementModel;
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14642,7 +14952,7 @@ exports.V1DirentModel = V1DirentModel;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14699,7 +15009,7 @@ exports.V1InlineJavascriptRequirementModel = V1InlineJavascriptRequirementModel;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14773,7 +15083,7 @@ exports.V1ResourceRequirementModel = V1ResourceRequirementModel;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14783,7 +15093,7 @@ exports.sbgHelperLibrary = "\nvar setMetadata = function(file, metadata) {\n    
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14812,12 +15122,12 @@ var DockerRequirementModel_1 = __webpack_require__(36);
 var RequirementBaseModel_1 = __webpack_require__(16);
 var JobHelper_1 = __webpack_require__(26);
 var utils_1 = __webpack_require__(0);
-var SBDraft2CommandArgumentModel_1 = __webpack_require__(115);
-var SBDraft2CommandInputParameterModel_1 = __webpack_require__(116);
-var SBDraft2CommandOutputParameterModel_1 = __webpack_require__(117);
-var SBDraft2CreateFileRequirementModel_1 = __webpack_require__(119);
+var SBDraft2CommandArgumentModel_1 = __webpack_require__(116);
+var SBDraft2CommandInputParameterModel_1 = __webpack_require__(117);
+var SBDraft2CommandOutputParameterModel_1 = __webpack_require__(118);
+var SBDraft2CreateFileRequirementModel_1 = __webpack_require__(120);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
-var SBDraft2ResourceRequirementModel_1 = __webpack_require__(121);
+var SBDraft2ResourceRequirementModel_1 = __webpack_require__(122);
 var CommandInputParameterModel_1 = __webpack_require__(11);
 var CommandOutputParameterModel_1 = __webpack_require__(14);
 var ErrorCode_1 = __webpack_require__(1);
@@ -15159,7 +15469,7 @@ exports.SBDraft2CommandLineToolModel = SBDraft2CommandLineToolModel;
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15263,7 +15573,7 @@ exports.SBDraft2CommandArgumentModel = SBDraft2CommandArgumentModel;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15410,7 +15720,7 @@ exports.SBDraft2CommandInputParameterModel = SBDraft2CommandInputParameterModel;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15429,7 +15739,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var CommandOutputParameterModel_1 = __webpack_require__(14);
 var ParameterTypeModel_1 = __webpack_require__(4);
 var utils_1 = __webpack_require__(0);
-var SBDraft2CommandOutputBindingModel_1 = __webpack_require__(118);
+var SBDraft2CommandOutputBindingModel_1 = __webpack_require__(119);
 var SBDraft2ExpressionModel_1 = __webpack_require__(7);
 var SBDraft2CommandOutputParameterModel = /** @class */ (function (_super) {
     __extends(SBDraft2CommandOutputParameterModel, _super);
@@ -15536,7 +15846,7 @@ exports.SBDraft2CommandOutputParameterModel = SBDraft2CommandOutputParameterMode
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15690,7 +16000,7 @@ exports.SBDraft2CommandOutputBindingModel = SBDraft2CommandOutputBindingModel;
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15707,7 +16017,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var CreateFileRequirementModel_1 = __webpack_require__(38);
-var SBDraft2FileDefModel_1 = __webpack_require__(120);
+var SBDraft2FileDefModel_1 = __webpack_require__(121);
 var SBDraft2CreateFileRequirementModel = /** @class */ (function (_super) {
     __extends(SBDraft2CreateFileRequirementModel, _super);
     function SBDraft2CreateFileRequirementModel(req, loc, eventHub) {
@@ -15782,7 +16092,7 @@ exports.SBDraft2CreateFileRequirementModel = SBDraft2CreateFileRequirementModel;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15839,7 +16149,7 @@ exports.SBDraft2FileDefModel = SBDraft2FileDefModel;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15875,7 +16185,7 @@ exports.SBDraft2ResourceRequirementModel = SBDraft2ResourceRequirementModel;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15955,7 +16265,7 @@ exports.V1WorkflowStepInputModel = V1WorkflowStepInputModel;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16012,7 +16322,7 @@ exports.V1WorkflowStepOutputModel = V1WorkflowStepOutputModel;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16029,9 +16339,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var WorkflowModel_1 = __webpack_require__(12);
-var SBDraft2StepModel_1 = __webpack_require__(125);
-var SBDraft2WorkflowInputParameterModel_1 = __webpack_require__(128);
-var SBDraft2WorkflowOutputParameterModel_1 = __webpack_require__(129);
+var SBDraft2StepModel_1 = __webpack_require__(126);
+var SBDraft2WorkflowInputParameterModel_1 = __webpack_require__(129);
+var SBDraft2WorkflowOutputParameterModel_1 = __webpack_require__(130);
 var utils_1 = __webpack_require__(0);
 var constants_1 = __webpack_require__(6);
 var WorkflowInputParameterModel_1 = __webpack_require__(17);
@@ -16236,7 +16546,7 @@ exports.SBDraft2WorkflowModel = SBDraft2WorkflowModel;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16263,8 +16573,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var StepModel_1 = __webpack_require__(21);
 var WorkflowModel_1 = __webpack_require__(12);
 var ExpressionToolModel_1 = __webpack_require__(59);
-var SBDraft2WorkflowStepInputModel_1 = __webpack_require__(126);
-var SBDraft2WorkflowStepOutputModel_1 = __webpack_require__(127);
+var SBDraft2WorkflowStepInputModel_1 = __webpack_require__(127);
+var SBDraft2WorkflowStepOutputModel_1 = __webpack_require__(128);
 var utils_1 = __webpack_require__(0);
 var WorkflowFactory_1 = __webpack_require__(30);
 var CommandLineToolFactory_1 = __webpack_require__(32);
@@ -16479,7 +16789,7 @@ exports.SBDraft2StepModel = SBDraft2StepModel;
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16580,7 +16890,7 @@ exports.SBDraft2WorkflowStepInputModel = SBDraft2WorkflowStepInputModel;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16660,7 +16970,7 @@ exports.SBDraft2WorkflowStepOutputModel = SBDraft2WorkflowStepOutputModel;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16747,7 +17057,7 @@ exports.SBDraft2WorkflowInputParameterModel = SBDraft2WorkflowInputParameterMode
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16816,7 +17126,7 @@ exports.SBDraft2WorkflowOutputParameterModel = SBDraft2WorkflowOutputParameterMo
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16827,7 +17137,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(20));
 __export(__webpack_require__(33));
-__export(__webpack_require__(131));
+__export(__webpack_require__(132));
 __export(__webpack_require__(50));
 __export(__webpack_require__(31));
 __export(__webpack_require__(6));
@@ -16835,13 +17145,13 @@ __export(__webpack_require__(0));
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var vm = __webpack_require__(132);
+var vm = __webpack_require__(133);
 var JSExecutor = /** @class */ (function () {
     function JSExecutor() {
     }
@@ -16862,10 +17172,10 @@ exports.JSExecutor = JSExecutor;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var indexOf = __webpack_require__(133);
+var indexOf = __webpack_require__(134);
 
 var Object_keys = function (obj) {
     if (Object.keys) return Object.keys(obj)
@@ -17006,7 +17316,7 @@ exports.createContext = Script.createContext = function (context) {
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports) {
 
 
@@ -17021,7 +17331,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17277,7 +17587,7 @@ exports.DomEvents = DomEvents;
 //# sourceMappingURL=dom-events.js.map
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17347,7 +17657,7 @@ exports.EventHub = EventHub;
 //# sourceMappingURL=event-hub.js.map
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17373,7 +17683,7 @@ exports.HtmlUtils = HtmlUtils;
 //# sourceMappingURL=html-utils.js.map
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17396,7 +17706,7 @@ if (false) {
 }
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17505,7 +17815,7 @@ function normalizeComponent (
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28320,10 +28630,10 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(75), __webpack_require__(44), __webpack_require__(140).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(75), __webpack_require__(44), __webpack_require__(141).setImmediate))
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -28376,7 +28686,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(141);
+__webpack_require__(142);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -28390,7 +28700,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -28583,7 +28893,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44), __webpack_require__(75)))
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28599,8 +28909,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var cwl_svg_1 = __webpack_require__(143);
-var objectPath = __webpack_require__(147);
+var cwl_svg_1 = __webpack_require__(144);
+var objectPath = __webpack_require__(90);
 var autoBind = __webpack_require__(148);
 var WorkflowExpansionPlugin = /** @class */ (function (_super) {
     __extends(WorkflowExpansionPlugin, _super);
@@ -28681,7 +28991,7 @@ exports.default = WorkflowExpansionPlugin;
 //# sourceMappingURL=cwl-svg-expand.js.map
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28705,7 +29015,7 @@ __export(__webpack_require__(9));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28961,7 +29271,7 @@ exports.DomEvents = DomEvents;
 //# sourceMappingURL=dom-events.js.map
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29031,7 +29341,7 @@ exports.EventHub = EventHub;
 //# sourceMappingURL=event-hub.js.map
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29055,307 +29365,6 @@ var HtmlUtils = /** @class */ (function () {
 }());
 exports.HtmlUtils = HtmlUtils;
 //# sourceMappingURL=html-utils.js.map
-
-/***/ }),
-/* 147 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory){
-  'use strict';
-
-  /*istanbul ignore next:cant test*/
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = factory();
-  } else if (true) {
-    // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {
-    // Browser globals
-    root.objectPath = factory();
-  }
-})(this, function(){
-  'use strict';
-
-  var toStr = Object.prototype.toString;
-  function hasOwnProperty(obj, prop) {
-    if(obj == null) {
-      return false
-    }
-    //to handle objects with null prototypes (too edge case?)
-    return Object.prototype.hasOwnProperty.call(obj, prop)
-  }
-
-  function isEmpty(value){
-    if (!value) {
-      return true;
-    }
-    if (isArray(value) && value.length === 0) {
-        return true;
-    } else if (typeof value !== 'string') {
-        for (var i in value) {
-            if (hasOwnProperty(value, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    return false;
-  }
-
-  function toString(type){
-    return toStr.call(type);
-  }
-
-  function isObject(obj){
-    return typeof obj === 'object' && toString(obj) === "[object Object]";
-  }
-
-  var isArray = Array.isArray || function(obj){
-    /*istanbul ignore next:cant test*/
-    return toStr.call(obj) === '[object Array]';
-  }
-
-  function isBoolean(obj){
-    return typeof obj === 'boolean' || toString(obj) === '[object Boolean]';
-  }
-
-  function getKey(key){
-    var intKey = parseInt(key);
-    if (intKey.toString() === key) {
-      return intKey;
-    }
-    return key;
-  }
-
-  function factory(options) {
-    options = options || {}
-
-    var objectPath = function(obj) {
-      return Object.keys(objectPath).reduce(function(proxy, prop) {
-        if(prop === 'create') {
-          return proxy;
-        }
-
-        /*istanbul ignore else*/
-        if (typeof objectPath[prop] === 'function') {
-          proxy[prop] = objectPath[prop].bind(objectPath, obj);
-        }
-
-        return proxy;
-      }, {});
-    };
-
-    function hasShallowProperty(obj, prop) {
-      return (options.includeInheritedProps || (typeof prop === 'number' && Array.isArray(obj)) || hasOwnProperty(obj, prop))
-    }
-
-    function getShallowProperty(obj, prop) {
-      if (hasShallowProperty(obj, prop)) {
-        return obj[prop];
-      }
-    }
-
-    function set(obj, path, value, doNotReplace){
-      if (typeof path === 'number') {
-        path = [path];
-      }
-      if (!path || path.length === 0) {
-        return obj;
-      }
-      if (typeof path === 'string') {
-        return set(obj, path.split('.').map(getKey), value, doNotReplace);
-      }
-      var currentPath = path[0];
-      var currentValue = getShallowProperty(obj, currentPath);
-      if (path.length === 1) {
-        if (currentValue === void 0 || !doNotReplace) {
-          obj[currentPath] = value;
-        }
-        return currentValue;
-      }
-
-      if (currentValue === void 0) {
-        //check if we assume an array
-        if(typeof path[1] === 'number') {
-          obj[currentPath] = [];
-        } else {
-          obj[currentPath] = {};
-        }
-      }
-
-      return set(obj[currentPath], path.slice(1), value, doNotReplace);
-    }
-
-    objectPath.has = function (obj, path) {
-      if (typeof path === 'number') {
-        path = [path];
-      } else if (typeof path === 'string') {
-        path = path.split('.');
-      }
-
-      if (!path || path.length === 0) {
-        return !!obj;
-      }
-
-      for (var i = 0; i < path.length; i++) {
-        var j = getKey(path[i]);
-
-        if((typeof j === 'number' && isArray(obj) && j < obj.length) ||
-          (options.includeInheritedProps ? (j in Object(obj)) : hasOwnProperty(obj, j))) {
-          obj = obj[j];
-        } else {
-          return false;
-        }
-      }
-
-      return true;
-    };
-
-    objectPath.ensureExists = function (obj, path, value){
-      return set(obj, path, value, true);
-    };
-
-    objectPath.set = function (obj, path, value, doNotReplace){
-      return set(obj, path, value, doNotReplace);
-    };
-
-    objectPath.insert = function (obj, path, value, at){
-      var arr = objectPath.get(obj, path);
-      at = ~~at;
-      if (!isArray(arr)) {
-        arr = [];
-        objectPath.set(obj, path, arr);
-      }
-      arr.splice(at, 0, value);
-    };
-
-    objectPath.empty = function(obj, path) {
-      if (isEmpty(path)) {
-        return void 0;
-      }
-      if (obj == null) {
-        return void 0;
-      }
-
-      var value, i;
-      if (!(value = objectPath.get(obj, path))) {
-        return void 0;
-      }
-
-      if (typeof value === 'string') {
-        return objectPath.set(obj, path, '');
-      } else if (isBoolean(value)) {
-        return objectPath.set(obj, path, false);
-      } else if (typeof value === 'number') {
-        return objectPath.set(obj, path, 0);
-      } else if (isArray(value)) {
-        value.length = 0;
-      } else if (isObject(value)) {
-        for (i in value) {
-          if (hasShallowProperty(value, i)) {
-            delete value[i];
-          }
-        }
-      } else {
-        return objectPath.set(obj, path, null);
-      }
-    };
-
-    objectPath.push = function (obj, path /*, values */){
-      var arr = objectPath.get(obj, path);
-      if (!isArray(arr)) {
-        arr = [];
-        objectPath.set(obj, path, arr);
-      }
-
-      arr.push.apply(arr, Array.prototype.slice.call(arguments, 2));
-    };
-
-    objectPath.coalesce = function (obj, paths, defaultValue) {
-      var value;
-
-      for (var i = 0, len = paths.length; i < len; i++) {
-        if ((value = objectPath.get(obj, paths[i])) !== void 0) {
-          return value;
-        }
-      }
-
-      return defaultValue;
-    };
-
-    objectPath.get = function (obj, path, defaultValue){
-      if (typeof path === 'number') {
-        path = [path];
-      }
-      if (!path || path.length === 0) {
-        return obj;
-      }
-      if (obj == null) {
-        return defaultValue;
-      }
-      if (typeof path === 'string') {
-        return objectPath.get(obj, path.split('.'), defaultValue);
-      }
-
-      var currentPath = getKey(path[0]);
-      var nextObj = getShallowProperty(obj, currentPath)
-      if (nextObj === void 0) {
-        return defaultValue;
-      }
-
-      if (path.length === 1) {
-        return nextObj;
-      }
-
-      return objectPath.get(obj[currentPath], path.slice(1), defaultValue);
-    };
-
-    objectPath.del = function del(obj, path) {
-      if (typeof path === 'number') {
-        path = [path];
-      }
-
-      if (obj == null) {
-        return obj;
-      }
-
-      if (isEmpty(path)) {
-        return obj;
-      }
-      if(typeof path === 'string') {
-        return objectPath.del(obj, path.split('.'));
-      }
-
-      var currentPath = getKey(path[0]);
-      if (!hasShallowProperty(obj, currentPath)) {
-        return obj;
-      }
-
-      if(path.length === 1) {
-        if (isArray(obj)) {
-          obj.splice(currentPath, 1);
-        } else {
-          delete obj[currentPath];
-        }
-      } else {
-        return objectPath.del(obj[currentPath], path.slice(1));
-      }
-
-      return obj;
-    }
-
-    return objectPath;
-  }
-
-  var mod = factory();
-  mod.create = factory;
-  mod.withInheritedProps = factory({includeInheritedProps: true})
-  return mod;
-});
-
 
 /***/ }),
 /* 148 */
