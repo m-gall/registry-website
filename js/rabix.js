@@ -2,9 +2,7 @@ import CWL from './cwl'
 import Vue from 'vue'
 import {SVGArrangePlugin, SelectionPlugin} from 'cwl-svg'
 import ExpansionPlugin from 'cwl-svg-expand'
-import objectPath from 'object-path'
-
-const op = objectPath();
+import * as objectPath from 'object-path';
 
 Vue.config.devtools = true;
 Vue.config.debug = true;
@@ -27,7 +25,7 @@ const vue = new Vue({
             this.selection = payload;
         },
         selectionPath(path){
-            op.get(this.selection, path);
+            return objectPath.get(this.selection, path, '');
         }
     },
     delimiters: ['[[', ']]']
