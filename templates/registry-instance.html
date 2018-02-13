@@ -106,34 +106,57 @@
 
                         <nav id="sidebar">
 
+                            {#  information revealed on the tool object  #}
                             <div v-if="selectionPath('run.class')" style="overflow-wrap: break-word">
-                                <h4> Packages: </h4>
                                 <div v-for="(value, key, index) in selectionPath('run.hints.0.customProps.packages')">
-                                    <h5> Tool name: </h5> [[ key ]]
-                                    <h5> Version </h5> [[ value.version[0] ]]
-                                    <h5> Sepcs </h5> [[ value.specs[0] ]]
-
+                                    <h4> Packages </h4>
+                                    <h5> Tool ID </h5>
+                                    <li> [[ key ]]</li>
+                                    <h5> Version </h5>
+                                    <li> [[ value.version[0] ]]</li>
                                     <div v-if="value.specs[0].indexOf('RRID') != -1">
                                         <h5> SciCrunch RRID </h5>
-                                        <a v-bind:href="value.specs[0] ">
-                                       [[ value.specs[0].match(/RRID.+/)[0] ]]
-                                        </a>
+                                        <li>
+                                            <a v-bind:href="value.specs[0] ">
+                                                [[ value.specs[0].match(/RRID.+/)[0] ]]
+                                            </a></li>
+                                    </div>
+                                    <h5> Basecommand </h5>
+                                    <li>
+                                        <div v-for="item in selectionPath('run.baseCommand')" style="display: inline">[[
+                                            item ]]
+                                        </div>
+                                    </li>
+                                    <h5> Parameters </h5>
+                                    <div v-for="item in selectionPath('run.arguments')">
+                                        <li>[[ item.binding.prefix ]] [[ item.binding.valueFrom.result ]]</li>
+                                    </div>
+                                    <h5> Inputs </h5>
+                                    <div v-for="item in selectionPath('run.inputs')">
+
+                                        <li style="font-weight: bold"> [[ item.id ]] </li>
+                                        <li style="text-indent: 5%">  <a vbind:href="item.customProps.format">EDAM: [[ item.customProps.format.match(/format.+/)[0] ]]</a></li>
+                                        <li style="text-indent: 5%"> [[ item.description ]]</li>
+
                                     </div>
 
                                 </div>
+                                {#  information revealed on the workflow object  #}
                                 <div v-if="selectionPath('run.steps')" style="overflow-wrap: break-word">
-                                    <h5> Sub-workflow names: </h5>
+                                    <h4> Workflow ID </h4>
+                                    [[ selection.run.id ]]
+                                    <h4> Workflow steps </h4>
                                     <div v-for="item in selectionPath('run.steps')">
-
-                                        [[ item.id ]]
-
+                                        [[ item.id.match(/^[^_]+/)[0] ]] [[ item.description ]]
                                     </div>
-
                                 </div>
 
+                                {#  information revealed on the file object  #}
 
-                            </div>
-
+                                <div v-if="selectionPath('fileTypes')" style="overflow-wrap: break-word">
+                                    <h4> File name </h4>
+                                    [[ selection.id ]]
+                                </div>
 
                         </nav>
 
