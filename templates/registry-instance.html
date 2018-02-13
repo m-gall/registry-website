@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">'
-
-
+<html lang="en">
 {% extends "base.html" %}
-
 {% block body %}
+
+    <style>
+
+        .node-icon-2 {
+            fill: #333;
+            stroke: #3395a7;
+            stroke-width: 3px;
+
+            stroke-linecap: round;
+        }
+
+    </style>
     <body>
-    <div class="container" style="margin-top: 50px;">
+    <div id="vue" class="container container-fluid" style="padding-top: 20px">
         <div class="panel panel-default">
             <div class="panel-heading">
 
@@ -134,8 +143,9 @@
                                     <h5> Inputs </h5>
                                     <div v-for="item in selectionPath('run.inputs')">
 
-                                        <li style="font-weight: bold"> [[ item.id ]] </li>
-                                        <li style="text-indent: 5%">  <a vbind:href="item.customProps.format">EDAM: [[ item.customProps.format.match(/format.+/)[0] ]]</a></li>
+                                        <li style="font-weight: bold"> [[ item.id ]]</li>
+                                        <li style="text-indent: 5%"><a vbind:href="item.customProps.format">EDAM: [[
+                                            item.customProps.format.match(/format.+/)[0] ]]</a></li>
                                         <li style="text-indent: 5%"> [[ item.description ]]</li>
 
                                     </div>
@@ -153,10 +163,11 @@
 
                                 {#  information revealed on the file object  #}
 
-                                <div v-if="selectionPath('fileTypes')" style="overflow-wrap: break-word">
+                                <div v-if="selectionPath('fileTypes')">
                                     <h4> File name </h4>
-                                    [[ selection.id ]]
+                                    {#                                    [[ selection.fileTypes ]]#}
                                 </div>
+                            </div>
 
                         </nav>
 
@@ -168,8 +179,49 @@
                                     v-bind:plugins="plugins"
                                     @selection-changed="selectionChanged"
                             ></cwl>
-                            <p> (double-click on workflow icons to reveal subworkflows) </p>
                             <p> Please note: this tool is still in development and only fully renders in Chrome </p>
+                            <div class="container" style=" position:relative; border:solid; border-width:1px; width: 400px">
+
+                                <div id=vue class=row>
+                                    <h5 style="text-indent: 15px">Key</h5>
+
+
+                                    <div class="col-sm-4">
+                                        <p> Workflow</p>
+                                        <svg class="node-icon-2" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 400.01 399.88"
+                                             x="-9" y="-10" width="20" height="20">
+                                            <path d="M400,200a80,80,0,0,1-140.33,52.53L158.23,303.24a80,80,0,1,1-17.9-35.77l101.44-50.71a80.23,80.23,0,0,1,0-33.52L140.33,132.53a79.87,79.87,0,1,1,17.9-35.77l101.44,50.71A80,80,0,0,1,400,200Z"
+                                                  transform="translate(0.01 -0.16)"/>
+                                        </svg>
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                        <p> Tool </p>
+                                        <svg class="node-icon" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 398.39 397.78"
+                                             x="-10" y="-8" width="20" height="15"><title>tool2</title>
+                                            <polygon
+                                                    points="38.77 397.57 0 366 136.15 198.78 0 31.57 38.77 0 200.63 198.78 38.77 397.57"/>
+                                            <rect x="198.39" y="347.78" width="200" height="50"/>
+                                        </svg>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p> Input/output </p>
+                                        <svg class="node-icon" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 499 462.86"
+                                             y="-10" x="-11" width="20" height="20">
+                                            <path d="M386.06,0H175V58.29l50,50V50H337.81V163.38h25l86.19.24V412.86H225V353.71l-50,50v59.15H499V112.94Zm1.75,113.45v-41l41.1,41.1Z"/>
+                                            <polygon points="387.81 1.06 387.81 1.75 387.12 1.06 387.81 1.06"/>
+                                            <polygon
+                                                    points="290.36 231 176.68 344.68 141.32 309.32 194.64 256 0 256 0 206 194.64 206 142.32 153.68 177.68 118.32 290.36 231"/>
+                                        </svg>
+                                    </div>
+
+                                </div>
+                                <p style="text-indent: 15px"> (double-click on workflow icons to reveal
+                                    subworkflows) </p>
+                            </div>
                         {% else %}
                             <p> No visual available </p>
                         {% endif %}

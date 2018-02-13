@@ -4,17 +4,74 @@
 
 {% extends "base.html" %}
 {% block body %}
-    <style>
-    </style>
+
     <div id="vue" class="container container-fluid">
+
+
+        {#  information revealed on the tool object  #}
+        <div v-if="selectionPath('run.class')" style="overflow-wrap: break-word">
+            <div v-for="(value, key, index) in selectionPath('run.hints.0.customProps.packages')">
+                <h4> Packages </h4>
+                <h5> Tool ID </h5>
+                <li> [[ key ]]</li>
+                <h5> Version </h5>
+                <li> [[ value.version[0] ]]</li>
+                <div v-if="value.specs[0].indexOf('RRID') != -1">
+                    <h5> SciCrunch RRID </h5>
+                    <li>
+                        <a v-bind:href="value.specs[0] ">
+                            [[ value.specs[0].match(/RRID.+/)[0] ]]
+                        </a></li>
+                </div>
+                <h5> Basecommand </h5>
+                <li>
+                    <div v-for="item in selectionPath('run.baseCommand')" style="display: inline">[[
+                        item ]]
+                    </div>
+                </li>
+                <h5> Parameters </h5>
+                <div v-for="item in selectionPath('run.arguments')">
+                    <li>[[ item.binding.prefix ]] [[ item.binding.valueFrom.result ]]</li>
+                </div>
+                <h5> Inputs </h5>
+                <div v-for="item in selectionPath('run.inputs')">
+
+                    <li style="font-weight: bold"> [[ item.id ]]</li>
+                    <li style="text-indent: 5%"><a vbind:href="item.customProps.format">EDAM: [[
+                        item.customProps.format.match(/format.+/)[0] ]]</a></li>
+                    <li style="text-indent: 5%"> [[ item.description ]]</li>
+
+                </div>
+
+            </div>
+            {#  information revealed on the workflow object  #}
+            <div v-if="selectionPath('run.steps')" style="overflow-wrap: break-word">
+                <h4> Workflow ID </h4>
+                [[ selection.run.id ]]
+                <h4> Workflow steps </h4>
+                <div v-for="item in selectionPath('run.steps')">
+                    [[ item.id ]] [[ item.description ]]
+                </div>
+            </div>
+
+            {#  information revealed on the file object  #}
+
+            <div v-if="selectionPath('fileTypes')">
+                <h4> File name </h4>
+                {#                                    [[ selection.fileTypes ]]#}
+            </div>
+        </div>
+
+
         <h3> {{ workflow_instance.workflow_name }}</h3>
         <cwl
-                cwl-url="/pipeline/{{workflow_instance.workflow_accession}}/{{workflow_instance.workflow_version}}"
+                cwl-url="/pipeline/{{ workflow_instance.workflow_accession }}/{{ workflow_instance.workflow_version }}"
                 v-bind:plugins="plugins"
         ></cwl>
         <p> Visualisation generated using rabix open-source library </p>
-	<p> Please note: this tool is still in development and only full renders in Chrome </p>
+        <p> Please note: this tool is still in development and only full renders in Chrome </p>
     </div>
+
     <script type="application/javascript"
             src="{{ url_for('static', filename='js/rabix.bundle.js') }}"></script>
 {% endblock %}
