@@ -95,16 +95,25 @@
 
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp)
 
-            var image = {
-                url: "/static/images/logos/sap.png",
-                {#          size: new google.maps.Size(100, 100),#}
-                scaledSize: new google.maps.Size(25, 8), // scaled size
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
-            };
+
+            var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/a_blue.png';
+
+            {#            var image = {#}
+            {#                url: "/static/images/logos/sap.png",#}
+            {#          size: new google.maps.Size(100, 100),#}
+            {#                scaledSize: new google.maps.Size(25, 8), // scaled size#}
+            {#                origin: new google.maps.Point(0, 0),#}
+            {#                anchor: new google.maps.Point(0, 0)#}
+            {#            };#}
 
 
-            var markerImage = "/static/agha.ico";
+            {#            var markerImage = "/static/images/map-localization.svg";#}
+
+                        var pinColor = "FE7569";
+                        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                            new google.maps.Size(21, 34),
+                            new google.maps.Point(0, 0),
+                            new google.maps.Point(10, 34));
 
             var count;
             for (count = 0; count < locations.length; count++) {
@@ -112,15 +121,15 @@
 
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations[count][1], locations[count][2]),
-                    map: map
-
+                    map: map,
+                    icon: pinImage
                 });
 
 
                 attachInfo(marker, locations[count][0], locations[count][3]);
             }
 
-            var mc = new MarkerClusterer(map);
+            {#            var mc = new MarkerClusterer(map);#}
 
             {#            marker.setMap(googleMap);#}
         }
@@ -148,8 +157,8 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvRM8RUAyX8O9eODVQmPBoYngM2ya8BOU&callback=myMap"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
+    {#    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">#}
+    {#    </script>#}
 
 
 {% endblock %}
