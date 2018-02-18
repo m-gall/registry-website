@@ -1,4 +1,4 @@
-import CWL from './cwl'
+import CWL from 'vue-cwl'
 import Vue from 'vue'
 import {SVGArrangePlugin, SelectionPlugin} from 'cwl-svg'
 import ExpansionPlugin from 'cwl-svg-expand'
@@ -6,16 +6,17 @@ import * as objectPath from 'object-path';
 
 Vue.config.devtools = true;
 Vue.config.debug = true;
-const selection = new SelectionPlugin();
+
 const vue = new Vue({
     el: '#vue',
     data: {
         plugins: [
             new SVGArrangePlugin(),
             new ExpansionPlugin(),
-            selection
+            new SelectionPlugin()
         ],
-        selection: {}
+        selection: {},
+        workflow: {}
     },
     components: {
         cwl: CWL
@@ -24,8 +25,14 @@ const vue = new Vue({
         selectionChanged(payload){
             this.selection = payload;
         },
+        workflowChanged(payload){
+            this.workflow = payload;
+        },
         selectionPath(path){
             return objectPath.get(this.selection, path, '');
+        },
+        getOutputDetails(outputName){
+            // return this.selection.
         }
     },
     delimiters: ['[[', ']]']
