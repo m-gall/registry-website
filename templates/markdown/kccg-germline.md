@@ -60,7 +60,6 @@
  * Clinically relevant variants managed in Patient Archive
  * Report template drafted in Patient Archive, then manually edited.
  * Quality report: mark_duplicates, depth of coverage
- * ''Prior to reporting, variants are manually checked by curators''
- * ''Example of quality report generated ''
+
 
 Page contributors: M. Gall (AGHA), Mark Cowley (TKCC)

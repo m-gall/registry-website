@@ -87,16 +87,6 @@
 #### Reporting
  * Most outputs providing metrics for sample quality are uploaded to Pathos directly
 
-#### Packages - summary
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control ||FastQC 0.11.2, cutadapt v 1.5, GATK DepthOfCoverage, Picard MarkDuplicates v1.119 , bedtools v2.21 vcftools v0.1.14  bcftools v1.3.1 ||hg19.fasta, annotated.bed ||
-||Mapping ||bwa-mem v0.7.10-r789 ||hg19.fasta ||
-||Local realignment ||GATK RealignerTargetCreator, GATK IndelRealigner ||hg19.fasta, Mills&1000G indels, 1000G phase1 indels,  vespa.bed ||
-||Base recalibration ||GATK Base recalibrator, GATK PrintReads ||hg19.fasta, dbSNP_137.b37.vcf, vespa.bed ||
-||Variant calling ||Vardict v1.4.6, varscan v2.3.7, GATK mutect v3.6, GATK Haplotype caller v3.6 ||hg19.fasta, dbsnp_137.vcf, hg19.cosmic_v54.vcf ||
-||Variant filtering ||addbamstats.pl ||hg19.fasta, dbSNP_137.vcf, vespa.bed ||
-||Variant annotation ||VEP version 78 + plugins (condel, exac, catscore, evs || ||
-||File manipulation ||gatk catvariants, gatk combinevariants ||hg19.fasta ||
 
 
 Page Authors/Contributors: M. Gall (AGHA), Jason Li (Peter MacCallum Cancer Centre), Richard Lupat (Peter MacCallum Cancer Centre)

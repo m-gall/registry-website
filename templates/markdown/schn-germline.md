@@ -66,18 +66,3 @@ Bioinformatics pipeline is composed of two stages - bam processing and variant c
 #### Curation
 
 #### Reporting
-
-#### Packages - summary
-
-||'''Stage''' ||'''Tools & version''' ||'''Data inputs''' ||
-||Quality control || FastQC v, bcl2fastq || GrCh37 ||
-||Duplicate marking || NextGENe ||
-||Mapping || NextGENe||hg19.fasta ||
-||Local realignment || NextGENe|| hg19.fasta, Mills & 1000g gold standard indels ||
-||Base recalibration ||  ||CHECK dbSNP_138, Mills & 1000G gold standard indels ||
-||Variant calling || NextGENe ||hg19.fasta, dbsnp_138 ||
-||Genotype refinement || Not performed ||  ||
-||Variant normalisation ||  ||hg19.fasta ||
-||Variant filtering || NextGENe and Alamut ||  ||
-||Variant annotation || Alamut ||   ||
-||File manipulation ||  ||

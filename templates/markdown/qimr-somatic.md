@@ -51,14 +51,6 @@ This is the primary next-generation sequencing analytical pipeline for QIMR Berg
  * quality is evaluated at the fastq level but almost never used as a cut-off point
  * Normally, the qprofiler output would be examined by a bioinformatician prior to curation.
  * example qprofiler output: [[attachment:qprofiler_results.html]]
-
-Common metrics examined for troubleshooting:
-|| '''Field''' || '''Description''' ||
-|| '''TAG MED''' || ||
-|| '''TLEN'''  || Frequently evaluated and required to detect structural variants. Insert size (gap size plus read length) - this provides an estimate of the expected insert size. Insert size should be relatively similar across read pairs providing an indication of quality of library prep. ||
-|| '''RNAME'''  || Useful for evaluating problems sample mixups. Can quickly visualise and verify the presence of mutations such as copy number variations & deletions. ||
-|| '''MAPQ'''  || quality value- 60 is maximum. Check for mapping quality ||
-
  * checks are mostly visual with no 'hard' criteria or quality threshold as a reference
 
 #### Alignment/Assembly

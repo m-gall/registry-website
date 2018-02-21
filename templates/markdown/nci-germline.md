@@ -49,13 +49,14 @@ In-house scripts remove variants discovered which are outside of exon boundaries
  * annotation against DGV updated 230715 - a curated catalogue of structural variants
 
 <<BR>>
-
-|| '''Type of annotation''' || '''Source of annotation/Software''' ||
-|| Population frequencies || dbSNP ||
-|| Clinical annotations || clinvar last updated 070515  ||
-|| variant annotations || dbsnp version 138, exac 0.3 ||
-|| Structural based ||   ||
-|| Prediction based || VEP ||
+_____________________________________________________________
+||_Type of annotation_____||_Source of annotation/Software_||
+|| Population frequencies || dbSNP                         ||
+|| Clinical annotations   || clinvar last updated 070515   ||
+|| variant annotations    || dbsnp version 138, exac 0.3   ||
+|| Structural based       ||                               ||
+|| Prediction based       || VEP                           ||
+||________________________||_______________________________||
 
 #### Variant Filtering 
 Variants may be filtered for the following:
