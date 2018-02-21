@@ -92,7 +92,6 @@ class Workflow_Description(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     description = db.Column(db.String(500))
     workflow_manager = db.Column(db.String(200))
-    cwl_link = db.Column(db.String(200))
     sample_qc = db.Column(db.String(200))
     fastq_qc = db.Column(db.String(200))
     alignment = db.Column(db.String(200))
