@@ -65,7 +65,7 @@
             <h3 style="margin-bottom:50px;margin-top: 20px"> Contributing Centres </h3>
 
             {% for row in institute_query_all %}
-                <img style='max-width:200px; max-height: 150px; margin-top: -20px;'
+                <img style='max-width:200px; max-height: 150px; margin-top: -20px; padding: 15px; align-items: left; display: inline-block'
                      src="{{ url_for('static', filename='images/logos/' + row.institute_logo) }}">
             {% endfor %}
 
