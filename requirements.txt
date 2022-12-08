@@ -2,7 +2,7 @@ appnope==0.1.0
 avro-cwl==1.8.4
 bleach==2.1.1
 CacheControl==0.11.7
-certifi==2017.7.27.1
+certifi==2022.12.7
 chardet==3.0.4
 click==6.7
 cwltool==1.0.20170928192020
